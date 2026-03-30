@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "skills": {
+    "ckm:banner-design": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "computedHash": "7bbf0f48704f5c40436e3466d7ef9bcbafe35a84eb8c3e9d0ab76408a57bac5c"
+    },
+    "ckm:brand": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "computedHash": "89c8579d232e6e14152a8b898d49eb94f59aa7288ed8ca103cd3b38cb082e00a"
+    },
+    "ckm:design": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "computedHash": "2020e511bb6fbc1dbc233d1da335ec7e8cb553d6e321d34cec4555efcc9ec8f1"
+    },
+    "ckm:design-system": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "computedHash": "49b8308dc428c66b0983f4b3d102c522c495f62538121064d1e82a040b1afd2c"
+    },
+    "ckm:slides": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "computedHash": "6d753831914ed6703b7222153f2710efc2f195f0ab24fd2119c76c2b6d1a6ba1"
+    },
+    "ckm:ui-styling": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "computedHash": "9ae38e4e201f338b6150e462b98a2db0f2ae7c180c77e8cfb1d33eba9d33bf33"
+    },
+    "design-motion-principles": {
+      "source": "kylezantos/design-engineer-auditor-package",
+      "sourceType": "github",
+      "computedHash": "d37d75f60df4a1e9592544a509e9ca65121b76b1cb5e3847c58fd33cb157d2fc"
+    },
+    "r3f-animation": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "computedHash": "4afdfaa4e854a84b02d87732a99a1ab4ec2d09588d84f1a266d722fdb0b803b0"
+    },
+    "r3f-best-practices": {
+      "source": "emalorenzo/three-agent-skills",
+      "sourceType": "github",
+      "computedHash": "d15cf5c47c35125afb4bfb079c3da515a34152f9839985065270a85e6bf36fb5"
+    },
+    "r3f-fundamentals": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "computedHash": "967de66db9ac580d1dd11c68ae8cee7a528d0aa2c712482110638e5b84174c94"
+    },
+    "r3f-geometry": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "computedHash": "a13c741ad88696449c1316cef1da0075ce831108dc884938b296fce48ba13974"
+    },
+    "r3f-interaction": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "computedHash": "c76872a184c62d248d3860b00449e688c39df064304a0d3bdc761f470bcce443"
+    },
+    "r3f-lighting": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "computedHash": "aa350789d68a09af0b64f404d4bb8689769de75989d331670223deefe123b2a8"
+    },
+    "r3f-loaders": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "computedHash": "4acb414b2e1fdf8f935b7a05a0d69a5a9bed0df4cc47353ff4bbc6a1c85ef6d6"
+    },
+    "r3f-materials": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "computedHash": "230224edab41a9228fbdbf45c882fa4651a4b6d5a4ae2cb56894325fee5b30ae"
+    },
+    "r3f-physics": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "computedHash": "03ed06d3601b59f3069226699180ebbd3960ecc97de5fd1ec9290eb4571f176f"
+    },
+    "r3f-postprocessing": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "computedHash": "88bb856e607097c6ab243ca9a6e87cd4747dd491911949f2db1bdc61091f0615"
+    },
+    "r3f-shaders": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "computedHash": "50a272a45dd6874657125c06a14a2e333c616966b4d09234f6c9c8081a4dc4fe"
+    },
+    "r3f-textures": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "computedHash": "b12fb6cb270089e3cd9d83c9b2df0937babe8b5529ccb7510087012cada05944"
+    },
+    "react-state-management": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "7c63f9bf6ce2e2884b2da61e899a2701068b53ef6e87fc29e3c04a199e3092cb"
+    },
+    "three-best-practices": {
+      "source": "emalorenzo/three-agent-skills",
+      "sourceType": "github",
+      "computedHash": "d135429cf44ae2fe06e6403b0fb417eaeb8c328641308b1b615e85a130c73794"
+    },
+    "threejs-animation": {
+      "source": "CloudAI-X/threejs-skills",
+      "sourceType": "github",
+      "computedHash": "8c50b1493812bd88f3ed0637c0c3c5d846afdb322157b67b2ffba4ce8e552835"
+    },
+    "threejs-fundamentals": {
+      "source": "CloudAI-X/threejs-skills",
+      "sourceType": "github",
+      "computedHash": "e08d49571071f0f54ef2a76fdfcb96c16673e4fda478067727def4659feb80ca"
+    },
+    "threejs-geometry": {
+      "source": "CloudAI-X/threejs-skills",
+      "sourceType": "github",
+      "computedHash": "4e5757bf80a329810545c237e557e362fa14fd3a3e6a567ec1d75435be6b2dda"
+    },
+    "threejs-interaction": {
+      "source": "CloudAI-X/threejs-skills",
+      "sourceType": "github",
+      "computedHash": "988d235b7ebd85276a584c6f81ce7c801280ebc45b401017b334136dc8a7ec82"
+    },
+    "threejs-lighting": {
+      "source": "CloudAI-X/threejs-skills",
+      "sourceType": "github",
+      "computedHash": "9303d1b8a9704e88415e5a98c98ad7b6e0f654f8029a3606af7947c0efcb86cc"
+    },
+    "threejs-loaders": {
+      "source": "CloudAI-X/threejs-skills",
+      "sourceType": "github",
+      "computedHash": "f2cceed635fd7a2119acf6e5b1a2fcba63a0e52cf2514c1830a69e4744554fcc"
+    },
+    "threejs-materials": {
+      "source": "CloudAI-X/threejs-skills",
+      "sourceType": "github",
+      "computedHash": "201cf0f3720c0ea9e415e6376b8ad389aa86b483875e87ca0e51aa2770c856aa"
+    },
+    "threejs-postprocessing": {
+      "source": "CloudAI-X/threejs-skills",
+      "sourceType": "github",
+      "computedHash": "48e04ff507582a18e0d509c2738b9d9466881b00e8ca2600727910a0d52abf75"
+    },
+    "threejs-shaders": {
+      "source": "CloudAI-X/threejs-skills",
+      "sourceType": "github",
+      "computedHash": "649ceb058edfb5cfd51e80fb3a6c57aca9bab4a9d3a03f6077aa9502be0c0771"
+    },
+    "threejs-textures": {
+      "source": "CloudAI-X/threejs-skills",
+      "sourceType": "github",
+      "computedHash": "772a0bfc1d64cfcbc5347d206584a8fa412983201ad7a2cfb8766097b4936db9"
+    },
+    "ui-ux-pro-max": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "computedHash": "0a413bf988d06481f69bb81df2070741c3ba12dd9f1be2706d57f259c905992d"
+    }
+  }
+}

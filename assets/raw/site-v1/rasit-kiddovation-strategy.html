@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme: dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kidovation | Accenture Song × RASIT — From Young Innovators to Global Voices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   CSS CUSTOM PROPERTIES
+   ═══════════════════════════════════════ */
+:root {
+  --bg-deep: #0a0e1a;
+  --bg-surface: rgba(255,255,255,0.04);
+  --bg-surface-hover: rgba(255,255,255,0.08);
+  --border-glass: rgba(255,255,255,0.08);
+  --border-glass-hover: rgba(255,255,255,0.15);
+  --purple: #7C3AED;
+  --purple-glow: rgba(124,58,237,0.3);
+  --blue: #2563EB;
+  --blue-glow: rgba(37,99,235,0.3);
+  --cyan: #00F0FF;
+  --cyan-glow: rgba(0,240,255,0.2);
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ═══════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--purple) var(--bg-deep);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════
+   SCROLL PROGRESS BAR
+   ═══════════════════════════════════════ */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
+  z-index: 10000;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ═══════════════════════════════════════
+   STICKY NAV
+   ═══════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 3px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: rgba(10,14,26,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-glass);
+  padding: 0 2rem;
+  transition: var(--transition);
+}
+nav .nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+nav .nav-brand {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+nav .nav-links {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+}
+nav .nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  transition: var(--transition);
+  letter-spacing: 0.01em;
+}
+nav .nav-links a:hover,
+nav .nav-links a.active {
+  color: var(--text-primary);
+  background: var(--bg-surface-hover);
+}
+nav .nav-links a:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ═══════════════════════════════════════
+   LAYOUT UTILITIES
+   ═══════════════════════════════════════ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+section {
+  padding: 3.5rem 0;
+  position: relative;
+}
+.section-label {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--cyan);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--cyan);
+}
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  text-wrap: balance;
+}
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 640px;
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════
+   REVEAL ANIMATIONS
+   ═══════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ═══════════════════════════════════════
+   GLASS CARD
+   ═══════════════════════════════════════ */
+.glass-card {
+  background: var(--bg-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.08), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.glass-card:hover {
+  border-color: var(--border-glass-hover);
+  transform: translateY(-4px);
+  background: var(--bg-surface-hover);
+}
+.glass-card:hover::before { opacity: 1; }
+
+/* ═══════════════════════════════════════
+   1. HERO
+   ═══════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 60px;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  animation: orbFloat 12s ease-in-out infinite;
+}
+.hero-orb-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(124,58,237,0.35), transparent);
+  top: -10%; left: -10%;
+  animation-duration: 14s;
+}
+.hero-orb-2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(37,99,235,0.3), transparent);
+  bottom: -15%; right: -5%;
+  animation-duration: 18s;
+  animation-delay: -4s;
+}
+.hero-orb-3 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(0,240,255,0.15), transparent);
+  top: 40%; right: 25%;
+  animation-duration: 10s;
+  animation-delay: -7s;
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(0.95); }
+}
+
+/* Grid lines */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 860px;
+  padding: 0 2rem;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(124,58,237,0.15);
+  border: 1px solid rgba(124,58,237,0.3);
+  border-radius: 100px;
+  padding: 0.4rem 1.2rem;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 2.5rem;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  margin-bottom: 1.5rem;
+}
+.hero-title .gradient-text {
+  background: linear-gradient(135deg, #fff 0%, var(--cyan) 50%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.75;
+}
+.hero-oneliner {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+  font-style: italic;
+}
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: bobCue 2.5s ease-in-out infinite;
+}
+.scroll-cue svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text-muted);
+}
+@keyframes bobCue {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ═══════════════════════════════════════
+   2. WHY NOW — CARDS GRID
+   ═══════════════════════════════════════ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.why-card {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.why-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.why-card .card-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.why-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+.why-card p {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+.why-card .card-arrow {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.why-card:hover .card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ═══════════════════════════════════════
+   SECTION DIVIDER
+   ═══════════════════════════════════════ */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-glass), transparent);
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+/* ═══════════════════════════════════════
+   3. RASIT ANCHOR — ECOSYSTEM
+   ═══════════════════════════════════════ */
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+}
+.eco-card {
+  padding: 1.5rem;
+}
+.eco-card .eco-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.eco-card h4 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.eco-card p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.eco-card.highlight-card {
+  grid-column: span 2;
+  background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(37,99,235,0.08));
+  border-color: rgba(124,58,237,0.2);
+}
+.rasit-stat {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+.rasit-stat-item {
+  text-align: center;
+}
+.rasit-stat-item .stat-num {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.rasit-stat-item .stat-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ═══════════════════════════════════════
+   4. KIDDOVATION ENGINE
+   ═══════════════════════════════════════ */
+.engine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.engine-item {
+  padding: 1.75rem;
+  text-align: center;
+  border-color: rgba(0,240,255,0.08);
+}
+.engine-item:hover {
+  border-color: rgba(0,240,255,0.2);
+}
+.engine-item .eng-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.engine-item h4 {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+.engine-item p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ═══════════════════════════════════════
+   5. STRATEGIC FIT
+   ═══════════════════════════════════════ */
+.fit-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+.fit-column {
+  padding: 2rem;
+}
+.fit-column h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.fit-column ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.fit-column li {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.5;
+}
+.fit-column li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.fit-rasit li::before { background: var(--purple); }
+.fit-kiddo li::before { background: var(--cyan); }
+.fit-shared li::before { background: linear-gradient(135deg, var(--purple), var(--cyan)); }
+
+.fit-bridge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  position: relative;
+}
+.fit-bridge-line {
+  width: 2px;
+  height: 100%;
+  min-height: 300px;
+  background: linear-gradient(180deg, var(--purple), var(--cyan));
+  position: relative;
+}
+.fit-bridge-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: var(--bg-deep);
+  border: 2px solid var(--purple);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 0 30px var(--purple-glow);
+}
+
+.fit-shared-section {
+  margin-top: 2rem;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(0,240,255,0.06));
+  border-color: rgba(124,58,237,0.15);
+  text-align: center;
+}
+.fit-shared-section h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+.shared-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.shared-tag {
+  background: rgba(124,58,237,0.12);
+  border: 1px solid rgba(124,58,237,0.25);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 100px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+.shared-tag:hover {
+  background: rgba(124,58,237,0.25);
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════
+   6. BIG IDEAS
+   ═══════════════════════════════════════ */
+.ideas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.idea-card {
+  padding: 2.5rem;
+  position: relative;
+  cursor: default;
+}
+.idea-card .idea-num {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 700;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  line-height: 1;
+  background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(0,240,255,0.1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.idea-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+  max-width: 80%;
+}
+.idea-card p {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  max-width: 90%;
+}
+.idea-card:hover {
+  border-color: var(--purple);
+  box-shadow: 0 0 40px rgba(124,58,237,0.12);
+}
+
+/* ═══════════════════════════════════════
+   7. PILOT ROADMAP
+   ═══════════════════════════════════════ */
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 3rem;
+  position: relative;
+}
+.roadmap::before {
+  content: '';
+  position: absolute;
+  top: 44px;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--blue), var(--cyan), #10B981);
+}
+.roadmap-step {
+  text-align: center;
+  position: relative;
+  padding: 0 0.75rem;
+}
+.roadmap-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin: 32px auto 1.5rem;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.roadmap-dot::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+}
+.step-1 .roadmap-dot { background: var(--purple); box-shadow: 0 0 20px var(--purple-glow); }
+.step-2 .roadmap-dot { background: var(--blue); box-shadow: 0 0 20px var(--blue-glow); }
+.step-3 .roadmap-dot { background: var(--cyan); box-shadow: 0 0 20px var(--cyan-glow); }
+.step-4 .roadmap-dot { background: #10B981; box-shadow: 0 0 20px rgba(16,185,129,0.3); }
+
+.roadmap-step h4 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.roadmap-step .step-phase {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.6rem;
+}
+.roadmap-step p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ═══════════════════════════════════════
+   8. PARTNER CONTRIBUTIONS
+   ═══════════════════════════════════════ */
+.partner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.partner-panel {
+  padding: 2.5rem;
+}
+.partner-panel h3 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.partner-panel ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.partner-panel li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.55;
+}
+.partner-panel li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  transform: rotate(45deg);
+}
+.panel-rasit li::before { background: var(--purple); }
+.panel-kiddo li::before { background: var(--cyan); }
+
+.shared-commit {
+  margin-top: 2rem;
+  padding: 2.5rem;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(124,58,237,0.06), rgba(0,240,255,0.04));
+  border-color: rgba(255,255,255,0.06);
+}
+.shared-commit h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+.commit-items {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.commit-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+.commit-item .ci-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   9. FUNDING
+   ═══════════════════════════════════════ */
+.funding-visual {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.25rem;
+}
+.funding-card {
+  padding: 2rem;
+  text-align: center;
+}
+.funding-card .fund-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.funding-card h4 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.funding-card p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+.funding-note {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ═══════════════════════════════════════
+   10. NEXT STEPS TIMELINE
+   ═══════════════════════════════════════ */
+.timeline {
+  margin-top: 3rem;
+  max-width: 640px;
+  position: relative;
+  padding-left: 2.5rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--purple), var(--blue), var(--cyan));
+}
+.timeline-item {
+  position: relative;
+  padding-bottom: 2.25rem;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot {
+  position: absolute;
+  left: -2.5rem;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg-deep);
+  border: 2px solid var(--purple);
+  z-index: 2;
+  transition: var(--transition);
+}
+.timeline-item:hover .timeline-dot {
+  background: var(--purple);
+  box-shadow: 0 0 16px var(--purple-glow);
+}
+.timeline-item .step-num {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--purple);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+.timeline-item h4 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+.timeline-item p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════
+   11. CLOSING
+   ═══════════════════════════════════════ */
+#closing {
+  text-align: center;
+  padding: 8rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.closing-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(124,58,237,0.2), rgba(0,240,255,0.1), transparent);
+  pointer-events: none;
+}
+.closing-quote {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  max-width: 780px;
+  margin: 0 auto 2rem;
+  position: relative;
+  z-index: 2;
+}
+.closing-quote .highlight {
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.closing-sub {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 2;
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════ */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-glass);
+}
+
+/* ═══════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 900px) {
+  .ecosystem-grid { grid-template-columns: 1fr 1fr; }
+  .eco-card.highlight-card { grid-column: span 1; }
+  .fit-container { grid-template-columns: 1fr; }
+  .fit-bridge { display: none; }
+  .ideas-grid { grid-template-columns: 1fr; }
+  .roadmap { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .roadmap::before { display: none; }
+  .partner-grid { grid-template-columns: 1fr; }
+  .funding-visual { grid-template-columns: 1fr 1fr; }
+  nav .nav-links { display: none; }
+}
+@media (max-width: 600px) {
+  section { padding: 4rem 0; }
+  .container { padding: 0 1.25rem; }
+  .ecosystem-grid { grid-template-columns: 1fr; }
+  .roadmap { grid-template-columns: 1fr; }
+  .funding-visual { grid-template-columns: 1fr; }
+  .cards-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════
+   PRINT STYLES
+   ═══════════════════════════════════════ */
+@media print {
+  * { animation: none !important; transition: none !important; }
+  body { background: #fff; color: #111; font-size: 11pt; }
+  nav, #scroll-progress, .scroll-cue, .hero-bg, .closing-glow, .hero-grid { display: none !important; }
+  #hero { min-height: auto; padding: 2rem 0; }
+  section { padding: 1.5rem 0; page-break-inside: avoid; }
+  .glass-card, .eco-card, .idea-card, .partner-panel, .funding-card, .fit-column, .fit-shared-section, .shared-commit {
+    background: #f9f9f9 !important;
+    border: 1px solid #ddd !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    color: #222;
+    box-shadow: none !important;
+  }
+  .glass-card::before { display: none; }
+  h1, h2, h3, h4, .hero-title, .section-title, .closing-quote {
+    color: #111 !important;
+    -webkit-text-fill-color: #111 !important;
+    background: none !important;
+  }
+  p, li, .section-subtitle, .hero-subtitle, .hero-oneliner {
+    color: #444 !important;
+  }
+  .section-label, .hero-badge { color: #7C3AED !important; }
+  .section-label::before { background: #7C3AED !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .shared-tag { background: #f0e8ff !important; border-color: #c4b5fd !important; color: #333 !important; }
+  .roadmap-dot { border: 2px solid #7C3AED !important; }
+  .roadmap-dot::after { background: #7C3AED !important; }
+  .timeline-dot { border-color: #7C3AED !important; }
+  .rasit-stat-item .stat-num { color: #7C3AED !important; -webkit-text-fill-color: #7C3AED !important; }
+  .idea-card .idea-num { color: #ddd !important; -webkit-text-fill-color: #ddd !important; }
+  .fit-column li::before, .partner-panel li::before { background: #7C3AED !important; }
+  .commit-item .ci-dot { background: #7C3AED !important; }
+  footer { border-top: 1px solid #ddd; color: #999; }
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Kidovation | Accenture Song × RASIT</div>
+    <ul class="nav-links">
+      <li><a href="#why-now">Why Now</a></li>
+      <li><a href="#opportunity">The Opportunity</a></li>
+      <li><a href="#strategic-fit">Strategic Fit</a></li>
+      <li><a href="#pilot">Pilot</a></li>
+      <li><a href="#next-steps">What We Need</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════
+     1. HERO
+     ════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> Kidovation | Accenture Song &times; RASIT</div>
+    <h1 class="hero-title">From Young Innovators<br>to <span class="gradient-text">Global Voices</span></h1>
+    <p class="hero-subtitle">A decisive proposal to turn the UK&rsquo;s growing science disengagement crisis into a pipeline of confident, globally-connected young innovators.</p>
+    <p class="hero-oneliner">&ldquo;Combining Kidovation&rsquo;s youth activation model with RASIT&rsquo;s global convening power &mdash; from classroom curiosity to international stage.&rdquo;</p>
+    <div class="scroll-cue">
+      <span>Scroll to explore</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     2. WHY THIS MATTERS NOW
+     ════════════════════════════════════ -->
+<section id="why-now">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">The Urgency</div>
+      <h2 class="section-title">Why This Can&rsquo;t Wait</h2>
+      <p class="section-subtitle">Three converging realities demand a different approach to youth science and innovation &mdash; now.</p>
+    </div>
+
+    <!-- Science stat banner -->
+    <div class="reveal" style="margin-bottom:2rem;position:relative;border-radius:16px;overflow:hidden;height:160px;border:1px solid var(--border-glass);">
+      <img src="https://www.unwomen.org/sites/default/files/styles/webp_only/public/2022-02/WomeInScience_InFocusBanner2022_Colombia_CIAT_1_1920x800_credit.jpg.webp" alt="Science laboratory" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.4) saturate(0.7);">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;padding:0 2.5rem;">
+        <div>
+          <div class="section-label" style="margin-bottom:0.6rem;">The Reality</div>
+          <p style="font-family:var(--font-heading);font-size:clamp(0.95rem,2vw,1.25rem);font-weight:600;color:var(--text-primary);max-width:560px;line-height:1.4;">In the UK, fewer than 1 in 3 science teachers holds a specialist science degree — making early, inspiring science experiences more important than ever.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+      <a href="#opportunity" class="glass-card why-card reveal reveal-delay-1">
+        <span class="card-icon">&#128268;</span>
+        <h3>The Science Pipeline Is Breaking</h3>
+        <p>In the UK, fewer than 1 in 3 science teachers holds a specialist science degree. Students are disengaging from STEM earlier than ever &mdash; and once they disengage, they rarely return. This isn&rsquo;t just an education problem. It&rsquo;s a national innovation risk.</p>
+        <span class="card-arrow">The case for change &rarr;</span>
+      </a>
+      <a href="#opportunity" class="glass-card why-card reveal reveal-delay-2">
+        <span class="card-icon">&#128161;</span>
+        <h3>Curiosity Doesn&rsquo;t Need to Be Taught &mdash; Just Protected</h3>
+        <p>Children ask &ldquo;why&rdquo; hundreds of times a day. Traditional systems reward the right answer. Innovation requires the better question. The world&rsquo;s most progressive organisations &mdash; from Toyota to Google &mdash; run on structured curiosity. We need to build that habit in children, not curriculum it out of them.</p>
+        <span class="card-arrow">The philosophy &rarr;</span>
+      </a>
+      <a href="#strategic-fit" class="glass-card why-card reveal reveal-delay-3">
+        <span class="card-icon">&#9889;</span>
+        <h3>The Timing Is Right</h3>
+        <p>With the UK Government&rsquo;s AI growth agenda accelerating, a Chancellor-appointed AI Champion embedded at Accenture, and RASIT&rsquo;s UN convening platform primed for youth engagement &mdash; the infrastructure for something transformational is already in place. We just need to activate it.</p>
+        <span class="card-arrow">See the fit &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════
+     3. THE OPPORTUNITY
+     ════════════════════════════════════ -->
+<section id="opportunity">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">The Partnership</div>
+      <h2 class="section-title">Two Organisations. One Pipeline.</h2>
+      <p class="section-subtitle">RASIT brings 55 years of global credibility. Kidovation by Accenture Song brings the activation engine &mdash; and extraordinary access. Together, they close the gap between a child&rsquo;s first &ldquo;why&rdquo; and their first global stage.</p>
+    </div>
+
+    <!-- RASIT Side -->
+    <div class="reveal" style="margin-top: 3rem;">
+      <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--purple);">RASIT &mdash; The Global Platform</h3>
+    </div>
+    <div class="rasit-stat reveal">
+      <div class="rasit-stat-item">
+        <div class="stat-num">55+</div>
+        <div class="stat-label">Years of Global Impact</div>
+      </div>
+      <div class="rasit-stat-item">
+        <div class="stat-num">1,500+</div>
+        <div class="stat-label">Girls Supported</div>
+      </div>
+      <div class="rasit-stat-item">
+        <div class="stat-num">188+</div>
+        <div class="stat-label">UN Member States Reached</div>
+      </div>
+      <div class="rasit-stat-item">
+        <div class="stat-num">21,500+</div>
+        <div class="stat-label">Youth Scholarships</div>
+      </div>
+    </div>
+
+    <div class="ecosystem-grid" style="margin-top: 2rem;">
+      <div class="glass-card eco-card reveal reveal-delay-1">
+        <span class="eco-icon">&#127963;</span>
+        <h4>UN ECOSOC Consultative Status</h4>
+        <p>Special consultative status since 2013. Active presence at multilateral policy forums.</p>
+      </div>
+      <div class="glass-card eco-card reveal reveal-delay-2">
+        <span class="eco-icon">&#128218;</span>
+        <h4>Beyond 2030 Magazine</h4>
+        <p>Youth voices, interviews with world leaders, scientists and policymakers. A real international platform for young people.</p>
+      </div>
+      <div class="glass-card eco-card reveal reveal-delay-3">
+        <span class="eco-icon">&#128300;</span>
+        <h4>1,500+ Girls in Science Globally</h4>
+        <p>Launched at UN HQ in 2018. A proven model for scaling youth engagement with science.</p>
+      </div>
+      <div class="glass-card eco-card reveal reveal-delay-1">
+        <span class="eco-icon">&#127760;</span>
+        <h4>Mentorship from Global Scientists</h4>
+        <p>Access to RASIT&rsquo;s network of 492 fellow scientists, heads of state, policymakers, and international experts.</p>
+      </div>
+      <div class="glass-card eco-card reveal reveal-delay-2">
+        <span class="eco-icon">&#127891;</span>
+        <h4>Scholarships &amp; International Exposure</h4>
+        <p>University scholarships, international forum access, UN fellowship pathways &mdash; real stakes for young people.</p>
+      </div>
+      <div class="glass-card eco-card reveal reveal-delay-3">
+        <span class="eco-icon">&#129309;</span>
+        <h4>55+ Years of Cross-Sector Convening</h4>
+        <p>Governments, UN entities, civil society and the private sector. The network is already built.</p>
+      </div>
+    </div>
+
+    <!-- RASIT Photo Gallery -->
+    <div class="reveal" style="margin-top:2.5rem;margin-bottom:2.5rem;">
+      <div class="section-label" style="margin-bottom:1.25rem;">RASIT in Action — Real Events, Real Impact</div>
+      <div style="display:grid;grid-template-columns:2fr 1fr;grid-template-rows:240px 180px;gap:10px;">
+
+        <div style="grid-column:1;grid-row:1/3;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border-glass);">
+          <img src="../photos/RASIT/UN-talya-9yrsold(RASIT).jpg" alt="9-year-old Talya at the UN delegate desk — Women and Girls in Science" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(transparent,rgba(10,14,26,0.92));">
+            <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:4px;">Live at the UN</div>
+            <div style="font-size:0.8rem;color:var(--text-primary);font-weight:500;line-height:1.4;">Talya, aged 9, at the UN delegate desk · #Women&amp;GirlsInScience</div>
+          </div>
+        </div>
+
+        <div style="grid-column:2;grid-row:1;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border-glass);">
+          <img src="../HRH Princess Nisreen.jpg" alt="HRH Princess Dr Nisreen El-Hashemite presenting RASIT Beyond 2030 at UN press conference" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(transparent,rgba(10,14,26,0.92));">
+            <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:3px;">RASIT Leadership</div>
+            <div style="font-size:0.72rem;color:var(--text-primary);">HRH Princess Dr Nisreen</div>
+          </div>
+        </div>
+
+        <div style="grid-column:2;grid-row:2;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border-glass);">
+          <img src="../photos/RASIT/UN-talyaolivia(RASIT).jpg" alt="Talya and Olivia speaking at the UN podium — Women and Girls in Science" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(transparent,rgba(10,14,26,0.92));">
+            <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:3px;">UN Partnership</div>
+            <div style="font-size:0.72rem;color:var(--text-primary);">Talya &amp; Olivia · UN Podium · #Women&amp;GirlsInScience</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Second row: 3 photos -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;height:180px;margin-top:10px;">
+        <div style="position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border-glass);">
+          <img src="../photos/RASIT/PRINCESS-kids-workshop-RASIT.jpg" alt="Princess Nisreen with young aspiring scientist" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px;background:linear-gradient(transparent,rgba(10,14,26,0.9));font-size:0.68rem;color:var(--text-secondary);">Girls in Science Programme</div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border-glass);">
+          <img src="https://www.holyfamily.edu/sites/default/files/styles/1160x720/public/2025-04/un-photo-vertical.jpg" alt="10th IDWGIS at UN HQ 2025" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px;background:linear-gradient(transparent,rgba(10,14,26,0.9));font-size:0.68rem;color:var(--text-secondary);">10th IDWGIS · UN HQ, 2025</div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border-glass);">
+          <img src="https://www.unwomen.org/sites/default/files/styles/webp_only/public/2022-02/WomeInScience_InFocusBanner2022_Colombia_CIAT_1_1920x800_credit.jpg.webp" alt="Women in Science research" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px;background:linear-gradient(transparent,rgba(10,14,26,0.9));font-size:0.68rem;color:var(--text-secondary);">Women in Science Research</div>
+        </div>
+      </div>
+    </div>
+    <!-- Kidovation Side -->
+    <div class="reveal" style="margin-top: 4rem;">
+      <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--cyan);">Kidovation by Accenture Song &mdash; The Activation Engine</h3>
+    </div>
+
+    <!-- Don't Kill the Why callout -->
+    <div class="glass-card reveal" style="margin-bottom: 2rem; border-left: 3px solid var(--cyan); border-radius: 0 var(--radius) var(--radius) 0; background: linear-gradient(135deg, rgba(0,240,255,0.04), rgba(124,58,237,0.04));">
+      <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary);">&ldquo;Don&rsquo;t Kill the Why.&rdquo;</div>
+      <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">Children ask &ldquo;why&rdquo; hundreds of times a day. Toyota built a global manufacturing revolution around it &mdash; the Five Whys technique. Google runs product innovation on it. Yet traditional education systems reward the right answer, not the better question.</p>
+      <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">Kidovation exists to protect that curiosity. To turn &ldquo;why&rdquo; into ideas, prototypes, and real-world impact. Not to teach innovation &mdash; but to build the habit of it.</p>
+      <p style="color: var(--cyan); font-weight: 600; font-size: 0.9rem;">This is our core belief. And it changes everything about how we design learning.</p>
+    </div>
+
+    <div class="engine-grid">
+      <div class="glass-card engine-item reveal reveal-delay-1">
+        <span class="eng-icon">&#127963;</span>
+        <h4>UK Government AI Champion</h4>
+        <p>Shaheen Sayed, appointed by Chancellor Rachel Reeves (Dec 2024) as AI Champion for Professional Business Services. Embedded at the heart of the UK&rsquo;s AI growth agenda.</p>
+      </div>
+      <div class="glass-card engine-item reveal reveal-delay-2">
+        <span class="eng-icon">&#127973;</span>
+        <h4>Government &amp; Enterprise Access</h4>
+        <p>Accenture UK: HMRC, NHS Federated Data Platform (&pound;330m), Cabinet Office. Unrivalled public sector relationships.</p>
+      </div>
+      <div class="glass-card engine-item reveal reveal-delay-3">
+        <span class="eng-icon">&#127760;</span>
+        <h4>700,000+ Professionals, 120+ Countries</h4>
+        <p>Fortune 500 client network. The world&rsquo;s most connected professional services firm.</p>
+      </div>
+      <div class="glass-card engine-item reveal reveal-delay-1">
+        <span class="eng-icon">&#128161;</span>
+        <h4>Youth Innovation Activation</h4>
+        <p>Hands-on innovation labs, design thinking workshops, and challenge formats purpose-built for young people.</p>
+      </div>
+      <div class="glass-card engine-item reveal reveal-delay-2">
+        <span class="eng-icon">&#127912;</span>
+        <h4>Creative &amp; Tech Expertise</h4>
+        <p>Accenture Song merges brand strategy, creative direction, and emerging technology at global scale.</p>
+      </div>
+    </div>
+
+
+    <!-- Kidovation Photo Gallery -->
+    <div class="reveal" style="margin-top:2.5rem;">
+      <div class="section-label" style="margin-bottom:1.25rem;">Kidovation in Action — Real Events, Real Kids</div>
+
+      <!-- Hero -->
+      <div style="position:relative;border-radius:18px;overflow:hidden;height:280px;margin-bottom:10px;border:1px solid rgba(0,240,255,0.15);">
+        <img src="../photos/kido-stage.jpg" alt="Kids with mentor at Accenture Song Kidovation event" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(10,14,26,0.7) 0%,transparent 60%);">
+          <div style="position:absolute;bottom:0;left:0;padding:2rem;">
+            <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.5rem;">Accenture Song · Kidovation</div>
+            <div style="font-family:var(--font-heading);font-size:1.35rem;font-weight:700;color:#fff;line-height:1.3;max-width:360px;">Inspiring the Next Generation of Innovators</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;height:180px;">
+        <div style="position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(0,240,255,0.12);">
+          <img src="../photos/kido-awards.jpg" alt="Kids with certificates and prototypes" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px;background:linear-gradient(transparent,rgba(10,14,26,0.9));">
+            <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:2px;">Showcase</div>
+            <div style="font-size:0.68rem;color:var(--text-primary);">Kids presenting innovations</div>
+          </div>
+        </div>
+        <div style="position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(0,240,255,0.12);">
+          <img src="../photos/kido-prototypes.jpg" alt="Boys showing inventions" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px;background:linear-gradient(transparent,rgba(10,14,26,0.9));">
+            <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:2px;">Prototyping</div>
+            <div style="font-size:0.68rem;color:var(--text-primary);">Ideas made real</div>
+          </div>
+        </div>
+        <div style="position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(0,240,255,0.12);">
+          <img src="../photos/kido-craft.jpg" alt="Facilitator with child" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px;background:linear-gradient(transparent,rgba(10,14,26,0.9));">
+            <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:2px;">Facilitation</div>
+            <div style="font-size:0.68rem;color:var(--text-primary);">Hands-on every step</div>
+          </div>
+        </div>
+        <div style="position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(0,240,255,0.12);">
+          <img src="../photos/kido-audience.jpg" alt="Kids at Kidovation event" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px;background:linear-gradient(transparent,rgba(10,14,26,0.9));">
+            <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:2px;">Scale</div>
+            <div style="font-size:0.68rem;color:var(--text-primary);">Hundreds of young innovators</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════
+     4. STRATEGIC FIT
+     ════════════════════════════════════ -->
+<section id="strategic-fit">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Where It Connects</div>
+      <h2 class="section-title">The <em>Strategic Fit</em></h2>
+      <p class="section-subtitle">Two extraordinary organisations. One mission. Combined, they create access and impact that neither could achieve alone.</p>
+    </div>
+
+    <div class="fit-container reveal">
+      <div class="glass-card fit-column fit-rasit">
+        <h3><span style="color:var(--purple)">&#9632;</span> RASIT Brings</h3>
+        <ul>
+          <li>Convening power &amp; UN credibility</li>
+          <li>Global mentorship network (scientists, policymakers, heads of state)</li>
+          <li>Beyond 2030 platform &amp; youth media</li>
+          <li>Mission alignment with SDGs</li>
+          <li>55+ year institutional track record</li>
+          <li>International stakeholder network</li>
+        </ul>
+      </div>
+
+      <div class="fit-bridge">
+        <div class="fit-bridge-line">
+          <div class="fit-bridge-icon">&#10230;</div>
+        </div>
+      </div>
+
+      <div class="glass-card fit-column fit-kiddo">
+        <h3><span style="color:var(--cyan)">&#9632;</span> Kidovation by Accenture Song Brings</h3>
+        <ul>
+          <li>Shaheen Sayed &mdash; UK Government AI Champion (Chancellor-appointed, Dec 2024)</li>
+          <li>Accenture UK: HMRC, NHS &amp; government partnerships at scale</li>
+          <li>700,000+ professionals in 120+ countries</li>
+          <li>Youth innovation activation formats &amp; engagement design</li>
+          <li>Accenture Song creative-tech expertise at global scale</li>
+          <li>Fortune 500 network &amp; brand amplification</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glass-card fit-shared-section reveal">
+      <h3>&#10024; Shared Value Created</h3>
+      <div class="shared-tags">
+        <span class="shared-tag">&#128644; Youth Innovation to Global Stage</span>
+        <span class="shared-tag">&#127897; Visible Leadership Moments</span>
+        <span class="shared-tag">&#127963; Government &amp; Policy Access</span>
+        <span class="shared-tag">&#129309; UN-Linked Showcase Opportunities</span>
+        <span class="shared-tag">&#128200; Scalable &amp; Fundable Model</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════
+     5. PILOT ROADMAP
+     ════════════════════════════════════ -->
+<section id="pilot">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Making It Real</div>
+      <h2 class="section-title">The UK Pilot &mdash; Starting Now</h2>
+      <p class="section-subtitle">A real programme. Real schools. Real outcomes. Designed to be fundable, scalable, and memorable from day one.</p>
+    </div>
+    <div class="roadmap reveal">
+      <div class="roadmap-step step-1">
+        <div class="roadmap-dot"></div>
+        <div class="step-phase">Activate</div>
+        <h4>Innovation Labs in UK Schools</h4>
+        <p>Hands-on science and innovation labs delivered in UK schools. Students tackle real challenges &mdash; guided by Kidovation facilitators and connected to RASIT&rsquo;s network of scientists and industry mentors. Creativity, problem-solving, and technology at the core.</p>
+      </div>
+      <div class="roadmap-step step-2">
+        <div class="roadmap-dot"></div>
+        <div class="step-phase">Grow</div>
+        <h4>Mentorship &amp; Confidence</h4>
+        <p>Students are matched with mentors from RASIT&rsquo;s global scientist and expert network. Social dimensions built in: anti-bullying awareness, inclusion, and confidence-building. Every young person leaves with a stronger voice and a clearer sense of possibility.</p>
+      </div>
+      <div class="roadmap-step step-3">
+        <div class="roadmap-dot"></div>
+        <div class="step-phase">Elevate</div>
+        <h4>Showcase &amp; Storytelling</h4>
+        <p>A flagship showcase event. Student-led ideas, prototypes, and presentations &mdash; made visible at a real leadership audience. Co-branded content captured and shared through RASIT&rsquo;s Beyond 2030 platform and Accenture Song&rsquo;s amplification channels.</p>
+      </div>
+      <div class="roadmap-step step-4">
+        <div class="roadmap-dot"></div>
+        <div class="step-phase">Connect</div>
+        <h4>From UK Classroom to Global Stage</h4>
+        <p>Selected students earn pathways to RASIT&rsquo;s international platforms: UN forums, science policy events, and opportunities to be featured in Beyond 2030 magazine &mdash; interviewed alongside world leaders and scientists. Scholarships for exceptional participants.</p>
+      </div>
+    </div>
+
+    <div class="glass-card reveal" style="margin-top: 3rem; background: linear-gradient(135deg, rgba(0,240,255,0.03), rgba(124,58,237,0.04));">
+      <div style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-primary);">This Is What Fundable Looks Like</div>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <div style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-secondary);"><span style="color: #84CC16; font-weight: 700; flex-shrink: 0;">&#10003;</span> Clear programme design</div>
+        <div style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-secondary);"><span style="color: #84CC16; font-weight: 700; flex-shrink: 0;">&#10003;</span> Real schools, real cohort, measurable outcomes</div>
+        <div style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-secondary);"><span style="color: #84CC16; font-weight: 700; flex-shrink: 0;">&#10003;</span> Co-branded content &amp; storytelling assets</div>
+        <div style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-secondary);"><span style="color: #84CC16; font-weight: 700; flex-shrink: 0;">&#10003;</span> Pathway from local impact &rarr; international visibility</div>
+        <div style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-secondary);"><span style="color: #84CC16; font-weight: 700; flex-shrink: 0;">&#10003;</span> Built-in social value: inclusion, anti-bullying, confidence</div>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.7;"><strong style="color: var(--text-secondary);">Open to:</strong> corporate sponsors, education partners, impact funders, multilateral alignment through RASIT</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════
+     6. WHAT WE NEED
+     ════════════════════════════════════ -->
+<section id="next-steps">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Moving Forward</div>
+      <h2 class="section-title">What We Need to Move Forward</h2>
+      <p class="section-subtitle">This proposal is ready to become a pilot. Here&rsquo;s what each partner needs to commit to make it real.</p>
+    </div>
+
+    <div class="partner-grid">
+      <div class="glass-card partner-panel panel-rasit reveal reveal-delay-1">
+        <h3><span style="color:var(--purple)">&#9632;</span> From RASIT</h3>
+        <ul>
+          <li>Curriculum collaboration and scientific content</li>
+          <li>Mentorship network access (scientists, policymakers, experts)</li>
+          <li>Platform access: Beyond 2030, World Youth League, UN Fellowship</li>
+          <li>Strategic alignment and co-governance of the pilot</li>
+        </ul>
+      </div>
+      <div class="glass-card partner-panel panel-kiddo reveal reveal-delay-2">
+        <h3><span style="color:var(--cyan)">&#9632;</span> From Kidovation / Accenture Song</h3>
+        <ul>
+          <li>Programme design, facilitation, and delivery</li>
+          <li>Innovation frameworks, workshop formats, and challenge design</li>
+          <li>Access to schools and education partners across the UK</li>
+          <li>Accenture network: government, enterprise, and CSR alignment</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glass-card reveal" style="margin-top: 1.5rem; border-color: rgba(132,204,22,0.2);">
+      <h3 style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; color: #84CC16;">Funding Required</h3>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+        <li style="font-size: 0.9rem; color: var(--text-secondary); padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:#84CC16; display:block;"></span>Pilot delivery: curriculum design, facilitators, logistics</li>
+        <li style="font-size: 0.9rem; color: var(--text-secondary); padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:#84CC16; display:block;"></span>Showcase event production and documentation</li>
+        <li style="font-size: 0.9rem; color: var(--text-secondary); padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:#84CC16; display:block;"></span>Regional marketing and outreach to schools</li>
+        <li style="font-size: 0.9rem; color: var(--text-secondary); padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:#84CC16; display:block;"></span>Operational and administrative costs</li>
+        <li style="font-size: 0.9rem; color: var(--text-secondary); padding-left: 1.25rem; position: relative; line-height: 1.5;"><span style="position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:#84CC16; display:block;"></span>Target: seed-funded pilot &mdash; scalable model ready for Year 2</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     11. CLOSING
+     ════════════════════════════════════ -->
+<section id="closing">
+  <div class="container">
+    <div class="closing-glow"></div>
+    <div class="reveal">
+      <p class="closing-label" style="font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple); margin-bottom: 1rem;">Our Vision</p>
+      <p class="closing-quote">Empower young people to become critical, creative, confident leaders who dare to harness the power of emerging technologies to <span class="highlight">innovate for a better world.</span></p>
+      <p class="closing-sub">Kidovation | Accenture Song &times; RASIT &middot; Strategic Proposal &middot; 2026</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Confidential &mdash; For internal strategic discussion only. &copy; 2026
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════
+     JAVASCRIPT
+     ════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  // ── Scroll progress bar ──
+  const progressBar = document.getElementById('scroll-progress');
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+
+  // ── Active nav link ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav .nav-links a');
+  function updateActiveNav() {
+    let current = '';
+    sections.forEach(function(section) {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 120 && rect.bottom > 120) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(function(link) {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+  // ── Reveal on scroll ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+  reveals.forEach(function(el) { observer.observe(el); });
+
+  // ── Animate stat numbers ──
+  function animateStats() {
+    document.querySelectorAll('.stat-num').forEach(function(el) {
+      const text = el.textContent.trim();
+      const match = text.match(/^(\d+)(\+?)$/);
+      if (!match) return;
+      const target = parseInt(match[1], 10);
+      const suffix = match[2] || '';
+      let start = 0;
+      const duration = 1500;
+      const startTime = performance.now();
+      function tick(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(start + (target - start) * eased);
+        el.textContent = current + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
+  const statSection = document.querySelector('.rasit-stat');
+  if (statSection) {
+    const statObserver = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        animateStats();
+        statObserver.disconnect();
+      }
+    }, { threshold: 0.3 });
+    statObserver.observe(statSection);
+  }
+})();
+</script>
+
+</body>
+</html>

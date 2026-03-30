@@ -1,0 +1,372 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 980" width="1400" height="980">
+<defs>
+  <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+    <path d="M0,0 L0,6 L7,3 z" fill="#475569"/>
+  </marker>
+  <marker id="arr-o" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+    <path d="M0,0 L0,6 L7,3 z" fill="#ea580c"/>
+  </marker>
+  <marker id="arr-g" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+    <path d="M0,0 L0,6 L7,3 z" fill="#22c55e"/>
+  </marker>
+  <marker id="arr-r" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+    <path d="M0,0 L0,6 L7,3 z" fill="#ef4444"/>
+  </marker>
+  <marker id="arr-p" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+    <path d="M0,0 L0,6 L7,3 z" fill="#a855f7"/>
+  </marker>
+</defs>
+
+<!-- Background -->
+<rect width="1400" height="980" fill="#09090f"/>
+
+<!-- ===== TITLE ===== -->
+<text x="700" y="30" text-anchor="middle" font-family="'Courier New',monospace" font-size="17" font-weight="bold" fill="#f1f5f9" letter-spacing="3">WEBCONTEXT — SYSTEM MAP</text>
+<text x="700" y="50" text-anchor="middle" font-family="'Courier New',monospace" font-size="9.5" fill="#475569">Laws define the rules · State holds everything known · Skills do the work · IDs connect it all</text>
+<line x1="15" y1="58" x2="1385" y2="58" stroke="#1e293b" stroke-width="1"/>
+
+<!-- ===== THREE PILLAR HEADERS ===== -->
+<rect x="15" y="65" width="248" height="26" rx="3" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
+<text x="139" y="82" text-anchor="middle" font-family="'Courier New',monospace" font-size="10.5" font-weight="bold" fill="#a5b4fc">⚖  LAWS — CLAUDE.md</text>
+
+<rect x="272" y="65" width="568" height="26" rx="3" fill="#052e16" stroke="#16a34a" stroke-width="1.5"/>
+<text x="556" y="82" text-anchor="middle" font-family="'Courier New',monospace" font-size="10.5" font-weight="bold" fill="#4ade80">⬡  STATE — memory/  ·  assets/  ·  pages/</text>
+
+<rect x="849" y="65" width="536" height="26" rx="3" fill="#2d0d00" stroke="#ea580c" stroke-width="1.5"/>
+<text x="1117" y="82" text-anchor="middle" font-family="'Courier New',monospace" font-size="10.5" font-weight="bold" fill="#fb923c">⚡  SKILLS — skills/  (8-step workflow)</text>
+
+<line x1="15" y1="99" x2="1385" y2="99" stroke="#1e293b" stroke-width="1"/>
+
+<!-- ================================================================ -->
+<!-- LEFT COLUMN: CLASSIFICATION (x=15..262) -->
+<!-- ================================================================ -->
+<rect x="15" y="103" width="248" height="606" rx="4" fill="#0d0d14" stroke="#1e293b" stroke-width="1"/>
+<rect x="15" y="103" width="248" height="22" rx="4" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+<text x="139" y="118" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#a5b4fc">INPUT CLASSIFICATION</text>
+
+<!-- INPUT node -->
+<rect x="84" y="132" width="88" height="20" rx="2" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+<text x="128" y="146" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#94a3b8">CLIENT INPUT</text>
+
+<line x1="128" y1="152" x2="128" y2="164" stroke="#475569" stroke-width="1" marker-end="url(#arr)"/>
+
+<rect x="59" y="166" width="136" height="20" rx="2" fill="#334155" stroke="#64748b" stroke-width="1"/>
+<text x="127" y="180" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#e2e8f0">CLASSIFY + ROUTE</text>
+
+<line x1="128" y1="186" x2="128" y2="197" stroke="#475569" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- asset -->
+<rect x="22" y="199" width="235" height="52" rx="3" fill="#1a0a2e" stroke="#a855f7" stroke-width="1"/>
+<text x="32" y="213" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#c4b5fd">asset</text>
+<text x="32" y="226" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">image · logo · video · font · PDF</text>
+<text x="32" y="241" font-family="'Courier New',monospace" font-size="7.5" fill="#a855f7">→ assets/manifest.md + assets/raw/</text>
+
+<!-- preference -->
+<rect x="22" y="255" width="235" height="52" rx="3" fill="#0a1a0a" stroke="#22c55e" stroke-width="1"/>
+<text x="32" y="269" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#86efac">preference</text>
+<text x="32" y="282" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">durable taste rule (font, tone, spacing)</text>
+<text x="32" y="297" font-family="'Courier New',monospace" font-size="7.5" fill="#22c55e">→ memory/preferences.md</text>
+
+<!-- decision -->
+<rect x="22" y="311" width="235" height="52" rx="3" fill="#1a0a0a" stroke="#ef4444" stroke-width="1"/>
+<text x="32" y="325" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fca5a5">decision</text>
+<text x="32" y="338" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">accepted / rejected design or tech choice</text>
+<text x="32" y="353" font-family="'Courier New',monospace" font-size="7.5" fill="#ef4444">→ decisions/log.md + TAXONOMY.md</text>
+
+<!-- page context -->
+<rect x="22" y="367" width="235" height="52" rx="3" fill="#1c1400" stroke="#d97706" stroke-width="1"/>
+<text x="32" y="381" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fcd34d">page context</text>
+<text x="32" y="394" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">layout · design intent · component choices</text>
+<text x="32" y="409" font-family="'Courier New',monospace" font-size="7.5" fill="#d97706">→ pages/&lt;slug&gt;/design.md + build.md</text>
+
+<!-- issue -->
+<rect x="22" y="423" width="235" height="52" rx="3" fill="#1a0a00" stroke="#f97316" stroke-width="1"/>
+<text x="32" y="437" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fdba74">issue</text>
+<text x="32" y="450" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">bug · perf concern · open question</text>
+<text x="32" y="465" font-family="'Courier New',monospace" font-size="7.5" fill="#f97316">→ memory/issues.md</text>
+
+<!-- next action -->
+<rect x="22" y="479" width="235" height="52" rx="3" fill="#0d1a2e" stroke="#3b82f6" stroke-width="1"/>
+<text x="32" y="493" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#93c5fd">next action</text>
+<text x="32" y="506" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">what to do next · session handoff item</text>
+<text x="32" y="521" font-family="'Courier New',monospace" font-size="7.5" fill="#3b82f6">→ memory/next.md</text>
+
+<!-- Over-classify note -->
+<rect x="22" y="540" width="235" height="28" rx="2" fill="#1e293b" stroke="#334155" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="139" y="553" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">When uncertain: over-classify.</text>
+<text x="139" y="563" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Write to ALL plausible targets.</text>
+
+<!-- Page creation rule -->
+<rect x="22" y="578" width="235" height="52" rx="2" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+<text x="139" y="591" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" font-weight="bold" fill="#94a3b8">NEW PAGE ROUTING</text>
+<text x="32" y="604" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">1. Create pages/&lt;slug&gt;/ from _template/</text>
+<text x="32" y="616" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">2. Populate brief.md immediately</text>
+<text x="32" y="628" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">3. Register in memory/MEMORY.md</text>
+
+<!-- ================================================================ -->
+<!-- CENTER COLUMN: STATE FILES (x=272..840) -->
+<!-- ================================================================ -->
+<rect x="272" y="103" width="568" height="606" rx="4" fill="#0d0d14" stroke="#1e293b" stroke-width="1"/>
+<rect x="272" y="103" width="568" height="22" rx="4" fill="#052e16" stroke="#16a34a" stroke-width="1"/>
+<text x="556" y="118" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#4ade80">STATE FILES — ALL MUTABLE DATA LIVES HERE</text>
+
+<!-- ---- memory/ sub-column (x=281..545) ---- -->
+<rect x="281" y="130" width="262" height="432" rx="3" fill="#0a1220" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="412" y="145" text-anchor="middle" font-family="'Courier New',monospace" font-size="9.5" font-weight="bold" fill="#93c5fd">memory/</text>
+
+<!-- MEMORY.md -->
+<rect x="290" y="152" width="244" height="48" rx="2" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+<text x="412" y="165" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#93c5fd">MEMORY.md</text>
+<text x="412" y="178" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Hot summary ≤ 80 lines</text>
+<text x="412" y="191" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Rewritten after every major action</text>
+
+<!-- preferences.md -->
+<rect x="290" y="205" width="244" height="36" rx="2" fill="#0a1a0a" stroke="#22c55e" stroke-width="1"/>
+<text x="412" y="218" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#86efac">preferences.md</text>
+<text x="412" y="232" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">P-[CAT]-NNN · global taste rules · applied silently</text>
+
+<!-- issues.md -->
+<rect x="290" y="246" width="244" height="36" rx="2" fill="#1a0900" stroke="#f97316" stroke-width="1"/>
+<text x="412" y="259" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fdba74">issues.md</text>
+<text x="412" y="273" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">I-NNN · severity · status · archive resolved</text>
+
+<!-- next.md -->
+<rect x="290" y="287" width="244" height="36" rx="2" fill="#0d1a2e" stroke="#3b82f6" stroke-width="1"/>
+<text x="412" y="300" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#93c5fd">next.md</text>
+<text x="412" y="314" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Session handoff queue · clear completed items</text>
+
+<!-- decisions/ -->
+<rect x="290" y="328" width="244" height="62" rx="2" fill="#1a0a0a" stroke="#ef4444" stroke-width="1"/>
+<text x="412" y="341" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fca5a5">decisions/</text>
+<text x="300" y="355" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">  TAXONOMY.md  D-NNN index · status · chain</text>
+<text x="300" y="368" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">  log.md       full records + rationale</text>
+<text x="300" y="381" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">  append-only · mark superseded, never delete</text>
+
+<!-- design-system/ -->
+<rect x="290" y="395" width="244" height="62" rx="2" fill="#0a1a12" stroke="#22c55e" stroke-width="1"/>
+<text x="412" y="408" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#86efac">design-system/</text>
+<text x="300" y="422" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">  MASTER.md          generated by ui-ux-pro-max --persist</text>
+<text x="300" y="435" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">  pages/&lt;slug&gt;.md    page-level overrides</text>
+<text x="300" y="448" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">  page checks pages/ first; falls back to MASTER</text>
+
+<!-- ---- assets/ sub-column (x=281..545) below memory ---- -->
+<rect x="281" y="567" width="262" height="105" rx="3" fill="#1a0a2e" stroke="#a855f7" stroke-width="1.5"/>
+<text x="412" y="582" text-anchor="middle" font-family="'Courier New',monospace" font-size="9.5" font-weight="bold" fill="#c4b5fd">assets/</text>
+<rect x="290" y="588" width="244" height="36" rx="2" fill="#2d1a4a" stroke="#a855f7" stroke-width="1"/>
+<text x="412" y="601" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#c4b5fd">manifest.md</text>
+<text x="412" y="615" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">A-[TYPE]-NNN · name · source · status · pages</text>
+<rect x="290" y="629" width="244" height="26" rx="2" fill="#1a0a2e" stroke="#7c3aed" stroke-width="1"/>
+<text x="412" y="646" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#94a3b8">raw/  ←  original files stored here</text>
+
+<!-- ---- pages/<slug>/ sub-column (x=550..832) ---- -->
+<rect x="550" y="130" width="283" height="542" rx="3" fill="#1c1400" stroke="#d97706" stroke-width="1.5"/>
+<text x="691" y="145" text-anchor="middle" font-family="'Courier New',monospace" font-size="9.5" font-weight="bold" fill="#fcd34d">pages/&lt;slug&gt;/</text>
+<text x="691" y="158" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#92400e">5 files per page · scaffold from pages/_template/</text>
+
+<!-- brief.md -->
+<rect x="559" y="163" width="265" height="66" rx="2" fill="#1c1400" stroke="#d97706" stroke-width="1"/>
+<text x="691" y="176" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fcd34d">brief.md</text>
+<text x="691" y="188" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#92400e">WHY / WHAT</text>
+<text x="569" y="201" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Purpose · audience · success criteria</text>
+<text x="569" y="213" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Sections · constraints</text>
+<text x="569" y="223" font-family="'Courier New',monospace" font-size="7" fill="#64748b">Populated first, immediately from available input</text>
+
+<!-- design.md -->
+<rect x="559" y="234" width="265" height="66" rx="2" fill="#1c1400" stroke="#d97706" stroke-width="1"/>
+<text x="691" y="247" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fcd34d">design.md</text>
+<text x="691" y="259" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#92400e">HOW IT LOOKS</text>
+<text x="569" y="272" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Layout · typography · color · spacing</text>
+<text x="569" y="284" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Responsive rules</text>
+<text x="569" y="294" font-family="'Courier New',monospace" font-size="7" fill="#d97706">← P-NNN global prefs inherited · overrides table here</text>
+
+<!-- build.md -->
+<rect x="559" y="305" width="265" height="66" rx="2" fill="#1c1400" stroke="#d97706" stroke-width="1"/>
+<text x="691" y="318" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fcd34d">build.md</text>
+<text x="691" y="330" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#92400e">HOW IT'S BUILT</text>
+<text x="569" y="343" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Component inventory (2D / 3D / motion)</text>
+<text x="569" y="355" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Interactions · performance budget</text>
+<text x="569" y="365" font-family="'Courier New',monospace" font-size="7" fill="#d97706">← D-NNN decision references table</text>
+
+<!-- assets.md -->
+<rect x="559" y="376" width="265" height="52" rx="2" fill="#1c1400" stroke="#d97706" stroke-width="1"/>
+<text x="691" y="389" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fcd34d">assets.md</text>
+<text x="691" y="401" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#92400e">WHAT IT USES</text>
+<text x="569" y="414" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Cross-refs by A-NNN ID only</text>
+<text x="569" y="424" font-family="'Courier New',monospace" font-size="7" fill="#d97706">← A-NNN from assets/manifest.md · never inline</text>
+
+<!-- state.md -->
+<rect x="559" y="433" width="265" height="52" rx="2" fill="#1c1400" stroke="#d97706" stroke-width="1"/>
+<text x="691" y="446" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fcd34d">state.md</text>
+<text x="691" y="458" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#92400e">WHERE IT IS</text>
+<text x="569" y="471" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Build status · quality gate checklist</text>
+<text x="569" y="481" font-family="'Courier New',monospace" font-size="7" fill="#d97706">← I-NNN blocker refs · session log</text>
+
+<!-- Quality gate -->
+<rect x="559" y="492" width="265" height="72" rx="2" fill="#1e293b" stroke="#475569" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="691" y="506" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" font-weight="bold" fill="#94a3b8">QUALITY GATE — page not done until:</text>
+<text x="569" y="519" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">· state.md status = complete</text>
+<text x="569" y="531" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">· all A-NNN status = approved in manifest</text>
+<text x="569" y="543" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">· no open blocking I-NNN</text>
+<text x="569" y="555" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">· responsive + performance budget documented</text>
+
+<!-- Page context inheritance note -->
+<rect x="559" y="570" width="265" height="42" rx="2" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+<text x="691" y="583" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" font-weight="bold" fill="#94a3b8">INHERITANCE</text>
+<text x="569" y="596" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Pages inherit global preferences by default.</text>
+<text x="569" y="607" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Home page decisions don't propagate unless global.</text>
+
+<!-- ================================================================ -->
+<!-- RIGHT COLUMN: SKILLS (x=849..1385) -->
+<!-- ================================================================ -->
+<rect x="849" y="103" width="536" height="606" rx="4" fill="#0d0d14" stroke="#1e293b" stroke-width="1"/>
+<rect x="849" y="103" width="536" height="22" rx="4" fill="#2d0d00" stroke="#ea580c" stroke-width="1"/>
+<text x="1117" y="118" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fb923c">SKILL WORKFLOW — SEQUENCE FOR ANY NEW PAGE</text>
+
+<!-- Context files box -->
+<rect x="858" y="130" width="519" height="64" rx="3" fill="#0f172a" stroke="#334155" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="1117" y="144" text-anchor="middle" font-family="'Courier New',monospace" font-size="8.5" font-weight="bold" fill="#94a3b8">CONTEXT FILES — populate at project start, skills read before executing</text>
+<text x="868" y="158" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">.impeccable.md                             → read by frontend-design/</text>
+<text x="868" y="170" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">.agents/product-marketing-context.md       → read by copywriting/</text>
+<text x="868" y="182" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">design-system/MASTER.md + pages/&lt;slug&gt;.md  → read by all page templates</text>
+
+<!-- Step 1 -->
+<rect x="858" y="200" width="519" height="46" rx="3" fill="#1c0a00" stroke="#ea580c" stroke-width="1.5"/>
+<rect x="858" y="200" width="28" height="46" rx="3" fill="#431407"/>
+<text x="872" y="228" text-anchor="middle" font-family="'Courier New',monospace" font-size="14" font-weight="bold" fill="#fb923c">1</text>
+<text x="896" y="214" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fb923c">ui-ux-pro-max  ·  DECIDE</text>
+<text x="896" y="228" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">--design-system --persist → writes design-system/MASTER.md</text>
+<text x="896" y="240" font-family="'Courier New',monospace" font-size="7" fill="#f97316">⚠ Gen Agent Trust Hub FAIL; Socket + Snyk pass</text>
+
+<!-- Step 2 -->
+<rect x="858" y="250" width="519" height="36" rx="3" fill="#1c0a00" stroke="#ea580c" stroke-width="1"/>
+<rect x="858" y="250" width="28" height="36" rx="3" fill="#431407"/>
+<text x="872" y="272" text-anchor="middle" font-family="'Courier New',monospace" font-size="14" font-weight="bold" fill="#fb923c">2</text>
+<text x="896" y="264" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fb923c">frontend-design  ·  DIRECTION</text>
+<text x="896" y="278" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Bold aesthetic direction · reads .impeccable.md</text>
+
+<!-- Step 3 -->
+<rect x="858" y="290" width="519" height="36" rx="3" fill="#1c0a00" stroke="#ea580c" stroke-width="1"/>
+<rect x="858" y="290" width="28" height="36" rx="3" fill="#431407"/>
+<text x="872" y="312" text-anchor="middle" font-family="'Courier New',monospace" font-size="14" font-weight="bold" fill="#fb923c">3</text>
+<text x="896" y="304" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fb923c">design-system  ·  TOKENS</text>
+<text x="896" y="318" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Primitive→semantic tokens · typography · color · spacing scale</text>
+
+<!-- Step 4 -->
+<rect x="858" y="330" width="519" height="36" rx="3" fill="#1c0a00" stroke="#ea580c" stroke-width="1"/>
+<rect x="858" y="330" width="28" height="36" rx="3" fill="#431407"/>
+<text x="872" y="352" text-anchor="middle" font-family="'Courier New',monospace" font-size="14" font-weight="bold" fill="#fb923c">4</text>
+<text x="896" y="344" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fb923c">content-strategy  ·  PLAN</text>
+<text x="896" y="358" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Pillars · topic clusters · buyer stages · priorities  <tspan fill="#64748b">⚠ Snyk WARN</tspan></text>
+
+<!-- Step 5 -->
+<rect x="858" y="370" width="519" height="36" rx="3" fill="#1c0a00" stroke="#ea580c" stroke-width="1"/>
+<rect x="858" y="370" width="28" height="36" rx="3" fill="#431407"/>
+<text x="872" y="392" text-anchor="middle" font-family="'Courier New',monospace" font-size="14" font-weight="bold" fill="#fb923c">5</text>
+<text x="896" y="384" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fb923c">content  ·  STRUCTURE</text>
+<text x="896" y="398" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Heading hierarchy · SEO meta · OG · JSON-LD · accessibility</text>
+
+<!-- Step 6 -->
+<rect x="858" y="410" width="519" height="36" rx="3" fill="#1c0a00" stroke="#ea580c" stroke-width="1"/>
+<rect x="858" y="410" width="28" height="36" rx="3" fill="#431407"/>
+<text x="872" y="432" text-anchor="middle" font-family="'Courier New',monospace" font-size="14" font-weight="bold" fill="#fb923c">6</text>
+<text x="896" y="424" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fb923c">copywriting  ·  WRITE</text>
+<text x="896" y="438" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Headlines · CTAs · body · reads .agents/product-marketing-context.md</text>
+
+<!-- Step 7 -->
+<rect x="858" y="450" width="519" height="48" rx="3" fill="#1c0a00" stroke="#ea580c" stroke-width="1.5"/>
+<rect x="858" y="450" width="28" height="48" rx="3" fill="#431407"/>
+<text x="872" y="478" text-anchor="middle" font-family="'Courier New',monospace" font-size="14" font-weight="bold" fill="#fb923c">7</text>
+<text x="896" y="464" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fb923c">web2d + web3d + motion + json-render  ·  BUILD</text>
+<text x="896" y="477" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">web2d = default · 3D only when fidelity requires it</text>
+<text x="896" y="490" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">motion = intentional · json-render = JSON-driven runtime UIs</text>
+
+<!-- Step 8 -->
+<rect x="858" y="502" width="519" height="36" rx="3" fill="#1c0a00" stroke="#ea580c" stroke-width="1.5"/>
+<rect x="858" y="502" width="28" height="36" rx="3" fill="#431407"/>
+<text x="872" y="524" text-anchor="middle" font-family="'Courier New',monospace" font-size="14" font-weight="bold" fill="#fb923c">8</text>
+<text x="896" y="516" font-family="'Courier New',monospace" font-size="9" font-weight="bold" fill="#fb923c">audits  ·  VERIFY</text>
+<text x="896" y="530" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">squirrel CLI · 230+ rules · target score ≥ 95 · run after launch</text>
+
+<!-- Session start -->
+<rect x="858" y="547" width="256" height="114" rx="3" fill="#0d1a2e" stroke="#3b82f6" stroke-width="1"/>
+<text x="986" y="562" text-anchor="middle" font-family="'Courier New',monospace" font-size="8.5" font-weight="bold" fill="#93c5fd">SESSION START</text>
+<text x="868" y="576" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">1. Read memory/MEMORY.md</text>
+<text x="868" y="588" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">2. Read memory/next.md</text>
+<text x="868" y="600" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">3. Check issues.md for blockers</text>
+<text x="868" y="612" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">4. Check .impeccable.md populated</text>
+<text x="868" y="624" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">5. Load pages/&lt;slug&gt;/ + MASTER.md</text>
+<text x="868" y="636" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">6. Proceed</text>
+<text x="868" y="652" font-family="'Courier New',monospace" font-size="7" fill="#475569">→ Update CLAUDE.md if structural change</text>
+
+<!-- Session end -->
+<rect x="1121" y="547" width="257" height="114" rx="3" fill="#052e16" stroke="#16a34a" stroke-width="1"/>
+<text x="1249" y="562" text-anchor="middle" font-family="'Courier New',monospace" font-size="8.5" font-weight="bold" fill="#4ade80">SESSION END</text>
+<text x="1131" y="576" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">1. Write all state changes to files</text>
+<text x="1131" y="588" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">2. Update memory/next.md</text>
+<text x="1131" y="600" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">3. Compact MEMORY.md ≤ 80 lines</text>
+<text x="1131" y="612" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">4. Update CLAUDE.md if structural</text>
+<text x="1131" y="624" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">5. Archive resolved issues</text>
+<text x="1131" y="636" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">6. Clear next.md completed items</text>
+<text x="1131" y="652" font-family="'Courier New',monospace" font-size="7" fill="#475569">→ Append decisions, never delete</text>
+
+<!-- ================================================================ -->
+<!-- BOTTOM: ID TAXONOMY -->
+<!-- ================================================================ -->
+<line x1="15" y1="717" x2="1385" y2="717" stroke="#1e293b" stroke-width="1"/>
+<text x="700" y="736" text-anchor="middle" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#94a3b8">ID TAXONOMY — HOW EVERY ENTITY CROSS-REFERENCES</text>
+
+<!-- D-NNN -->
+<rect x="15" y="745" width="330" height="116" rx="4" fill="#120808" stroke="#ef4444" stroke-width="1.5"/>
+<rect x="15" y="745" width="330" height="22" rx="4" fill="#3d0a0a" stroke="#ef4444" stroke-width="0"/>
+<text x="180" y="760" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#fca5a5">D-[CATEGORY]-NNN  · decisions</text>
+<text x="25" y="778" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Formats:  D-ARCH-001 · D-TYPO-002 · D-PERF-003</text>
+<text x="25" y="791" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Assigned:   memory/decisions/TAXONOMY.md  (index)</text>
+<text x="25" y="804" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Stored:     memory/decisions/log.md  (full record + rationale)</text>
+<text x="25" y="817" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Referenced: pages/*/build.md decision table</text>
+<text x="25" y="830" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Patterns → extract to preferences.md</text>
+<text x="25" y="843" font-family="'Courier New',monospace" font-size="7.5" fill="#475569">Superseded: mark [SUPERSEDED by: D-XXX-NNN] in both files</text>
+<text x="25" y="855" font-family="'Courier New',monospace" font-size="7" fill="#475569">Decision not recorded until: date + rationale + status present</text>
+
+<!-- P-NNN -->
+<rect x="355" y="745" width="330" height="116" rx="4" fill="#080f08" stroke="#22c55e" stroke-width="1.5"/>
+<rect x="355" y="745" width="330" height="22" rx="4" fill="#0a2e0a" stroke="#22c55e" stroke-width="0"/>
+<text x="520" y="760" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#86efac">P-[CATEGORY]-NNN  · preferences</text>
+<text x="365" y="778" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Formats:  P-TYPO-001 · P-COLOR-002 · P-SPACE-003</text>
+<text x="365" y="791" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Assigned:   memory/preferences.md</text>
+<text x="365" y="804" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Fields:     ID · rule · origin · scope · date</text>
+<text x="365" y="817" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Scope:      global by default</text>
+<text x="365" y="830" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Override:   pages/*/design.md override table</text>
+<text x="365" y="843" font-family="'Courier New',monospace" font-size="7.5" fill="#475569">Applied silently — no re-explanation each session</text>
+<text x="365" y="855" font-family="'Courier New',monospace" font-size="7" fill="#475569">Home page prefs don't propagate unless noted global</text>
+
+<!-- I-NNN -->
+<rect x="695" y="745" width="330" height="116" rx="4" fill="#08080f" stroke="#6366f1" stroke-width="1.5"/>
+<rect x="695" y="745" width="330" height="22" rx="4" fill="#0d0d2e" stroke="#6366f1" stroke-width="0"/>
+<text x="860" y="760" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#a5b4fc">I-NNN  · issues</text>
+<text x="705" y="778" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Format:     I-001 · I-002  (sequential)</text>
+<text x="705" y="791" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Assigned:   memory/issues.md</text>
+<text x="705" y="804" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Fields:     date · page · description · severity · status</text>
+<text x="705" y="817" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Severity:   blocking · high · medium · low</text>
+<text x="705" y="830" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">If blocking: → memory/next.md + pages/*/state.md</text>
+<text x="705" y="843" font-family="'Courier New',monospace" font-size="7.5" fill="#475569">Lifecycle: open → resolved (archive, keep record)</text>
+<text x="705" y="855" font-family="'Courier New',monospace" font-size="7" fill="#475569">Blocking issues surface in session start check step 3</text>
+
+<!-- A-NNN -->
+<rect x="1035" y="745" width="350" height="116" rx="4" fill="#12081e" stroke="#a855f7" stroke-width="1.5"/>
+<rect x="1035" y="745" width="350" height="22" rx="4" fill="#2d0a4a" stroke="#a855f7" stroke-width="0"/>
+<text x="1210" y="760" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#c4b5fd">A-[TYPE]-NNN  · assets</text>
+<text x="1045" y="778" font-family="'Courier New',monospace" font-size="7.5" fill="#94a3b8">Formats:    A-IMG-001 · A-FONT-002 · A-VID-003 · A-PDF-004</text>
+<text x="1045" y="791" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Assigned:   assets/manifest.md  (+ by-page index table)</text>
+<text x="1045" y="804" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Fields:     ID · name · type · source · status · pages</text>
+<text x="1045" y="817" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Referenced: pages/*/assets.md  (IDs only, never inline)</text>
+<text x="1045" y="830" font-family="'Courier New',monospace" font-size="7.5" fill="#64748b">Stored in:  assets/raw/</text>
+<text x="1045" y="843" font-family="'Courier New',monospace" font-size="7.5" fill="#475569">Quality gate: all A-NNN status = approved before page = done</text>
+<text x="1045" y="855" font-family="'Courier New',monospace" font-size="7" fill="#475569">Next ID: check manifest for highest existing number + 1</text>
+
+<!-- Footer -->
+<line x1="15" y1="868" x2="1385" y2="868" stroke="#1e293b" stroke-width="1"/>
+<text x="700" y="884" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#475569">CLAUDE.md defines laws — it does NOT store state. All mutable data lives in memory/ · assets/ · pages/</text>
+<text x="700" y="897" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#475569">Every entity gets an ID. IDs are used as cross-references everywhere — decisions in build.md, preferences in design.md, issues in state.md, assets in assets.md</text>
+<text x="700" y="910" text-anchor="middle" font-family="'Courier New',monospace" font-size="7.5" fill="#334155">Skills read context files before executing · Skills write output back to state files · MEMORY.md is always the entry point</text>
+
+</svg>
