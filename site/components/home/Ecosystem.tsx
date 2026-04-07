@@ -1,50 +1,43 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import Link from 'next/link'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 export default function Ecosystem() {
   const kidoRef = useRef<HTMLDivElement>(null)
   const flRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) return
 
-    const ctx = gsap.context(() => {
-      gsap.from(kidoRef.current, {
-        x: -40,
-        opacity: 0,
-        duration: 0.7,
-        ease: 'power2.out',
-        immediateRender: false,
-        scrollTrigger: {
-          trigger: kidoRef.current,
-          start: 'top 80%',
-          once: true,
-        },
-      })
-      gsap.from(flRef.current, {
-        x: 40,
-        opacity: 0,
-        duration: 0.7,
-        delay: 0.12,
-        ease: 'power2.out',
-        immediateRender: false,
-        scrollTrigger: {
-          trigger: flRef.current,
-          start: 'top 80%',
-          once: true,
-        },
-      })
+    gsap.from(kidoRef.current, {
+      x: -40,
+      opacity: 0,
+      duration: 0.7,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: kidoRef.current,
+        start: 'top 80%',
+        once: true,
+      },
     })
-
-    return () => ctx.revert()
-  }, [])
+    gsap.from(flRef.current, {
+      x: 40,
+      opacity: 0,
+      duration: 0.7,
+      delay: 0.12,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: flRef.current,
+        start: 'top 80%',
+        once: true,
+      },
+    })
+  }, {})
 
   return (
     <section

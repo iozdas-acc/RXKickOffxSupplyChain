@@ -1,11 +1,10 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const partnerLogos = [
   { src: '/assets/partner-logos/alder-hey-white.png', alt: 'Alder Hey Children\'s Hospital' },
@@ -17,16 +16,15 @@ export default function Partners() {
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced || !contentRef.current) return
 
     gsap.from(contentRef.current, {
       y: 24, opacity: 0, duration: 0.7, ease: 'power2.out',
-      immediateRender: false,
       scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
     })
-  }, [])
+  }, {})
 
   return (
     <section

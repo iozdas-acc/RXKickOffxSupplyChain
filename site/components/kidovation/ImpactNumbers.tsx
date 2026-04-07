@@ -1,10 +1,9 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const stats = [
   { value: 10,    suffix: '',   label: 'Years running' },
@@ -17,7 +16,7 @@ export default function KidoImpactNumbers() {
   const sectionRef = useRef<HTMLElement>(null)
   const valRefs = useRef<(HTMLSpanElement | null)[]>([])
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     stats.forEach((s, i) => {
@@ -29,7 +28,7 @@ export default function KidoImpactNumbers() {
         return
       }
 
-      const counter = { val: s.value }
+      const counter = { val: 0 }
 
       ScrollTrigger.create({
         trigger: sectionRef.current,
@@ -48,7 +47,7 @@ export default function KidoImpactNumbers() {
         },
       })
     })
-  }, [])
+  }, {})
 
   return (
     <section
@@ -56,14 +55,65 @@ export default function KidoImpactNumbers() {
       aria-labelledby="kido-impact-heading"
       style={{
         background: 'var(--bg-surface)',
-        padding: 'var(--space-12) var(--section-padding-x)',
         borderTop: '1px solid var(--color-navy-border)',
         borderBottom: '1px solid var(--color-navy-border)',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
-      <h2 id="kido-impact-heading" className="sr-only">Kidovation by the numbers</h2>
+      {/* Ocean motif — starfish-1, top-right */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/assets/illustrations/seaworld/starfish-1.svg"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '8%',
+          right: '2%',
+          width: 100,
+          opacity: 0.20,
+          transform: 'rotate(-20deg)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
 
-      <div className="container">
+      {/* Ocean motif — seahorse-2, bottom-left */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/assets/illustrations/seaworld/seahorse-2.svg"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          bottom: '6%',
+          left: '1%',
+          width: 80,
+          opacity: 0.22,
+          transform: 'rotate(8deg)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+
+      <div className="container" style={{ paddingBlock: 'var(--space-12)', position: 'relative', zIndex: 1 }}>
+        <h2
+          id="kido-impact-heading"
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: 'var(--text-xs)',
+            fontWeight: 'var(--weight-accent)',
+            letterSpacing: 'var(--tracking-label)',
+            textTransform: 'uppercase',
+            color: 'var(--color-kido-green)',
+            textAlign: 'center',
+            marginBottom: 'var(--space-8)',
+          }}
+        >
+          Kidovation by the numbers
+        </h2>
+
         <div className="stats-grid">
           {stats.map((s, i) => (
             <div

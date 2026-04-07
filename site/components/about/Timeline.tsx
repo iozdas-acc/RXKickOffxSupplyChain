@@ -1,10 +1,9 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const milestones = [
   { year: '2015', event: 'Founded by Fiona Russell, Accenture Song UK' },
@@ -24,17 +23,16 @@ export default function Timeline() {
   const sectionRef = useRef<HTMLElement>(null)
   const nodesRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced || !nodesRef.current) return
 
     const nodes = nodesRef.current.querySelectorAll<HTMLElement>('[data-node]')
     gsap.from(nodes, {
       opacity: 0, y: 12, duration: 0.4, stagger: 0.06, ease: 'power2.out',
-      immediateRender: false,
       scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
     })
-  }, [])
+  }, {})
 
   return (
     <section
@@ -64,7 +62,8 @@ export default function Timeline() {
 
         {/* Timeline track */}
         <div
-          style={{ position: 'relative', overflowX: 'auto', paddingBottom: 'var(--space-4)' }}
+          style={{ position: 'relative', paddingBottom: 'var(--space-4)' }}
+          className="timeline-track"
         >
           {/* Horizontal line */}
           <div style={{
@@ -78,11 +77,11 @@ export default function Timeline() {
 
           <div
             ref={nodesRef}
+            className="timeline-nodes"
             style={{
-              display: 'flex',
-              gap: 'clamp(32px, 4vw, 64px)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(11, 1fr)',
               paddingTop: 4,
-              minWidth: 'max-content',
             }}
           >
             {milestones.map((m, i) => (
@@ -93,8 +92,8 @@ export default function Timeline() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: 'var(--space-4)',
-                  maxWidth: 100,
+                  gap: 'var(--space-3)',
+                  padding: '0 4px',
                 }}
               >
                 {/* Node dot */}
@@ -116,7 +115,7 @@ export default function Timeline() {
                 <span style={{
                   fontFamily: 'var(--font-display)',
                   fontWeight: 'var(--weight-display)',
-                  fontSize: 'var(--text-sm)',
+                  fontSize: 'clamp(10px, 1vw, 14px)',
                   color: i === milestones.length - 1 ? 'var(--color-kido-green)' : 'var(--text-primary)',
                   whiteSpace: 'nowrap',
                 }}>
@@ -126,9 +125,9 @@ export default function Timeline() {
                 {/* Event */}
                 <span style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: 'var(--text-xs)',
+                  fontSize: 'clamp(9px, 0.8vw, 11px)',
                   color: 'var(--text-secondary)',
-                  lineHeight: 1.4,
+                  lineHeight: 1.35,
                   textAlign: 'center',
                 }}>
                   {m.event}
@@ -138,6 +137,17 @@ export default function Timeline() {
           </div>
         </div>
       </div>
+      <style>{`
+        @media (max-width: 767px) {
+          .timeline-track { overflow-x: auto; }
+          .timeline-nodes {
+            display: flex !important;
+            gap: 32px !important;
+            min-width: max-content;
+          }
+          .timeline-nodes > * { min-width: 80px; }
+        }
+      `}</style>
     </section>
   )
 }

@@ -1,11 +1,10 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const gen1 = {
   name: 'Fiona Russell',
@@ -45,7 +44,7 @@ const gen3 = [
     name: 'Izzie Ozdas',
     photo: '/assets/team/gen3-izzie-ozdas.jpg',
     expertise: 'Design & digital',
-    bio: 'Izzie owns the visual identity and digital experience — from the alien to this website.',
+    bio: 'Izzie built this website and works alongside Hannah and Fiona on strategy and communications.',
     quote: '"If the experience isn\'t beautiful, the message gets lost."',
   },
   {
@@ -64,7 +63,7 @@ const gen3 = [
   },
 ]
 
-function MemberCard({ name, photo, expertise, bio, quote }: {
+function MemberCard({ name, photo, expertise, quote }: {
   name: string; photo: string; expertise: string; bio: string; quote: string
 }) {
   return (
@@ -116,15 +115,6 @@ function MemberCard({ name, photo, expertise, bio, quote }: {
           fontFamily: 'var(--font-body)',
           fontSize: 'var(--text-sm)',
           color: 'var(--text-secondary)',
-          lineHeight: 'var(--leading-body)',
-          marginBottom: 'var(--space-4)',
-        }}>
-          {bio}
-        </p>
-        <p style={{
-          fontFamily: 'var(--font-body)',
-          fontSize: 'var(--text-sm)',
-          color: 'var(--text-secondary)',
           fontStyle: 'italic',
           lineHeight: 'var(--leading-body)',
         }}>
@@ -140,7 +130,7 @@ export default function Team() {
   const gen2Ref = useRef<HTMLDivElement>(null)
   const gen3Ref = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) return
 
@@ -149,11 +139,10 @@ export default function Team() {
       const cards = ref.current.querySelectorAll<HTMLElement>('[data-member]')
       gsap.from(cards, {
         y: 24, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out',
-        immediateRender: false,
         scrollTrigger: { trigger: ref.current, start: 'top 80%' },
       })
     })
-  }, [])
+  }, {})
 
   const divider = (label: string) => (
     <div style={{
@@ -283,15 +272,6 @@ export default function Team() {
             }}>
               {gen1.expertise}
             </div>
-            <p style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'var(--text-lg)',
-              color: 'var(--text-secondary)',
-              lineHeight: 'var(--leading-body)',
-              marginBottom: 'var(--space-6)',
-            }}>
-              {gen1.bio}
-            </p>
             <p style={{
               fontFamily: 'var(--font-accent)',
               fontSize: '1.1rem',

@@ -1,10 +1,9 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const values = [
   {
@@ -29,13 +28,12 @@ export default function Story() {
   const textRef = useRef<HTMLDivElement>(null)
   const valuesRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) return
 
     gsap.from(textRef.current, {
       y: 32, opacity: 0, duration: 0.8, ease: 'power2.out',
-      immediateRender: false,
       scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
     })
 
@@ -43,11 +41,10 @@ export default function Story() {
       const items = valuesRef.current.querySelectorAll<HTMLElement>('[data-value]')
       gsap.from(items, {
         y: 24, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out',
-        immediateRender: false,
         scrollTrigger: { trigger: valuesRef.current, start: 'top 80%' },
       })
     }
-  }, [])
+  }, {})
 
   return (
     <section

@@ -16,12 +16,13 @@ If this list exceeds 10 items, something is wrong — consolidate or escalate.
 
 ## Now
 
-- [ ] `/design kidovation` — ready to start
+- [ ] `/screenshot kidovation` — verify r8 fixes: alien hidden on mobile, ImpactNumbers count-up animates, heading visible
 
 ## Soon
 
-- [ ] `/build kidovation`
-- [ ] Remaining pages: about, future-labs, work-with-us
+- [ ] `/design about` → `/build about`
+- [ ] `/design future-labs` → `/build future-labs`
+- [ ] `/design work-with-us` → `/build work-with-us`
 
 ## Completed this session
 
@@ -32,6 +33,8 @@ If this list exceeds 10 items, something is wrong — consolidate or escalate.
 - [x] `/design home` — v2 design spec written, all skills invoked ✓ 2026-03-27
 - [x] `/build home` — all 6 sections built, build passes ✓ 2026-03-27
 - [x] `/screenshot home` — r4 passed, layout correct at all breakpoints ✓ 2026-03-27
+- [x] `/design kidovation` — design spec written ✓ 2026-03-27
+- [x] `/build kidovation` — all 6 sections built, build.md + state.md written ✓ 2026-04-05
 
 ## Blocked
 

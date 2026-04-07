@@ -1,11 +1,9 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
-import Image from 'next/image'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const features = [
   'Ages 8–16',
@@ -17,16 +15,15 @@ export default function Parents() {
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced || !contentRef.current) return
 
     gsap.from(contentRef.current, {
       y: 24, opacity: 0, duration: 0.7, ease: 'power2.out',
-      immediateRender: false,
       scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
     })
-  }, [])
+  }, {})
 
   return (
     <section
@@ -130,8 +127,9 @@ export default function Parents() {
 
           {/* Alien illustration */}
           <div style={{ width: 160, flexShrink: 0 }} className="parents-illo" aria-hidden="true">
-            <Image
-              src="/assets/illustrations/aliens/original/Blue alien.svg"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/illustrations/aliens/original/blue-alien.svg"
               alt=""
               width={160}
               height={200}

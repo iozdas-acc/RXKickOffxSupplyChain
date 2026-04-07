@@ -1,49 +1,42 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 export default function WhatIsIX() {
   const textRef = useRef<HTMLDivElement>(null)
   const diagramRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) return
 
-    const ctx = gsap.context(() => {
-      gsap.from(textRef.current, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        immediateRender: false,
-        scrollTrigger: {
-          trigger: textRef.current,
-          start: 'top 80%',
-          once: true,
-        },
-      })
-      gsap.from(diagramRef.current, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        delay: 0.15,
-        ease: 'power2.out',
-        immediateRender: false,
-        scrollTrigger: {
-          trigger: diagramRef.current,
-          start: 'top 80%',
-          once: true,
-        },
-      })
+    gsap.from(textRef.current, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: textRef.current,
+        start: 'top 80%',
+        once: true,
+      },
     })
-
-    return () => ctx.revert()
-  }, [])
+    gsap.from(diagramRef.current, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      delay: 0.15,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: diagramRef.current,
+        start: 'top 80%',
+        once: true,
+      },
+    })
+  }, {})
 
   return (
     <section

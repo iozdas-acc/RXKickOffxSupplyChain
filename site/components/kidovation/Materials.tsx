@@ -1,33 +1,49 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import Link from 'next/link'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger)
-
 export default function Materials() {
   const panelRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced || !panelRef.current) return
 
     gsap.from(panelRef.current, {
       y: 32, opacity: 0, duration: 0.7, ease: 'power2.out',
-      immediateRender: false,
       scrollTrigger: { trigger: panelRef.current, start: 'top 85%' },
     })
-  }, [])
+  }, {})
 
   return (
     <section
       aria-labelledby="materials-heading"
-      style={{ background: 'var(--bg-page)', padding: 'var(--section-padding-y) var(--section-padding-x)' }}
+      style={{ background: 'var(--bg-page)', padding: 'var(--section-padding-y) var(--section-padding-x)', position: 'relative', overflow: 'hidden' }}
     >
-      <div className="container">
+      {/* Ocean motif — burt-octopus, bottom-right */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/assets/illustrations/seaworld/burt-octopus.svg"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          bottom: '4%',
+          right: '2%',
+          width: 130,
+          opacity: 0.15,
+          transform: 'rotate(-18deg)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div
           ref={panelRef}
           style={{

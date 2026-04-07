@@ -1,31 +1,31 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
+import { Bot, FlaskConical, Layers, Users } from 'lucide-react'
 
 const activities = [
   {
     title: 'AI & machine learning',
     body: 'Build and test real AI models — not as a black box, but as a tool you control. Understand what\'s behind the interface.',
-    icon: '⬡',
+    Icon: Bot,
   },
   {
     title: 'R&D challenges',
     body: 'Take a real research question and prototype a working solution. The brief is ambiguous. That\'s the point.',
-    icon: '⚗',
+    Icon: FlaskConical,
   },
   {
     title: 'Product design sprint',
     body: 'Go from problem to wireframe to pitch in 24 hours. Fast. Forced decisions. Real feedback from real people.',
-    icon: '◈',
+    Icon: Layers,
   },
   {
     title: 'Human-centred innovation',
     body: 'Design for real communities — not hypothetical users. Ethnographic research, co-design, field testing.',
-    icon: '◉',
+    Icon: Users,
   },
 ]
 
@@ -33,17 +33,16 @@ export default function WhatYouDo() {
   const sectionRef = useRef<HTMLElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced || !gridRef.current) return
 
     const cards = gridRef.current.querySelectorAll<HTMLElement>('[data-card]')
     gsap.from(cards, {
       y: 24, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out',
-      immediateRender: false,
       scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
     })
-  }, [])
+  }, {})
 
   return (
     <section
@@ -105,12 +104,10 @@ export default function WhatYouDo() {
               }}
             >
               <div style={{
-                fontSize: 28,
-                color: 'var(--color-fl-orange)',
                 marginBottom: 'var(--space-4)',
                 lineHeight: 1,
               }} aria-hidden="true">
-                {a.icon}
+                <a.Icon size={28} color="var(--color-fl-orange)" strokeWidth={1.5} />
               </div>
               <h3 style={{
                 fontFamily: 'var(--font-display)',

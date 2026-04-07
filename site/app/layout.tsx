@@ -3,6 +3,8 @@ import { Plus_Jakarta_Sans, Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import ScrollTriggerManager from '@/components/ScrollTriggerManager'
+import GSAPProvider from '@/components/GSAPProvider'
 import './globals.css'
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -49,9 +51,12 @@ export default function RootLayout({
       className={`${plusJakarta.variable} ${inter.variable} ${permanentMarker.variable}`}
     >
       <body>
-        <Nav />
-        {children}
-        <Footer />
+        <GSAPProvider>
+          <ScrollTriggerManager />
+          <Nav />
+          {children}
+          <Footer />
+        </GSAPProvider>
       </body>
     </html>
   )

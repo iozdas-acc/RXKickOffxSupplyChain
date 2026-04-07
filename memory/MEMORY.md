@@ -1,6 +1,6 @@
 # Project Memory — Hot Summary
 
-> Last updated: 2026-03-26
+> Last updated: 2026-04-05
 
 ---
 
@@ -8,7 +8,7 @@
 
 **Name:** Innovation X (umbrella) → Kidovation + Future Labs
 **Client:** Accenture Song (UK)
-**Stage:** v2 — planned. Stack confirmed (Next.js). Ready to `/init` then design + build.
+**Stage:** v2 — in build. All 5 pages built. 4/5 screenshot-audited and in review.
 **Repo / URL:** TBD
 **Strategic goal:** FY26 = rebuild brand & foundations → self-sustainable FY27
 **Immediate deadline:** Something to show Matt P next week
@@ -32,11 +32,11 @@ Founded 2015 by Accenture Song. 10 years, 12 markets, 3,111+ kids, 115 classroom
 
 | Page | Slug | Status | Priority |
 |------|------|--------|----------|
-| Home | `home` | needs-rebuild (v2) | 🔴 1 |
-| Kidovation | `kidovation` | brief done | 🔴 2 |
-| About Us | `about` | brief done | 🟡 3 |
-| Future Labs | `future-labs` | brief done | 🟡 4 |
-| Work With Us | `work-with-us` | brief done | 🟢 5 |
+| Home | `home` | complete (screenshot r4 passed) | 🔴 1 |
+| Kidovation | `kidovation` | review (screenshot r8 passed) | 🔴 2 |
+| Future Labs | `future-labs` | review (screenshot r8 passed) | 🟡 3 |
+| Work With Us | `work-with-us` | review (screenshot r7 passed) | 🟡 4 |
+| About Us | `about` | review (screenshot r9 passed, hero fix applied) | 🟡 5 |
 
 ---
 
@@ -118,8 +118,9 @@ Founded 2015 by Accenture Song. 10 years, 12 markets, 3,111+ kids, 115 classroom
 
 ## What's next
 
-1. `/init` — regenerate design system for Next.js (MASTER.md may need update)
-2. Scaffold site shell — Next.js project, App Router, Nav, Footer, empty page routes
-3. `/design home` → `/build home` — priority: Matt P deadline
-4. `/design kidovation` → `/build kidovation`
-5. Remaining pages: about, future-labs, work-with-us
+1. Approve event photos + team headshots in `assets/manifest.md` → change status to `approved`
+2. Replace partner logos placeholders on work-with-us with real logo files
+3. Confirm contact form email destination (work-with-us)
+4. Confirm "2026 cohort" date on Future Labs coming-soon section
+5. Run squirrel audit (`audits/` skill) once live URL is confirmed — target ≥ 95
+6. Any copy revisions based on client review

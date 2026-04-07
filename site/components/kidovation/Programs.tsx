@@ -1,10 +1,9 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const programmes = [
   {
@@ -38,25 +37,60 @@ export default function Programs() {
   const sectionRef = useRef<HTMLElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced || !gridRef.current) return
 
     const cards = gridRef.current.querySelectorAll<HTMLElement>('[data-prog]')
     gsap.from(cards, {
       y: 24, opacity: 0, duration: 0.5, stagger: 0.07, ease: 'power2.out',
-      immediateRender: false,
       scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
     })
-  }, [])
+  }, {})
 
   return (
     <section
       ref={sectionRef}
       aria-labelledby="programs-heading"
-      style={{ background: 'var(--bg-page)', padding: 'var(--section-padding-y) var(--section-padding-x)' }}
+      style={{ background: 'var(--bg-page)', padding: 'var(--section-padding-y) var(--section-padding-x)', position: 'relative', overflow: 'hidden' }}
     >
-      <div className="container">
+      {/* Ocean motif — octopus, top-right */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/assets/illustrations/seaworld/octopus.svg"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '6%',
+          right: '2%',
+          width: 160,
+          opacity: 0.14,
+          transform: 'rotate(12deg)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+
+      {/* Ocean motif — seahorse, bottom-left */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/assets/illustrations/seaworld/seahorse-1.svg"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          bottom: '5%',
+          left: '1%',
+          width: 100,
+          opacity: 0.16,
+          transform: 'rotate(-8deg)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div style={{ marginBottom: 'var(--space-12)' }}>
           <h2
             id="programs-heading"

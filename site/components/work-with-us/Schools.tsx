@@ -1,12 +1,10 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import Link from 'next/link'
-import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const features = [
   'No prep time required',
@@ -18,16 +16,15 @@ export default function Schools() {
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced || !contentRef.current) return
 
     gsap.from(contentRef.current, {
       y: 24, opacity: 0, duration: 0.7, ease: 'power2.out',
-      immediateRender: false,
       scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
     })
-  }, [])
+  }, {})
 
   return (
     <section
@@ -131,8 +128,9 @@ export default function Schools() {
 
           {/* Illustration */}
           <div style={{ width: 200, flexShrink: 0 }} className="schools-illo" aria-hidden="true">
-            <Image
-              src="/assets/illustrations/aliens/original/Green alien.svg"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/illustrations/aliens/original/green-alien.svg"
               alt=""
               width={200}
               height={260}

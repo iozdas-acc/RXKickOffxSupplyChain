@@ -1,11 +1,10 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const PHOTOS = [
   {
@@ -43,29 +42,25 @@ const PHOTOS = [
 export default function Events() {
   const gridRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) return
     if (!gridRef.current) return
 
     const cells = gridRef.current.querySelectorAll<HTMLElement>('[data-photo-cell]')
 
-    const ctx = gsap.context(() => {
-      ScrollTrigger.batch(cells, {
-        onEnter: batch => gsap.from(batch, {
-          opacity: 0,
-          y: 20,
-          duration: 0.5,
-          ease: 'power2.out',
-          stagger: 0.08,
-        }),
-        start: 'top 80%',
-        once: true,
-      })
+    ScrollTrigger.batch(cells, {
+      onEnter: batch => gsap.from(batch, {
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        ease: 'power2.out',
+        stagger: 0.08,
+      }),
+      start: 'top 80%',
+      once: true,
     })
-
-    return () => ctx.revert()
-  }, [])
+  }, {})
 
   return (
     <section

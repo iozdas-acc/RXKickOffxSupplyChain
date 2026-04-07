@@ -1,11 +1,10 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const photos = [
   { src: '/assets/event-photos/IMG_20180630_120231.jpg', alt: 'Students working together at a Kidovation hackathon, 2018' },
@@ -20,25 +19,42 @@ export default function KidoEventsGallery() {
   const sectionRef = useRef<HTMLElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced || !gridRef.current) return
 
     const cells = gridRef.current.querySelectorAll<HTMLElement>('[data-cell]')
     gsap.from(cells, {
       y: 20, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out',
-      immediateRender: false,
       scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
     })
-  }, [])
+  }, {})
 
   return (
     <section
       ref={sectionRef}
       aria-labelledby="kido-events-heading"
-      style={{ padding: 'var(--section-padding-y) var(--section-padding-x)', background: 'var(--bg-surface)' }}
+      style={{ padding: 'var(--section-padding-y) var(--section-padding-x)', background: 'var(--bg-surface)', position: 'relative', overflow: 'hidden' }}
     >
-      <div className="container">
+      {/* Ocean motif — seahorse-2, top-left */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/assets/illustrations/seaworld/seahorse-2.svg"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '5%',
+          left: '1%',
+          width: 90,
+          opacity: 0.17,
+          transform: 'rotate(15deg)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div style={{ marginBottom: 'var(--space-10)' }}>
           <h2
             id="kido-events-heading"

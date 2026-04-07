@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import Link from 'next/link'
 import Image from 'next/image'
 import gsap from 'gsap'
@@ -11,7 +12,7 @@ export default function KidovationHero() {
   const subRef = useRef<HTMLParagraphElement>(null)
   const ctasRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) return
 
@@ -20,9 +21,7 @@ export default function KidovationHero() {
       .from(h1Ref.current, { y: 30, opacity: 0, duration: 0.7, ease: 'power2.out' }, 0.1)
       .from(subRef.current, { y: 20, opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.35)
       .from(ctasRef.current?.children ?? [], { y: 10, opacity: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out' }, 0.55)
-
-    return () => { tl.kill() }
-  }, [])
+  }, {})
 
   const eventPhotos = [
     '20250411_161421.jpg',
@@ -61,17 +60,55 @@ export default function KidovationHero() {
         }}
       />
 
-      {/* Alien — right side desktop */}
+      {/* Ocean motif — yellow submarine, top-right */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/assets/illustrations/seaworld/yellow-submarine.svg"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '10%',
+          right: '3%',
+          width: 140,
+          opacity: 0.18,
+          transform: 'rotate(10deg)',
+          pointerEvents: 'none',
+          zIndex: 2,
+        }}
+      />
+
+      {/* Ocean motif — starfish, bottom-left */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/assets/illustrations/seaworld/starfish-1.svg"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          bottom: '8%',
+          left: '2%',
+          width: 90,
+          opacity: 0.15,
+          transform: 'rotate(-15deg)',
+          pointerEvents: 'none',
+          zIndex: 2,
+        }}
+      />
+
+      {/* Alien — right side, desktop only */}
       <div
         aria-hidden="true"
+        data-alien-hide=""
         style={{
           position: 'absolute', right: '4%', bottom: 0, zIndex: 2,
           width: 'min(380px, 35vw)',
           animation: 'alien-float 4s ease-in-out infinite',
         }}
       >
-        <Image
-          src="/assets/illustrations/aliens/original/Green alien.svg"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/illustrations/aliens/original/green-alien.svg"
           alt=""
           width={380}
           height={480}

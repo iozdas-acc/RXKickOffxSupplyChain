@@ -108,7 +108,12 @@
 
 ## 3D / WebGL `3D`
 
-_No decisions recorded yet._
+## D-3D-001 — Kidovation page: SVG alien float (not R3F) in hero
+- Date: 2026-04-05
+- Status: accepted
+- Decision: Kidovation page hero uses a CSS-animated SVG alien (float keyframe) rather than the R3F procedural alien from AlienScene.tsx. AlienScene lives on the home page only.
+- Rationale: The Kidovation hero is already photo-heavy (full-bleed background + overlay). Adding a Canvas on top creates visual noise and performance cost. The SVG alien delivers the brand character with zero WebGL overhead. R3F alien (D-DS-002) stays on home page where it's the centrepiece with no competing background.
+- Affects: page: kidovation (hero only)
 
 ---
 

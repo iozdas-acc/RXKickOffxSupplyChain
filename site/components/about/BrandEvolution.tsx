@@ -1,35 +1,34 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger)
-
 const logos = [
   {
-    year: '2016',
-    src: '/assets/logos/kidovaition-2025/rgb-digital/kidovation-logo-rgb-green-on-clear.svg',
-    alt: 'Early Kidovation logo, 2016',
+    year: '2015',
+    src: '/assets/logos/kidovaition-2025/rgb-digital/KidovAItion_Plain_White.svg',
+    alt: 'Original Kidovation wordmark, 2015',
     label: 'Original mark',
   },
   {
     year: '2019',
-    src: '/assets/logos/kidovaition-2025/rgb-digital/kidovation-logo-rgb-white-on-clear.svg',
-    alt: 'Kidovation logo 2019',
-    label: 'Refined identity',
+    src: '/assets/logos/kidovaition-2025/rgb-digital/KidovAItion_Full_White.svg',
+    alt: 'Kidovation logo with alien, 2019',
+    label: 'Alien introduced',
   },
   {
     year: '2023',
-    src: '/assets/logos/kidovaition-2025/rgb-digital/kidovation-logo-rgb-green-on-clear.svg',
-    alt: 'Kidovation logo 2023',
-    label: 'Full system',
+    src: '/assets/logos/kidovaition-2025/rgb-digital/KidovAItion_Song_White.svg',
+    alt: 'Kidovation with Accenture Song mark, 2023',
+    label: 'Song partnership',
   },
   {
     year: '2025',
-    src: '/assets/logos/kidovaition-2025/rgb-digital/kidovation-logo-rgb-white-on-clear.svg',
-    alt: 'Kidovation logo 2025 — current',
+    src: '/assets/logos/kidovaition-2025/rgb-digital/KidovAItion_AI.svg',
+    alt: 'KidovAItion logo 2025 — current',
     label: '10-year edition',
   },
 ]
@@ -38,17 +37,16 @@ export default function BrandEvolution() {
   const sectionRef = useRef<HTMLElement>(null)
   const logosRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced || !logosRef.current) return
 
     const items = logosRef.current.querySelectorAll<HTMLElement>('[data-logo]')
     gsap.from(items, {
       opacity: 0, x: -20, duration: 0.5, stagger: 0.1, ease: 'power2.out',
-      immediateRender: false,
       scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
     })
-  }, [])
+  }, {})
 
   return (
     <section

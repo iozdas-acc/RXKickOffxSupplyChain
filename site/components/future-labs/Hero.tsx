@@ -1,8 +1,8 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import Link from 'next/link'
-import Image from 'next/image'
 import gsap from 'gsap'
 
 export default function FutureLabsHero() {
@@ -12,7 +12,7 @@ export default function FutureLabsHero() {
   const subRef = useRef<HTMLParagraphElement>(null)
   const ctasRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) return
 
@@ -22,9 +22,7 @@ export default function FutureLabsHero() {
       .from(line2Ref.current, { y: 30, opacity: 0, duration: 0.7, ease: 'power2.out' }, 0.25)
       .from(subRef.current, { y: 20, opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.45)
       .from(ctasRef.current?.children ?? [], { y: 10, opacity: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out' }, 0.6)
-
-    return () => { tl.kill() }
-  }, [])
+  }, {})
 
   return (
     <section
@@ -141,7 +139,8 @@ export default function FutureLabsHero() {
         className="fl-hero-illo"
       >
         <div style={{ width: 'min(340px, 80%)', animation: 'fl-float 5s ease-in-out infinite' }}>
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/assets/illustrations/space/rocket.svg"
             alt=""
             aria-hidden="true"

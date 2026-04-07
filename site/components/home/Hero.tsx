@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useState } from 'react'
+import { useGSAP } from '@gsap/react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -17,7 +18,7 @@ export default function Hero() {
   const indicatorRef = useRef<HTMLDivElement>(null)
   const [webglOk, setWebglOk] = useState(false)
 
-  useEffect(() => {
+  useGSAP(() => {
     try {
       const c = document.createElement('canvas')
       setWebglOk(!!(c.getContext('webgl') || c.getContext('experimental-webgl')))
@@ -35,9 +36,7 @@ export default function Hero() {
         y: 10, opacity: 0, duration: 0.4, ease: 'power2.out', stagger: 0.08,
       }, 0.6)
       .from(indicatorRef.current, { opacity: 0, duration: 0.3 }, 0.8)
-
-    return () => { tl.kill() }
-  }, [])
+  }, {})
 
   return (
     <section aria-labelledby="hero-heading" className="hero">

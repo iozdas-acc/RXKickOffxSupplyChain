@@ -1,10 +1,9 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const STATS = [
   { value: 10, suffix: '', unit: 'years', label: 'Of innovation education' },
@@ -17,7 +16,7 @@ export default function Stats() {
   const sectionRef = useRef<HTMLElement>(null)
   const numberRefs = useRef<(HTMLSpanElement | null)[]>([])
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (prefersReduced) {
@@ -29,7 +28,7 @@ export default function Stats() {
 
     const counters = STATS.map((s) => ({ value: s.value }))
 
-    const st = ScrollTrigger.create({
+    ScrollTrigger.create({
       trigger: sectionRef.current,
       start: 'top 80%',
       once: true,
@@ -51,9 +50,7 @@ export default function Stats() {
         })
       },
     })
-
-    return () => { st.kill() }
-  }, [])
+  }, {})
 
   return (
     <section

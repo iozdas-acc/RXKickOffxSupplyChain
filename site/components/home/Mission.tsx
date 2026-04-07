@@ -1,49 +1,42 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 export default function Mission() {
   const quoteMarkRef = useRef<HTMLSpanElement>(null)
   const quoteRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) return
 
-    const ctx = gsap.context(() => {
-      gsap.from(quoteMarkRef.current, {
-        opacity: 0,
-        duration: 0.4,
-        ease: 'power2.out',
-        immediateRender: false,
-        scrollTrigger: {
-          trigger: quoteRef.current,
-          start: 'top 75%',
-          once: true,
-        },
-      })
-      gsap.from(quoteRef.current, {
-        y: 24,
-        opacity: 0,
-        duration: 0.4,
-        delay: 0.1,
-        ease: 'power2.out',
-        immediateRender: false,
-        scrollTrigger: {
-          trigger: quoteRef.current,
-          start: 'top 75%',
-          once: true,
-        },
-      })
+    gsap.from(quoteMarkRef.current, {
+      opacity: 0,
+      duration: 0.4,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: quoteRef.current,
+        start: 'top 75%',
+        once: true,
+      },
     })
-
-    return () => ctx.revert()
-  }, [])
+    gsap.from(quoteRef.current, {
+      y: 24,
+      opacity: 0,
+      duration: 0.4,
+      delay: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: quoteRef.current,
+        start: 'top 75%',
+        once: true,
+      },
+    })
+  }, {})
 
   return (
     <section

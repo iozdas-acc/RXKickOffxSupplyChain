@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
 export default function AboutHero() {
@@ -9,7 +10,7 @@ export default function AboutHero() {
   const line2Ref = useRef<HTMLSpanElement>(null)
   const subRef = useRef<HTMLParagraphElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) return
 
@@ -18,16 +19,14 @@ export default function AboutHero() {
       .from(line1Ref.current, { y: 30, opacity: 0, duration: 0.7, ease: 'power2.out' }, 0.1)
       .from(line2Ref.current, { y: 30, opacity: 0, duration: 0.7, ease: 'power2.out' }, 0.25)
       .from(subRef.current, { y: 20, opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.45)
-
-    return () => { tl.kill() }
-  }, [])
+  }, {})
 
   return (
     <section
       aria-labelledby="about-hero-heading"
       style={{
         position: 'relative',
-        minHeight: 'calc(100dvh - var(--nav-height))',
+        minHeight: '100dvh',
         paddingTop: 'calc(var(--nav-height) + var(--space-24))',
         paddingBottom: 'var(--space-24)',
         background: 'var(--bg-page)',

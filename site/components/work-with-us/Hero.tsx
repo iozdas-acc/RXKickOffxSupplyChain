@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
 export default function WorkHero() {
@@ -9,7 +10,7 @@ export default function WorkHero() {
   const subRef = useRef<HTMLParagraphElement>(null)
   const tabsRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) return
 
@@ -18,9 +19,7 @@ export default function WorkHero() {
       .from(h1Ref.current, { y: 30, opacity: 0, duration: 0.7, ease: 'power2.out' }, 0.1)
       .from(subRef.current, { y: 20, opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.35)
       .from(tabsRef.current?.children ?? [], { y: 10, opacity: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out' }, 0.55)
-
-    return () => { tl.kill() }
-  }, [])
+  }, {})
 
   return (
     <section

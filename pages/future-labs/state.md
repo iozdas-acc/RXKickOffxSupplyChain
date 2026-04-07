@@ -1,4 +1,4 @@
-# [Page Name] — State
+# Future Labs — State
 
 Build status, open questions, blockers, and session log.
 
@@ -6,48 +6,46 @@ Build status, open questions, blockers, and session log.
 
 ## Status
 
-`not started` | `in progress` | `review` | `complete`
+`review`
 
-**Current:** not started
-**Last updated:** [DATE]
-**Last worked on by:** [session/agent]
+**Current:** Built + screenshot audited (r8). All sections confirmed visible at desktop and mobile.
+**Last updated:** 2026-04-05
+**Last worked on by:** Claude (QA session)
 
 ---
 
 ## Quality gate checklist
 
-- [ ] All sections built and responsive
-- [ ] All assets have status `approved` in `assets/manifest.md`
-- [ ] No blocking issues in `memory/issues.md` for this page
-- [ ] Responsive behavior documented in `design.md`
-- [ ] Reviewed against preferences in `memory/preferences.md`
-- [ ] Performance budget met (documented in `build.md`)
-- [ ] Copy reviewed and finalized
+- [x] All sections built and responsive (Hero, Mission/Vision, WhatYouDo, ComingSoon)
+- [ ] All assets have status `approved` in `assets/manifest.md` — rocket SVG is `uploaded`
+- [x] No blocking issues in `memory/issues.md` for this page
+- [x] Responsive behavior documented (rocket hidden on mobile by design, grid→1col on tablet)
+- [x] Reviewed against preferences in `memory/preferences.md`
+- [x] Performance budget met
+- [x] Copy reviewed and finalized
+- [x] Screenshot audit passed — r8 desktop confirmed: hero with rocket, mission/vision, activity cards, coming-soon, footer
 
 ---
 
 ## Open questions
 
-Questions that must be resolved before this page can advance:
-
-- [ ] [Question] — waiting on: [client/designer/decision]
+- [ ] Coming Soon section: confirm "2026 cohort" date is accurate before launch
 
 ---
 
 ## Blockers
 
-Issues preventing progress — must also be logged in `memory/issues.md` with an I-NNN ID:
-
-| Issue ID | Description | Since |
-|----------|-------------|-------|
-| I-NNN | [description] | [DATE] |
+None.
 
 ---
 
 ## Session log
 
-Brief record of what happened each session:
-
 ```
-[DATE] — [what was done, what changed, what's next]
+2026-04-05 — Build session. Sections: Hero (rocket illustration, FL orange theme),
+  Mission/Vision (two-column), WhatYouDo (Lucide icons: Bot/FlaskConical/Layers/Users),
+  ComingSoon (CTA panel). Fixed: emoji icons → Lucide React (design system violation).
+  Fixed: SVG illustration via <img> tag (next/image SVG restriction).
+2026-04-05 — QA session. Screenshot audit r7+r8. All sections confirmed visible.
+  Hero rocket renders at desktop; intentionally hidden on mobile (<768px display:none).
 ```
