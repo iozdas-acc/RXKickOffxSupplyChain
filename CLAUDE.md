@@ -13,6 +13,7 @@ Slash commands live in `.claude/commands/`. Run them by typing the command name.
 
 | Command | When to use |
 |---------|------------|
+| `/run` | **Full pipeline with ralph loops.** Orchestrates plan → init → design (human gate) → build → screenshot loops for all pages in priority order. Autonomous except for design approval and medium/low issue review. |
 | `/plan` | Site architecture + content strategy. Run at start and whenever structure or content changes. Re-runnable — diffs against existing state. |
 | `/init` | Start of any session, or when unsure of project state. Checks all gates, generates missing setup. |
 | `/status` | Full project dashboard — pages, assets, decisions, blockers, next actions. |

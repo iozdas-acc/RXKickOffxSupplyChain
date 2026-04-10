@@ -32,7 +32,7 @@ Founded 2015 by Accenture Song. 10 years, 12 markets, 3,111+ kids, 115 classroom
 
 | Page | Slug | Status | Priority |
 |------|------|--------|----------|
-| Home | `home` | complete (screenshot r4 passed) | 🔴 1 |
+| Home | `home` | complete ✓ | 🔴 1 |
 | Kidovation | `kidovation` | review (screenshot r8 passed) | 🔴 2 |
 | Future Labs | `future-labs` | review (screenshot r8 passed) | 🟡 3 |
 | Work With Us | `work-with-us` | review (screenshot r7 passed) | 🟡 4 |

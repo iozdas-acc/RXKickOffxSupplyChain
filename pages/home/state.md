@@ -8,8 +8,8 @@ Build status, open questions, blockers, and session log.
 
 `not started` | `in progress` | `review` | `complete`
 
-**Current:** review (screenshot audit r4 passed)
-**Last updated:** 2026-03-27
+**Current:** complete (design approved 2026-04-09, r4 audit passed, skipped re-screenshot)
+**Last updated:** 2026-04-09
 **Last worked on by:** Claude (layout fix session)
 
 ---
