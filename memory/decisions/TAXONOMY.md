@@ -20,6 +20,7 @@
 | `PERF` | Performance — loading strategy, image optimization, code splitting |
 | `TOOL` | Tooling — dev tools, CI/CD, linting, formatting |
 | `CONT` | Content — copy tone, structure, localization approach |
+| `QB` | Quality Benchmark — `/run` loop scoring rubric, evaluation harness |
 
 ---
 
@@ -27,7 +28,7 @@
 
 | ID | Title | Status | Date | Version chain |
 |----|-------|--------|------|---------------|
-| D-ARCH-001 | Next.js as site framework | accepted | 2026-03-27 | — |
+| D-ARCH-001 | Next.js as site framework | accepted | 2026-04-16 | — |
 
 ---
 
@@ -35,8 +36,8 @@
 
 | ID | Title | Status | Date | Version chain |
 |----|-------|--------|------|---------------|
-| D-DS-001 | Illustrated logos as primary brand marks | accepted | 2026-03-25 | — |
-| D-DS-002 | Kidovation alien as 3D hero element | accepted | 2026-03-26 | — |
+| D-DS-001 | Dark immersive Pollen360 aesthetic | superseded | 2026-04-10 | → D-DS-002 |
+| D-DS-002 | RX + Sainsbury's light executive aesthetic (multi-reference synthesis) | accepted | 2026-04-16 | supersedes D-DS-001 |
 
 ---
 
@@ -44,11 +45,7 @@
 
 | ID | Title | Status | Date | Version chain |
 |----|-------|--------|------|---------------|
-| D-LAY-001 | Hero: 55/45 asymmetric split | accepted | 2026-03-27 | — |
-| D-LAY-002 | Stats bar as standalone typographic band | accepted | 2026-03-27 | — |
-| D-LAY-003 | Ecosystem as full-width architectural panels | accepted | 2026-03-27 | — |
-| D-LAY-004 | Mission: center-aligned manifesto | accepted | 2026-03-27 | — |
-| D-LAY-005 | Events grid: asymmetric 1fr 2fr 1fr | accepted | 2026-03-27 | — |
+| D-LAY-001 | the-learning hero: Two Speeds split-screen | accepted | 2026-04-16 | — |
 
 ---
 
@@ -56,8 +53,7 @@
 
 | ID | Title | Status | Date | Version chain |
 |----|-------|--------|------|---------------|
-| D-MOT-001 | Stats count-up via GSAP ScrollTrigger | accepted | 2026-03-27 | — |
-| D-MOT-002 | All motion gated on prefers-reduced-motion | accepted | 2026-03-27 | — |
+| — | — | — | — | No decisions yet |
 
 ---
 
@@ -93,9 +89,8 @@
 
 ---
 
-## How to add a decision
+## Quality Benchmark `QB`
 
-1. Assign the next ID in the relevant category (e.g. `D-ARCH-001`)
-2. Add a row to the table above: ID · title · status · date · version chain
-3. Append the full record to `log.md` under the matching category heading
-4. If this supersedes a prior decision, update the old row's version chain column and mark the old log entry `[SUPERSEDED by: D-XXX-NNN]`
+| ID | Title | Status | Date | Version chain |
+|----|-------|--------|------|---------------|
+| D-QB-001 | Multi-reference synthesis benchmark supersedes Pollen360-locked rubric | accepted | 2026-04-16 | — |

@@ -1,77 +1,67 @@
-# Product Marketing Context
+# Product Marketing Context — RX KickOff: Sainsbury's
 
-> Read by `skills/copywriting/` before writing any marketing copy.
-> Last updated: 2026-03-25
+> Read by the copywriting skill. Describes the offer, audience, proof, and voice.
 
----
+## Product / Offer
 
-## Product / offer
+A kickoff web experience presenting Accenture Interactive (RX)'s Sainsbury's enterprise reinvention engagement — what was delivered, what was learned, and the evolved hybrid delivery model that follows.
 
-**Kidovation** — a hands-on hackathon programme for kids that introduces the principles of agile, innovation, design thinking, and AI through alien technologies, Lego, and play-based learning. Bridges the creativity skills gap and teaches critical thinking.
+The core commercial message: RX ran a 12-week AI-embedded procurement transformation at Sainsbury's. It produced high-quality outcomes. But 12 weeks at full RX pace was too costly and outpaced the client's ability to adopt and buy in. The new model — hybrid delivery — pairs RX's AI-acceleration capability in the first half with a light-touch "consulting agent" in the second half, enabling the client to change at their own pace without RX leaving the field. This keeps CCI high while driving value creation and client change in parallel.
 
-Developed by **Accenture Song** (UK) as part of their mission to bring experiential learning to kids. Now in its 10th year.
+The secondary purpose: establish the H1–H3 Sainsbury's narrative as the replicable template for all agentic transformation engagements going forward.
 
-**What makes it different:**
-- Real Accenture expertise delivered as play — not a classroom, a hackathon
-- 10 years of proven impact: 12 markets, 115 classrooms, 3,111+ kids
-- Generational programme — led by people who came up through it
-- GenAI-driven activities in the 2025 edition — genuinely cutting edge, not a gimmick
+## Vision & Mission
 
-**Key transformation for participants:**
-Young people grow into confident, creative thinkers who dare to imagine and innovate for a better world.
+**Vision:** Every agentic transformation engagement delivers at RX speed while clients adopt at human speed — no trade-off required.
 
-**Proof points:**
-- Founded 2015 — 10 years running
-- Scaled to 12 markets (2019 virtual pivot)
-- 3,111 kids across 115 classrooms (2021 Kidovation Challenge)
-- Partnered with NGOs to reach children in remote areas (2020)
-- Corporate Citizenship funded global scaling exploration (2021)
-- 2025 return with GenAI-driven activities
-
----
-
-## Vision & mission (use verbatim where appropriate)
-
-**Vision:** Empower young people to grow into confident, creative thinkers who dare to imagine and innovate for a better world.
-
-**Mission:** To deliver playful, hands-on educational experiences that explore AI, human-centred design, and creative problem-solving, helping young people develop the skills and confidence to grow and thrive in society.
-
-**FY26 strategic focus:** Rebuild core foundations, strengthen brand, leverage partnerships to scale — setting up for self-sustainability in FY27.
-
----
+**Mission:** Prove on Sainsbury's that hybrid delivery (AI-acceleration + consulting agent tail) is the commercial model that makes this possible, then replicate it everywhere.
 
 ## Audience
 
-**Primary:** Kids attending events (energetic, curious, creative)
-**Decision-makers:** Parents, teachers, school coordinators — want credibility, safety, outcomes
-**Partners:** Accenture clients, NGOs, schools, hospitals who host or fund events
-**Talent:** Next-gen Kidovation leads looking to get involved
+**Primary:** Sainsbury's senior leadership — familiar with the procurement project, aware of the enterprise reinvention deal context, assessing the next engagement shape.
 
-**What they arrive with:** Usually a referral or word of mouth — they're warm but need to quickly understand what this is, believe it's real, and know how to get involved.
+**Decision-makers:** Sainsbury's transformation sponsors + Accenture account and commercial leads who need to align on and approve the new deal structure.
+
+**Partners / secondary:** Internal RX capability and delivery leads who will use this narrative as a template for future pitches.
+
+**What they arrive with:** They know the project happened. They know outcomes were good. They may have sensed the pace mismatch. They want to see honest analysis, not a repackaged win story.
 
 **Objections:**
-- "Is this just an Accenture marketing exercise?" — No, 10 years of genuine impact
-- "Is this appropriate for my kid's age/level?" — needs clear event info
-- "Is this credible enough for our school/NGO to partner with?" — yes, Accenture Song backing + proven track record
+- "You're just adding more weeks to protect your revenue" — counter with: the second half is light-touch by design, a consulting agent model, not a full RX team
+- "We saw this coming — why wasn't the model right from the start?" — counter with: this is the proof engagement that generates the learning; the value is in the honest reckoning and the fix
+- "Can the consulting agent actually help our teams or is it a chatbot?" — counter with: it's a capability, not a product; address when scoping
 
-**Language they use:** "hackathon for kids", "creative learning", "AI for kids", "innovation programme", "hands-on learning"
+## Traffic Context
 
----
+**Source:** Direct — this is a curated kickoff experience, not discoverable organic traffic.
 
-## Traffic context
+**What they know:** These are invited stakeholders. They have project context. They don't need scene-setting, they need signal.
 
-**Source:** Primarily word of mouth, Accenture internal networks, corporate partner referrals, school outreach
-**What they know:** Likely heard "Kidovation" from someone — arrive knowing it's a kids programme, not much else
+## Voice & Tone
 
----
+**Formality:** High. No contractions in formal copy. Short declarative sentences preferred over compound clauses.
 
-## Voice & tone
+**Brand personality:** Accenture Interactive / RX — confident, commercially grounded, honest about trade-offs, never self-congratulatory without proof.
 
-**Formality:** Warm and professional — not corporate, not childish
-**Brand personality:** Bold, energetic, real. Backs itself with evidence. Never fluffy or over-produced.
-
----
+**Sentence rhythm:** Statement → evidence → implication. Avoid hedging language ("we believe", "we think"). Say what is true.
 
 ## Primary CTA
 
-Get involved — whether as a participant, a school/NGO partner, or a team volunteer.
+Align on the hybrid delivery model as the shape of the next Sainsbury's engagement — and as the standard template for future agentic transformation projects.
+
+## Proof Points
+
+*(Fill with confirmed data from Raj/Ben — slots marked TBD until sourced)*
+
+- **Higher-quality outputs:** Procurement project delivered demonstrably higher-quality outputs than traditional approach — [specific metric or qualitative evidence TBD from Raj/Ben]
+- **AI tools embedded:** Horizons Thinking, Sarah Website, Pain Point Navigator — deployed within a traditional 12-week engagement structure
+- **Pace data:** 12 weeks at full RX pace; client adoption pace observed to lag delivery pace — [specific observation TBD]
+- **1.5x faster delivery** claim from hybrid model — [source or basis TBD]
+- **CCI maintenance:** Hybrid model expected to sustain high CCI through extended engagement tail — [baseline CCI figure TBD if shareable]
+
+## Key Messages (hierarchy)
+
+1. We delivered. The Sainsbury's procurement project produced better outputs than the traditional model.
+2. We learned. Full RX pace over 12 weeks outpaces client adoption — that's a structural problem, not a client problem.
+3. We fixed it. The hybrid model (RX first half + consulting agent second half) solves pace and adoption simultaneously.
+4. We're codifying it. H1–H3 Sainsbury's becomes the delivery template for all agentic transformation.

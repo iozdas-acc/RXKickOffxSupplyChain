@@ -2,9 +2,9 @@
 
 Full pipeline orchestration with ralph loops per page. One command drives everything from context check through to every page marked complete.
 
-**Human touchpoints: two only.**
-1. Design gate — approve or revise `design.md` before build starts (per page)
-2. Medium/low issue review — after blocking issues are auto-fixed and page is clean
+**Human touchpoints: zero.**
+
+Fully autonomous end-to-end. Design evaluates 3 directions and self-selects. The quality loop iterates until ≥ 90/100 against the Pollen360 benchmark, then marks complete.
 
 Everything else runs autonomously.
 
@@ -97,37 +97,20 @@ Work through pages in priority order from `memory/sitemap.md` (lowest number = f
 
 For each page, read the Route column from sitemap.md to get the URL path (e.g. `/kidovation`). The full screenshot URL is `http://localhost:3000[route]` (home is `http://localhost:3000` with no trailing path).
 
-### 4a — Design gate (HUMAN TOUCHPOINT)
+### 4a — Design (autonomous)
 
 **Skip entirely if:** page state is `complete`.
 
 **If design.md is empty or template:**
 1. Print: "Design.md not written for [slug]. Running design workflow now."
-2. Follow the full `/design [slug]` command logic.
-3. When design.md is written, go to the human gate below.
+2. Follow the full `/design [slug]` command logic (includes multi-direction evaluation — self-selects winner autonomously).
+3. When design.md is written, print a 3–5 bullet summary of the winning direction and the evaluation score that selected it.
+4. Continue to 4b immediately.
 
 **If design.md is already populated:**
 1. Read `pages/<slug>/design.md`.
-2. Print a brief summary (3–5 bullet points covering section count, key visual decisions, motion intent, any open questions).
-3. **STOP and wait for human input:**
-
-```
----
-Design for [slug] — approve or revise?
-
-Summary:
-- [key decision 1]
-- [key decision 2]
-- [key decision 3]
-
-Reply: "approved" to proceed  /  give feedback to revise
----
-```
-
-4. If "approved": mark design gate passed, continue to 4b.
-5. If feedback given: apply revisions to `design.md`, show updated summary, ask again. Loop until approved.
-
-Do not proceed to 4b until explicit approval.
+2. Print a brief summary (3–5 bullet points: section count, key visual decisions, motion intent, evaluation winner if present).
+3. Continue to 4b immediately — no human approval needed.
 
 ---
 
@@ -178,32 +161,62 @@ Save findings:
 4. Log any new decisions introduced by fixes (D-NNN).
 5. Loop back to **Screenshot step**. Do not ask the user. Keep going.
 
-**Maximum loop depth: 5 iterations.** If blocking issues still exist after 5 rounds of screenshots, stop the loop for this page. Print: "Stuck after 5 rounds on [slug] — [list remaining blocking issues]. Manual review needed." Log issues, move to next page.
+**Maximum loop depth: 8 iterations.** If the page has not reached quality ≥ 90/100 after 8 rounds of screenshots, stop the loop for this page. Print: "Stuck after 8 rounds on [slug] — [list remaining blocking issues]. Manual review needed." Log issues, move to next page.
 
 **If no blocking issues:**
-Continue to clean-up step.
+Continue to quality evaluation step.
 
-#### Clean-up step
-Medium and low issues: collect them all into a single list. Do not fix them yet.
+#### Quality evaluation step (autonomous — runs when no blocking issues remain)
+
+Read `memory/quality-benchmark.md`.
+
+Score the current page state against 5 quality dimensions (each /20, total /100) by examining the latest screenshots alongside the brief and design.md:
+
+| Dimension | Score /20 | Key signal |
+|-----------|-----------|-----------|
+| Motion & Choreography | | Cinematic GSAP sequences vs CSS-only vs nothing |
+| Visual Richness | | Glass-morphism, gradient text, depth layers, 3D/post-processing |
+| Interactivity | | Hover states, parallax, signature interactive element |
+| Layout Sophistication | | clamp() typography, non-standard patterns, depth layers |
+| Polish & Completeness | | No placeholders, consistent tokens, all sections real content |
+
+Print the score:
+```
+Quality score — [slug]: [TOTAL]/100
+  Motion:      [N]/20
+  Visual:      [N]/20
+  Interactive: [N]/20
+  Layout:      [N]/20
+  Polish:      [N]/20
+```
+
+**If total ≥ 90:** Skip to clean-up step below.
+
+**If total < 90:** Identify the 2–3 lowest-scoring dimensions. For each, identify the single highest-impact improvement from `memory/quality-benchmark.md`. Implement immediately — no asking, no summarising first. Then loop back to **Screenshot step**. Print before implementing:
+```
+Quality below target ([N]/100). Implementing improvements:
+  → [Dimension]: [specific improvement in one line]
+  → [Dimension]: [specific improvement in one line]
+Looping.
+```
+
+Log each improvement as an issue (`I-NNN`, severity `medium`, status `resolved`) in `memory/issues.md`.
+
+Do not loop on improvements the same loop has already attempted. Track attempted improvements in the loop's working memory.
+
+#### Clean-up step (runs only after quality ≥ 90)
 
 Mark the page:
 - `pages/<slug>/state.md` → build status: `complete`
 - `memory/MEMORY.md` → page status: `complete`
 - `memory/next.md` → clear resolved items for this page
 
-Print the medium/low issue list (if any) and say:
+Print:
 ```
-[slug] is clean. Medium/low issues found:
-  [I-NNN] medium — [description]
-  [I-NNN] low    — [description]
-
-Fix now, or move to next page?
+[slug] complete — [N]/100 quality score (round [R])
 ```
 
-**STOP and wait for human input on medium/low issues.** (HUMAN TOUCHPOINT 2)
-
-If "move on" or no medium/low issues: proceed to next page.
-If fixes requested: apply them, take one more screenshot round, re-evaluate, then mark complete and move on.
+Proceed to next page immediately.
 
 ---
 
@@ -247,4 +260,4 @@ This command derives everything from project state files — it does not hardcod
 - Screenshots script is at `scripts/screenshot.js`
 - Both are true for any project scaffolded by this framework
 
-To use on a new project: run `/run` from a fresh state. It will guide through plan → init → design (with human gates) → build → screenshot loops for every page in sequence.
+To use on a new project: run `/run` from a fresh state. It will guide through plan → init → design (autonomous, with multi-direction evaluation) → build → screenshot loops for every page in sequence.

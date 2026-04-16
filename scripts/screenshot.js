@@ -73,7 +73,7 @@ async function run() {
     const positions  = [];
 
     for (let y = 0; y < pageHeight; y += step) {
-      positions.push(Math.min(y, pageHeight - viewH));
+      positions.push(Math.min(y, Math.max(0, pageHeight - viewH)));
     }
     // Deduplicate (can happen at the very end)
     const unique = [...new Set(positions)];
@@ -81,7 +81,7 @@ async function run() {
     for (let s = 0; s < unique.length; s++) {
       const scrollY = unique[s];
       await page.evaluate(y => window.scrollTo(0, y), scrollY);
-      await page.waitForTimeout(120); // let position settle
+      await page.waitForTimeout(1200); // let scroll animations settle
 
       const filename = `r${round}-${bp.name}-s${s + 1}.png`;
       const filepath = path.join(outDir, filename);

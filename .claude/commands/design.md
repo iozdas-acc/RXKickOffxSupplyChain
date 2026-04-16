@@ -105,6 +105,7 @@ Document any decisions made as D-LAY-NNN entries.
 
 ### Step 4 — Write design.md
 Populate `pages/$ARGUMENTS/design.md` with:
+- `## Design Evaluation` section at the top — paste the evaluation table from Step 6 (three directions, scores, winner, decisive differentiator)
 - Layout approach per section (grid, full-bleed, split, etc.)
 - Typography choices (typeface, scale) — must reference design-system/MASTER.md tokens
 - Color usage per section — reference token names, not hex values

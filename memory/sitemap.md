@@ -1,99 +1,78 @@
-# Site Map
+# Site Map — RX KickOff: Sainsbury's
 
-> Last updated: 2026-03-27
-> Stack: Next.js (App Router) — D-ARCH-001
+> Last updated: 2026-04-16
 > Update by running `/plan`.
+> Stack: Next.js 15 (D-ARCH-001)
 
 ---
 
 ## Navigation
 
-**Primary nav:** About | Kidovation | Future Labs | Work With Us
-**Logo (top left):** Innovation X mark → links to `/`
-**Footer nav:** About | Kidovation | Future Labs | Work With Us | Accenture Song (external)
+**Primary:** Chapter progress indicator (01–05) with prev/next controls — no traditional nav bar.
+This is a curated 5-minute linear demo, not a browsable website. Navigation is directional, not open.
+
+**Footer:** Accenture Interactive mark + session context only. No external links.
 
 ---
 
 ## Page inventory
 
-| Slug | Title | Route | Nav position | Buyer stage | Primary CTA | Priority | Status |
-|------|-------|-------|-------------|-------------|-------------|----------|--------|
-| `home` | Home | `/` | Logo only | Awareness | Explore Kidovation / Discover Future Labs | 🔴 1 | needs-rebuild (v2) |
-| `kidovation` | Kidovation | `/kidovation` | Primary nav | Consideration | Sign up / Get in touch | 🔴 2 | brief done |
-| `about` | About Us | `/about` | Primary nav | Consideration → Trust | Meet the team | 🟡 3 | brief done |
-| `future-labs` | Future Labs | `/future-labs` | Primary nav | Consideration | Get in touch | 🟡 4 | brief done |
-| `work-with-us` | Work With Us | `/work-with-us` | Primary nav (CTA highlighted) | Decision | Apply / Partner / Volunteer | 🟢 5 | brief done |
+| Slug | Title | Route | Buyer stage | Primary CTA | Priority | Status |
+|------|-------|-------|-------------|-------------|----------|--------|
+| `intro` | Impact at a Glance | `/` | Proof — arriving warm, needs conviction | Advance to Chapter 2 | 1 | not started |
+| `the-project` | The Procurement Transformation | `/the-project` | Aware — knows the project, wants the story | Advance to Chapter 3 | 2 | not started |
+| `the-learning` | What We Learned | `/the-learning` | Evaluating — open to honest analysis | Advance to Chapter 4 | 3 | not started |
+| `the-model` | The Hybrid Approach | `/the-model` | Considering — ready to see the solution | Advance to Chapter 5 | 4 | not started |
+| `the-template` | The Future of Agentic Transformation | `/the-template` | Decision — aligning on next engagement shape | Align on hybrid model | 5 | not started |
 
 ---
 
 ## User journey
 
+All visitors enter at `intro` — this is an invited, curated demo, not discovered via search.
+
 ```
-Word of mouth / referral
-        ↓
-      Home  ←  orientation, sub-brand routing
-     ↙    ↘
-Kidovation  Future Labs  ←  programme details, social proof
-     ↘    ↙
-    About Us  ←  trust-building detour (team, story, credibility)
-        ↓
-  Work With Us  ←  conversion: sign up / partner / volunteer
+intro → the-project → the-learning → the-model → the-template
+  ↓           ↓              ↓              ↓              ↓
+Hook:       Story:        Tension:      Resolution:    Close:
+what we     what we       honest        the hybrid     codify as
+delivered   did & how     reckoning     model fix      the template
 ```
 
-Most visitors arrive warm (heard "Kidovation" from someone). They need to:
-1. Confirm this is what they heard about
-2. Understand what happens at an event
-3. See that it's real and credible
-4. Know how to get involved
+Journey time target: ~5 minutes end to end. Each page = ~1 minute of attention.
+Progress indicator visible throughout so stakeholders know where they are in the story.
 
 ---
 
 ## Content strategy
 
-### Pillars
+**Pillars:**
+1. **Proof** — evidence of delivery quality before anything else
+2. **Honesty** — the pace mismatch is a structural insight, not a failure; name it plainly
+3. **Evolution** — the hybrid model is the direct response to what was learned
+4. **Scale** — this engagement becomes the replicable template for all agentic transformation
 
-1. **Real impact** — 10 years, 3,111+ kids, 12 markets, 115 classrooms. Never claimed without proof.
-2. **What actually happens** — Hackathon format, Lego, alien tech, AI challenges. Show don't tell.
-3. **The people** — Generational team. People who grew up with the programme now lead it.
-4. **Get involved** — Multiple paths in: participant, school partner, NGO, corporate host, volunteer.
-5. **Two brands, one ecosystem** — Kidovation (kids) + Future Labs (teens) under Innovation X umbrella.
+**Per-page content priority:**
 
-### Per-page content priority
+### `intro` — Impact at a Glance
+What it must say: Since joining the Sainsbury's enterprise reinvention deal, RX has delivered measurable value. Lead with numbers. Don't explain the project yet — just land the proof.
+Connection: primes the audience to trust the story that follows.
 
-| Page | Must say | Connects from | Connects to |
-|------|----------|---------------|-------------|
-| Home | What Innovation X is; introduce both sub-brands; 10 years of proof | Anywhere | Kidovation, Future Labs, Work With Us |
-| Kidovation | What kids do at a hackathon; age range; impact numbers; how to sign up | Home, search | Work With Us |
-| About | 10-year story; generational team structure; why this matters | Home, Kidovation | Work With Us |
-| Future Labs | What the 16+ programme is; how it differs from Kidovation; how to join | Home | Work With Us |
-| Work With Us | Three paths in: participant/parent, school/NGO partner, volunteer. Clear next step for each | Every page CTA | — (conversion end) |
+### `the-project` — The Procurement Transformation
+What it must say: Here's what the 12-week engagement looked like — what we did, how AI was embedded (Horizons Thinking, Sarah Website, Pain Point Navigator), and what it produced. High-quality outputs. The traditional structure, transformed.
+Connection: establishes the baseline before introducing the tension.
 
----
+### `the-learning` — What We Learned
+What it must say: 12 weeks at full RX pace was too costly. RX can move fast — but clients need time to adopt, digest, and buy in. That's not a client problem; it's a model problem. Name it plainly.
+Connection: the honest reckoning that makes the model pivot credible.
 
-## Scaffold (Next.js App Router)
+### `the-model` — The Hybrid Approach
+What it must say: The fix — RX AI-acceleration in the first half, light-touch consulting agent in the second half. Client change at their own pace without RX leaving the field. Keeps CCI high. Drives value creation and adoption simultaneously.
+Connection: the direct resolution of the tension established in `the-learning`.
 
-```
-site/
-  app/
-    layout.tsx          ← root layout: Nav + children + Footer
-    page.tsx            ← Home (/)
-    about/
-      page.tsx          ← About Us (/about)
-    kidovation/
-      page.tsx          ← Kidovation (/kidovation)
-    future-labs/
-      page.tsx          ← Future Labs (/future-labs)
-    work-with-us/
-      page.tsx          ← Work With Us (/work-with-us)
-  components/
-    Nav.tsx             ← shared, built once in scaffold phase
-    Footer.tsx          ← shared, built once in scaffold phase
-  styles/
-    globals.css         ← design tokens wired here
-  lib/                  ← shared utilities
-  public/
-    assets/             ← logos, fonts, images referenced by pages
-```
+### `the-template` — The Future of Agentic Transformation
+What it must say: H1–H3 Sainsbury's is not just a case study — it is the delivery template for all agentic transformation engagements going forward. This is what the future of RX looks like.
+Connection: closes the loop from intro; reframes everything the audience just saw as a replicable model, not a one-off.
 
 ---
 
@@ -101,4 +80,4 @@ site/
 
 | Date | What changed | Pages affected |
 |------|-------------|---------------|
-| 2026-03-27 | First real sitemap written. v2 planning pass. Stack confirmed: Next.js (D-ARCH-001). All 5 pages defined. | all |
+| 2026-04-16 | Initial plan — first run | All pages created |

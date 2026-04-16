@@ -103,11 +103,78 @@ Signal: any mention of "scroll", "animate", "transition", "reveal", "motion", "e
 
 ---
 
+## Step 6 — Multi-direction evaluation (always runs, before writing design.md)
+
+**First: Read `memory/quality-benchmark.md`.** It defines the motion, visual richness, interactivity, and layout patterns that distinguish great from generic. Use it to calibrate what a high-scoring direction looks like before generating options.
+
+After reading the benchmark, generate **3 competing design directions** and evaluate them before committing to one. This is a reasoning exercise — produce no output files until the winner is selected.
+
+### 6a — Generate 3 directions
+
+Each direction must be a distinct, named approach — not minor variations of the same idea. Differentiate on: layout philosophy, typography personality, color strategy, motion intensity, and emotional register.
+
+Format each direction as:
+
+```
+Direction [A/B/C]: [Name]
+Concept: [One sentence on the core idea — what makes this distinct]
+Layout: [primary layout pattern]
+Typography: [typeface personality + scale approach]
+Color: [strategy — which tokens dominate, what mood]
+Motion: [none / subtle / expressive — one-liner on what moves]
+Unique bet: [the one thing this direction does that no generic site would]
+```
+
+### 6b — Score each direction
+
+Score every direction on five criteria. Each criterion: 1–10.
+
+| Criterion | What it measures |
+|-----------|-----------------|
+| **Brand fit** | How well it reflects `.impeccable.md` personality and `.agents/product-marketing-context.md` audience |
+| **Conversion clarity** | How directly it supports the primary CTA and buyer stage from content strategy |
+| **Distinctiveness** | How far it departs from generic AI/agency aesthetics — a 10 would be immediately recognisable |
+| **UX integrity** | Accessibility, readability, touch targets, responsive logic — penalise anything that sacrifices usability for style |
+| **Technical feasibility** | Realistic to build within the confirmed tech stack — penalise approaches that require unconfirmed new dependencies |
+| **Benchmark alignment** | How closely the direction's interaction patterns, motion intent, and visual richness align with `memory/quality-benchmark.md` — specifically: does it plan for glass-morphism, clamp() typography, GSAP entrance sequences, hover micro-interactions, and at least one signature interactive element? |
+
+Produce a score table:
+
+```
+Direction  Brand  Conv.  Distinct.  UX  Feasib.  Benchmark  TOTAL
+A          /10    /10    /10       /10   /10      /10        /60
+B          /10    /10    /10       /10   /10      /10        /60
+C          /10    /10    /10       /10   /10      /10        /60
+```
+
+### 6c — Select winner and log decision
+
+Select the direction with the highest total score. If two directions tie, pick the one with higher Brand fit + Benchmark alignment combined — the benchmark captures what separates great from generic.
+
+Log the evaluation as a design decision:
+- ID: next available `D-VIS-NNN` in `memory/decisions/TAXONOMY.md`
+- Include: all three directions, scores, winner, and one-line rationale for why the winner beats the runner-up
+
+Print to the conversation:
+```
+Design evaluation — [slug]
+Winner: Direction [X] — [Name]  (score: XX/60)
+Runner-up: Direction [Y] — [Name]  (score: XX/60)
+Key win: [one sentence on the decisive differentiator]
+Proceeding with [X].
+```
+
+No human approval needed. Continue immediately to the Output step.
+
+---
+
 ## Output
 
-After all skills above have been read/invoked, write `pages/<slug>/design.md`.
-Every decision in design.md must be traceable to a skill output or a logged D-NNN decision.
+After all skills above have been read/invoked and the evaluation winner is selected, write `pages/<slug>/design.md`.
+Every decision in design.md must be traceable to a skill output, the evaluation winner (D-VIS-NNN), or a logged D-NNN decision.
 No section may be designed from general knowledge alone.
+
+Include a `## Design Evaluation` section at the top of design.md summarising the three directions and the winner — so future sessions have context for why this direction was chosen.
 
 ---
 
@@ -128,3 +195,4 @@ No section may be designed from general knowledge alone.
 | Motion guide | `skills/motion/guide.md` | Read file | 4a (if motion) |
 | Web design guidelines | `web-design-guidelines` | Invoke Skill | 5a |
 | Use of color | `skills/audits/use-of-color/SKILL.md` | Read file | 5b |
+| Multi-direction evaluation | Internal reasoning (no skill file) | Self-contained | 6 |

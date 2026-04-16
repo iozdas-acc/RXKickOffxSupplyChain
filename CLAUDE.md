@@ -13,7 +13,7 @@ Slash commands live in `.claude/commands/`. Run them by typing the command name.
 
 | Command | When to use |
 |---------|------------|
-| `/run` | **Full pipeline with ralph loops.** Orchestrates plan → init → design (human gate) → build → screenshot loops for all pages in priority order. Autonomous except for design approval and medium/low issue review. |
+| `/run` | **Full pipeline with ralph loops.** Orchestrates plan → init → design → build → screenshot loops for all pages in priority order. Autonomous except for medium/low issue review. Design is fully autonomous — evaluates 3 directions and self-selects the optimal one. |
 | `/plan` | Site architecture + content strategy. Run at start and whenever structure or content changes. Re-runnable — diffs against existing state. |
 | `/init` | Start of any session, or when unsure of project state. Checks all gates, generates missing setup. |
 | `/status` | Full project dashboard — pages, assets, decisions, blockers, next actions. |
@@ -278,7 +278,7 @@ Run the session end protocol. Compact `memory/MEMORY.md`. Clear `memory/next.md`
 # Phase 3 — Init
 /init                         check all gates → generate design-system/MASTER.md
 
-# Phase 4 — Design + Build  ← iterative, repeat in any order
+# Phase 4 — Design + Build  ← iterative, repeat in any order (design is autonomous — evaluates 3 directions, self-selects winner)
 /design [page]                design a page (reads sitemap for context)
 /build [page]                 build a page
 

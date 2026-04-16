@@ -1,63 +1,46 @@
 import type { Metadata } from 'next'
-import { Plus_Jakarta_Sans, Inter } from 'next/font/google'
-import localFont from 'next/font/local'
-import Nav from '@/components/Nav'
-import Footer from '@/components/Footer'
-import ScrollTriggerManager from '@/components/ScrollTriggerManager'
-import GSAPProvider from '@/components/GSAPProvider'
+import { Space_Grotesk, DM_Sans, Space_Mono } from 'next/font/google'
 import './globals.css'
 
-const plusJakarta = Plus_Jakarta_Sans({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-jakarta',
-  display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-space-grotesk',
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
 })
 
-const permanentMarker = localFont({
-  src: '../public/fonts/PermanentMarker-Regular.ttf',
-  variable: '--font-permanent-marker',
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
+  weight: ['400', '500', '600'],
+  display: 'swap',
+})
+
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  variable: '--font-space-mono',
+  weight: ['400', '700'],
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: {
-    default: 'Innovation X — Inspiring the Next Generation',
-    template: '%s | Innovation X',
-  },
+  title: "RX KickOff — Sainsbury's Agentic Transformation",
   description:
-    'Innovation X is the home of Kidovation and Future Labs — hands-on hackathon programmes empowering young people to think, create, and innovate.',
+    "How RX delivered measurable impact at Sainsbury's — and what it means for the future of agentic transformation.",
   openGraph: {
     type: 'website',
     locale: 'en_GB',
-    siteName: 'Innovation X',
+    siteName: 'RX KickOff',
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${plusJakarta.variable} ${inter.variable} ${permanentMarker.variable}`}
+      className={`${spaceGrotesk.variable} ${dmSans.variable} ${spaceMono.variable}`}
     >
-      <body>
-        <GSAPProvider>
-          <ScrollTriggerManager />
-          <Nav />
-          {children}
-          <Footer />
-        </GSAPProvider>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

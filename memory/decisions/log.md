@@ -14,121 +14,96 @@
 > - Affects: global | page: <name> | component: <name>
 > ```
 > Rejected decisions are as important as accepted ones.
-> If we rejected something, record WHY so we don't revisit it.
+
+---
+
+## Layout `LAY`
+
+## D-LAY-001 — the-learning hero: Two Speeds split-screen
+- Date: 2026-04-16
+- Status: accepted
+- Decision: `the-learning` hero uses a full-viewport dark split-screen with two panels that animate apart on mount, revealing an orange gap line between them. Left: "We move fast." Right: "You need time."
+- Rationale: The structural insight IS the visual metaphor. The gap between the panels makes the pace mismatch tangible — no consulting site would animate a layout split as its core argument. Direction B scored 53/60 vs Direction A (51) and Direction C (44). Won on Distinctiveness (10/10) and Benchmark alignment (9/10). Rejected Direction A (static editorial power, no signature element) and Direction C (standard from-to table — no memorable moment).
+- Affects: page: the-learning / component: LearningHero
 
 ---
 
 ## Architecture `ARCH`
 
 ## D-ARCH-001 — Next.js as site framework
-- Date: 2026-03-27
+- Date: 2026-04-16
 - Status: accepted
-- Supersedes: —
-- Decision: Next.js (App Router) is the framework for v2 of the Innovation X website.
-- Rationale: 5 public pages, SEO-critical (parents/teachers/partners search for this), R3F works cleanly with `use client`, GSAP fully compatible, file-based routing removes manual wiring, easier handoff to Gen 3 team. Vite + React rejected: no SSR, weaker SEO, manual routing overhead. Astro rejected: too much client-side interactivity (3D hero, GSAP scroll animations).
-- Affects: global — all scaffold, routing, and build decisions derive from this.
+- Decision: Use Next.js 15 (App Router) as the site framework, deployed to Vercel.
+- Rationale: Five-page multi-route experience with immersive transitions. Next.js is already scaffolded in `site/` with R3F, GSAP, and Tailwind installed — zero setup cost. `use client` handles all interactive/3D sections. Rejected Vite+React (SPA routing sufficient but Next.js already in place); rejected Astro (minimal JS philosophy misaligned with immersive motion/3D ambition).
+- Affects: global
 
 ---
 
 ## Design System `DS`
 
-## D-DS-001 — New illustrated logos adopted as brand direction
-- Date: 2026-03-25
-- Status: accepted
-- Decision: Use the detailed illustrated logo versions (alien-in-planet for Kidovation, rocket-flask for Future Labs, X-with-orbit for Innovation X) as primary brand marks. Flat gradient versions as secondary/small-scale use.
-- Rationale: Illustrated versions carry character and energy — consistent with playful, bold brand personality. Flat versions useful for favicon, small UI contexts.
+## D-DS-001 — Dark immersive Pollen360 aesthetic
+- Date: 2026-04-10
+- Status: superseded
+- Supersedes: —
+- Superseded by: D-DS-002
+- Decision: Single-page immersive experience with dark `#06061A` canvas, R3F supermarket scene, glass-morphism cards, Space Grotesk + DM Sans + Space Mono typography, chapter-specific accent colors (orange→cyan→emerald→purple), 3D particles + InstancedMesh product boxes.
+- Rationale: Informal decision logged retroactively. Approach was borrowed wholesale from Pollen360 (Sainsbury's/Accenture internal demo). Never formally recorded when made.
 - Affects: global
 
-## D-DS-002 — Kidovation alien as 3D interactive hero element
-- Date: 2026-03-26
+## D-DS-002 — RX + Sainsbury's light executive aesthetic (multi-reference synthesis)
+- Date: 2026-04-16
 - Status: accepted
-- Decision: Build the Kidovation alien character as an interactive 3D asset in React Three Fiber. Used in the hero section on home and kidovation pages. The green alien (A-IMG-004, A-LOGO-002) is the primary character. Three alien variants (green/blue/pink from A-IMG-004) are available as supporting characters.
-- Rationale: Client confirmed. Differentiates from every other kids education site. Aligns with Kidovation's AI/tech/innovation theme. Character system (3 variants) gives creative range.
-- Implementation notes: R3F + @react-three/drei. Hero must degrade gracefully if WebGL unavailable — fallback to 2D illustrated version (A-LOGO-002). Reference skills/web3d/r3f-fundamentals/ and r3f-animation/.
-- Affects: page: home, page: kidovation
+- Supersedes: D-DS-001
+- Decision: Light-mode executive presentation grounded in A-MOCK-001 tokens (`#F06C00` primary, `#A100FF` accent, horizon cyan/emerald/purple, Geist, `#FAFAFA` background). Animations derive from registered A-REF-001..012 reference components (SxA + 3HA). Three external references contribute extractable patterns: pierrelouis.design (primary weight — selective delight, Lottie micro-interactions, sound on key CTAs, Easter-egg rewards), chiaraluzzana.com (numbered hierarchy, whitespace rhythm), uneminiaventure.fr/en (scroll-driven chapter progression, geometric SVG accents, choice-framed CTAs).
+- Rationale: D-DS-001 locked the site to Pollen360's dark immersive aesthetic, which contradicts the actual brand source of truth (A-MOCK-001 is a light co-branded executive palette) and ignored the 12 validated A-REF-NNN animation components already registered. The new `/run` quality benchmark (D-QB-001) scores synthesis across these three references AND guards against wholesale imitation via a blend check. Primary weight on pierrelouis is explicit user preference for its micro-interaction language — NOT an instruction to copy its character/sound/gamification wholesale (blend check enforces this).
+- Affects: global — requires rebuild of `site/` (current build was produced against D-DS-001 and will score <50 against the new benchmark)
 
 ---
 
 ## Layout `LAY`
 
-## D-LAY-001 — Hero: 55/45 asymmetric split, copy left / 3D alien right
-- Date: 2026-03-27
-- Status: accepted
-- Decision: Hero is a two-column split — 55% copy, 45% 3D scene. NOT centered layout.
-- Rationale: Centering feels generic/AI-default. Asymmetric split creates tension and draws the eye to both the copy and the alien simultaneously. Copy-left is natural reading direction.
-- Affects: page: home
-
-## D-LAY-002 — Stats bar as standalone typographic band
-- Date: 2026-03-27
-- Status: accepted
-- Decision: Impact numbers live in their own full-width band between hero and content — not embedded in a card or in the hero itself.
-- Rationale: Gives the proof points structural weight. Forces the reader to pause on the numbers before entering the content.
-- Affects: page: home
-
-## D-LAY-003 — Ecosystem as full-width architectural panels
-- Date: 2026-03-27
-- Status: accepted
-- Decision: Kidovation and Future Labs are presented as two full-width architectural panels (each 50vw), no container, touching viewport edges. NOT rounded cards in a grid.
-- Rationale: Cards feel UI-generic. Panels feel spatial and brand-differentiated — each sub-brand owns its half of the screen.
-- Affects: page: home
-
-## D-LAY-004 — Mission section: center-aligned manifesto
-- Date: 2026-03-27
-- Status: accepted
-- Decision: Mission section is the only center-aligned section on the page. Pull quote treatment with Permanent Marker accent mark.
-- Rationale: Center alignment signals a pause — this is a statement, not a sales section. The Permanent Marker quotation mark adds warmth and handcrafted energy.
-- Affects: page: home
-
-## D-LAY-005 — Events grid: asymmetric 1fr 2fr 1fr
-- Date: 2026-03-27
-- Status: accepted
-- Decision: Photo grid uses asymmetric column structure (narrow/wide/narrow) with mixed row heights.
-- Rationale: Uniform grids feel like a stock photo gallery. Asymmetric editorial grid communicates curation and intentionality.
-- Affects: page: home
+_(No decisions yet)_
 
 ---
 
 ## Motion `MOT`
 
-## D-MOT-001 — Stats count-up via GSAP ScrollTrigger
-- Date: 2026-03-27
-- Status: accepted
-- Decision: Stats bar numbers animate from 0 to target value when scrolled into view. GSAP ScrollTrigger, staggered 100ms per stat.
-- Rationale: Static numbers feel inert. Count-up makes the proof feel earned — the visitor watches the impact accumulate.
-- Affects: page: home
-
-## D-MOT-002 — All motion gated on prefers-reduced-motion
-- Date: 2026-03-27
-- Status: accepted
-- Decision: Every animation (count-up, scroll reveals, alien float, hover transitions) checks `prefers-reduced-motion`. Reduced: show final state, skip animation.
-- Rationale: Accessibility baseline. Non-negotiable.
-- Affects: global
+_(No decisions yet)_
 
 ---
 
 ## 3D / WebGL `3D`
 
-## D-3D-001 — Kidovation page: SVG alien float (not R3F) in hero
-- Date: 2026-04-05
-- Status: accepted
-- Decision: Kidovation page hero uses a CSS-animated SVG alien (float keyframe) rather than the R3F procedural alien from AlienScene.tsx. AlienScene lives on the home page only.
-- Rationale: The Kidovation hero is already photo-heavy (full-bleed background + overlay). Adding a Canvas on top creates visual noise and performance cost. The SVG alien delivers the brand character with zero WebGL overhead. R3F alien (D-DS-002) stays on home page where it's the centrepiece with no competing background.
-- Affects: page: kidovation (hero only)
+_(No decisions yet)_
 
 ---
 
 ## Performance `PERF`
 
-_No decisions recorded yet._
+_(No decisions yet)_
 
 ---
 
 ## Tooling `TOOL`
 
-_No decisions recorded yet._
+_(No decisions yet)_
 
 ---
 
 ## Content `CONT`
 
-_No decisions recorded yet._
+_(No decisions yet)_
+
+---
+
+## Quality Benchmark `QB`
+
+## D-QB-001 — Multi-reference synthesis benchmark supersedes Pollen360-locked rubric
+- Date: 2026-04-16
+- Status: accepted
+- Supersedes: (prior `memory/quality-benchmark.md` — file-level, not a logged decision)
+- Decision: `memory/quality-benchmark.md` rewritten as a multi-reference synthesis harness. Five dimensions (each /20): Brand fidelity, Animation fidelity, Narrative structure, Signature element, Polish & completeness. Every 16–20 cell cites either a specific A-MOCK-NNN token, a specific A-REF-NNN component, a named external reference + extracted pattern, or a numeric threshold — nothing is scored on taste alone. A mandatory blend check caps Polish at 14/20 if the page is visually indistinguishable from any single reference (including pierrelouis despite its primary weight).
+- Rationale: The prior rubric locked the loop to Pollen360 patterns (cinematic GSAP sequences, glass-morphism, orbital carousels, 3D supermarket scenes). The project is RX + Sainsbury's — a light executive co-branded experience with 12 already-validated animation components (A-REF-001..012) and three user-named reference sites that pull in distinct directions. Under the old rubric the loop reinforced imitation and could not reward brand fidelity or reference-component reuse. The new rubric was authored via the `authoring-quality-benchmark` skill (`~/.claude/skills/authoring-quality-benchmark/SKILL.md`).
+- Affects: global — every `/run` loop iteration from this point scores against the new rubric
+
+
