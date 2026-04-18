@@ -142,3 +142,5 @@ Leaves as: clarity and relief. The hybrid model is the direct, structural answer
 - Phase 2 accent: `#7C3AED` (purple — chapter 4 color)
 - Light sections: `#F5F5F5` / `#FAFAFA`
 - Split line: gradient `#F06C00` → `#7C3AED`
+
+- 2026-04-18 — Chapter04 repainted to light palette, Ch.4 purple zone via --accent-ch4 + horizon-1/2/3 for H1/H2/H3 content (Phase 2C4).

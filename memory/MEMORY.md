@@ -1,6 +1,6 @@
 # Project Memory — Hot Summary
 
-> Last updated: 2026-04-16
+> Last updated: 2026-04-18
 
 ---
 
@@ -52,6 +52,9 @@ Five standalone scrollable pages at `/intro`, `/the-project`, `/the-learning`, `
 | D-ARCH-001 | Next.js 15, sub-page architecture | accepted |
 | D-DS-001 | Sub-page visual system: dark/light alternating, orange accent | **superseded by D-DS-002** |
 | D-DS-002 | RX + Sainsbury's light executive (A-MOCK-001 tokens + multi-ref synthesis) | accepted |
+| D-DS-003 | Per-chapter accent zones + token operationalisation | accepted |
+| D-3D-001 | Supermarket primitive library (abstracted silhouettes) | accepted |
+| D-MOT-001 | Reuse float/settle physics + reduced-motion gate | accepted |
 | D-QB-001 | Multi-reference synthesis quality benchmark | accepted |
 | D-LAY-001 | `the-learning` Two-Speeds split-screen hero | accepted |
 
@@ -63,11 +66,16 @@ Five standalone scrollable pages at `/intro`, `/the-project`, `/the-learning`, `
 
 | I-001 | low | Impact numbers TBD — placeholders in Chapter01 STATS array |
 | I-004 | low | `/the-learning` old IDE revert hook — not user-facing |
+| I-005 | medium | Orange on #FAFAFA ≈3.4:1 — fails AA normal at 10–12px overlines |
+| I-006 | low | Ch.2 teal (horizon-1) ≈4.1:1 — borderline AA normal |
+| I-007 | low | Ch.5 gradient orange leading edge ≈3.4:1 — AA-large compliant only |
+| I-008 | low | NavBar frosted-blur pragmatic override of no-glass anti-pattern |
 
 ---
 
 ## What's Next
 
-1. Design + build `the-model` page
-2. Design + build `the-template` page
-3. Update sitemap.md statuses after each page completes
+1. **Redesign Phase 2** — fan out 7 subagents for palette migration (shell, nav/entrance, 5× chapter). Spec: `memory/specs/sainsburys-redesign-plan.md`. Phase 1 (tokens) complete 2026-04-18.
+2. **Redesign Phase 3** — supermarket primitive library, then 5 scene agents (one per chapter).
+3. Design + build `the-model` page · Design + build `the-template` page.
+4. Update sitemap.md statuses after each page completes.

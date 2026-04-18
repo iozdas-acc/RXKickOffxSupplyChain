@@ -75,7 +75,9 @@ export function HeroEntrance({ onEnter }: Props) {
     }, 0.15)
   }
 
-  const titleShadow = '0 2px 40px rgba(6,6,26,0.95), 0 0 80px rgba(6,6,26,0.7)'
+  // Soft light-world lift behind the display type — dark-on-light, no glow.
+  // Mirrors --shadow-xs + --shadow-md from globals.css via the exposed tokens.
+  const titleShadow = 'var(--shadow-xs), var(--shadow-md)'
 
   return (
     <div
@@ -96,57 +98,50 @@ export function HeroEntrance({ onEnter }: Props) {
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: '0.3em',
-        color: '#F06C00',
+        color: 'var(--sainsburys-orange-ink)',
         marginBottom: 'clamp(24px, 4vh, 48px)',
         opacity: 0,
       }}>
-        Sainsbury&apos;s × Accenture · Procurement Transformation
+        RX STORY · SAINSBURY&apos;S ENTERPRISE REINVENTION
       </div>
 
-      {/* Headline lines */}
-      {['RX HAS', 'DELIVERED', 'IMPACT.'].map((text, i) => (
-        <div
-          key={i}
-          ref={[line1Ref, line2Ref, line3Ref][i]}
-          style={{
-            fontFamily: 'var(--font-space-grotesk)',
-            fontSize: 'clamp(52px, 9vw, 130px)',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            lineHeight: 0.92,
-            letterSpacing: '-0.02em',
-            color: i === 1 ? 'transparent' : '#F0F0F8',
-            background: i === 1
-              ? 'linear-gradient(135deg, #F06C00 0%, #E55000 50%, #FF8C00 100%)'
-              : 'none',
-            WebkitBackgroundClip: i === 1 ? 'text' : 'unset',
-            WebkitTextFillColor: i === 1 ? 'transparent' : 'unset',
-            backgroundClip: i === 1 ? 'text' : 'unset',
-            textShadow: i !== 1 ? titleShadow : 'none',
-            opacity: 0,
-          }}
-        >
-          {text}
-        </div>
-      ))}
+      {/* Headline */}
+      <div
+        ref={line1Ref}
+        style={{
+          fontFamily: 'var(--font-space-grotesk)',
+          fontSize: 'clamp(44px, 7.5vw, 110px)',
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          lineHeight: 1,
+          letterSpacing: '-0.02em',
+          opacity: 0,
+        }}
+      >
+        <span style={{ color: 'var(--color-text-primary)', textShadow: titleShadow }}>TRANSFORMATION </span>
+        <span style={{
+            background: 'var(--accent-ch5-gradient)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}>REINVENTED</span>
+      </div>
 
-      {/* Subtitle — bottom right */}
+      {/* Subtitle — below headline, left aligned */}
       <div ref={subtitleRef} style={{
-        position: 'absolute',
-        bottom: 'clamp(90px, 15vh, 150px)',
-        right: 'clamp(48px, 6vw, 100px)',
-        maxWidth: 320,
+        maxWidth: 500,
+        marginTop: 'clamp(24px, 3vh, 40px)',
         opacity: 0,
       }}>
         <p style={{
           fontFamily: 'var(--font-dm-sans)',
-          fontSize: 'clamp(13px, 1.1vw, 16px)',
+          fontSize: 'clamp(14px, 1.2vw, 18px)',
           fontWeight: 400,
-          color: '#6060A0',
+          color: 'var(--color-text-secondary)',
           lineHeight: 1.7,
-          textAlign: 'right',
+          textAlign: 'left',
         }}>
-          Measurable, compounding impact at Sainsbury&apos;s enterprise scale — and how we&apos;re making it the template.
+          Delivering client value, driving origination and defining a new reinvention model at Sainsbury&apos;s - and how we&apos;re making it the template.
         </p>
       </div>
 
@@ -172,17 +167,15 @@ export function HeroEntrance({ onEnter }: Props) {
             padding: '16px 32px',
             borderRadius: 10,
             border: ctaHovered
-              ? '1px solid rgba(240, 108, 0, 0.5)'
-              : '1px solid rgba(255, 255, 255, 0.08)',
+              ? `1px solid var(--sainsburys-orange)`
+              : `1px solid var(--color-border-primary)`,
             background: ctaHovered
-              ? 'rgba(240, 108, 0, 0.12)'
-              : 'rgba(255, 255, 255, 0.04)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
+              ? `var(--sainsburys-orange)`
+              : `var(--color-surface-card)`,
             transform: ctaHovered ? 'translateY(-3px)' : 'translateY(0)',
             boxShadow: ctaHovered
-              ? '0 8px 32px rgba(240, 108, 0, 0.25)'
-              : '0 4px 16px rgba(0,0,0,0.3)',
+              ? 'var(--shadow-orange)'
+              : 'var(--shadow-sm)',
             transition: 'all 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
             cursor: 'pointer',
           }}
@@ -193,14 +186,14 @@ export function HeroEntrance({ onEnter }: Props) {
             fontWeight: 700,
             textTransform: 'uppercase',
             letterSpacing: '0.25em',
-            color: ctaHovered ? '#ffffff' : '#E0A060',
+            color: ctaHovered ? 'var(--color-text-inverse)' : 'var(--color-text-primary)',
             transition: 'color 0.3s ease',
           }}>
-            Enter Experience
+            Explore our story
           </span>
           <span style={{
             fontSize: 16,
-            color: ctaHovered ? '#ffffff' : '#E0A060',
+            color: ctaHovered ? 'var(--color-text-inverse)' : 'var(--sainsburys-orange)',
             transform: ctaHovered ? 'translateX(4px)' : 'translateX(0)',
             transition: 'all 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
             display: 'inline-block',
@@ -220,23 +213,23 @@ export function HeroEntrance({ onEnter }: Props) {
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 8,
           padding: '7px 18px', borderRadius: 100,
-          background: 'rgba(255, 255, 255, 0.02)',
-          border: '1px solid rgba(255, 255, 255, 0.05)',
-          backdropFilter: 'blur(12px)',
+          background: 'var(--color-surface-card)',
+          border: '1px solid var(--color-border-primary)',
+          boxShadow: 'var(--shadow-xs)',
         }}>
           <span style={{
             fontFamily: 'var(--font-space-mono)',
             fontSize: 10, fontWeight: 700,
-            color: '#F06C00', letterSpacing: '0.15em',
+            color: 'var(--sainsburys-orange-ink)', letterSpacing: '0.15em',
           }}>RX</span>
           <span style={{
             width: 1, height: 10,
-            background: 'rgba(255,255,255,0.08)',
+            background: 'var(--color-border-primary)',
           }} />
           <span style={{
             fontFamily: 'var(--font-dm-sans)',
             fontSize: 10, fontWeight: 400,
-            color: '#404060', letterSpacing: '0.05em',
+            color: 'var(--color-text-secondary)', letterSpacing: '0.05em',
           }}>
             Built with AI at every step
           </span>

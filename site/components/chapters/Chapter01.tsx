@@ -3,12 +3,7 @@
 import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 
-const STATS = [
-  { value: '1.5×',  label: 'Faster Delivery' },
-  { value: '30%',   label: 'Less Effort' },
-  { value: '2×',    label: 'ROI on Value Cases' },
-  { value: '8 wks', label: 'Compressed Timeline' },
-]
+
 
 interface Props { isActive: boolean; onNext: () => void }
 
@@ -41,18 +36,18 @@ export function Chapter01({ isActive, onNext }: Props) {
         opacity: 0, pointerEvents: isActive ? 'auto' : 'none',
       }}
     >
-      <div style={{ maxWidth: 640 }}>
+      <div style={{ maxWidth: '100%', width: '100%' }}>
 
-        {/* Overline */}
+        {/* Overline — ink variant of ch1 accent to pass AA at 10px */}
         <div style={{
           fontFamily: 'var(--font-space-mono)',
           fontSize: 10, fontWeight: 700,
           textTransform: 'uppercase', letterSpacing: '0.3em',
-          color: '#F06C00',
+          color: 'color-mix(in srgb, var(--accent-ch1) 82%, black)',
           marginBottom: 28,
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
-          <span style={{ width: 32, height: 1.5, background: '#F06C00', display: 'inline-block', borderRadius: 2 }} />
+          <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch1)', display: 'inline-block', borderRadius: 2 }} />
           Impact at a Glance
         </div>
 
@@ -64,83 +59,100 @@ export function Chapter01({ isActive, onNext }: Props) {
           textTransform: 'uppercase',
           lineHeight: 0.95,
           letterSpacing: '-0.02em',
-          color: '#F0F0F8',
+          color: 'var(--color-text-primary)',
           marginBottom: 20,
         }}>
-          RX HAS<br />
+          THE<br />
           <span style={{
-            background: 'linear-gradient(135deg, #F06C00, #E55000)',
+            background: `linear-gradient(135deg, var(--accent-ch1), color-mix(in srgb, var(--accent-ch1) 85%, black))`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
           }}>
-            DELIVERED.
+            STORY SO FAR.
           </span>
         </h1>
 
         <p style={{
           fontFamily: 'var(--font-dm-sans)',
-          fontSize: 15, color: '#6060A0',
-          lineHeight: 1.7, marginBottom: 40,
+          fontSize: 15, color: 'var(--color-text-secondary)',
+          lineHeight: 1.7, marginBottom: 32,
           maxWidth: 480,
         }}>
-          Measurable, compounding impact at Sainsbury&apos;s enterprise scale.
-          Procurement transformation — H1–H3 2025.
+          Client value delivered in days and weeks – and a new template for agentic reinvention.
         </p>
 
-        {/* Stats grid */}
+        {/* Feature boxes */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: 2,
-          marginBottom: 44,
+          display: 'flex',
+          flexDirection: 'row',
+          gap: 20,
+          marginBottom: 40,
         }}>
-          {STATS.map((stat, i) => (
+          {[
+            {
+              overline: 'Stronger origination moments',
+              title: 'Nectar360 Pollen Vision',
+              copyStart: 'An AI‑built site and agentic demos turned the Pollen vision into a live experience and originated a concrete SDLC build opportunity',
+              impact: '– in 5 days.',
+            },
+            {
+              overline: 'Value proven in delivery',
+              title: 'Procurement Process Reinvention',
+              copyStart: 'Horizons thinking and explorable AI-generated outputs proved value in flight, accelerated delivery and demonstrated our expertise to lead reinvention',
+              impact: '- in weeks.',
+            },
+            {
+              overline: 'Reinvention we can scale',
+              title: 'Horizons Pathway to Reinvention',
+              copyStart: 'A dual‑direction horizons approach and agentic toolkit that codify how we work, accelerate value, and',
+              impact: 'make AI‑led reinvention scalable across the account.',
+            },
+          ].map((box, i) => (
             <div
               key={i}
               style={{
-                background: 'rgba(14,14,31,0.7)',
-                backdropFilter: 'blur(16px)',
-                border: '1px solid rgba(255,255,255,0.06)',
+                flex: 1,
+                background: 'var(--color-surface-card)',
+                border: `1px solid color-mix(in srgb, var(--accent-ch1) 15%, transparent)`,
                 borderRadius: 12,
-                padding: '20px 24px',
-                margin: 3,
+                padding: '24px 28px',
+                boxShadow: 'var(--shadow-sm)',
               }}
             >
               <div style={{
-                fontFamily: 'var(--font-space-grotesk)',
-                fontSize: 'clamp(28px, 3.5vw, 44px)',
-                fontWeight: 800,
-                fontVariantNumeric: 'tabular-nums',
-                letterSpacing: '-0.04em',
-                color: '#F06C00',
-                lineHeight: 1,
-                marginBottom: 6,
+                fontFamily: 'var(--font-space-mono)',
+                fontSize: 10,
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+                color: 'var(--accent-ch1)',
+                marginBottom: 8,
               }}>
-                {stat.value}
+                {box.overline}
               </div>
               <div style={{
-                fontFamily: 'var(--font-dm-sans)',
-                fontSize: 12,
-                color: '#606080',
-                letterSpacing: '0.04em',
+                fontFamily: 'var(--font-space-grotesk)',
+                fontSize: 18,
+                fontWeight: 700,
+                color: 'var(--color-text-primary)',
+                marginBottom: 12,
+                lineHeight: 1.2,
               }}>
-                {stat.label}
+                {box.title}
               </div>
+              <p style={{
+                fontFamily: 'var(--font-dm-sans)',
+                fontSize: 14,
+                color: 'var(--color-text-secondary)',
+                lineHeight: 1.6,
+                margin: 0,
+              }}>
+                {box.copyStart} <span style={{ color: 'var(--accent-ch1)', fontWeight: 600 }}>{box.impact}</span>
+              </p>
             </div>
           ))}
         </div>
-
-        {/* Context note */}
-        <p style={{
-          fontFamily: 'var(--font-space-mono)',
-          fontSize: 10, color: '#404060',
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
-          marginBottom: 32,
-        }}>
-          Sainsbury&apos;s Enterprise Reinvention · H1–H3 2025
-        </p>
 
         {/* Advance CTA */}
         <button
@@ -150,20 +162,22 @@ export function Chapter01({ isActive, onNext }: Props) {
             fontFamily: 'var(--font-space-grotesk)',
             fontSize: 12, fontWeight: 700,
             textTransform: 'uppercase', letterSpacing: '0.2em',
-            color: '#E0A060',
-            background: 'rgba(240,108,0,0.08)',
-            border: '1px solid rgba(240,108,0,0.2)',
+            color: 'var(--accent-ch1)',
+            background: `color-mix(in srgb, var(--accent-ch1) 8%, transparent)`,
+            border: `1px solid color-mix(in srgb, var(--accent-ch1) 25%, transparent)`,
             borderRadius: 8, padding: '12px 22px',
             cursor: 'pointer',
             transition: 'all 0.25s ease',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(240,108,0,0.18)'
-            e.currentTarget.style.color = '#ffffff'
+            e.currentTarget.style.background = `color-mix(in srgb, var(--accent-ch1) 18%, transparent)`
+            e.currentTarget.style.color = 'var(--color-text-inverse)'
+            e.currentTarget.style.boxShadow = 'var(--shadow-orange)'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(240,108,0,0.08)'
-            e.currentTarget.style.color = '#E0A060'
+            e.currentTarget.style.background = `color-mix(in srgb, var(--accent-ch1) 8%, transparent)`
+            e.currentTarget.style.color = 'var(--accent-ch1)'
+            e.currentTarget.style.boxShadow = 'none'
           }}
         >
           Here&apos;s how we did it

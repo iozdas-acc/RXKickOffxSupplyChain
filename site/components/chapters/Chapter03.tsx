@@ -72,10 +72,10 @@ export function Chapter03({ isActive, onNext, onPrev }: Props) {
           fontFamily: 'var(--font-space-mono)',
           fontSize: 10, fontWeight: 700,
           textTransform: 'uppercase', letterSpacing: '0.3em',
-          color: '#059669', marginBottom: 28,
+          color: 'var(--accent-ch3)', marginBottom: 28,
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
-          <span style={{ width: 32, height: 1.5, background: '#059669', display: 'inline-block', borderRadius: 2 }} />
+          <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch3)', display: 'inline-block', borderRadius: 2 }} />
           What We Learned
         </div>
 
@@ -86,12 +86,12 @@ export function Chapter03({ isActive, onNext, onPrev }: Props) {
           textTransform: 'uppercase',
           lineHeight: 0.95,
           letterSpacing: '-0.02em',
-          color: '#F0F0F8',
+          color: 'var(--color-text-primary)',
           marginBottom: 24,
         }}>
           PACE<br />
           <span style={{
-            background: 'linear-gradient(135deg, #059669, #34D399)',
+            background: `linear-gradient(135deg, var(--accent-ch3), color-mix(in srgb, var(--accent-ch3) 60%, transparent))`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
@@ -102,7 +102,7 @@ export function Chapter03({ isActive, onNext, onPrev }: Props) {
 
         <p style={{
           fontFamily: 'var(--font-dm-sans)',
-          fontSize: 14, color: '#6060A0',
+          fontSize: 14, color: 'var(--color-text-secondary)',
           lineHeight: 1.75, marginBottom: 32, maxWidth: 320,
         }}>
           Traditional consulting pace doesn&apos;t build client belief fast enough.
@@ -113,15 +113,16 @@ export function Chapter03({ isActive, onNext, onPrev }: Props) {
         <div style={{
           display: 'inline-block',
           padding: '10px 18px',
-          background: 'rgba(5,150,105,0.1)',
-          border: '1px solid rgba(5,150,105,0.25)',
+          background: 'color-mix(in srgb, var(--accent-ch3) 6%, transparent)',
+          border: '1px solid color-mix(in srgb, var(--accent-ch3) 15%, transparent)',
           borderRadius: 8,
           marginBottom: 32,
+          boxShadow: 'var(--shadow-sm)',
         }}>
           <p style={{
             fontFamily: 'var(--font-space-grotesk)',
             fontSize: 13, fontWeight: 600,
-            color: '#34D399', lineHeight: 1.5,
+            color: 'var(--accent-ch3)', lineHeight: 1.5,
             letterSpacing: '-0.01em',
           }}>
             Move faster. Experience more.<br />Build belief earlier.
@@ -130,7 +131,7 @@ export function Chapter03({ isActive, onNext, onPrev }: Props) {
 
         <p style={{
           fontFamily: 'var(--font-dm-sans)',
-          fontSize: 12, color: '#404060',
+          fontSize: 12, color: 'var(--color-text-tertiary)',
           lineHeight: 1.65, maxWidth: 300,
         }}>
           The shift isn&apos;t about replacing consultants — it&apos;s about removing friction from conviction.
@@ -141,7 +142,7 @@ export function Chapter03({ isActive, onNext, onPrev }: Props) {
       <div style={{ flex: 1, paddingTop: 12, maxWidth: 540 }}>
         <p style={{
           fontFamily: 'var(--font-space-mono)',
-          fontSize: 9, color: '#404060',
+          fontSize: 9, color: 'var(--color-text-tertiary)',
           textTransform: 'uppercase', letterSpacing: '0.2em',
           marginBottom: 16,
         }}>
@@ -157,26 +158,28 @@ export function Chapter03({ isActive, onNext, onPrev }: Props) {
                 gridTemplateColumns: '1fr auto 1fr',
                 alignItems: 'center',
                 gap: 12,
-                background: 'rgba(14,14,31,0.65)',
-                backdropFilter: 'blur(16px)',
-                border: '1px solid rgba(255,255,255,0.05)',
+                background: 'var(--color-surface-card)',
+                border: '1px solid var(--color-border-primary)',
                 borderRadius: 10,
                 padding: '12px 16px',
-                transition: 'border-color 0.25s, transform 0.25s',
+                boxShadow: 'var(--shadow-sm)',
+                transition: 'border-color 0.25s, transform 0.25s, box-shadow 0.25s',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(5,150,105,0.2)'
+                e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--accent-ch3) 25%, transparent)'
                 e.currentTarget.style.transform = 'translateX(4px)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-md)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)'
+                e.currentTarget.style.borderColor = 'var(--color-border-primary)'
                 e.currentTarget.style.transform = 'translateX(0)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
               }}
             >
               {/* From */}
               <div style={{
                 fontFamily: 'var(--font-dm-sans)',
-                fontSize: 12, color: '#505070',
+                fontSize: 12, color: 'var(--color-text-secondary)',
                 lineHeight: 1.4,
               }}>
                 {s.from}
@@ -185,26 +188,26 @@ export function Chapter03({ isActive, onNext, onPrev }: Props) {
               {/* Arrow */}
               <div style={{
                 width: 28, height: 28, borderRadius: '50%',
-                background: 'rgba(5,150,105,0.15)',
-                border: '1px solid rgba(5,150,105,0.3)',
+                background: 'color-mix(in srgb, var(--accent-ch3) 8%, transparent)',
+                border: '1px solid color-mix(in srgb, var(--accent-ch3) 19%, transparent)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 flexShrink: 0,
               }}>
-                <span style={{ color: '#059669', fontSize: 12 }}>→</span>
+                <span style={{ color: 'var(--accent-ch3)', fontSize: 12 }}>→</span>
               </div>
 
               {/* To */}
               <div>
                 <div style={{
                   fontFamily: 'var(--font-dm-sans)',
-                  fontSize: 12, color: '#D0D0E8',
+                  fontSize: 12, color: 'var(--color-text-primary)',
                   lineHeight: 1.4, marginBottom: 3,
                 }}>
                   {s.to}
                 </div>
                 <div style={{
                   fontFamily: 'var(--font-space-mono)',
-                  fontSize: 9, color: '#059669',
+                  fontSize: 9, color: 'var(--accent-ch3)',
                   letterSpacing: '0.08em',
                 }}>
                   → {s.insight}

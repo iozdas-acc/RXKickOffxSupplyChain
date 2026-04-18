@@ -20,7 +20,7 @@ export const CHAPTERS: Chapter[] = [
     titleLines: ['RX HAS', 'DELIVERED.'],
     subtitle: 'Measurable, compounding impact at Sainsbury\'s enterprise scale.',
     emotion: 'conviction',
-    accentColor: '#F06C00',
+    accentColor: 'var(--accent-ch1)',
     sceneMode: 'assemble',
     keyMessages: [
       'Proved delivery at enterprise scale inside a £400m procurement deal',
@@ -36,7 +36,7 @@ export const CHAPTERS: Chapter[] = [
     titleLines: ['12 WEEKS.', 'ONE SHOT.', 'AI-EMBEDDED.'],
     subtitle: 'We turned discovery into a sales advantage.',
     emotion: 'urgency',
-    accentColor: '#0891B2',
+    accentColor: 'var(--accent-ch2)',
     sceneMode: 'shelves',
     keyMessages: [
       '£400m deal — 3 weeks in — no option to restart or slow down',
@@ -52,7 +52,7 @@ export const CHAPTERS: Chapter[] = [
     titleLines: ['PACE MISMATCH', 'KILLS', 'DISCOVERY.'],
     subtitle: 'Move faster. Experience more. Build belief earlier.',
     emotion: 'clarity',
-    accentColor: '#059669',
+    accentColor: 'var(--accent-ch3)',
     sceneMode: 'transform',
     keyMessages: [
       'Traditional consulting pace doesn\'t build client belief fast enough',
@@ -68,7 +68,7 @@ export const CHAPTERS: Chapter[] = [
     titleLines: ['H3 VISION +', 'H1 EXECUTION', '= THE MODEL.'],
     subtitle: 'RX acceleration in the first half. Consulting agent tail in the second.',
     emotion: 'resolve',
-    accentColor: '#7C3AED',
+    accentColor: 'var(--accent-ch4)',
     sceneMode: 'zones',
     keyMessages: [
       'H3 (vision) and H1 (delivery) run simultaneously — not sequentially',
@@ -84,7 +84,7 @@ export const CHAPTERS: Chapter[] = [
     titleLines: ['EVERY', 'ENGAGEMENT.', 'THIS WAY.'],
     subtitle: 'The Sainsbury\'s model is now the template for all future agentic transformation.',
     emotion: 'momentum',
-    accentColor: '#A100FF',
+    accentColor: 'var(--accent-ch5)',
     sceneMode: 'network',
     keyMessages: [
       'The H1-H3 story arc is the delivery template — not just the slide deck',

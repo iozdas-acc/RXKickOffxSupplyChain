@@ -198,14 +198,16 @@ function ProductGrid({ chapter, entered }: Props) {
 
   // Different box sizes simulate different product types
   const geometry = useMemo(() => new THREE.BoxGeometry(1, 1.4, 0.6), [])
+  // Light-world bridge material: white base with chapter-colour emissive wash.
+  // Phase 3 replaces these cubes with abstracted product primitives.
   const material = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
-        color: '#1a1a3a',
+        color: '#FFFFFF',
         emissive: colorByChapter,
-        emissiveIntensity: 0.15,
-        roughness: 0.4,
-        metalness: 0.6,
+        emissiveIntensity: 0.35,
+        roughness: 0.45,
+        metalness: 0.15,
       }),
     [colorByChapter]
   )
@@ -230,9 +232,11 @@ function Particles({ chapter }: { chapter: number }) {
       pos[i * 3]     = (Math.random() - 0.5) * 25
       pos[i * 3 + 1] = (Math.random() - 0.5) * 18
       pos[i * 3 + 2] = (Math.random() - 0.5) * 18 - 5
-      col[i * 3]     = chapterColor.r * (0.5 + Math.random() * 0.5)
-      col[i * 3 + 1] = chapterColor.g * (0.5 + Math.random() * 0.5)
-      col[i * 3 + 2] = chapterColor.b * (0.5 + Math.random() * 0.5)
+      // Light world: keep full chapter colour, gentle random desaturation only
+      const t = 0.75 + Math.random() * 0.25
+      col[i * 3]     = chapterColor.r * t
+      col[i * 3 + 1] = chapterColor.g * t
+      col[i * 3 + 2] = chapterColor.b * t
     }
     return { positions: pos, colors: col }
   }, [chapter])
@@ -259,10 +263,10 @@ function Particles({ chapter }: { chapter: number }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.03}
+        size={0.045}
         vertexColors
         transparent
-        opacity={0.7}
+        opacity={0.85}
         sizeAttenuation
       />
     </points>
@@ -275,9 +279,9 @@ function StoreFloor() {
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3, 0]} receiveShadow>
       <planeGeometry args={[40, 40, 20, 20]} />
       <meshStandardMaterial
-        color="#0a0a1e"
-        roughness={0.9}
-        metalness={0.1}
+        color="#F0EEE8"
+        roughness={0.85}
+        metalness={0.05}
         wireframe={false}
       />
     </mesh>
@@ -300,9 +304,9 @@ function ZoneMarkers({ chapter }: { chapter: number }) {
           <meshStandardMaterial
             color={z.color}
             emissive={z.color}
-            emissiveIntensity={0.08}
+            emissiveIntensity={0.2}
             transparent
-            opacity={0.12}
+            opacity={0.3}
           />
         </mesh>
       ))}
@@ -361,7 +365,7 @@ function NetworkLines({ chapter }: { chapter: number }) {
           args={[positions, 3]}
         />
       </bufferGeometry>
-      <lineBasicMaterial color="#A100FF" transparent opacity={0.35} />
+      <lineBasicMaterial color="#A100FF" transparent opacity={0.55} />
     </lineSegments>
   )
 }
@@ -412,18 +416,18 @@ export function SupermarketScene({ chapter, entered }: Props) {
     <>
       <CameraController chapter={chapter} entered={entered} />
 
-      {/* Cinematic lighting */}
-      <ambientLight intensity={0.08} />
+      {/* Light-world bridge lighting (pre-Phase 3 — full relight with primitives TBD) */}
+      <ambientLight intensity={0.95} />
       <directionalLight
         position={[10, 15, 8]}
-        intensity={1.5}
+        intensity={0.8}
         color="#fff4e0"
         castShadow
       />
-      <directionalLight position={[-8, 5, -4]} intensity={0.4} color="#4433aa" />
+      <directionalLight position={[-8, 5, -4]} intensity={0.25} color="#ffd9b3" />
       <pointLight
         position={[0, 4, 0]}
-        intensity={1.2}
+        intensity={0.6}
         color={chapterColor}
         distance={20}
         decay={2}
@@ -432,7 +436,7 @@ export function SupermarketScene({ chapter, entered }: Props) {
         position={[0, 10, 0]}
         angle={0.6}
         penumbra={0.9}
-        intensity={0.8}
+        intensity={0.4}
         color={chapterColor}
         distance={25}
         decay={2}
@@ -445,8 +449,8 @@ export function SupermarketScene({ chapter, entered }: Props) {
       <ZoneMarkers chapter={chapter} />
       <NetworkLines chapter={chapter} />
 
-      {/* Atmospheric fog */}
-      <fog attach="fog" args={["#06061A", 12, 30]} />
+      {/* Fog dissolves scene edges into page bg (#FAFAFA) */}
+      <fog attach="fog" args={["#FAFAFA", 10, 26]} />
     </>
   )
 }

@@ -6,7 +6,7 @@ import { gsap } from 'gsap'
 const HORIZONS = [
   {
     id: 'H3',
-    color: '#7C3AED',
+    color: 'var(--horizon-3)',
     label: 'Horizon 3 — Vision',
     title: 'Target State Ambition',
     duration: 'W1–W4 (parallel)',
@@ -16,7 +16,7 @@ const HORIZONS = [
   },
   {
     id: 'H1',
-    color: '#0891B2',
+    color: 'var(--horizon-1)',
     label: 'Horizon 1 — Current State',
     title: 'World on a Page',
     duration: 'W1–W4 (parallel)',
@@ -26,7 +26,7 @@ const HORIZONS = [
   },
   {
     id: 'H2',
-    color: '#059669',
+    color: 'var(--horizon-2)',
     label: 'Horizon 2 — Gap Analysis',
     title: 'Transformation Package',
     duration: 'W5–W8',
@@ -72,10 +72,10 @@ export function Chapter04({ isActive, onNext, onPrev }: Props) {
           fontFamily: 'var(--font-space-mono)',
           fontSize: 10, fontWeight: 700,
           textTransform: 'uppercase', letterSpacing: '0.3em',
-          color: '#7C3AED', marginBottom: 16,
+          color: 'var(--accent-ch4)', marginBottom: 16,
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
-          <span style={{ width: 32, height: 1.5, background: '#7C3AED', display: 'inline-block', borderRadius: 2 }} />
+          <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch4)', display: 'inline-block', borderRadius: 2 }} />
           The Hybrid Model
         </div>
 
@@ -87,11 +87,11 @@ export function Chapter04({ isActive, onNext, onPrev }: Props) {
             textTransform: 'uppercase',
             lineHeight: 0.95,
             letterSpacing: '-0.02em',
-            color: '#F0F0F8',
+            color: 'var(--color-text-primary)',
           }}>
             H3 VISION +<br />
             <span style={{
-              background: 'linear-gradient(135deg, #0891B2, #7C3AED)',
+              background: 'linear-gradient(135deg, var(--horizon-1), var(--horizon-3))',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -101,7 +101,7 @@ export function Chapter04({ isActive, onNext, onPrev }: Props) {
 
           <p style={{
             fontFamily: 'var(--font-dm-sans)',
-            fontSize: 14, color: '#6060A0',
+            fontSize: 14, color: 'var(--color-text-secondary)',
             lineHeight: 1.7, maxWidth: 360,
           }}>
             H3 and H1 run in parallel in the first half.
@@ -117,29 +117,31 @@ export function Chapter04({ isActive, onNext, onPrev }: Props) {
           <div
             key={i}
             style={{
-              background: 'rgba(14,14,31,0.7)',
-              backdropFilter: 'blur(16px)',
-              border: `1px solid ${h.color}25`,
+              background: 'var(--color-surface-card)',
+              border: `1px solid color-mix(in srgb, ${h.color} 15%, transparent)`,
               borderRadius: 14,
               padding: '20px 22px',
               position: 'relative',
               overflow: 'hidden',
-              transition: 'border-color 0.25s, transform 0.25s',
+              boxShadow: 'var(--shadow-sm)',
+              transition: 'border-color 0.25s, transform 0.25s, box-shadow 0.25s',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = `${h.color}50`
+              e.currentTarget.style.borderColor = `color-mix(in srgb, ${h.color} 31%, transparent)`
               e.currentTarget.style.transform = 'translateY(-4px)'
+              e.currentTarget.style.boxShadow = 'var(--shadow-md)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = `${h.color}25`
+              e.currentTarget.style.borderColor = `color-mix(in srgb, ${h.color} 15%, transparent)`
               e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
             }}
           >
             {/* Background glow */}
             <div style={{
               position: 'absolute', top: -20, right: -20,
               width: 100, height: 100,
-              background: `radial-gradient(circle, ${h.color}15, transparent 70%)`,
+              background: `radial-gradient(circle, color-mix(in srgb, ${h.color} 8%, transparent), transparent 70%)`,
               pointerEvents: 'none',
             }} />
 
@@ -147,10 +149,10 @@ export function Chapter04({ isActive, onNext, onPrev }: Props) {
               {/* H badge */}
               <div style={{
                 width: 36, height: 36, borderRadius: 10,
-                background: `linear-gradient(135deg, ${h.color}, ${h.color}99)`,
+                background: `linear-gradient(135deg, ${h.color}, color-mix(in srgb, ${h.color} 60%, transparent))`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontFamily: 'var(--font-space-mono)',
-                fontSize: 12, fontWeight: 700, color: '#fff',
+                fontSize: 12, fontWeight: 700, color: 'var(--color-text-inverse)',
               }}>
                 {h.id}
               </div>
@@ -161,7 +163,7 @@ export function Chapter04({ isActive, onNext, onPrev }: Props) {
                 fontSize: 8, fontWeight: 700,
                 textTransform: 'uppercase', letterSpacing: '0.15em',
                 color: h.color, padding: '4px 8px',
-                background: `${h.color}15`,
+                background: `color-mix(in srgb, ${h.color} 8%, transparent)`,
                 borderRadius: 4,
               }}>
                 {h.step}
@@ -180,7 +182,7 @@ export function Chapter04({ isActive, onNext, onPrev }: Props) {
             <div style={{
               fontFamily: 'var(--font-space-grotesk)',
               fontSize: 16, fontWeight: 700,
-              color: '#E0E0F0', marginBottom: 8,
+              color: 'var(--color-text-primary)', marginBottom: 8,
               letterSpacing: '-0.01em',
             }}>
               {h.title}
@@ -188,7 +190,7 @@ export function Chapter04({ isActive, onNext, onPrev }: Props) {
 
             <div style={{
               fontFamily: 'var(--font-space-mono)',
-              fontSize: 9, color: '#404060',
+              fontSize: 9, color: 'var(--color-text-tertiary)',
               letterSpacing: '0.1em', marginBottom: 10,
             }}>
               {h.duration}
@@ -196,7 +198,7 @@ export function Chapter04({ isActive, onNext, onPrev }: Props) {
 
             <p style={{
               fontFamily: 'var(--font-dm-sans)',
-              fontSize: 12, color: '#505070',
+              fontSize: 12, color: 'var(--color-text-secondary)',
               lineHeight: 1.6, marginBottom: 14,
             }}>
               {h.desc}
@@ -212,7 +214,7 @@ export function Chapter04({ isActive, onNext, onPrev }: Props) {
                   }} />
                   <span style={{
                     fontFamily: 'var(--font-dm-sans)',
-                    fontSize: 11, color: '#6060A0',
+                    fontSize: 11, color: 'var(--color-text-secondary)',
                   }}>
                     {item}
                   </span>
@@ -231,27 +233,27 @@ export function Chapter04({ isActive, onNext, onPrev }: Props) {
       }}>
         <span style={{
           fontFamily: 'var(--font-space-mono)',
-          fontSize: 9, color: '#404060',
+          fontSize: 9, color: 'var(--color-text-tertiary)',
           textTransform: 'uppercase', letterSpacing: '0.15em',
         }}>
           Team shape:
         </span>
         {[
-          { label: 'Delivery Lead', color: '#F06C00' },
-          { label: 'AI Strategy Lead', color: '#A100FF' },
-          { label: 'OPT Squad W1–W8', color: '#0891B2' },
-          { label: 'RX Squad W1–W4', color: '#7C3AED' },
+          { label: 'Delivery Lead' },
+          { label: 'AI Strategy Lead' },
+          { label: 'OPT Squad W1–W8' },
+          { label: 'RX Squad W1–W4' },
         ].map((t, i) => (
           <div key={i} style={{
             display: 'inline-flex', alignItems: 'center', gap: 7,
             padding: '5px 10px', borderRadius: 6,
-            background: `${t.color}10`,
-            border: `1px solid ${t.color}20`,
+            background: 'color-mix(in srgb, var(--accent-ch4) 3%, transparent)',
+            border: '1px solid color-mix(in srgb, var(--accent-ch4) 13%, transparent)',
           }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: t.color }} />
+            <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent-ch4)' }} />
             <span style={{
               fontFamily: 'var(--font-dm-sans)',
-              fontSize: 11, color: '#8080A0',
+              fontSize: 11, color: 'var(--color-text-secondary)',
             }}>
               {t.label}
             </span>

@@ -20,3 +20,6 @@ Cards: glass background, rounded-xl, hover border lifts to accent color.
 Chapter enter: 0.9s power3.out, y:28→0, blur:10→0, delay 0.05s (via GSAP).
 Chapter exit: 0.5s power3.in, y:0→-28, blur:0→6 (triggered by isActive false).
 Card hover: 0.25s translateY(-4px) + border-color transition.
+
+## Palette changelog
+- 2026-04-18 — Chapter03 repainted to light palette, Ch.3 green zone via --accent-ch3 (Phase 2C3).

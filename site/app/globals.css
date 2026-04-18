@@ -2,51 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── RX KickOff — Sainsbury's Agentic Transformation ──────────────────────── */
-/* Dark Immersive Design System — inspired by Pollen360 / noomo aesthetic       */
-/* Source tokens: A-MOCK-001 (brand) + immersive dark direction                 */
+/* ─── RX KickOff — Sainsbury's × Accenture Agentic Transformation ──────────── */
+/* Light executive design system — A-MOCK-001 co-brand tokens (D-DS-002)      */
+/* Per-chapter accent zones, supermarket 3D metaphor (D-DS-003, D-3D-001)     */
 
 :root {
-  /* ─── Background System ──────────────────────────────────── */
-  --bg-deep:       #06061A;
-  --bg-surface:    #0E0E1F;
-  --bg-raised:     #141428;
-  --bg-glass:      rgba(14, 14, 31, 0.65);
-  --bg-glass-dark: rgba(6, 6, 26, 0.80);
+  /* ─── Surface System ─────────────────────────────────────── */
+  --color-background-primary:   #FAFAFA; /* page bg (A-MOCK-001)            */
+  --color-background-secondary: #F5F5F5; /* muted tint, track elements      */
+  --color-background-tertiary:  #F0EEE8; /* warm card surface per plan HTML */
+  --color-surface-card:         #FFFFFF; /* raised card (A-MOCK-001)        */
+  --color-surface-raised:       #FFFFFF; /* hover / elevated                */
 
-  /* ─── Text System ────────────────────────────────────────── */
-  --text-primary:   #F0F0F8;
-  --text-secondary: #A0A0C0;
-  --text-muted:     #505070;
-  --text-dim:       #303050;
+  /* ─── Text System (dark on light) ────────────────────────── */
+  --color-text-primary:   #1A1A1A;       /* body + display (A-MOCK-001)     */
+  --color-text-secondary: #666666;       /* descriptions (A-MOCK-001)       */
+  --color-text-tertiary:  #8E8E8E;       /* overlines, captions             */
+  --color-text-muted:     #A3A3A3;       /* inactive states                 */
+  --color-text-inverse:   #FFFFFF;       /* on primary / accent             */
 
-  /* ─── Brand Colors ───────────────────────────────────────── */
+  /* ─── Border System ──────────────────────────────────────── */
+  --color-border-primary:   #E5E5E5;     /* card borders (A-MOCK-001)       */
+  --color-border-secondary: #EEEEEE;     /* section dividers                */
+  --color-border-tertiary:  #F0F0F0;     /* subtle rules                    */
+  --color-border-focus:     #F06C00;     /* ring on focus                   */
+
+  /* ─── Brand (A-MOCK-001 — registered, never alter) ───────── */
   --sainsburys-orange:      #F06C00;
   --sainsburys-orange-dark: #E55000;
+  --sainsburys-orange-ink:  #C94B0A;     /* AA on #FAFAFA for small text    */
+  --sainsburys-orange-soft: #FFF3ED;     /* tinted wash                     */
   --accenture-purple:       #A100FF;
-  --accenture-purple-soft:  #C064FF;
+  --accenture-purple-dark:  #7A00CC;
+  --accenture-purple-soft:  #F3F0FF;
 
-  /* ─── Horizon Colors (H1/H2/H3 — never repurposed) ──────── */
-  --horizon-1:    #0891B2;
-  --horizon-2:    #059669;
-  --horizon-3:    #7C3AED;
-  --horizon-1-glow: rgba(8, 145, 178, 0.15);
-  --horizon-2-glow: rgba(5, 150, 105, 0.15);
-  --horizon-3-glow: rgba(124, 58, 237, 0.15);
+  /* ─── Horizon (H1/H2/H3 — never repurposed as generic) ──── */
+  --horizon-1:      #0891B2;             /* cyan / teal                     */
+  --horizon-2:      #059669;             /* emerald / green                 */
+  --horizon-3:      #7C3AED;             /* purple                          */
+  --horizon-1-soft: #E6F7FA;
+  --horizon-2-soft: #E6FCF5;
+  --horizon-3-soft: #F3EDFF;
 
-  /* ─── Glass Morphism ─────────────────────────────────────── */
-  --glass-border:  rgba(255, 255, 255, 0.07);
-  --glass-border-active: rgba(255, 255, 255, 0.15);
-  --glass-blur:    20px;
+  /* ─── Per-Chapter Accent Zones (D-DS-003) ────────────────── */
+  --accent-ch1: var(--sainsburys-orange);  /* Ch.1 Hero — products landing  */
+  --accent-ch2: var(--horizon-1);          /* Ch.2 Timeline — conveyor      */
+  --accent-ch3: var(--horizon-2);          /* Ch.3 Pace — trolley vs scan   */
+  --accent-ch4: var(--horizon-3);          /* Ch.4 Horizons — aisles        */
+  --accent-ch5: var(--accenture-purple);   /* Ch.5 Every Engagement         */
+  --accent-ch1-soft: var(--sainsburys-orange-soft);
+  --accent-ch2-soft: var(--horizon-1-soft);
+  --accent-ch3-soft: var(--horizon-2-soft);
+  --accent-ch4-soft: var(--horizon-3-soft);
+  --accent-ch5-soft: var(--accenture-purple-soft);
+  --accent-ch5-gradient: linear-gradient(135deg, #F06C00 0%, #A100FF 100%);
+
+  /* ─── Semantic Aliases (A-MOCK-001 shape) ────────────────── */
+  --color-primary:         var(--sainsburys-orange);
+  --color-primary-hover:   var(--sainsburys-orange-dark);
+  --color-primary-on:      #FFFFFF;
+  --color-secondary:       var(--accenture-purple);
+  --color-secondary-on:    #FFFFFF;
+  --color-accent:          var(--accenture-purple);
+  --color-accent-on:       #FFFFFF;
+  --color-destructive:     #DC2626;
+  --color-destructive-on:  #FFFFFF;
+  --color-ring:            var(--sainsburys-orange);
 
   /* ─── Fonts ──────────────────────────────────────────────── */
+  /* Typography note: A-MOCK-001 mandates Geist. Plan HTML says "keep the   */
+  /* oversized display type — the soul of the site" (scale not typeface).   */
+  /* Phase 1 holds current fonts; typeface swap tracked as open question.    */
   --font-display: var(--font-space-grotesk), 'Space Grotesk', system-ui, sans-serif;
-  --font-body:    var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
-  --font-mono:    var(--font-space-mono), 'Space Mono', monospace;
+  --font-body:    var(--font-dm-sans),       'DM Sans',        system-ui, sans-serif;
+  --font-mono:    var(--font-space-mono),    'Space Mono',     monospace;
 
   /* ─── Type Scale ─────────────────────────────────────────── */
-  --text-d1: clamp(3rem, 7vw, 7rem);
-  --text-d2: clamp(2.25rem, 5vw, 4.5rem);
+  --text-d1: clamp(3rem,   7vw,   7rem);
+  --text-d2: clamp(2.25rem, 5vw,  4.5rem);
   --text-d3: clamp(1.75rem, 3.5vw, 3rem);
   --text-xl: 1.375rem;
   --text-lg: 1.125rem;
@@ -59,22 +92,44 @@
   --space-4:  16px; --space-6:  24px; --space-8:  32px;
   --space-12: 48px; --space-16: 64px; --space-24: 96px;
 
-  /* ─── Border radius ──────────────────────────────────────── */
-  --radius-sm: 6px;  --radius-md: 12px;
-  --radius-lg: 20px; --radius-full: 9999px;
+  /* ─── Border Radius ──────────────────────────────────────── */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-full: 9999px;
 
-  /* ─── Shadows ────────────────────────────────────────────── */
-  --shadow-orange: 0 8px 32px rgba(240, 108, 0, 0.30);
-  --shadow-purple: 0 8px 32px rgba(161, 0, 255, 0.25);
-  --shadow-glow:   0 0 60px rgba(240, 108, 0, 0.12);
+  /* ─── Shadows (light world — soft lifts, not glows) ─────── */
+  --shadow-xs:     0 1px 2px rgba(26, 26, 26, 0.04);
+  --shadow-sm:     0 2px 6px rgba(26, 26, 26, 0.06);
+  --shadow-md:     0 6px 20px rgba(26, 26, 26, 0.08);
+  --shadow-lg:     0 12px 40px rgba(26, 26, 26, 0.10);
+  --shadow-orange: 0 12px 32px rgba(240, 108, 0, 0.18);
+  --shadow-purple: 0 12px 32px rgba(161, 0, 255, 0.15);
 
   /* ─── Motion ─────────────────────────────────────────────── */
   --duration-micro:    150ms;
   --duration-standard: 300ms;
   --duration-emphasis: 500ms;
   --duration-page:     800ms;
-  --ease-out:   cubic-bezier(0.0, 0, 0.2, 1);
-  --ease-spring:cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out:    cubic-bezier(0.0, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ─── Legacy Aliases (migration bridge — prefer new names) ─ */
+  /* These map old dark-era tokens to the new light values so any untouched  */
+  /* component still renders in the right world. Phase 2 agents remove their */
+  /* uses and switch to the named tokens above.                              */
+  --bg-deep:             var(--color-background-primary);
+  --bg-surface:          var(--color-background-secondary);
+  --bg-raised:           var(--color-background-tertiary);
+  --bg-glass:            rgba(255, 255, 255, 0.72);
+  --bg-glass-dark:       rgba(255, 255, 255, 0.85);
+  --text-primary:        var(--color-text-primary);
+  --text-secondary:      var(--color-text-secondary);
+  --text-muted:          var(--color-text-muted);
+  --text-dim:            var(--color-text-tertiary);
+  --glass-border:        var(--color-border-primary);
+  --glass-border-active: var(--color-border-focus);
+  --glass-blur:          20px;
 }
 
 /* ─── Base Reset ──────────────────────────────────────────────────────────── */
@@ -93,14 +148,13 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: var(--bg-deep);
-  color: var(--text-primary);
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Disable text selection in presentation mode */
   user-select: none;
   -webkit-user-select: none;
 }
@@ -118,12 +172,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.05;
+  color: var(--color-text-primary);
 }
 
 /* ─── Focus ───────────────────────────────────────────────────────────────── */
 
 :focus-visible {
-  outline: 2px solid var(--sainsburys-orange);
+  outline: 2px solid var(--color-ring);
   outline-offset: 3px;
 }
 
@@ -139,15 +194,15 @@ button:focus-visible {
 }
 
 ::selection {
-  background: rgba(240, 108, 0, 0.25);
-  color: #fff;
+  background: rgba(240, 108, 0, 0.2);
+  color: var(--color-text-primary);
 }
 
 /* ─── Keyframes ───────────────────────────────────────────────────────────── */
 
 @keyframes glow-pulse {
   0%, 100% { opacity: 0.4; transform: scale(1); }
-  50%       { opacity: 1;   transform: scale(1.08); }
+  50%      { opacity: 1;   transform: scale(1.08); }
 }
 
 @keyframes orbit {
@@ -157,7 +212,7 @@ button:focus-visible {
 
 @keyframes float-y {
   0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-8px); }
+  50%      { transform: translateY(-8px); }
 }
 
 @keyframes scan-beam {
@@ -175,8 +230,8 @@ button:focus-visible {
 }
 
 @keyframes chapter-in {
-  0%   { opacity: 0; transform: translateY(32px) scale(0.97); filter: blur(12px); }
-  100% { opacity: 1; transform: translateY(0)    scale(1);    filter: blur(0); }
+  0%   { opacity: 0; transform: translateY(32px)  scale(0.97); filter: blur(12px); }
+  100% { opacity: 1; transform: translateY(0)     scale(1);    filter: blur(0); }
 }
 
 @keyframes chapter-out {
@@ -184,23 +239,48 @@ button:focus-visible {
   100% { opacity: 0; transform: translateY(-32px) scale(1.02); filter: blur(8px); }
 }
 
-/* ─── Utility classes ─────────────────────────────────────────────────────── */
+/* ─── Utility Classes ─────────────────────────────────────────────────────── */
 
 .font-display { font-family: var(--font-display); }
 .font-mono    { font-family: var(--font-mono); }
 
+/* Light card surface — replaces dark glass panels */
+.surface-card {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-standard) var(--ease-out),
+              transform  var(--duration-standard) var(--ease-out);
+}
+
+.surface-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Warm tinted surface — per-chapter zone washes */
+.surface-tinted {
+  background: var(--color-background-tertiary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--radius-md);
+}
+
+/* Legacy glass classes remapped to light surfaces so untouched components   */
+/* still render in the light world. Phase 2 agents replace usage with        */
+/* .surface-card / .surface-tinted and then these rules can be removed.     */
 .glass {
-  background: var(--bg-glass);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--glass-border);
+  background: var(--color-surface-card);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid var(--color-border-primary);
 }
 
 .glass-dark {
-  background: var(--bg-glass-dark);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--glass-border);
+  background: var(--color-background-tertiary);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid var(--color-border-primary);
 }
 
 .overline {
@@ -209,7 +289,7 @@ button:focus-visible {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.3em;
-  color: var(--text-muted);
+  color: var(--color-text-tertiary);
 }
 
 .overline-orange {
@@ -218,7 +298,7 @@ button:focus-visible {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.3em;
-  color: var(--sainsburys-orange);
+  color: var(--sainsburys-orange-ink); /* darker orange for AA at small size */
 }
 
 .stat-value {
@@ -229,7 +309,7 @@ button:focus-visible {
   color: var(--sainsburys-orange);
 }
 
-/* ─── Reduced motion ──────────────────────────────────────────────────────── */
+/* ─── Reduced Motion ──────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -239,11 +319,12 @@ button:focus-visible {
   }
 }
 
-/* ─── Scrollbar ───────────────────────────────────────────────────────────── */
+/* ─── Scrollbar (light treatment) ─────────────────────────────────────────── */
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(240, 108, 0, 0.3); border-radius: 2px; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-background-secondary); }
+::-webkit-scrollbar-thumb { background: #D4D4D4; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #A3A3A3; }
 
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

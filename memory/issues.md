@@ -55,3 +55,35 @@ Keep resolved issues in the file — they are a record of what was encountered.
 - Severity: low
 - Status: open
 - Resolution: —
+
+## I-005 — Orange on #FAFAFA at small sizes fails WCAG AA normal-text
+- Date: 2026-04-18
+- Page / Component: global / components: HeroEntrance (orange tag), intro/Hero (overlines, co-brand marks), Chapter01 (overline)
+- Description: `--sainsburys-orange` (#F06C00) on `--color-background-primary` (#FAFAFA) measures ≈3.4:1. Passes AA large-text (≥18px or ≥14px bold) but fails AA normal (4.5:1) at 10–12px overlines where this colour is used. Raised by 2B agent during Phase 2 migration.
+- Severity: medium
+- Status: open
+- Resolution: — (options: swap small overlines to `--color-text-tertiary`; or darken to `--sainsburys-orange-dark` #E55000 ≈ 4.0:1 — still borderline; or reserve orange for ≥14px-bold contexts only. Decide during Phase 4 audit.)
+
+## I-006 — Chapter-2 teal borderline on white
+- Date: 2026-04-18
+- Page / Component: component: NavBar (ch2 numeral), Chapter02 (overline, rule strokes)
+- Description: `--horizon-1` (#0891B2, resolves via `--accent-ch2`) on `#FAFAFA` measures ≈4.1:1 — borderline below AA normal. Acceptable at display sizes, risky at 10–12px. Raised by 2B agent.
+- Severity: low
+- Status: open
+- Resolution: — (Phase 4 audit to decide: accept as large-text only, or darken horizon-1 token.)
+
+## I-007 — Orange leading edge of ch5 gradient at finale
+- Date: 2026-04-18
+- Page / Component: component: Chapter05 (ENGAGEMENT gradient headline, co-brand rule)
+- Description: `--accent-ch5-gradient` (linear 135deg, #F06C00 → #A100FF) applied as `background-clip: text` on the finale headline. Left edge sits in orange territory (≈3.4:1 on #FAFAFA) before ramping to deep purple (≈7.7:1). Headline is large-text at `clamp(36px, 5vw, 72px)` so WCAG AA passes, but the leading letters feel lighter. Raised by 2C5.
+- Severity: low
+- Status: open
+- Resolution: — (Phase 4 audit: accept as large-text compliance, or shift gradient start to 20% (skip the lightest orange zone).)
+
+## I-008 — NavBar frosted-blur override of no-glass anti-pattern
+- Date: 2026-04-18
+- Page / Component: component: NavBar
+- Description: 2B agent kept `backdrop-filter: blur(20px)` over a 15% transparent `--color-surface-card` for the nav bar, arguing nav chrome is distinct from content panels flagged by MASTER.md's no-frosted-glass rule. Pragmatic but explicitly contradicts the anti-pattern. Needs sign-off: accept as nav-only exemption, or switch to opaque `var(--color-surface-card)`.
+- Severity: low
+- Status: open
+- Resolution: — (Phase 4 audit decision.)

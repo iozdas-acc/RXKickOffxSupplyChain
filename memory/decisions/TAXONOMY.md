@@ -38,6 +38,7 @@
 |----|-------|--------|------|---------------|
 | D-DS-001 | Dark immersive Pollen360 aesthetic | superseded | 2026-04-10 | → D-DS-002 |
 | D-DS-002 | RX + Sainsbury's light executive aesthetic (multi-reference synthesis) | accepted | 2026-04-16 | supersedes D-DS-001 |
+| D-DS-003 | Per-chapter accent zones + token operationalisation | accepted | 2026-04-18 | extends D-DS-002 |
 
 ---
 
@@ -53,7 +54,7 @@
 
 | ID | Title | Status | Date | Version chain |
 |----|-------|--------|------|---------------|
-| — | — | — | — | No decisions yet |
+| D-MOT-001 | Reuse float/settle physics, add reduced-motion gate | accepted | 2026-04-18 | — |
 
 ---
 
@@ -61,7 +62,7 @@
 
 | ID | Title | Status | Date | Version chain |
 |----|-------|--------|------|---------------|
-| — | — | — | — | No decisions yet |
+| D-3D-001 | Supermarket primitive library (abstracted silhouettes) | accepted | 2026-04-18 | — |
 
 ---
 

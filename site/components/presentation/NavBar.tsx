@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { CHAPTERS } from '@/data/chapters'
 
 interface Props {
@@ -14,7 +15,7 @@ interface Props {
 export function NavBar({ chapter, entered, goTo, next, prev }: Props) {
   const [hovered, setHovered] = useState<number | null>(null)
   const current = CHAPTERS[chapter]
-  const accentColor = current?.accentColor ?? '#F06C00'
+  const accentColor = current?.accentColor ?? 'var(--accent-ch1)'
 
   return (
     <>
@@ -32,222 +33,189 @@ export function NavBar({ chapter, entered, goTo, next, prev }: Props) {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '0 clamp(16px, 3vw, 40px)',
-          background: 'rgba(6, 6, 26, 0.75)',
+          background: `color-mix(in srgb, var(--color-surface-card) 85%, transparent)`,
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          borderBottom: `1px solid ${entered ? accentColor + '18' : 'rgba(255,255,255,0.04)'}`,
+          borderBottom: entered
+            ? `1px solid color-mix(in srgb, ${accentColor} 9%, transparent)`
+            : `1px solid var(--color-border-tertiary)`,
           transition: 'border-color 0.5s ease',
         }}
       >
-        {/* ── LEFT: Co-brand + chapter info ── */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          {/* Brand marks */}
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 8,
-            fontFamily: 'var(--font-space-grotesk)',
-          }}>
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', color: '#F06C00' }}>
-              SAINSBURY&apos;S
-            </span>
-            <span style={{ width: 20, height: 1, background: 'rgba(255,255,255,0.15)' }} />
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', color: '#A100FF' }}>
-              ACCENTURE
-            </span>
+        {/* ── LEFT: Brand logos only ── */}
+        <Link href="/" style={{
+          display: 'flex', alignItems: 'center', gap: 8,
+          textDecoration: 'none',
+        }}>
+          <img
+            src="/images/sainsburys-logo.png"
+            alt="Sainsbury's"
+            style={{ height: 10, width: 'auto', display: 'block' }}
+          />
+          <span style={{ width: 14, height: 1, background: 'var(--color-border-primary)' }} />
+          <img
+            src="/images/accenture-logo.png"
+            alt="Accenture"
+            style={{ height: 14, width: 'auto', display: 'block', position: 'relative', top: -3 }}
+          />
+        </Link>
+
+        {/* ── RIGHT: Chapter dots + Prev/Next ── */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 12,
+          opacity: entered ? 1 : 0,
+          pointerEvents: entered ? 'auto' : 'none',
+          transition: 'opacity 0.5s ease',
+        }}>
+          {/* Chapter dots */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            {CHAPTERS.map((ch, i) => {
+              const isActive = chapter === i
+              const isPast = i < chapter
+              const isHov = hovered === i
+
+              return (
+                <div key={i} style={{ position: 'relative' }}>
+                  <button
+                    onClick={() => goTo(i)}
+                    onMouseEnter={() => setHovered(i)}
+                    onMouseLeave={() => setHovered(null)}
+                    aria-label={`Go to chapter ${i + 1}: ${ch.title}`}
+                    aria-current={isActive ? 'step' : undefined}
+                    style={{
+                      width: isActive ? 36 : 30,
+                      height: 30,
+                      borderRadius: 8,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      border: isActive
+                        ? `1.5px solid ${ch.accentColor}`
+                        : '1.5px solid transparent',
+                      background: isActive
+                        ? `color-mix(in srgb, ${ch.accentColor} 13%, transparent)`
+                        : isHov
+                        ? `color-mix(in srgb, var(--color-text-primary) 4%, transparent)`
+                        : 'transparent',
+                      fontFamily: 'var(--font-space-mono)',
+                      fontSize: 11,
+                      fontWeight: isActive ? 700 : 500,
+                      color: isActive
+                        ? ch.accentColor
+                        : isPast
+                        ? `color-mix(in srgb, ${ch.accentColor} 50%, transparent)`
+                        : isHov
+                        ? 'var(--color-text-secondary)'
+                        : 'var(--color-text-muted)',
+                      boxShadow: isActive
+                        ? `0 0 12px color-mix(in srgb, ${ch.accentColor} 19%, transparent)`
+                        : 'none',
+                      transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {i + 1}
+                  </button>
+
+                  {isHov && !isActive && (
+                    <div style={{
+                      position: 'absolute',
+                      top: 38,
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      whiteSpace: 'nowrap',
+                      padding: '5px 10px',
+                      borderRadius: 8,
+                      background: 'var(--color-surface-card)',
+                      border: `1px solid color-mix(in srgb, ${ch.accentColor} 15%, transparent)`,
+                      fontFamily: 'var(--font-space-grotesk)',
+                      fontSize: 10,
+                      fontWeight: 600,
+                      color: ch.accentColor,
+                      boxShadow: 'var(--shadow-md)',
+                      pointerEvents: 'none',
+                      zIndex: 200,
+                      letterSpacing: '0.04em',
+                    }}>
+                      {ch.title}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
 
-          {entered && (
-            <>
-              <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.06)' }} />
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{
-                  fontFamily: 'var(--font-space-mono)',
-                  fontSize: 16,
-                  fontWeight: 700,
-                  color: accentColor,
-                  lineHeight: 1,
-                  transition: 'color 0.4s ease',
-                }}>
-                  {String(chapter + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <div style={{
-                    fontFamily: 'var(--font-space-grotesk)',
-                    fontSize: 11,
-                    fontWeight: 600,
-                    color: '#D0D0E8',
-                    letterSpacing: '0.04em',
-                  }}>
-                    {current?.title}
-                  </div>
-                  <div style={{
-                    fontFamily: 'var(--font-space-mono)',
-                    fontSize: 9,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.2em',
-                    color: '#404060',
-                  }}>
-                    RX Kickoff
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
+          {/* Separator */}
+          <div style={{ width: 1, height: 20, background: 'var(--color-border-primary)' }} />
 
-        {/* ── CENTER: Chapter dots ── */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-            opacity: entered ? 1 : 0,
-            pointerEvents: entered ? 'auto' : 'none',
-            transition: 'opacity 0.5s ease',
-          }}
-        >
-          {CHAPTERS.map((ch, i) => {
-            const isActive = chapter === i
-            const isPast = i < chapter
-            const isHov = hovered === i
+          {/* Prev/Next buttons */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <button
+              onClick={prev}
+              disabled={chapter <= 0}
+              aria-label="Previous chapter"
+              style={{
+                width: 34,
+                height: 34,
+                borderRadius: 9,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: `color-mix(in srgb, var(--color-text-primary) 3%, transparent)`,
+                border: `1px solid var(--color-border-primary)`,
+                color: chapter > 0 ? 'var(--color-text-secondary)' : 'var(--color-text-muted)',
+                fontSize: 15,
+                cursor: chapter > 0 ? 'pointer' : 'not-allowed',
+                transition: 'all 0.25s',
+              }}
+              onMouseEnter={(e) => {
+                if (chapter > 0) {
+                  e.currentTarget.style.background = `color-mix(in srgb, ${accentColor} 8%, transparent)`
+                  e.currentTarget.style.borderColor = `color-mix(in srgb, ${accentColor} 19%, transparent)`
+                  e.currentTarget.style.color = accentColor
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = `color-mix(in srgb, var(--color-text-primary) 3%, transparent)`
+                e.currentTarget.style.borderColor = 'var(--color-border-primary)'
+                e.currentTarget.style.color = chapter > 0 ? 'var(--color-text-secondary)' : 'var(--color-text-muted)'
+              }}
+            >
+              ←
+            </button>
 
-            return (
-              <div key={i} style={{ position: 'relative' }}>
-                <button
-                  onClick={() => goTo(i)}
-                  onMouseEnter={() => setHovered(i)}
-                  onMouseLeave={() => setHovered(null)}
-                  aria-label={`Go to chapter ${i + 1}: ${ch.title}`}
-                  aria-current={isActive ? 'step' : undefined}
-                  style={{
-                    width: isActive ? 36 : 30,
-                    height: 30,
-                    borderRadius: 8,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    border: isActive
-                      ? `1.5px solid ${ch.accentColor}`
-                      : '1.5px solid transparent',
-                    background: isActive
-                      ? `${ch.accentColor}20`
-                      : isHov
-                      ? 'rgba(255,255,255,0.06)'
-                      : 'transparent',
-                    fontFamily: 'var(--font-space-mono)',
-                    fontSize: 11,
-                    fontWeight: isActive ? 700 : 500,
-                    color: isActive
-                      ? ch.accentColor
-                      : isPast
-                      ? `${ch.accentColor}80`
-                      : isHov
-                      ? '#A0A0C0'
-                      : '#404060',
-                    boxShadow: isActive ? `0 0 12px ${ch.accentColor}30` : 'none',
-                    transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
-                    cursor: 'pointer',
-                  }}
-                >
-                  {i + 1}
-                </button>
-
-                {isHov && !isActive && (
-                  <div style={{
-                    position: 'absolute',
-                    top: 38,
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    whiteSpace: 'nowrap',
-                    padding: '5px 10px',
-                    borderRadius: 8,
-                    background: 'rgba(6, 6, 26, 0.95)',
-                    border: `1px solid ${ch.accentColor}25`,
-                    fontFamily: 'var(--font-space-grotesk)',
-                    fontSize: 10,
-                    fontWeight: 600,
-                    color: ch.accentColor,
-                    boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
-                    pointerEvents: 'none',
-                    zIndex: 200,
-                    letterSpacing: '0.04em',
-                  }}>
-                    {ch.title}
-                  </div>
-                )}
-              </div>
-            )
-          })}
-        </div>
-
-        {/* ── RIGHT: Prev/Next ── */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          {entered && (
-            <>
-              <button
-                onClick={prev}
-                disabled={chapter <= 0}
-                aria-label="Previous chapter"
-                style={{
-                  width: 34,
-                  height: 34,
-                  borderRadius: 9,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.06)',
-                  color: chapter > 0 ? '#8888AA' : '#252540',
-                  fontSize: 15,
-                  cursor: chapter > 0 ? 'pointer' : 'not-allowed',
-                  transition: 'all 0.25s',
-                }}
-                onMouseEnter={(e) => {
-                  if (chapter > 0) {
-                    e.currentTarget.style.background = `${accentColor}15`
-                    e.currentTarget.style.borderColor = `${accentColor}30`
-                    e.currentTarget.style.color = accentColor
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.04)'
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
-                  e.currentTarget.style.color = chapter > 0 ? '#8888AA' : '#252540'
-                }}
-              >
-                ←
-              </button>
-
-              <button
-                onClick={next}
-                disabled={chapter >= CHAPTERS.length - 1}
-                aria-label="Next chapter"
-                style={{
-                  width: 34,
-                  height: 34,
-                  borderRadius: 9,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: `${accentColor}18`,
-                  border: `1px solid ${accentColor}30`,
-                  color: accentColor,
-                  fontSize: 15,
-                  cursor: chapter < CHAPTERS.length - 1 ? 'pointer' : 'not-allowed',
-                  transition: 'all 0.25s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = `${accentColor}30`
-                  e.currentTarget.style.borderColor = `${accentColor}50`
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = `${accentColor}18`
-                  e.currentTarget.style.borderColor = `${accentColor}30`
-                }}
-              >
-                →
-              </button>
-            </>
-          )}
+            <button
+              onClick={next}
+              disabled={chapter >= CHAPTERS.length - 1}
+              aria-label="Next chapter"
+              style={{
+                width: 34,
+                height: 34,
+                borderRadius: 9,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: `color-mix(in srgb, ${accentColor} 9%, transparent)`,
+                border: `1px solid color-mix(in srgb, ${accentColor} 19%, transparent)`,
+                color: accentColor,
+                fontSize: 15,
+                cursor: chapter < CHAPTERS.length - 1 ? 'pointer' : 'not-allowed',
+                transition: 'all 0.25s',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = `color-mix(in srgb, ${accentColor} 19%, transparent)`
+                e.currentTarget.style.borderColor = `color-mix(in srgb, ${accentColor} 31%, transparent)`
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = `color-mix(in srgb, ${accentColor} 9%, transparent)`
+                e.currentTarget.style.borderColor = `color-mix(in srgb, ${accentColor} 19%, transparent)`
+              }}
+            >
+              →
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -258,7 +226,7 @@ export function NavBar({ chapter, entered, goTo, next, prev }: Props) {
         zIndex: 50,
         height: 3,
         display: 'flex',
-        background: 'rgba(6,6,26,0.8)',
+        background: `color-mix(in srgb, var(--color-background-secondary) 80%, transparent)`,
         opacity: entered ? 1 : 0,
         transition: 'opacity 0.5s ease',
       }}>
@@ -274,9 +242,11 @@ export function NavBar({ chapter, entered, goTo, next, prev }: Props) {
                 background: isActive
                   ? ch.accentColor
                   : isPast
-                  ? `${ch.accentColor}50`
+                  ? `color-mix(in srgb, ${ch.accentColor} 31%, transparent)`
                   : 'transparent',
-                boxShadow: isActive ? `0 0 10px ${ch.accentColor}60` : 'none',
+                boxShadow: isActive
+                  ? `0 0 10px color-mix(in srgb, ${ch.accentColor} 38%, transparent)`
+                  : 'none',
                 transition: 'all 0.5s ease',
               }}
             />

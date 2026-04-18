@@ -13,10 +13,6 @@ assets/archive/
 *.ai
 *.psd
 
-# Fonts (large, served locally)
-assets/raw/fonts/
-site/public/fonts/
-
 # Environment
 .env
 .env.local

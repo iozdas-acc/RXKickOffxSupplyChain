@@ -73,7 +73,7 @@ export default function PresentationPage() {
       style={{
         width: '100vw', height: '100dvh',
         position: 'relative', overflow: 'hidden',
-        background: '#06061A',
+        background: 'var(--color-background-primary)',
       }}
       onClick={handleBgClick}
     >
@@ -84,24 +84,17 @@ export default function PresentationPage() {
             camera={{ position: [0, 1.5, 9], fov: 58, near: 0.1, far: 60 }}
             gl={{
               antialias: true,
-              alpha: false,
+              alpha: true, // transparent clear — page bg (#FAFAFA) shows where no geometry
               powerPreference: 'high-performance',
               toneMapping: 0,
             }}
             dpr={[1, 1.5]}
-            style={{ background: '#06061A' }}
+            style={{ background: 'transparent' }}
           >
             <SupermarketScene chapter={chapter} entered={entered} />
           </Canvas>
         </Suspense>
       </div>
-
-      {/* ── DARK VIGNETTE OVERLAY ── */}
-      <div style={{
-        position: 'absolute', inset: 0, zIndex: 1,
-        background: 'radial-gradient(ellipse at 60% 50%, transparent 30%, rgba(6,6,26,0.55) 80%)',
-        pointerEvents: 'none',
-      }} />
 
       {/* ── NAV ── */}
       <div style={{ position: 'relative', zIndex: 110 }}>
@@ -148,29 +141,7 @@ export default function PresentationPage() {
         </div>
       )}
 
-      {/* ── Keyboard hint (bottom center, fades after first nav) ── */}
-      {entered && chapter === 0 && (
-        <div style={{
-          position: 'absolute', bottom: 24, left: 0, right: 0,
-          display: 'flex', justifyContent: 'center',
-          zIndex: 60, pointerEvents: 'none',
-        }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 10,
-            padding: '7px 16px', borderRadius: 8,
-            background: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(255,255,255,0.05)',
-          }}>
-            <span style={{
-              fontFamily: 'var(--font-space-mono)',
-              fontSize: 9, color: '#404060',
-              letterSpacing: '0.15em', textTransform: 'uppercase',
-            }}>
-              ← → to navigate · click to advance
-            </span>
-          </div>
-        </div>
-      )}
+
     </div>
   )
 }
