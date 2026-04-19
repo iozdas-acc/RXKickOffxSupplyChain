@@ -13,12 +13,23 @@ import { Chapter05 } from '@/components/chapters/Chapter05'
 import { CHAPTERS } from '@/data/chapters'
 
 const DEBOUNCE_MS = 650
+const HERO_MOMENT_MS = 1100 // how long the 3D scene stays front-and-centre before content fades in
 
 export default function PresentationPage() {
   const [entered, setEntered] = useState(false)
   const [chapter, setChapter] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  // heroMoment = true → 3D canvas is dominant, content is hidden (the "between-chapter" beat)
+  // heroMoment = false → content is readable, 3D drops to a faint ambient texture
+  const [heroMoment, setHeroMoment] = useState(true)
   const lastNavTime = useRef(0)
+
+  // Trigger a hero moment whenever chapter or entered flips.
+  useEffect(() => {
+    setHeroMoment(true)
+    const t = setTimeout(() => setHeroMoment(false), HERO_MOMENT_MS)
+    return () => clearTimeout(t)
+  }, [chapter, entered])
 
   const goTo = useCallback((index: number) => {
     const now = Date.now()
@@ -77,8 +88,16 @@ export default function PresentationPage() {
       }}
       onClick={handleBgClick}
     >
-      {/* ── PERSISTENT 3D CANVAS ── */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+      {/* ── PERSISTENT 3D CANVAS ──
+          Opacity swings with `heroMoment`: full-bleed dominant during the
+          between-chapter beat, drops to a faint ambient texture while content
+          is being read. */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 0,
+        opacity: heroMoment ? 1 : 0.18,
+        transition: 'opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
+        pointerEvents: 'none',
+      }}>
         <Suspense fallback={null}>
           <Canvas
             camera={{ position: [0, 1.5, 9], fov: 58, near: 0.1, far: 60 }}
@@ -112,9 +131,17 @@ export default function PresentationPage() {
         <HeroEntrance onEnter={() => setEntered(true)} />
       )}
 
-      {/* ── CHAPTER CONTENT (after entering) ── */}
+      {/* ── CHAPTER CONTENT (after entering) ──
+          Container fades in once the hero moment ends — chapter's internal
+          GSAP entrance runs underneath so the text is already settled by the
+          time it's visible. */}
       {entered && (
-        <div style={{ position: 'absolute', inset: 0, zIndex: 50 }}>
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 50,
+          opacity: heroMoment ? 0 : 1,
+          transition: 'opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.2s',
+          pointerEvents: heroMoment ? 'none' : 'auto',
+        }}>
           <Chapter01
             isActive={chapter === 0 && !isTransitioning}
             onNext={() => goTo(1)}

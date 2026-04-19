@@ -32,7 +32,15 @@ fs.mkdirSync(outDir, { recursive: true });
   console.log(`\nPresentation audit — round ${round}`);
   console.log(`URL: ${url}\nOutput: ${outDir}\n`);
 
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({
+    args: [
+      '--enable-unsafe-swiftshader',
+      '--use-gl=angle',
+      '--use-angle=swiftshader-webgl',
+      '--enable-webgl',
+      '--ignore-gpu-blocklist',
+    ],
+  });
   const saved = [];
 
   for (const bp of BREAKPOINTS) {
