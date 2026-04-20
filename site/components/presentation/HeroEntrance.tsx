@@ -128,7 +128,7 @@ export function HeroEntrance({ onEnter }: Props) {
           textTransform: 'uppercase',
           lineHeight: 1,
           letterSpacing: '-0.02em',
-          maxWidth: isWide ? 'min(640px, 56vw)' : '100%',
+          maxWidth: isWide ? 'min(560px, 42vw)' : '100%',
           opacity: 0,
         }}
       >
@@ -143,7 +143,7 @@ export function HeroEntrance({ onEnter }: Props) {
 
       {/* Subtitle — below headline, left aligned */}
       <div ref={subtitleRef} style={{
-        maxWidth: isWide ? 'min(520px, 50vw)' : '100%',
+        maxWidth: isWide ? 'min(460px, 40vw)' : '100%',
         marginTop: 'clamp(24px, 3vh, 40px)',
         opacity: 0,
       }}>

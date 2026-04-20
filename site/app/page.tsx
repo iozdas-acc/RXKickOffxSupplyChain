@@ -6,6 +6,7 @@ import { EffectComposer, Bloom, Vignette, SMAA, Noise, ChromaticAberration } fro
 import { BlendFunction, KernelSize } from 'postprocessing'
 import * as THREE from 'three'
 import { SupermarketScene } from '@/components/three/SupermarketScene'
+import { StudioShowcase } from '@/components/three/scenes/StudioShowcase'
 import { NavBar } from '@/components/presentation/NavBar'
 import { HeroEntrance } from '@/components/presentation/HeroEntrance'
 import { Chapter01 } from '@/components/chapters/Chapter01'
@@ -26,6 +27,17 @@ export default function PresentationPage() {
   // heroMoment = false → content is readable, 3D drops to a faint ambient texture
   const [heroMoment, setHeroMoment] = useState(true)
   const lastNavTime = useRef(0)
+
+  // Landing split uses a right-half canvas on wide viewports, bottom-half on
+  // narrow. Matches the breakpoint logic in HeroEntrance so text + scene stay
+  // out of each other's way.
+  const [isWide, setIsWide] = useState(false)
+  useEffect(() => {
+    const fn = () => setIsWide(window.innerWidth >= 900)
+    fn()
+    window.addEventListener('resize', fn)
+    return () => window.removeEventListener('resize', fn)
+  }, [])
 
   // Trigger a hero moment whenever chapter or entered flips.
   useEffect(() => {
@@ -91,61 +103,90 @@ export default function PresentationPage() {
       }}
       onClick={handleBgClick}
     >
-      {/* ── PERSISTENT 3D CANVAS ──
-          On the landing (!entered) the storefront IS the hero — never dim.
-          Once entered, opacity swings with `heroMoment`: full-bleed dominant
-          during the between-chapter beat, drops to a faint ambient texture
-          while content is being read. */}
-      <div style={{
-        position: 'absolute', inset: 0, zIndex: 0,
-        opacity: !entered ? 1 : (heroMoment ? 1 : 0.18),
-        transition: 'opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
-        pointerEvents: 'none',
-      }}>
-        <Suspense fallback={null}>
-          <Canvas
-            shadows="soft"
-            camera={{ position: [0, 1.5, 9], fov: 58, near: 0.1, far: 60 }}
-            gl={{
-              antialias: false, // SMAA handles AA in the effect chain
-              alpha: true, // transparent clear — page bg (#FAFAFA) shows where no geometry
-              powerPreference: 'high-performance',
-              toneMapping: THREE.ACESFilmicToneMapping,
-              toneMappingExposure: 1.08,
-            }}
-            dpr={[1, 2]}
-            style={{ background: 'transparent' }}
-          >
-            <SupermarketScene chapter={chapter} entered={entered} />
-            <EffectComposer multisampling={0}>
-              <SMAA />
-              <Bloom
-                intensity={0.85}
-                luminanceThreshold={0.62}
-                luminanceSmoothing={0.22}
-                kernelSize={KernelSize.LARGE}
-                mipmapBlur
-              />
-              <ChromaticAberration
-                offset={[0.0008, 0.0012]}
-                radialModulation={true}
-                modulationOffset={0.35}
-                blendFunction={BlendFunction.NORMAL}
-              />
-              <Vignette
-                offset={0.3}
-                darkness={0.48}
-                blendFunction={BlendFunction.NORMAL}
-              />
-              <Noise
-                premultiply
-                opacity={0.06}
-                blendFunction={BlendFunction.SOFT_LIGHT}
-              />
-            </EffectComposer>
-          </Canvas>
-        </Suspense>
-      </div>
+      {/* ── 3D CANVAS ──
+          Landing (!entered): studio product showcase pinned to the right half
+          on wide viewports (bottom half on narrow). Transparent, no shadows,
+          no post-processing so text on the left half never fights the scene.
+          Entered: full-screen chapter scenes with the cinematic FX stack. Its
+          opacity swings with `heroMoment` — dominant during the between-chapter
+          beat, faint ambient texture while content is being read. */}
+      {!entered ? (
+        <div style={{
+          position: 'absolute',
+          top: isWide ? 0 : '50%',
+          right: 0,
+          bottom: 0,
+          left: isWide ? '50%' : 0,
+          zIndex: 0,
+          pointerEvents: 'none',
+        }}>
+          <Suspense fallback={null}>
+            <Canvas
+              camera={{ position: [0, 0, 5], fov: 45, near: 0.1, far: 60 }}
+              gl={{
+                antialias: true,
+                alpha: true,
+                powerPreference: 'high-performance',
+              }}
+              dpr={[1, 2]}
+              style={{ background: 'transparent' }}
+            >
+              <StudioShowcase />
+            </Canvas>
+          </Suspense>
+        </div>
+      ) : (
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 0,
+          opacity: heroMoment ? 1 : 0.18,
+          transition: 'opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
+          pointerEvents: 'none',
+        }}>
+          <Suspense fallback={null}>
+            <Canvas
+              shadows="soft"
+              camera={{ position: [0, 1.5, 9], fov: 58, near: 0.1, far: 60 }}
+              gl={{
+                antialias: false, // SMAA handles AA in the effect chain
+                alpha: true, // transparent clear — page bg (#FAFAFA) shows where no geometry
+                powerPreference: 'high-performance',
+                toneMapping: THREE.ACESFilmicToneMapping,
+                toneMappingExposure: 1.08,
+              }}
+              dpr={[1, 2]}
+              style={{ background: 'transparent' }}
+            >
+              <SupermarketScene chapter={chapter} entered={entered} />
+              <EffectComposer multisampling={0}>
+                <SMAA />
+                <Bloom
+                  intensity={0.85}
+                  luminanceThreshold={0.62}
+                  luminanceSmoothing={0.22}
+                  kernelSize={KernelSize.LARGE}
+                  mipmapBlur
+                />
+                <ChromaticAberration
+                  offset={[0.0008, 0.0012]}
+                  radialModulation={true}
+                  modulationOffset={0.35}
+                  blendFunction={BlendFunction.NORMAL}
+                />
+                <Vignette
+                  offset={0.3}
+                  darkness={0.48}
+                  blendFunction={BlendFunction.NORMAL}
+                />
+                <Noise
+                  premultiply
+                  opacity={0.06}
+                  blendFunction={BlendFunction.SOFT_LIGHT}
+                />
+              </EffectComposer>
+            </Canvas>
+          </Suspense>
+        </div>
+      )}
 
       {/* ── NAV ── */}
       <div style={{ position: 'relative', zIndex: 110 }}>

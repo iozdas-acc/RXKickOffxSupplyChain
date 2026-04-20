@@ -5,21 +5,21 @@ import { gsap } from 'gsap'
 
 const TEMPLATE_PILLARS = [
   {
-    tag: 'Delivery Template',
-    title: 'H1–H3 Story Arc',
-    desc: 'The horizons framework is not just the slide deck. It\'s the delivery model — every engagement starts with H3 + H1 running in parallel.',
+    tag: 'Framework',
+    title: 'Horizons Pathway',
+    desc: 'The horizons pathway is not just theory. It\'s the delivery framework – every engagement starts with tomorrow\'s reinvention and today\'s value in parallel, with H2 as the bridge.',
     icon: '⬡',
   },
   {
-    tag: 'Technology Platform',
-    title: 'JAR+AI Engine',
-    desc: 'JAR+AI Discovery Engine is the acceleration layer. Vercel for deployment, Claude Code for build. Always on from day one.',
+    tag: 'Tools',
+    title: 'Discovery Engine',
+    desc: 'The acceleration layer — automates end-to-end discovery, turning interview, survey and document data into real-time insights, roadmaps and explorable outputs in real-time.',
     icon: '⬡',
   },
   {
-    tag: 'Commercial Shape',
+    tag: 'Approach',
     title: 'Hybrid Model',
-    desc: 'RX in the first half for velocity and belief. Consulting agent in the second half for scale. The structure that makes the ROI story work.',
+    desc: 'We work in two tracks: RX manages value creation up front, while a light-touch extended engagement – supported by a consulting agent – builds client adoption and buy-in over time.',
     icon: '⬡',
   },
 ]
@@ -62,7 +62,7 @@ export function Chapter05({ isActive, onPrev }: Props) {
         display: 'flex', alignItems: 'center', gap: 12,
       }}>
         <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch5)', display: 'inline-block', borderRadius: 2 }} />
-        The Future
+        The Engagement Model
         <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch5)', display: 'inline-block', borderRadius: 2 }} />
       </div>
 
@@ -85,20 +85,20 @@ export function Chapter05({ isActive, onPrev }: Props) {
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
         }}>
-          ENGAGEMENT.
+          ENGAGEMENT
         </span>
         <br />
-        THIS WAY.
+        THIS WAY
       </h2>
 
       <p style={{
         fontFamily: 'var(--font-dm-sans)',
         fontSize: 15, color: 'var(--color-text-secondary)',
-        lineHeight: 1.75, maxWidth: 560,
+        lineHeight: 1.75, maxWidth: 620,
         marginBottom: 48,
       }}>
-        The Sainsbury&apos;s model is now the template for all future agentic transformation engagements.
-        Three codified elements. One repeatable approach.
+        A repeatable template for agentic reinvention to prove impact early,
+        drive commercial value, and help clients change at a pace they can absorb.
       </p>
 
       {/* Three pillars */}
@@ -173,35 +173,26 @@ export function Chapter05({ isActive, onPrev }: Props) {
         ))}
       </div>
 
-      {/* Closing line — gradient rule echoes the finale moment */}
+      {/* Closing brand pill — gradient rule echoes the finale moment */}
       <div style={{
-        display: 'flex', alignItems: 'center', gap: 20,
-        flexWrap: 'wrap', justifyContent: 'center',
+        display: 'flex', alignItems: 'center', gap: 10,
+        justifyContent: 'center',
       }}>
-        <p style={{
-          fontFamily: 'var(--font-dm-sans)',
-          fontSize: 14, color: 'var(--color-text-secondary)',
-          fontStyle: 'italic',
+        <span style={{
+          fontFamily: 'var(--font-space-mono)',
+          fontSize: 10, fontWeight: 700,
+          color: 'var(--sainsburys-orange-ink)', letterSpacing: '0.12em',
         }}>
-          Sainsbury&apos;s enterprise reinvention — the proof that it works.
-        </p>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{
-            fontFamily: 'var(--font-space-mono)',
-            fontSize: 10, fontWeight: 700,
-            color: 'var(--sainsburys-orange-ink)', letterSpacing: '0.12em',
-          }}>
-            SAINSBURY&apos;S
-          </span>
-          <span style={{ width: 20, height: 1.5, background: 'var(--accent-ch5-gradient)', borderRadius: 2 }} />
-          <span style={{
-            fontFamily: 'var(--font-space-mono)',
-            fontSize: 10, fontWeight: 700,
-            color: 'var(--accent-ch5)', letterSpacing: '0.12em',
-          }}>
-            ACCENTURE
-          </span>
-        </div>
+          SAINSBURY&apos;S
+        </span>
+        <span style={{ width: 20, height: 1.5, background: 'var(--accent-ch5-gradient)', borderRadius: 2 }} />
+        <span style={{
+          fontFamily: 'var(--font-space-mono)',
+          fontSize: 10, fontWeight: 700,
+          color: 'var(--accent-ch5)', letterSpacing: '0.12em',
+        }}>
+          ACCENTURE
+        </span>
       </div>
     </div>
   )

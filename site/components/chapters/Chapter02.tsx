@@ -2,6 +2,8 @@
 
 import { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
+import { DemoOverlay } from '@/components/ui/DemoOverlay'
+import ConversationalRetailUI from '@/components/ui/ConversationalRetailUI'
 
 interface ProjectOutput {
   label: string
@@ -48,7 +50,14 @@ const PROJECTS: Project[] = [
         password: 'P0LLEN!360#AISession2026',
       },
       { label: 'Agentic Commerce Bid For My Basket', type: 'mobile' },
-      { label: 'Agentic Campaign Workflow', type: 'prototype' },
+      {
+        label: 'Agentic Campaign Workflow',
+        type: 'prototype',
+        url: 'relume-grasp-07968301.figma.site',
+        href: 'https://relume-grasp-07968301.figma.site',
+        thumbnail: '/images/agentic-campaign-workflow.png',
+        password: 'Pollen360',
+      },
     ],
   },
   {
@@ -67,9 +76,15 @@ const PROJECTS: Project[] = [
       'Demonstrated expertise to lead reinvention.',
     ],
     outputs: [
-      { label: 'Sarah H3 Narrative Website', type: 'website', url: 'sarah-h3-narrative.vercel.app' },
-      { label: 'Pain Point & Opportunity Navigator', type: 'navigator' },
-      { label: 'Supplier Dashboard Prototype', type: 'dashboard' },
+      {
+        label: 'Sarah H3 Narrative Website',
+        type: 'website',
+        url: 'v0-ai-disruption-page.vercel.app/meet-sarah',
+        href: 'https://v0-ai-disruption-page.vercel.app/meet-sarah',
+        thumbnail: '/images/sarah-narrative.png',
+      },
+      { label: 'Pain Point & Opportunity Navigator', type: 'navigator', thumbnail: '/images/pain-point-navigator.png' },
+      { label: 'Supplier Dashboard Prototype', type: 'dashboard', thumbnail: '/images/supplier-dashboard.png' },
     ],
   },
 ]
@@ -324,6 +339,7 @@ interface Props { isActive: boolean; onNext: () => void; onPrev: () => void }
 export function Chapter02({ isActive, onNext, onPrev }: Props) {
   const rootRef = useRef<HTMLDivElement>(null)
   const [activeProject, setActiveProject] = useState(0)
+  const [demoOpen, setDemoOpen] = useState(false)
 
   useEffect(() => {
     if (!rootRef.current) return
@@ -631,61 +647,170 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
               ))}
             </div>
 
-            {/* Right side: 1 tall portrait mobile box */}
+            {/* Right side: 1 tall portrait mobile box — launches the bid-for-basket demo */}
             <div
+              data-no-advance
+              role="button"
+              tabIndex={0}
+              aria-label="Launch Agentic Commerce demo"
+              onClick={(e) => { e.stopPropagation(); setDemoOpen(true) }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  setDemoOpen(true)
+                }
+              }}
               style={{
                 height: 'calc(((380px * 9 / 16) * 2) + 12px)',
                 aspectRatio: '9 / 19.5',
-                background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 4%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 10%, var(--color-surface-card)))',
-                border: '1px dashed color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
+                background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 6%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 14%, var(--color-surface-card)))',
+                border: '1px solid color-mix(in srgb, var(--accent-ch2) 35%, transparent)',
                 borderRadius: 10,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent: 'space-between',
+                padding: '22px 12px',
                 gap: 10,
                 cursor: 'pointer',
-                transition: 'all 0.2s ease',
+                transition: 'all 0.25s ease',
                 position: 'relative',
                 overflow: 'hidden',
                 flexShrink: 0,
+                outline: 'none',
+                boxShadow: 'var(--shadow-sm)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)'
+                e.currentTarget.style.borderColor = 'var(--accent-ch2)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-md)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--accent-ch2) 35%, transparent)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
               }}
             >
               {/* Background grid pattern */}
               <div style={{
                 position: 'absolute',
                 inset: 0,
-                opacity: 0.04,
+                opacity: 0.05,
                 backgroundImage: 'linear-gradient(90deg, var(--accent-ch2) 1px, transparent 1px), linear-gradient(var(--accent-ch2) 1px, transparent 1px)',
                 backgroundSize: '24px 24px',
               }} />
 
-              {/* Icon */}
+              {/* Top: "Interactive demo" pill */}
               <div style={{
-                width: 36, height: 36,
-                borderRadius: 8,
-                background: 'color-mix(in srgb, var(--accent-ch2) 12%, transparent)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontFamily: 'var(--font-space-mono)',
+                fontSize: 9,
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '0.2em',
+                color: 'var(--accent-ch2)',
+                padding: '4px 10px',
+                borderRadius: 999,
+                background: 'color-mix(in srgb, var(--color-surface-card) 88%, transparent)',
+                border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
                 position: 'relative',
               }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                  <rect x="5" y="2" width="14" height="20" rx="2" />
-                  <line x1="12" y1="18" x2="12" y2="18" strokeLinecap="round" />
-                </svg>
+                Interactive demo
               </div>
 
-              {/* Label */}
-              <div style={{ 
-                fontFamily: 'var(--font-space-grotesk)', 
-                fontSize: 11, 
-                fontWeight: 600,
-                color: 'var(--color-text-primary)',
-                textAlign: 'center',
-                padding: '0 10px',
+              {/* Mid: stylised iPhone mock preview — tiny scaled phone frame */}
+              <div style={{
                 position: 'relative',
-                lineHeight: 1.3,
+                width: '62%',
+                aspectRatio: '9 / 19.5',
+                borderRadius: 18,
+                background: 'linear-gradient(180deg, #111827 0%, #1f2937 100%)',
+                padding: 4,
+                boxShadow: '0 10px 26px rgba(15,23,42,0.22), 0 0 0 1px rgba(0,0,0,0.15)',
               }}>
-                {project.outputs.find(o => o.type === 'mobile')?.label}
+                <div style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: 14,
+                  background: 'linear-gradient(160deg, #ffffff 0%, #F3F6FB 100%)',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 6,
+                }}>
+                  {/* Dynamic island stub */}
+                  <div style={{
+                    position: 'absolute',
+                    top: 4,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: 30,
+                    height: 8,
+                    borderRadius: 999,
+                    background: '#000',
+                  }} />
+                  {/* Logos hinting at the demo content */}
+                  <div style={{ display: 'flex', gap: 4, flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', gap: 4 }}>
+                      <div style={{ width: 24, height: 10, background: '#00539F', borderRadius: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <span style={{ fontSize: 5, color: '#fff', fontWeight: 700, fontFamily: 'Arial, sans-serif' }}>TESCO</span>
+                      </div>
+                      <div style={{ width: 24, height: 10, background: 'var(--sainsburys-orange)', borderRadius: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <span style={{ fontSize: 4, color: '#fff', fontWeight: 700, fontFamily: 'Arial, sans-serif' }}>Sainsbury&apos;s</span>
+                      </div>
+                    </div>
+                    <div style={{ width: 24, height: 10, background: '#1a4d2e', borderRadius: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <span style={{ fontSize: 4, color: '#fff', fontWeight: 700, fontFamily: 'Arial, sans-serif' }}>Waitrose</span>
+                    </div>
+                  </div>
+                  <div style={{
+                    fontFamily: 'var(--font-space-mono)',
+                    fontSize: 7,
+                    fontWeight: 700,
+                    color: 'var(--accent-ch2)',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                  }}>
+                    Bidding…
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom: label + CTA */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, position: 'relative' }}>
+                <div style={{
+                  fontFamily: 'var(--font-space-grotesk)',
+                  fontSize: 11,
+                  fontWeight: 600,
+                  color: 'var(--color-text-primary)',
+                  textAlign: 'center',
+                  padding: '0 10px',
+                  lineHeight: 1.3,
+                }}>
+                  {project.outputs.find(o => o.type === 'mobile')?.label}
+                </div>
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  padding: '6px 12px',
+                  borderRadius: 999,
+                  background: 'var(--accent-ch2)',
+                  color: '#fff',
+                  fontFamily: 'var(--font-space-grotesk)',
+                  fontSize: 10,
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.18em',
+                  boxShadow: '0 4px 12px color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
+                }}>
+                  Launch demo
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
@@ -696,6 +821,138 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
             {/* Top row: 2 boxes side by side */}
             <div style={{ display: 'flex', gap: 12, flex: 1 }}>
               {project.outputs.slice(0, 2).map((output, i) => (
+                output.thumbnail && output.href ? (
+                  <a
+                    key={i}
+                    data-no-advance
+                    href={output.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    style={{
+                      height: '100%',
+                      aspectRatio: '16 / 9',
+                      borderRadius: 10,
+                      border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
+                      backgroundColor: 'var(--color-surface-card)',
+                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.58) 100%), url(${output.thumbnail})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      boxShadow: 'var(--shadow-sm)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      padding: 10,
+                      textDecoration: 'none',
+                      cursor: 'pointer',
+                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                      position: 'relative',
+                      overflow: 'hidden',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)'
+                      e.currentTarget.style.boxShadow = 'var(--shadow-md)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
+                    }}
+                  >
+                    {/* Top-right "Open site" pill */}
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <div style={{
+                        fontFamily: 'var(--font-space-mono)',
+                        fontSize: 9,
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.14em',
+                        color: 'var(--accent-ch2)',
+                        padding: '4px 8px',
+                        borderRadius: 999,
+                        background: 'color-mix(in srgb, var(--color-surface-card) 88%, transparent)',
+                        backdropFilter: 'blur(4px)',
+                        border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
+                      }}>
+                        Open site →
+                      </div>
+                    </div>
+
+                    {/* Bottom label */}
+                    <div style={{
+                      padding: '8px 10px',
+                      borderRadius: 8,
+                      background: 'color-mix(in srgb, var(--color-surface-card) 92%, transparent)',
+                      backdropFilter: 'blur(6px)',
+                      border: '1px solid color-mix(in srgb, var(--accent-ch2) 18%, transparent)',
+                    }}>
+                      <div style={{
+                        fontFamily: 'var(--font-space-grotesk)',
+                        fontSize: 12,
+                        fontWeight: 600,
+                        color: 'var(--color-text-primary)',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}>
+                        {output.label}
+                      </div>
+                      {output.url && (
+                        <div style={{
+                          fontFamily: 'var(--font-dm-sans)',
+                          fontSize: 10,
+                          color: 'var(--color-text-secondary)',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                        }}>
+                          {output.url}
+                        </div>
+                      )}
+                    </div>
+                  </a>
+                ) : output.thumbnail ? (
+                  <div
+                    key={i}
+                    style={{
+                      height: '100%',
+                      aspectRatio: '16 / 9',
+                      borderRadius: 10,
+                      border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
+                      backgroundColor: 'var(--color-surface-card)',
+                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.58) 100%), url(${output.thumbnail})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      boxShadow: 'var(--shadow-sm)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'flex-end',
+                      padding: 10,
+                      position: 'relative',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    {/* Bottom label */}
+                    <div style={{
+                      padding: '8px 10px',
+                      borderRadius: 8,
+                      background: 'color-mix(in srgb, var(--color-surface-card) 92%, transparent)',
+                      backdropFilter: 'blur(6px)',
+                      border: '1px solid color-mix(in srgb, var(--accent-ch2) 18%, transparent)',
+                    }}>
+                      <div style={{
+                        fontFamily: 'var(--font-space-grotesk)',
+                        fontSize: 12,
+                        fontWeight: 600,
+                        color: 'var(--color-text-primary)',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}>
+                        {output.label}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
                 <div
                   key={i}
                   style={{
@@ -757,9 +1014,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
 
                   {/* Label */}
                   <div style={{ position: 'relative', minWidth: 0 }}>
-                    <div style={{ 
-                      fontFamily: 'var(--font-space-grotesk)', 
-                      fontSize: 11, 
+                    <div style={{
+                      fontFamily: 'var(--font-space-grotesk)',
+                      fontSize: 11,
                       fontWeight: 600,
                       color: 'var(--color-text-primary)',
                       whiteSpace: 'nowrap',
@@ -769,9 +1026,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                       {output.label}
                     </div>
                     {output.url && (
-                      <div style={{ 
-                        fontFamily: 'var(--font-dm-sans)', 
-                        fontSize: 9, 
+                      <div style={{
+                        fontFamily: 'var(--font-dm-sans)',
+                        fontSize: 9,
                         color: 'var(--color-text-secondary)',
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
@@ -787,12 +1044,56 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                     <path d="M7 17L17 7M17 7H7M17 7V17" />
                   </svg>
                 </div>
+                )
               ))}
             </div>
 
             {/* Bottom row: 1 box on the left */}
             <div style={{ display: 'flex', gap: 12, flex: 1 }}>
               {project.outputs.slice(2, 3).map((output, i) => (
+                output.thumbnail ? (
+                  <div
+                    key={i}
+                    style={{
+                      height: '100%',
+                      aspectRatio: '16 / 9',
+                      borderRadius: 10,
+                      border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
+                      backgroundColor: 'var(--color-surface-card)',
+                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.58) 100%), url(${output.thumbnail})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      boxShadow: 'var(--shadow-sm)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'flex-end',
+                      padding: 10,
+                      position: 'relative',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    {/* Bottom label */}
+                    <div style={{
+                      padding: '8px 10px',
+                      borderRadius: 8,
+                      background: 'color-mix(in srgb, var(--color-surface-card) 92%, transparent)',
+                      backdropFilter: 'blur(6px)',
+                      border: '1px solid color-mix(in srgb, var(--accent-ch2) 18%, transparent)',
+                    }}>
+                      <div style={{
+                        fontFamily: 'var(--font-space-grotesk)',
+                        fontSize: 12,
+                        fontWeight: 600,
+                        color: 'var(--color-text-primary)',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}>
+                        {output.label}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
                 <div
                   key={i}
                   style={{
@@ -854,9 +1155,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
 
                   {/* Label */}
                   <div style={{ position: 'relative', minWidth: 0 }}>
-                    <div style={{ 
-                      fontFamily: 'var(--font-space-grotesk)', 
-                      fontSize: 11, 
+                    <div style={{
+                      fontFamily: 'var(--font-space-grotesk)',
+                      fontSize: 11,
                       fontWeight: 600,
                       color: 'var(--color-text-primary)',
                       whiteSpace: 'nowrap',
@@ -866,9 +1167,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                       {output.label}
                     </div>
                     {output.url && (
-                      <div style={{ 
-                        fontFamily: 'var(--font-dm-sans)', 
-                        fontSize: 9, 
+                      <div style={{
+                        fontFamily: 'var(--font-dm-sans)',
+                        fontSize: 9,
                         color: 'var(--color-text-secondary)',
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
@@ -884,11 +1185,25 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                     <path d="M7 17L17 7M17 7H7M17 7V17" />
                   </svg>
                 </div>
+                )
               ))}
             </div>
           </div>
         )}
       </div>
+
+      {/* Agentic Commerce demo — renders only when the Nectar tile triggers it.
+          DemoOverlay is portalled visually; onClick on the backdrop closes. */}
+      <DemoOverlay
+        open={demoOpen}
+        onClose={() => setDemoOpen(false)}
+        label="Interactive · Agentic Commerce"
+        title="Bid For My Basket"
+        subtitle="Upload a meal plan. Watch Tesco, Sainsbury's and Waitrose negotiate in real time."
+        accentColor="var(--sainsburys-orange)"
+      >
+        <ConversationalRetailUI />
+      </DemoOverlay>
     </div>
   )
 }

@@ -31,12 +31,24 @@ const LEARNINGS = [
   {
     learning: {
       before: '',
+      highlight: "12-week engagements don't scale",
+      after: '.',
+    },
+    howMightWe: {
+      before: '...use AI to ',
+      highlight: 'accelerate discovery and raise efficiency at enterprise scale',
+      after: '?',
+    },
+  },
+  {
+    learning: {
+      before: '',
       highlight: "AI's pace outruns client adoption",
       after: '.',
     },
     howMightWe: {
       before: '...',
-      highlight: 'accelerate discovery and bring clients on the journey',
+      highlight: 'balance AI speed with organisational buy-in',
       after: '?',
     },
   },

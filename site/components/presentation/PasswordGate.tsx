@@ -113,6 +113,34 @@ export function PasswordGate({ children }: Props) {
           textAlign: 'left',
         }}
       >
+        {/* Co-brand lockup — Sainsbury's × Accenture */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 18,
+            marginBottom: 28,
+          }}
+        >
+          <img
+            src="/images/sainsburys-logo.png"
+            alt="Sainsbury's"
+            style={{ height: 22, width: 'auto', objectFit: 'contain' }}
+          />
+          <span
+            style={{
+              width: 1,
+              height: 22,
+              background: 'var(--color-border-primary)',
+            }}
+          />
+          <img
+            src="/Acc_Logo_Black_Purple_RGB.png"
+            alt="Accenture"
+            style={{ height: 20, width: 'auto', objectFit: 'contain' }}
+          />
+        </div>
+
         {/* Tag */}
         <div
           style={{
@@ -122,7 +150,7 @@ export function PasswordGate({ children }: Props) {
             textTransform: 'uppercase',
             letterSpacing: '0.3em',
             color: 'var(--sainsburys-orange-ink)',
-            marginBottom: 22,
+            marginBottom: 18,
             display: 'flex',
             alignItems: 'center',
             gap: 12,
@@ -137,7 +165,7 @@ export function PasswordGate({ children }: Props) {
               borderRadius: 2,
             }}
           />
-          RX STORY · Access required
+          RX STORY · Confidential
         </div>
 
         {/* Headline */}
@@ -153,7 +181,7 @@ export function PasswordGate({ children }: Props) {
             marginBottom: 14,
           }}
         >
-          Protected by{' '}
+          Access{' '}
           <span
             style={{
               background:
@@ -163,7 +191,7 @@ export function PasswordGate({ children }: Props) {
               backgroundClip: 'text',
             }}
           >
-            design.
+            required.
           </span>
         </h1>
 
