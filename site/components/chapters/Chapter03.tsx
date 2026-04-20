@@ -3,42 +3,60 @@
 import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 
-const SHIFTS = [
+const LEARNINGS = [
   {
-    from: 'Process-led discovery',
-    to: 'Horizons framework thinking',
-    insight: 'Clients feel understood, not assessed',
+    learning: {
+      before: '',
+      highlight: 'Anchoring on today',
+      after: ' limits reinvention.',
+    },
+    howMightWe: {
+      before: '...',
+      highlight: 'anchor transformation in the future, not just today',
+      after: '?',
+    },
   },
   {
-    from: 'Manual research synthesis',
-    to: 'Real-time AI synthesis',
-    insight: 'Bolder ambition becomes achievable',
+    learning: {
+      before: '',
+      highlight: "Concepts don't build belief",
+      after: ', experience does.',
+    },
+    howMightWe: {
+      before: '...let clients ',
+      highlight: 'experience AI-native futures',
+      after: ', not just read about them?',
+    },
   },
   {
-    from: 'S&C team only',
-    to: 'Data & AI integration from day one',
-    insight: 'Relationship shifts to true partnership',
+    learning: {
+      before: '',
+      highlight: "AI's pace outruns client adoption",
+      after: '.',
+    },
+    howMightWe: {
+      before: '...',
+      highlight: 'accelerate discovery and bring clients on the journey',
+      after: '?',
+    },
   },
   {
-    from: 'Static PowerPoint outputs',
-    to: 'AI-generated live experiences',
-    insight: 'Ideas feel real before they are built',
-  },
-  {
-    from: 'Extended iterative timelines',
-    to: 'JAR+AI compressed execution',
-    insight: 'Clients experience AI-native speed',
-  },
-  {
-    from: 'Manual pattern identification',
-    to: 'Predictive development',
-    insight: 'Momentum stays high throughout',
+    learning: {
+      before: '',
+      highlight: 'Teams are capped by what they know',
+      after: '.',
+    },
+    howMightWe: {
+      before: '...',
+      highlight: 'inject Accenture and external expertise into each engagement',
+      after: '?',
+    },
   },
 ]
 
 interface Props { isActive: boolean; onNext: () => void; onPrev: () => void }
 
-export function Chapter03({ isActive, onNext, onPrev }: Props) {
+export function Chapter03({ isActive, onNext: _onNext, onPrev: _onPrev }: Props) {
   const rootRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -53,26 +71,49 @@ export function Chapter03({ isActive, onNext, onPrev }: Props) {
     }
   }, [isActive])
 
+  // Darker orange variant — used anywhere the accent would otherwise read as
+  // a bright-orange wash. Keeps contrast on #FAFAFA without shouting.
+  const INK = 'color-mix(in srgb, var(--accent-ch3) 82%, black)'
+
   return (
     <div
       ref={rootRef}
+      className="chapter-row scrollbar-hide"
       style={{
         position: 'absolute', inset: 0,
-        display: 'flex', gap: 48,
         padding: 'clamp(48px, 6vw, 100px)',
-        paddingTop: 80,
+        paddingTop: 120,
         opacity: 0, pointerEvents: isActive ? 'auto' : 'none',
         overflowY: 'auto',
       }}
-      className="scrollbar-hide"
     >
+      {/* Soft background wash — kept dim so orange doesn't dominate. */}
+      <div style={{
+        position: 'absolute',
+        top: '10%', right: '5%',
+        width: 480, height: 480,
+        borderRadius: '50%',
+        background: `radial-gradient(circle, color-mix(in srgb, var(--accent-ch3) 3%, transparent) 0%, transparent 70%)`,
+        pointerEvents: 'none',
+        filter: 'blur(60px)',
+      }} />
+      <div style={{
+        position: 'absolute',
+        bottom: '18%', left: '30%',
+        width: 380, height: 380,
+        borderRadius: '50%',
+        background: `radial-gradient(circle, color-mix(in srgb, var(--accent-ch3) 2%, transparent) 0%, transparent 70%)`,
+        pointerEvents: 'none',
+        filter: 'blur(80px)',
+      }} />
+
       {/* Left: headline + tagline */}
-      <div style={{ flex: '0 0 auto', width: 360, paddingTop: 12 }}>
+      <div style={{ flex: '0 0 auto', width: 380, paddingTop: 0 }}>
         <div style={{
           fontFamily: 'var(--font-space-mono)',
           fontSize: 10, fontWeight: 700,
           textTransform: 'uppercase', letterSpacing: '0.3em',
-          color: 'var(--accent-ch3)', marginBottom: 28,
+          color: INK, marginBottom: 28,
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
           <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch3)', display: 'inline-block', borderRadius: 2 }} />
@@ -81,7 +122,7 @@ export function Chapter03({ isActive, onNext, onPrev }: Props) {
 
         <h2 style={{
           fontFamily: 'var(--font-space-grotesk)',
-          fontSize: 'clamp(36px, 4.5vw, 60px)',
+          fontSize: 'clamp(36px, 4.5vw, 56px)',
           fontWeight: 700,
           textTransform: 'uppercase',
           lineHeight: 0.95,
@@ -89,129 +130,165 @@ export function Chapter03({ isActive, onNext, onPrev }: Props) {
           color: 'var(--color-text-primary)',
           marginBottom: 24,
         }}>
-          PACE<br />
+          AI-LED<br />
+          REINVENTION<br />
+          NEEDS A<br />
           <span style={{
-            background: `linear-gradient(135deg, var(--accent-ch3), color-mix(in srgb, var(--accent-ch3) 60%, transparent))`,
+            background: `linear-gradient(135deg, var(--accent-ch3), color-mix(in srgb, var(--accent-ch3) 60%, var(--color-text-primary)))`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-          }}>MISMATCH</span><br />
-          KILLS<br />
-          DISCOVERY.
+          }}>NEW MODEL.</span>
         </h2>
 
         <p style={{
           fontFamily: 'var(--font-dm-sans)',
-          fontSize: 14, color: 'var(--color-text-secondary)',
-          lineHeight: 1.75, marginBottom: 32, maxWidth: 320,
+          fontSize: 15, color: 'var(--color-text-secondary)',
+          lineHeight: 1.75, marginBottom: 36, maxWidth: 360,
         }}>
-          Traditional consulting pace doesn&apos;t build client belief fast enough.
-          The moment clients feel momentum, bolder ambition becomes possible.
+          Traditional discovery holds back reinvention, pace, and organisational belief — a new template is needed to scale.
         </p>
 
-        {/* Tagline pill */}
+        {/* Tagline pill — softer orange so it reads as an accent, not a block. */}
         <div style={{
           display: 'inline-block',
-          padding: '10px 18px',
-          background: 'color-mix(in srgb, var(--accent-ch3) 6%, transparent)',
-          border: '1px solid color-mix(in srgb, var(--accent-ch3) 15%, transparent)',
-          borderRadius: 8,
-          marginBottom: 32,
-          boxShadow: 'var(--shadow-sm)',
+          padding: '14px 22px',
+          background: `linear-gradient(135deg, color-mix(in srgb, var(--accent-ch3) 5%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch3) 9%, var(--color-surface-card)))`,
+          border: '1px solid color-mix(in srgb, var(--accent-ch3) 22%, transparent)',
+          borderRadius: 12,
+          boxShadow: '0 4px 20px color-mix(in srgb, var(--accent-ch3) 8%, transparent), var(--shadow-sm)',
         }}>
           <p style={{
             fontFamily: 'var(--font-space-grotesk)',
-            fontSize: 13, fontWeight: 600,
-            color: 'var(--accent-ch3)', lineHeight: 1.5,
+            fontSize: 14, fontWeight: 600,
+            color: INK, lineHeight: 1.6,
             letterSpacing: '-0.01em',
           }}>
             Move faster. Experience more.<br />Build belief earlier.
           </p>
         </div>
-
-        <p style={{
-          fontFamily: 'var(--font-dm-sans)',
-          fontSize: 12, color: 'var(--color-text-tertiary)',
-          lineHeight: 1.65, maxWidth: 300,
-        }}>
-          The shift isn&apos;t about replacing consultants — it&apos;s about removing friction from conviction.
-        </p>
       </div>
 
-      {/* Right: shift table */}
-      <div style={{ flex: 1, paddingTop: 12, maxWidth: 540 }}>
-        <p style={{
-          fontFamily: 'var(--font-space-mono)',
-          fontSize: 9, color: 'var(--color-text-tertiary)',
-          textTransform: 'uppercase', letterSpacing: '0.2em',
+      {/* Right: learnings table (icons removed; index number replaces the glyph). */}
+      <div style={{ flex: 1, paddingTop: 0, maxWidth: 820, display: 'flex', flexDirection: 'column' }}>
+        {/* Table header */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '28px 1fr 32px 1.2fr',
+          gap: 16,
           marginBottom: 16,
+          paddingLeft: 14,
         }}>
-          Traditional → AI-Enabled
-        </p>
+          <div />
+          <p style={{
+            fontFamily: 'var(--font-space-mono)',
+            fontSize: 10, fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.15em',
+            color: 'var(--color-text-tertiary)',
+          }}>
+            Learning
+          </p>
+          <div />
+          <p style={{
+            fontFamily: 'var(--font-space-mono)',
+            fontSize: 10, fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.15em',
+            color: INK,
+          }}>
+            How might we...
+          </p>
+        </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-          {SHIFTS.map((s, i) => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
+          {LEARNINGS.map((item, i) => (
             <div
               key={i}
               style={{
                 display: 'grid',
-                gridTemplateColumns: '1fr auto 1fr',
+                gridTemplateColumns: '28px 1fr 32px 1.2fr',
                 alignItems: 'center',
-                gap: 12,
-                background: 'var(--color-surface-card)',
+                gap: 16,
+                padding: '16px 20px 16px 14px',
+                background: `linear-gradient(135deg, var(--color-surface-card), color-mix(in srgb, var(--accent-ch3) 2%, var(--color-surface-card)))`,
                 border: '1px solid var(--color-border-primary)',
-                borderRadius: 10,
-                padding: '12px 16px',
+                borderLeft: `3px solid color-mix(in srgb, var(--accent-ch3) ${25 + i * 5}%, transparent)`,
+                borderRadius: 12,
+                transition: 'all 0.3s ease',
+                cursor: 'default',
                 boxShadow: 'var(--shadow-sm)',
-                transition: 'border-color 0.25s, transform 0.25s, box-shadow 0.25s',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--accent-ch3) 25%, transparent)'
+                e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--accent-ch3) 35%, transparent)'
+                e.currentTarget.style.borderLeftColor = 'var(--accent-ch3)'
                 e.currentTarget.style.transform = 'translateX(4px)'
                 e.currentTarget.style.boxShadow = 'var(--shadow-md)'
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = 'var(--color-border-primary)'
+                e.currentTarget.style.borderLeftColor = `color-mix(in srgb, var(--accent-ch3) ${25 + i * 5}%, transparent)`
                 e.currentTarget.style.transform = 'translateX(0)'
                 e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
               }}
             >
-              {/* From */}
+              {/* Ordinal — tiny mono digit, no glyph. */}
+              <div style={{
+                fontFamily: 'var(--font-space-mono)',
+                fontSize: 11, fontWeight: 700,
+                color: 'var(--color-text-tertiary)',
+                textAlign: 'center',
+                letterSpacing: '0.05em',
+              }}>
+                {String(i + 1).padStart(2, '0')}
+              </div>
+
+              {/* Learning */}
               <div style={{
                 fontFamily: 'var(--font-dm-sans)',
-                fontSize: 12, color: 'var(--color-text-secondary)',
-                lineHeight: 1.4,
+                fontSize: 13, color: 'var(--color-text-secondary)',
+                lineHeight: 1.55,
               }}>
-                {s.from}
+                {item.learning.before}
+                <span style={{
+                  color: 'var(--color-text-primary)',
+                  fontWeight: 600,
+                  background: 'color-mix(in srgb, var(--accent-ch3) 8%, transparent)',
+                  padding: '2px 6px',
+                  borderRadius: 4,
+                }}>
+                  {item.learning.highlight}
+                </span>
+                {item.learning.after}
               </div>
 
               {/* Arrow */}
               <div style={{
-                width: 28, height: 28, borderRadius: '50%',
-                background: 'color-mix(in srgb, var(--accent-ch3) 8%, transparent)',
-                border: '1px solid color-mix(in srgb, var(--accent-ch3) 19%, transparent)',
+                width: 28, height: 28,
+                borderRadius: '50%',
+                background: `linear-gradient(135deg, color-mix(in srgb, var(--accent-ch3) 12%, transparent), color-mix(in srgb, var(--accent-ch3) 20%, transparent))`,
+                border: '1px solid color-mix(in srgb, var(--accent-ch3) 28%, transparent)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                flexShrink: 0,
               }}>
-                <span style={{ color: 'var(--accent-ch3)', fontSize: 12 }}>→</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch3)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
               </div>
 
-              {/* To */}
-              <div>
-                <div style={{
-                  fontFamily: 'var(--font-dm-sans)',
-                  fontSize: 12, color: 'var(--color-text-primary)',
-                  lineHeight: 1.4, marginBottom: 3,
+              {/* How might we */}
+              <div style={{
+                fontFamily: 'var(--font-dm-sans)',
+                fontSize: 13, color: 'var(--color-text-primary)',
+                lineHeight: 1.55,
+              }}>
+                {item.howMightWe.before}
+                <span style={{
+                  color: INK,
+                  fontWeight: 600,
                 }}>
-                  {s.to}
-                </div>
-                <div style={{
-                  fontFamily: 'var(--font-space-mono)',
-                  fontSize: 9, color: 'var(--accent-ch3)',
-                  letterSpacing: '0.08em',
-                }}>
-                  → {s.insight}
-                </div>
+                  {item.howMightWe.highlight}
+                </span>
+                {item.howMightWe.after}
               </div>
             </div>
           ))}

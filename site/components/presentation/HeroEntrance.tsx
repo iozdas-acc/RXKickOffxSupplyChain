@@ -16,6 +16,16 @@ export function HeroEntrance({ onEnter }: Props) {
   const subtitleRef = useRef<HTMLDivElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
   const [ctaHovered, setCtaHovered] = useState(false)
+  // On wide viewports the storefront sits on the right, so we cap the text
+  // to the left half. On narrow viewports the text stacks above the store
+  // and needs the full line width or it wraps into noodle soup.
+  const [isWide, setIsWide] = useState(false)
+  useEffect(() => {
+    const fn = () => setIsWide(window.innerWidth >= 900)
+    fn()
+    window.addEventListener('resize', fn)
+    return () => window.removeEventListener('resize', fn)
+  }, [])
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.4 })
@@ -86,9 +96,11 @@ export function HeroEntrance({ onEnter }: Props) {
         position: 'fixed', inset: 0, zIndex: 100,
         pointerEvents: 'none',
         display: 'flex', flexDirection: 'column',
-        justifyContent: 'center',
+        // Desktop: vertically centred beside the storefront.
+        // Mobile: pinned to the top so the store sits clearly below.
+        justifyContent: isWide ? 'center' : 'flex-start',
         padding: 'clamp(64px, 8vw, 120px) clamp(48px, 6vw, 100px)',
-        paddingTop: 80,
+        paddingTop: isWide ? 80 : 96,
       }}
     >
       {/* Tag */}
@@ -105,31 +117,33 @@ export function HeroEntrance({ onEnter }: Props) {
         RX STORY · SAINSBURY&apos;S ENTERPRISE REINVENTION
       </div>
 
-      {/* Headline */}
+      {/* Headline — capped on desktop so the storefront on the right half
+          stays visually clean. Mobile stacks text above store, so no cap. */}
       <div
         ref={line1Ref}
         style={{
           fontFamily: 'var(--font-space-grotesk)',
-          fontSize: 'clamp(44px, 7.5vw, 110px)',
+          fontSize: 'clamp(40px, 5.6vw, 84px)',
           fontWeight: 700,
           textTransform: 'uppercase',
           lineHeight: 1,
           letterSpacing: '-0.02em',
+          maxWidth: isWide ? 'min(640px, 56vw)' : '100%',
           opacity: 0,
         }}
       >
-        <span style={{ color: 'var(--color-text-primary)', textShadow: titleShadow }}>TRANSFORMATION </span>
+        <span style={{ color: 'var(--color-text-primary)', textShadow: titleShadow }}>A NEW MODEL FOR </span>
         <span style={{
             background: 'var(--accent-ch5-gradient)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-          }}>REINVENTED</span>
+          }}>REINVENTION</span>
       </div>
 
       {/* Subtitle — below headline, left aligned */}
       <div ref={subtitleRef} style={{
-        maxWidth: 500,
+        maxWidth: isWide ? 'min(520px, 50vw)' : '100%',
         marginTop: 'clamp(24px, 3vh, 40px)',
         opacity: 0,
       }}>

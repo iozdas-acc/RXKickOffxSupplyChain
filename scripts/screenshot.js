@@ -50,7 +50,17 @@ async function run() {
   console.log(`\nScreenshot — ${slug} — round ${round}`);
   console.log(`URL: ${url}\nOutput: ${outDir}\n`);
 
-  const browser = await chromium.launch();
+  // Headless Chromium can't create a WebGL context by default — use the
+  // SwiftShader software rasterizer so R3F / Three.js scenes actually render.
+  const browser = await chromium.launch({
+    args: [
+      '--enable-unsafe-swiftshader',
+      '--ignore-gpu-blocklist',
+      '--enable-webgl',
+      '--use-gl=angle',
+      '--use-angle=swiftshader',
+    ],
+  });
   const saved = [];
 
   for (const bp of BREAKPOINTS) {
@@ -63,8 +73,8 @@ async function run() {
       await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
     }
 
-    // Let fonts and layout settle
-    await page.waitForTimeout(1200);
+    // Let fonts + layout settle, plus the full GSAP hero entrance (~3.1s).
+    await page.waitForTimeout(5000);
 
     // Measure total page height
     const pageHeight = await page.evaluate(() => document.body.scrollHeight);

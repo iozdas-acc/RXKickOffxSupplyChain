@@ -1,18 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { CHAPTERS } from '@/data/chapters'
 
 interface Props {
   chapter: number
   entered: boolean
   goTo: (i: number) => void
+  goToLanding: () => void
   next: () => void
   prev: () => void
 }
 
-export function NavBar({ chapter, entered, goTo, next, prev }: Props) {
+export function NavBar({ chapter, entered, goTo, goToLanding, next, prev }: Props) {
   const [hovered, setHovered] = useState<number | null>(null)
   const current = CHAPTERS[chapter]
   const accentColor = current?.accentColor ?? 'var(--accent-ch1)'
@@ -43,10 +43,17 @@ export function NavBar({ chapter, entered, goTo, next, prev }: Props) {
         }}
       >
         {/* ── LEFT: Brand logos only ── */}
-        <Link href="/" style={{
-          display: 'flex', alignItems: 'center', gap: 8,
-          textDecoration: 'none',
-        }}>
+        <button
+          onClick={goToLanding}
+          aria-label="Go to landing page"
+          style={{
+            display: 'flex', alignItems: 'center', gap: 8,
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            padding: 0,
+          }}
+        >
           <img
             src="/images/sainsburys-logo.png"
             alt="Sainsbury's"
@@ -58,7 +65,7 @@ export function NavBar({ chapter, entered, goTo, next, prev }: Props) {
             alt="Accenture"
             style={{ height: 14, width: 'auto', display: 'block', position: 'relative', top: -3 }}
           />
-        </Link>
+        </button>
 
         {/* ── RIGHT: Chapter dots + Prev/Next ── */}
         <div style={{

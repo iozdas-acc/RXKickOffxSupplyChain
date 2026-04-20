@@ -83,12 +83,13 @@ export function Chapter01({ isActive, onNext }: Props) {
         </p>
 
         {/* Feature boxes */}
-        <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: 20,
-          marginBottom: 40,
-        }}>
+        <div
+          className="chapter-cols-3"
+          style={{
+            gap: 20,
+            marginBottom: 40,
+          }}
+        >
           {[
             {
               overline: 'Stronger origination moments',
@@ -97,8 +98,8 @@ export function Chapter01({ isActive, onNext }: Props) {
               impact: '– in 5 days.',
             },
             {
-              overline: 'Value proven in delivery',
-              title: 'Procurement Process Reinvention',
+              overline: 'Value proven in discovery',
+              title: 'Ancona Procurement Reinvention',
               copyStart: 'Horizons thinking and explorable AI-generated outputs proved value in flight, accelerated delivery and demonstrated our expertise to lead reinvention',
               impact: '- in weeks.',
             },
@@ -180,7 +181,7 @@ export function Chapter01({ isActive, onNext }: Props) {
             e.currentTarget.style.boxShadow = 'none'
           }}
         >
-          Here&apos;s how we did it
+          Here&apos;s how we&apos;re doing it
           <span style={{ fontSize: 14 }}>→</span>
         </button>
       </div>

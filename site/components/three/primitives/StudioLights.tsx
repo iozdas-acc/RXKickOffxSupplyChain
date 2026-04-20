@@ -4,6 +4,7 @@ import { chapterColor } from '../chapterColors'
 
 interface Props {
   chapter: number
+  entered: boolean
 }
 
 // Warm tones used as constants so no raw hex scatters through the rig.
@@ -11,21 +12,18 @@ const KEY_LIGHT_WARM = '#fff4e0'
 const FILL_LIGHT_WARM = '#ffd9b3'
 const FOG_COLOR = '#FAFAFA' // matches page background (see globals.css)
 
-// Shared 3-light setup for every supermarket subscene.
-// - Ambient fills shadows without washing colour.
-// - Key light (warm, from front-right) casts readable shadows.
-// - Fill light (warm, from back-left) softens the opposite side.
-// - Per-chapter accent point light colours the hero area.
-// - Fog dissolves scene edges into the page background (#FAFAFA).
-export function StudioLights({ chapter }: Props) {
+// Shared light rig. Fog is only attached *after* the user enters — on the
+// landing the storefront sits right at the fog start plane and would
+// dissolve into the page background. We want BAM, not ghost.
+export function StudioLights({ chapter, entered }: Props) {
   const accent = chapterColor(chapter)
 
   return (
     <>
-      <ambientLight intensity={0.9} />
+      <ambientLight intensity={entered ? 0.9 : 0.55} />
       <directionalLight
         position={[10, 15, 8]}
-        intensity={0.8}
+        intensity={entered ? 0.8 : 1.1}
         color={KEY_LIGHT_WARM}
         castShadow
         shadow-mapSize-width={1024}
@@ -33,17 +31,17 @@ export function StudioLights({ chapter }: Props) {
       />
       <directionalLight
         position={[-8, 5, -4]}
-        intensity={0.25}
+        intensity={entered ? 0.25 : 0.4}
         color={FILL_LIGHT_WARM}
       />
       <pointLight
         position={[0, 4, 0]}
-        intensity={0.55}
+        intensity={entered ? 0.55 : 0.9}
         color={accent}
         distance={18}
         decay={2}
       />
-      <fog attach="fog" args={[FOG_COLOR, 10, 26]} />
+      {entered && <fog attach="fog" args={[FOG_COLOR, 10, 26]} />}
     </>
   )
 }

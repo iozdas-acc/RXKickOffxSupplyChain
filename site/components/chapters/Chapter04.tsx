@@ -3,42 +3,97 @@
 import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 
-const HORIZONS = [
+/* ───────────── data ───────────── */
+
+const CURVE_HORIZONS = [
   {
-    id: 'H3',
-    color: 'var(--horizon-3)',
-    label: 'Horizon 3 — Vision',
-    title: 'Target State Ambition',
-    duration: 'W1–W4 (parallel)',
-    desc: 'Art of the Possible workshop. Future of procurement POV. H3 narrative deployed as live experience.',
-    items: ['AI-native procurement platform', 'Autonomous sourcing agents', 'Predictive demand shaping'],
-    step: 'STEP 1A',
-  },
-  {
-    id: 'H1',
+    id: 'H-i',
+    title: 'Quick Wins & Optimisation',
+    sub: 'Copilot, local apps, workflow automation',
     color: 'var(--horizon-1)',
-    label: 'Horizon 1 — Current State',
-    title: 'World on a Page',
-    duration: 'W1–W4 (parallel)',
-    desc: 'Pain Point Navigator. Discovery findings. H1 baseline documented and socialised.',
-    items: ['Current state assessment', 'Pain point prioritisation', 'Quick win identification'],
-    step: 'STEP 1B',
+    // position on the 800×300 svg viewBox (after caption width clamp)
+    x: 70,  y: 238,
+    align: 'right' as const, // caption sits right of badge
   },
   {
-    id: 'H2',
+    id: 'H-ii',
+    title: 'Ecosystem & Infrastructure',
+    sub: 'AI COE, integrated platforms, governance',
     color: 'var(--horizon-2)',
-    label: 'Horizon 2 — Gap Analysis',
-    title: 'Transformation Package',
-    duration: 'W5–W8',
-    desc: 'Gap analysis between H3 vision and H1 reality. Opportunity roadmap. Converged deliverable.',
-    items: ['H1→H3 gap mapping', 'Investment roadmap', 'Phased delivery plan'],
-    step: 'STEP 2',
+    x: 400, y: 130,
+    align: 'right' as const,
+  },
+  {
+    id: 'H-iii',
+    title: 'Bold Bets & Vision',
+    sub: 'Autonomous operations, self-improving systems',
+    color: 'var(--horizon-3)',
+    x: 730, y: 48,
+    align: 'left' as const,  // caption sits left of badge
   },
 ]
 
+const STEPS = [
+  {
+    n: 1,
+    iconKey: 'eye',
+    color: 'var(--horizon-3)',        // H-III vision
+    label: 'STEP 1',
+    title: 'Create Your Horizon III Vision',
+    body:
+      'Use the iceberg framework to envision your business in Horizon III — autonomous systems, agent-driven operations, transformed value creation.',
+    arrow: 'right' as const,
+  },
+  {
+    n: 2,
+    iconKey: 'zap',
+    color: 'var(--horizon-1)',        // H-I quick wins
+    label: 'STEP 2',
+    title: 'Deliver Horizon I Quick Wins',
+    body:
+      'Review immediate short-term gains you can deliver now — prove value, build momentum, and create funding for larger bets.',
+    arrow: null,
+  },
+  {
+    n: 3,
+    iconKey: 'target',
+    color: 'var(--horizon-2)',        // H-II gap
+    label: 'STEP 3',
+    title: 'Analyse the Horizon II Gap',
+    body:
+      'Work out the Horizon II investments required for your Horizon III vision — no-regrets moves and large bets that bridge the exponential gap.',
+    arrow: 'left' as const,
+  },
+]
+
+/* ───────────── icons ───────────── */
+
+const Icons = {
+  eye: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  ),
+  zap: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+  ),
+  target: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" fill="currentColor" />
+    </svg>
+  ),
+}
+
+/* ───────────── component ───────────── */
+
 interface Props { isActive: boolean; onNext: () => void; onPrev: () => void }
 
-export function Chapter04({ isActive, onNext, onPrev }: Props) {
+export function Chapter04({ isActive }: Props) {
   const rootRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -56,210 +111,405 @@ export function Chapter04({ isActive, onNext, onPrev }: Props) {
   return (
     <div
       ref={rootRef}
+      className="chapter-row scrollbar-hide"
       style={{
         position: 'absolute', inset: 0,
-        display: 'flex', flexDirection: 'column',
-        padding: 'clamp(48px, 6vw, 100px)',
-        paddingTop: 80,
+        gap: 48,
+        padding: 'clamp(40px, 5vw, 90px)',
+        paddingTop: 110,
         opacity: 0, pointerEvents: isActive ? 'auto' : 'none',
         overflowY: 'auto',
       }}
-      className="scrollbar-hide"
     >
-      {/* Header */}
-      <div style={{ marginBottom: 32 }}>
+      {/* Ambient page glows */}
+      <div style={{
+        position: 'absolute', top: '10%', right: '6%',
+        width: 460, height: 460, borderRadius: '50%',
+        background: `radial-gradient(circle, color-mix(in srgb, var(--accent-ch4) 6%, transparent) 0%, transparent 70%)`,
+        pointerEvents: 'none', filter: 'blur(60px)',
+      }} />
+      <div style={{
+        position: 'absolute', bottom: '14%', left: '26%',
+        width: 380, height: 380, borderRadius: '50%',
+        background: `radial-gradient(circle, color-mix(in srgb, var(--horizon-1) 5%, transparent) 0%, transparent 70%)`,
+        pointerEvents: 'none', filter: 'blur(80px)',
+      }} />
+
+      {/* ─── LEFT: heads ─────────────────────────────────────── */}
+      <div style={{ flex: '0 0 auto', width: 340, paddingTop: 0, position: 'relative' }}>
         <div style={{
           fontFamily: 'var(--font-space-mono)',
           fontSize: 10, fontWeight: 700,
           textTransform: 'uppercase', letterSpacing: '0.3em',
-          color: 'var(--accent-ch4)', marginBottom: 16,
+          color: 'var(--accent-ch4)', marginBottom: 26,
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
           <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch4)', display: 'inline-block', borderRadius: 2 }} />
-          The Hybrid Model
+          The Horizon Pathway
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 48, flexWrap: 'wrap' }}>
-          <h2 style={{
-            fontFamily: 'var(--font-space-grotesk)',
-            fontSize: 'clamp(32px, 4vw, 54px)',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            lineHeight: 0.95,
-            letterSpacing: '-0.02em',
-            color: 'var(--color-text-primary)',
-          }}>
-            H3 VISION +<br />
-            <span style={{
-              background: 'linear-gradient(135deg, var(--horizon-1), var(--horizon-3))',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}>H1 EXECUTION</span><br />
-            = THE MODEL.
-          </h2>
+        <h2 style={{
+          fontFamily: 'var(--font-space-grotesk)',
+          fontSize: 'clamp(34px, 4vw, 52px)',
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          lineHeight: 0.95,
+          letterSpacing: '-0.02em',
+          color: 'var(--color-text-primary)',
+          marginBottom: 22,
+        }}>
+          Dual<br />
+          Direction<br />
+          <span style={{
+            background: 'linear-gradient(135deg, var(--horizon-1), var(--horizon-2), var(--horizon-3))',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}>Execution.</span>
+        </h2>
 
+        <p style={{
+          fontFamily: 'var(--font-dm-sans)',
+          fontSize: 14, color: 'var(--color-text-secondary)',
+          lineHeight: 1.7, maxWidth: 320,
+        }}>
+          You can&rsquo;t reach Horizon 3 by moving incrementally through Horizon 1 and 2 &mdash; the gap is exponential.
+        </p>
+      </div>
+
+      {/* ─── RIGHT: horizon pathway panel ───────────────────── */}
+      <div style={{
+        flex: 1, maxWidth: 880,
+        position: 'relative',
+        background: 'var(--color-surface-card)',
+        border: '1px solid var(--color-border-primary)',
+        borderRadius: 20,
+        padding: '22px 24px 20px',
+        boxShadow: 'var(--shadow-md)',
+        display: 'flex', flexDirection: 'column', gap: 14,
+        overflow: 'hidden',
+      }}>
+
+        {/* ── Zone 1 · Exponential curve with 3 horizon markers ── */}
+        <div style={{
+          position: 'relative',
+          width: '100%',
+          aspectRatio: '800 / 300',
+          background: `linear-gradient(180deg, color-mix(in srgb, var(--horizon-3) 3%, var(--color-background-tertiary)), var(--color-surface-card))`,
+          borderRadius: 14,
+          border: '1px solid var(--color-border-tertiary)',
+          overflow: 'hidden',
+        }}>
+          {/* Grid background */}
+          <svg
+            viewBox="0 0 800 300"
+            preserveAspectRatio="none"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+          >
+            <defs>
+              <pattern id="ch4-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--color-border-tertiary)" strokeWidth="0.8" />
+              </pattern>
+              <linearGradient id="ch4-curve" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0%"  stopColor="var(--horizon-1)" />
+                <stop offset="55%" stopColor="var(--horizon-2)" />
+                <stop offset="100%" stopColor="var(--horizon-3)" />
+              </linearGradient>
+              <linearGradient id="ch4-curve-fill" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%"  stopColor="var(--horizon-1)" stopOpacity="0" />
+                <stop offset="100%" stopColor="var(--horizon-3)" stopOpacity="0.12" />
+              </linearGradient>
+              <filter id="ch4-glow" x="-10%" y="-10%" width="120%" height="120%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <rect width="800" height="300" fill="url(#ch4-grid)" opacity="0.6" />
+
+            {/* Horizontal baseline */}
+            <line x1="0" y1="265" x2="800" y2="265" stroke="var(--color-border-primary)" strokeWidth="1" />
+
+            {/* Exponential curve — area fill */}
+            <path
+              d="M 40 265 C 260 264, 430 240, 560 180 S 700 70, 760 40 L 760 265 L 40 265 Z"
+              fill="url(#ch4-curve-fill)"
+            />
+            {/* Exponential curve — stroke */}
+            <path
+              d="M 40 265 C 260 264, 430 240, 560 180 S 700 70, 760 40"
+              fill="none"
+              stroke="url(#ch4-curve)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              filter="url(#ch4-glow)"
+            />
+          </svg>
+
+          {/* Horizon markers (HTML over SVG) */}
+          {CURVE_HORIZONS.map((h) => {
+            const leftPct = (h.x / 800) * 100
+            const topPct  = (h.y / 300) * 100
+            return (
+              <div
+                key={h.id}
+                style={{
+                  position: 'absolute',
+                  left: `${leftPct}%`,
+                  top:  `${topPct}%`,
+                  transform:
+                    h.align === 'right'
+                      ? 'translate(-24px, -50%)'
+                      : 'translate(calc(-100% + 24px), -50%)',
+                  display: 'flex',
+                  flexDirection: h.align === 'right' ? 'row' : 'row-reverse',
+                  alignItems: 'center',
+                  gap: 10,
+                }}
+              >
+                {/* badge */}
+                <div style={{
+                  width: 40, height: 40, borderRadius: 10,
+                  background: `linear-gradient(135deg, ${h.color}, color-mix(in srgb, ${h.color} 70%, transparent))`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontFamily: 'var(--font-space-mono)',
+                  fontSize: 12, fontWeight: 700,
+                  color: 'var(--color-text-inverse)',
+                  letterSpacing: '0.04em',
+                  boxShadow: `0 4px 14px color-mix(in srgb, ${h.color} 35%, transparent)`,
+                  flexShrink: 0,
+                }}>
+                  {h.id}
+                </div>
+
+                {/* caption */}
+                <div style={{
+                  textAlign: h.align === 'right' ? 'left' : 'right',
+                  width: 210,
+                  padding: '6px 10px',
+                  background: 'color-mix(in srgb, var(--color-surface-card) 92%, transparent)',
+                  border: '1px solid var(--color-border-tertiary)',
+                  borderRadius: 8,
+                  boxShadow: 'var(--shadow-xs)',
+                  backdropFilter: 'blur(2px)',
+                }}>
+                  <div style={{
+                    fontFamily: 'var(--font-space-grotesk)',
+                    fontSize: 12, fontWeight: 700,
+                    color: 'var(--color-text-primary)',
+                    letterSpacing: '-0.01em',
+                    lineHeight: 1.2,
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}>
+                    {h.title}
+                  </div>
+                  <div style={{
+                    fontFamily: 'var(--font-dm-sans)',
+                    fontSize: 10,
+                    color: 'var(--color-text-tertiary)',
+                    marginTop: 2,
+                    lineHeight: 1.3,
+                  }}>
+                    {h.sub}
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* ── Zone 2 · Heading row ── */}
+        <div style={{ textAlign: 'center', marginTop: 4 }}>
+          <h3 style={{
+            fontFamily: 'var(--font-space-grotesk)',
+            fontSize: 22, fontWeight: 700,
+            color: 'var(--color-text-primary)',
+            letterSpacing: '-0.015em',
+          }}>
+            Start Both Ways Simultaneously
+          </h3>
+          <div style={{
+            fontFamily: 'var(--font-dm-sans)',
+            fontSize: 12, color: 'var(--color-text-secondary)',
+            marginTop: 4,
+          }}>
+            The only path to Horizon III is working from both ends
+          </div>
+        </div>
+
+        {/* ── Zone 3 · Directional arrows row ── */}
+        <div
+          className="chapter-cols-3 chapter-hide-mobile"
+          style={{
+            gap: 12,
+            marginTop: 2,
+          }}
+        >
+          <ArrowCell direction="right" />
+          <div />{/* gap over Step 2 */}
+          <ArrowCell direction="left" />
+        </div>
+
+        {/* ── Zone 4 · Step cards ── */}
+        <div className="chapter-cols-3" style={{ gap: 10 }}>
+          {STEPS.map((s) => (
+            <div key={s.n} style={{
+              background: `color-mix(in srgb, ${s.color} 4%, var(--color-surface-card))`,
+              border: `1px solid color-mix(in srgb, ${s.color} 18%, transparent)`,
+              borderLeft: `3px solid ${s.color}`,
+              borderRadius: 10,
+              padding: '14px 16px',
+              display: 'flex', flexDirection: 'column', gap: 8,
+              minHeight: 160,
+              transition: 'transform 0.25s, box-shadow 0.25s, border-color 0.25s',
+              boxShadow: 'var(--shadow-xs)',
+            }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-3px)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
+                e.currentTarget.style.borderColor = `color-mix(in srgb, ${s.color} 32%, transparent)`
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-xs)'
+                e.currentTarget.style.borderColor = `color-mix(in srgb, ${s.color} 18%, transparent)`
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{
+                  width: 24, height: 24, borderRadius: 6,
+                  background: `color-mix(in srgb, ${s.color} 12%, transparent)`,
+                  border: `1px solid color-mix(in srgb, ${s.color} 22%, transparent)`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: s.color,
+                }}>
+                  {Icons[s.iconKey as keyof typeof Icons]}
+                </div>
+                <div style={{
+                  fontFamily: 'var(--font-space-mono)',
+                  fontSize: 9, fontWeight: 700,
+                  color: s.color,
+                  letterSpacing: '0.22em',
+                  textTransform: 'uppercase',
+                }}>
+                  {s.label}
+                </div>
+              </div>
+
+              <div style={{
+                fontFamily: 'var(--font-space-grotesk)',
+                fontSize: 14, fontWeight: 700,
+                color: 'var(--color-text-primary)',
+                letterSpacing: '-0.01em',
+                lineHeight: 1.25,
+              }}>
+                {s.title}
+              </div>
+
+              <p style={{
+                fontFamily: 'var(--font-dm-sans)',
+                fontSize: 11, color: 'var(--color-text-secondary)',
+                lineHeight: 1.55,
+              }}>
+                {s.body}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Zone 5 · Footer strip ── */}
+        <div style={{
+          marginTop: 4,
+          padding: '14px 18px',
+          background: `linear-gradient(135deg, color-mix(in srgb, var(--horizon-1) 5%, var(--color-background-tertiary)), color-mix(in srgb, var(--horizon-3) 5%, var(--color-background-tertiary)))`,
+          border: `1px solid color-mix(in srgb, var(--accent-ch4) 15%, transparent)`,
+          borderRadius: 10,
+          textAlign: 'center',
+        }}>
           <p style={{
             fontFamily: 'var(--font-dm-sans)',
-            fontSize: 14, color: 'var(--color-text-secondary)',
-            lineHeight: 1.7, maxWidth: 360,
+            fontSize: 12, color: 'var(--color-text-secondary)',
+            lineHeight: 1.7,
+            fontStyle: 'italic',
           }}>
-            H3 and H1 run in parallel in the first half.
-            H2 emerges from the intersection — not designed upfront.
-            RX acceleration in W1–W4, consulting agent continuation in W5–W8.
+            The path to transformation isn&rsquo;t linear &mdash; it&rsquo;s{' '}
+            <span style={{ color: 'var(--horizon-3)', fontWeight: 700, fontStyle: 'normal' }}>
+              visioning backwards from Horizon III
+            </span>{' '}
+            while{' '}
+            <span style={{ color: 'var(--horizon-1)', fontWeight: 700, fontStyle: 'normal' }}>
+              executing forwards from Horizon I
+            </span>
+            , with{' '}
+            <span style={{ color: 'var(--horizon-2)', fontWeight: 700, fontStyle: 'normal' }}>
+              Horizon II as the bridge
+            </span>
+            .
+          </p>
+          <p style={{
+            fontFamily: 'var(--font-space-grotesk)',
+            fontSize: 13, fontWeight: 700,
+            marginTop: 8,
+            letterSpacing: '-0.005em',
+            background:
+              'linear-gradient(90deg, var(--horizon-1) 0%, var(--horizon-2) 50%, var(--horizon-3) 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}>
+            Start from both ends. Meet in the middle. Execute simultaneously.
           </p>
         </div>
       </div>
+    </div>
+  )
+}
 
-      {/* Horizon cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
-        {HORIZONS.map((h, i) => (
-          <div
-            key={i}
-            style={{
-              background: 'var(--color-surface-card)',
-              border: `1px solid color-mix(in srgb, ${h.color} 15%, transparent)`,
-              borderRadius: 14,
-              padding: '20px 22px',
-              position: 'relative',
-              overflow: 'hidden',
-              boxShadow: 'var(--shadow-sm)',
-              transition: 'border-color 0.25s, transform 0.25s, box-shadow 0.25s',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = `color-mix(in srgb, ${h.color} 31%, transparent)`
-              e.currentTarget.style.transform = 'translateY(-4px)'
-              e.currentTarget.style.boxShadow = 'var(--shadow-md)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = `color-mix(in srgb, ${h.color} 15%, transparent)`
-              e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
-            }}
-          >
-            {/* Background glow */}
-            <div style={{
-              position: 'absolute', top: -20, right: -20,
-              width: 100, height: 100,
-              background: `radial-gradient(circle, color-mix(in srgb, ${h.color} 8%, transparent), transparent 70%)`,
-              pointerEvents: 'none',
-            }} />
+/* ───────────── arrow cell ─────────────
+   Thin directional arrow sitting above step 1 / step 3.
+   Visible on light surface: muted gray stroke + accent tip.        */
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
-              {/* H badge */}
-              <div style={{
-                width: 36, height: 36, borderRadius: 10,
-                background: `linear-gradient(135deg, ${h.color}, color-mix(in srgb, ${h.color} 60%, transparent))`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: 'var(--font-space-mono)',
-                fontSize: 12, fontWeight: 700, color: 'var(--color-text-inverse)',
-              }}>
-                {h.id}
-              </div>
-
-              {/* Step tag */}
-              <div style={{
-                fontFamily: 'var(--font-space-mono)',
-                fontSize: 8, fontWeight: 700,
-                textTransform: 'uppercase', letterSpacing: '0.15em',
-                color: h.color, padding: '4px 8px',
-                background: `color-mix(in srgb, ${h.color} 8%, transparent)`,
-                borderRadius: 4,
-              }}>
-                {h.step}
-              </div>
-            </div>
-
-            <div style={{
-              fontFamily: 'var(--font-space-mono)',
-              fontSize: 8, color: h.color,
-              textTransform: 'uppercase', letterSpacing: '0.15em',
-              marginBottom: 6,
-            }}>
-              {h.label}
-            </div>
-
-            <div style={{
-              fontFamily: 'var(--font-space-grotesk)',
-              fontSize: 16, fontWeight: 700,
-              color: 'var(--color-text-primary)', marginBottom: 8,
-              letterSpacing: '-0.01em',
-            }}>
-              {h.title}
-            </div>
-
-            <div style={{
-              fontFamily: 'var(--font-space-mono)',
-              fontSize: 9, color: 'var(--color-text-tertiary)',
-              letterSpacing: '0.1em', marginBottom: 10,
-            }}>
-              {h.duration}
-            </div>
-
-            <p style={{
-              fontFamily: 'var(--font-dm-sans)',
-              fontSize: 12, color: 'var(--color-text-secondary)',
-              lineHeight: 1.6, marginBottom: 14,
-            }}>
-              {h.desc}
-            </p>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-              {h.items.map((item, j) => (
-                <div key={j} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <div style={{
-                    width: 5, height: 5, borderRadius: '50%',
-                    background: h.color, flexShrink: 0,
-                    opacity: 0.7,
-                  }} />
-                  <span style={{
-                    fontFamily: 'var(--font-dm-sans)',
-                    fontSize: 11, color: 'var(--color-text-secondary)',
-                  }}>
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Team line */}
-      <div style={{
-        marginTop: 20,
-        display: 'flex', alignItems: 'center', gap: 16,
-        flexWrap: 'wrap',
-      }}>
-        <span style={{
-          fontFamily: 'var(--font-space-mono)',
-          fontSize: 9, color: 'var(--color-text-tertiary)',
-          textTransform: 'uppercase', letterSpacing: '0.15em',
-        }}>
-          Team shape:
-        </span>
-        {[
-          { label: 'Delivery Lead' },
-          { label: 'AI Strategy Lead' },
-          { label: 'OPT Squad W1–W8' },
-          { label: 'RX Squad W1–W4' },
-        ].map((t, i) => (
-          <div key={i} style={{
-            display: 'inline-flex', alignItems: 'center', gap: 7,
-            padding: '5px 10px', borderRadius: 6,
-            background: 'color-mix(in srgb, var(--accent-ch4) 3%, transparent)',
-            border: '1px solid color-mix(in srgb, var(--accent-ch4) 13%, transparent)',
-          }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent-ch4)' }} />
-            <span style={{
-              fontFamily: 'var(--font-dm-sans)',
-              fontSize: 11, color: 'var(--color-text-secondary)',
-            }}>
-              {t.label}
-            </span>
-          </div>
-        ))}
-      </div>
+function ArrowCell({ direction }: { direction: 'left' | 'right' }) {
+  const isRight = direction === 'right'
+  return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: 20,
+      position: 'relative',
+    }}>
+      <svg width="100%" height="20" viewBox="0 0 200 20" preserveAspectRatio="none"
+           style={{ maxWidth: 220 }}>
+        <defs>
+          <linearGradient id={`arr-${direction}`} x1={isRight ? 0 : 1} y1="0" x2={isRight ? 1 : 0} y2="0">
+            <stop offset="0%"  stopColor="var(--color-text-muted)" stopOpacity="0.1" />
+            <stop offset="100%" stopColor="var(--color-text-secondary)" stopOpacity="0.9" />
+          </linearGradient>
+        </defs>
+        {isRight ? (
+          <>
+            <line x1="4" y1="10" x2="186" y2="10"
+                  stroke={`url(#arr-${direction})`} strokeWidth="1.5" strokeLinecap="round" />
+            <polyline points="178,5 188,10 178,15"
+                      fill="none" stroke="var(--color-text-secondary)" strokeWidth="1.5"
+                      strokeLinecap="round" strokeLinejoin="round" opacity="0.9" />
+          </>
+        ) : (
+          <>
+            <line x1="196" y1="10" x2="14" y2="10"
+                  stroke={`url(#arr-${direction})`} strokeWidth="1.5" strokeLinecap="round" />
+            <polyline points="22,5 12,10 22,15"
+                      fill="none" stroke="var(--color-text-secondary)" strokeWidth="1.5"
+                      strokeLinecap="round" strokeLinejoin="round" opacity="0.9" />
+          </>
+        )}
+      </svg>
     </div>
   )
 }

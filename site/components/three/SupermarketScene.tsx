@@ -2,6 +2,7 @@
 
 import { CameraController } from './CameraController'
 import { StoreFloor, StudioLights } from './primitives'
+import { LandingScene } from './scenes/LandingScene'
 import { HeroScene } from './scenes/HeroScene'
 import { ConveyorScene } from './scenes/ConveyorScene'
 import { PaceScene } from './scenes/PaceScene'
@@ -29,14 +30,19 @@ const SCENE_BY_CHAPTER = [
 ] as const
 
 export function SupermarketScene({ chapter, entered }: Props) {
-  const Scene = SCENE_BY_CHAPTER[chapter] ?? HeroScene
+  // Landing → storefront exterior. After the user enters, chapter scenes take
+  // over (interior-of-the-store metaphor — shelves being stocked, etc.).
+  const Scene = entered ? (SCENE_BY_CHAPTER[chapter] ?? HeroScene) : LandingScene
 
   return (
     <>
       <CameraController chapter={chapter} entered={entered} />
-      <StudioLights chapter={chapter} />
+      <StudioLights chapter={chapter} entered={entered} />
       <StoreFloor />
-      <Scene entered={entered} />
+      {/* Keying on `entered` forces the active scene to remount when the
+          user transitions out of the landing state — the chapter-1 shelf
+          animation replays from t=0 instead of being half-done already. */}
+      <Scene entered={entered} key={`${chapter}-${entered}`} />
     </>
   )
 }

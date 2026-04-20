@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { gsap } from 'gsap'
 
@@ -15,18 +15,42 @@ interface Props {
 // (the brief between-chapter window where 3D is dominant and content is
 // faded). Camera targets are the original staging positions.
 const CAMERA_TARGETS: { pos: [number, number, number]; lookAt: [number, number, number] }[] = [
-  { pos: [0, 1.5, 9],  lookAt: [0, 0,   -2] }, // hero entrance
-  { pos: [0, 0.8, 8],  lookAt: [0, 0.2,  0] }, // Ch.1 Hero
+  { pos: [-1.2, 1.8, 12.0], lookAt: [2.2, 0.2, 0] }, // landing — storefront framed right 55%, sign above eye-line
+  { pos: [0, 0.9, 7.6],     lookAt: [0, -0.1,  0] }, // Ch.1 Hero — shelf stocking, centred
+
   { pos: [-2, 1.2, 7], lookAt: [0, 0.5,  0] }, // Ch.2 Conveyor
   { pos: [0, 2.5, 10], lookAt: [0, 0,    0] }, // Ch.3 Pace
   { pos: [0, 3.5, 11], lookAt: [0, 0,    0] }, // Ch.4 Aisles
   { pos: [0, 2,   9],  lookAt: [0, 0.5,  0] }, // Ch.5 Basket
 ]
 
+// Portrait-mode override for the landing: pulled back with a gentle tilt
+// so the store reads as "a Sainsbury's across the street" — canopy doesn't
+// occlude the sign, the scene sits in the lower half, text lives above.
+const LANDING_PORTRAIT: { pos: [number, number, number]; lookAt: [number, number, number] } = {
+  pos: [2.2, 2.6, 40.0],
+  lookAt: [2.6, -1.3, 0],
+}
+
 export function CameraController({ chapter, entered }: Props) {
   const { camera } = useThree()
   const mouseTarget = useRef({ x: 0, y: 0 })
   const mouseCurrent = useRef({ x: 0, y: 0 })
+  // Own portrait detection — useThree().size can be stale at mount time.
+  const [isPortrait, setIsPortrait] = useState(false)
+
+  useEffect(() => {
+    const compute = () => setIsPortrait(window.innerWidth < window.innerHeight)
+    compute()
+    window.addEventListener('resize', compute)
+    return () => window.removeEventListener('resize', compute)
+  }, [])
+
+  const resolveTarget = () => {
+    if (!entered && isPortrait) return LANDING_PORTRAIT
+    const idx = !entered ? 0 : chapter + 1
+    return CAMERA_TARGETS[idx] ?? CAMERA_TARGETS[1]
+  }
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
@@ -38,8 +62,7 @@ export function CameraController({ chapter, entered }: Props) {
   }, [])
 
   useEffect(() => {
-    const idx = !entered ? 0 : chapter + 1
-    const t = CAMERA_TARGETS[idx] ?? CAMERA_TARGETS[1]
+    const t = resolveTarget()
     gsap.to(camera.position, {
       x: t.pos[0],
       y: t.pos[1],
@@ -48,7 +71,8 @@ export function CameraController({ chapter, entered }: Props) {
       ease: 'expo.inOut',
       overwrite: 'auto',
     })
-  }, [chapter, entered, camera])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chapter, entered, camera, isPortrait])
 
   useFrame(() => {
     mouseCurrent.current.x +=
@@ -56,8 +80,7 @@ export function CameraController({ chapter, entered }: Props) {
     mouseCurrent.current.y +=
       (mouseTarget.current.y - mouseCurrent.current.y) * 0.03
 
-    const idx = !entered ? 0 : chapter + 1
-    const t = CAMERA_TARGETS[idx] ?? CAMERA_TARGETS[1]
+    const t = resolveTarget()
     camera.position.x =
       camera.position.x * 0.95 +
       (t.pos[0] + mouseCurrent.current.x * 0.4) * 0.05

@@ -37,22 +37,22 @@
   --accenture-purple-soft:  #F3F0FF;
 
   /* ─── Horizon (H1/H2/H3 — never repurposed as generic) ──── */
-  --horizon-1:      #0891B2;             /* cyan / teal                     */
+  --horizon-1:      #14b8a6;             /* teal - matches title gradient   */
   --horizon-2:      #059669;             /* emerald / green                 */
   --horizon-3:      #7C3AED;             /* purple                          */
-  --horizon-1-soft: #E6F7FA;
+  --horizon-1-soft: #ccfbf1;
   --horizon-2-soft: #E6FCF5;
   --horizon-3-soft: #F3EDFF;
 
   /* ─── Per-Chapter Accent Zones (D-DS-003) ────────────────── */
   --accent-ch1: var(--sainsburys-orange);  /* Ch.1 Hero — products landing  */
   --accent-ch2: var(--horizon-1);          /* Ch.2 Timeline — conveyor      */
-  --accent-ch3: var(--horizon-2);          /* Ch.3 Pace — trolley vs scan   */
+  --accent-ch3: var(--sainsburys-orange);  /* Ch.3 Learnings — Sainsbury's heat */
   --accent-ch4: var(--horizon-3);          /* Ch.4 Horizons — aisles        */
   --accent-ch5: var(--accenture-purple);   /* Ch.5 Every Engagement         */
   --accent-ch1-soft: var(--sainsburys-orange-soft);
   --accent-ch2-soft: var(--horizon-1-soft);
-  --accent-ch3-soft: var(--horizon-2-soft);
+  --accent-ch3-soft: var(--sainsburys-orange-soft);
   --accent-ch4-soft: var(--horizon-3-soft);
   --accent-ch5-soft: var(--accenture-purple-soft);
   --accent-ch5-gradient: linear-gradient(135deg, #F06C00 0%, #A100FF 100%);
@@ -328,3 +328,20 @@ button:focus-visible {
 
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── Responsive layout helpers ───────────────────────────────────────────── */
+/* Add className="chapter-row" to any flex row that holds left/right rails,    */
+/* "chapter-cols-3" / "chapter-cols-2" to grids of cards. Collapses to a       */
+/* single column under 900px so text stops wrapping one word per line.          */
+
+.chapter-row               { display: flex; gap: 56px; }
+.chapter-cols-3            { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.chapter-cols-2            { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+@media (max-width: 900px) {
+  .chapter-row             { flex-direction: column; gap: 24px; }
+  .chapter-row > *         { width: 100% !important; max-width: 100% !important; flex: 1 1 auto !important; }
+  .chapter-cols-3          { grid-template-columns: 1fr; gap: 12px; }
+  .chapter-cols-2          { grid-template-columns: 1fr; gap: 10px; }
+  .chapter-hide-mobile     { display: none !important; }
+}

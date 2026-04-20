@@ -81,8 +81,8 @@ fs.mkdirSync(outDir, { recursive: true });
     // 1..5: each chapter — use digit keys (page listens for 1-5)
     for (let i = 0; i < 5; i++) {
       await page.keyboard.press(String(i + 1));
-      // debounce 650ms + chapter-out 500ms + chapter-in 900ms + GSAP = wait 2s
-      await page.waitForTimeout(2000);
+      // HERO_MOMENT_MS 2200 + 0.55s content fade-in + 0.9s chapter GSAP + buffer
+      await page.waitForTimeout(3800);
 
       const label = `${bp.name}-${String(i + 1).padStart(2, '0')}-chapter${i + 1}.png`;
       file = path.join(outDir, label);

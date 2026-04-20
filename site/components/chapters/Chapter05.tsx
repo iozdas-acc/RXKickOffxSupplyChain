@@ -102,14 +102,15 @@ export function Chapter05({ isActive, onPrev }: Props) {
       </p>
 
       {/* Three pillars */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: 16,
-        width: '100%',
-        maxWidth: 900,
-        marginBottom: 48,
-      }}>
+      <div
+        className="chapter-cols-3"
+        style={{
+          gap: 16,
+          width: '100%',
+          maxWidth: 900,
+          marginBottom: 48,
+        }}
+      >
         {TEMPLATE_PILLARS.map((p, i) => (
           <div
             key={i}

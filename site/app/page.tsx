@@ -2,6 +2,9 @@
 
 import { Suspense, useCallback, useState, useRef, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
+import { EffectComposer, Bloom, Vignette, SMAA, Noise, ChromaticAberration } from '@react-three/postprocessing'
+import { BlendFunction, KernelSize } from 'postprocessing'
+import * as THREE from 'three'
 import { SupermarketScene } from '@/components/three/SupermarketScene'
 import { NavBar } from '@/components/presentation/NavBar'
 import { HeroEntrance } from '@/components/presentation/HeroEntrance'
@@ -13,7 +16,7 @@ import { Chapter05 } from '@/components/chapters/Chapter05'
 import { CHAPTERS } from '@/data/chapters'
 
 const DEBOUNCE_MS = 650
-const HERO_MOMENT_MS = 1100 // how long the 3D scene stays front-and-centre before content fades in
+const HERO_MOMENT_MS = 2200 // how long the 3D scene stays front-and-centre before content fades in
 
 export default function PresentationPage() {
   const [entered, setEntered] = useState(false)
@@ -89,28 +92,57 @@ export default function PresentationPage() {
       onClick={handleBgClick}
     >
       {/* ── PERSISTENT 3D CANVAS ──
-          Opacity swings with `heroMoment`: full-bleed dominant during the
-          between-chapter beat, drops to a faint ambient texture while content
-          is being read. */}
+          On the landing (!entered) the storefront IS the hero — never dim.
+          Once entered, opacity swings with `heroMoment`: full-bleed dominant
+          during the between-chapter beat, drops to a faint ambient texture
+          while content is being read. */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 0,
-        opacity: heroMoment ? 1 : 0.18,
+        opacity: !entered ? 1 : (heroMoment ? 1 : 0.18),
         transition: 'opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
         pointerEvents: 'none',
       }}>
         <Suspense fallback={null}>
           <Canvas
+            shadows="soft"
             camera={{ position: [0, 1.5, 9], fov: 58, near: 0.1, far: 60 }}
             gl={{
-              antialias: true,
+              antialias: false, // SMAA handles AA in the effect chain
               alpha: true, // transparent clear — page bg (#FAFAFA) shows where no geometry
               powerPreference: 'high-performance',
-              toneMapping: 0,
+              toneMapping: THREE.ACESFilmicToneMapping,
+              toneMappingExposure: 1.08,
             }}
-            dpr={[1, 1.5]}
+            dpr={[1, 2]}
             style={{ background: 'transparent' }}
           >
             <SupermarketScene chapter={chapter} entered={entered} />
+            <EffectComposer multisampling={0}>
+              <SMAA />
+              <Bloom
+                intensity={0.85}
+                luminanceThreshold={0.62}
+                luminanceSmoothing={0.22}
+                kernelSize={KernelSize.LARGE}
+                mipmapBlur
+              />
+              <ChromaticAberration
+                offset={[0.0008, 0.0012]}
+                radialModulation={true}
+                modulationOffset={0.35}
+                blendFunction={BlendFunction.NORMAL}
+              />
+              <Vignette
+                offset={0.3}
+                darkness={0.48}
+                blendFunction={BlendFunction.NORMAL}
+              />
+              <Noise
+                premultiply
+                opacity={0.06}
+                blendFunction={BlendFunction.SOFT_LIGHT}
+              />
+            </EffectComposer>
           </Canvas>
         </Suspense>
       </div>
@@ -121,6 +153,7 @@ export default function PresentationPage() {
           chapter={chapter}
           entered={entered}
           goTo={goTo}
+          goToLanding={() => setEntered(false)}
           next={next}
           prev={prev}
         />
