@@ -431,17 +431,26 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
       </div>
 
       {/* Three-column horizontal layout (stacks under 900px).
-          flex: 1 1 0 + minHeight: 0 lets the row absorb the remaining viewport
-          height after the header; children are measured against that. */}
-      <div className="chapter-row" style={{ flex: '1 1 0', gap: 'clamp(14px, 1.6vw, 22px)', minHeight: 0, alignItems: 'stretch' }}>
+          Row absorbs the remaining viewport height; children choose their own
+          vertical footprint via alignSelf so the sidebar stays menu-compact
+          while the right column can take the height its cards need. */}
+      <div className="chapter-row" style={{ flex: '1 1 0', gap: 'clamp(14px, 1.6vw, 22px)', minHeight: 0, alignItems: 'flex-start' }}>
 
-        {/* Left column: Project toggle buttons (vertical) */}
-        <div style={{ flex: '0 0 clamp(150px, 14vw, 186px)', display: 'flex', flexDirection: 'column', gap: 8, alignSelf: 'flex-start' }}>
+        {/* Left column: Project toggle buttons — compact vertical menu.
+            alignSelf: flex-start keeps the column at natural (content) height;
+            minHeight on each button guarantees the shorter one-line title and
+            the longer two-line title render as identical rectangles. */}
+        <div style={{ flex: '0 0 clamp(150px, 14vw, 186px)', display: 'flex', flexDirection: 'column', gap: 10, alignSelf: 'flex-start' }}>
           {PROJECTS.map((p, idx) => (
             <button
               key={p.id}
               onClick={() => setActiveProject(idx)}
               style={{
+                minHeight: 76,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
                 padding: '12px 14px',
                 background: activeProject === idx
                   ? 'color-mix(in srgb, var(--accent-ch2) 10%, transparent)'
@@ -482,12 +491,12 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
         </div>
 
         {/* Middle column: Project content.
-            Hard-capped at parent row height (maxHeight: '100%') so the card
-            can never exceed the available space below the header. Equal
-            vertical padding keeps breathing room symmetrical. */}
+            alignSelf: flex-start keeps the panel at its natural content height
+            (top-aligned with the sidebar menu) so it doesn't balloon to match
+            the taller screenshot column on the right. */}
         <div style={{
           flex: '0 0 clamp(240px, 22vw, 300px)',
-          alignSelf: 'stretch',
+          alignSelf: 'flex-start',
           minHeight: 0,
           maxHeight: '100%',
           background: 'var(--color-surface-card)',
@@ -546,7 +555,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           <div style={{ height: 1, background: 'color-mix(in srgb, var(--accent-ch2) 12%, transparent)', marginBottom: 10 }} />
 
           {/* Outcomes */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             {project.outcomes.map((item, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
                 <svg width="11" height="11" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, marginTop: 3 }}>
@@ -689,11 +698,13 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                 }
               }}
               style={{
-                // Fixed-width phone column so it stops expanding to fill the
-                // row height × aspect ratio on tall viewports. Internal iPhone
-                // mockup owns its own proportions (see below).
+                // Fixed-width phone column. alignSelf: flex-start anchors it
+                // to the top of the row alongside the sidebar and main panel;
+                // maxHeight caps it so the mock never dominates the layout.
                 flex: '0 0 clamp(150px, 13vw, 186px)',
-                alignSelf: 'stretch',
+                alignSelf: 'flex-start',
+                maxHeight: 'clamp(300px, 40vh, 380px)',
+                height: 'clamp(300px, 40vh, 380px)',
                 minHeight: 0,
                 background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 6%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 14%, var(--color-surface-card)))',
                 border: '1px solid color-mix(in srgb, var(--accent-ch2) 35%, transparent)',
