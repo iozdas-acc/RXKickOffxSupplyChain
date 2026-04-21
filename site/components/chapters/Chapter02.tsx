@@ -136,8 +136,8 @@ function FlipOutputCard({ label, url, href, thumbnail, password }: FlipCardProps
         width: '100%',
         flex: '1 1 0',
         minHeight: 0,
-        maxHeight: 200,
-        aspectRatio: '16 / 9',
+        maxHeight: 300,
+        aspectRatio: '3 / 2',
         perspective: 1200,
         cursor: 'pointer',
         position: 'relative',
@@ -592,8 +592,8 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                     width: '100%',
                     flex: '1 1 0',
                     minHeight: 0,
-                    maxHeight: 200,
-                    aspectRatio: '16 / 9',
+                    maxHeight: 300,
+                    aspectRatio: '3 / 2',
                     background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 4%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 10%, var(--color-surface-card)))',
                     border: '1px dashed color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
                     borderRadius: 10,
@@ -879,8 +879,8 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                     onClick={(e) => e.stopPropagation()}
                     style={{
                       flex: 1,
-                      maxHeight: 200,
-                      aspectRatio: '16 / 9',
+                      maxHeight: 300,
+                      aspectRatio: '3 / 2',
                       borderRadius: 10,
                       border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
                       backgroundColor: 'var(--color-surface-card)',
@@ -972,8 +972,8 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                     key={i}
                     style={{
                       flex: 1,
-                      maxHeight: 200,
-                      aspectRatio: '16 / 9',
+                      maxHeight: 300,
+                      aspectRatio: '3 / 2',
                       borderRadius: 10,
                       border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
                       backgroundColor: 'var(--color-surface-card)',
@@ -1023,8 +1023,8 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                   key={i}
                   style={{
                     flex: 1,
-                    maxHeight: 200,
-                    aspectRatio: '16 / 9',
+                    maxHeight: 300,
+                    aspectRatio: '3 / 2',
                     background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 4%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 10%, var(--color-surface-card)))',
                     border: '1px dashed color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
                     borderRadius: 10,
@@ -1123,8 +1123,8 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                     key={i}
                     style={{
                       flex: '0 0 calc((100% - 16px) / 2)',
-                      maxHeight: 200,
-                      aspectRatio: '16 / 9',
+                      maxHeight: 300,
+                      aspectRatio: '3 / 2',
                       borderRadius: 10,
                       border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
                       backgroundColor: 'var(--color-surface-card)',
@@ -1174,8 +1174,8 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                   key={i}
                   style={{
                     flex: '0 0 calc((100% - 20px) / 2)',
-                    maxHeight: 200,
-                    aspectRatio: '16 / 9',
+                    maxHeight: 300,
+                    aspectRatio: '3 / 2',
                     background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 4%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 10%, var(--color-surface-card)))',
                     border: '1px dashed color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
                     borderRadius: 10,
