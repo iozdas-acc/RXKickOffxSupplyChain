@@ -481,15 +481,19 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           ))}
         </div>
 
-        {/* Middle column: Project content */}
+        {/* Middle column: Project content.
+            Hard-capped at parent row height (maxHeight: '100%') so the card
+            can never exceed the available space below the header. Equal
+            vertical padding keeps breathing room symmetrical. */}
         <div style={{
           flex: '0 0 clamp(240px, 22vw, 300px)',
           alignSelf: 'stretch',
           minHeight: 0,
+          maxHeight: '100%',
           background: 'var(--color-surface-card)',
           border: '1px solid color-mix(in srgb, var(--accent-ch2) 20%, transparent)',
           borderRadius: 12,
-          padding: '16px 18px',
+          padding: '20px',
           boxShadow: 'var(--shadow-sm)',
           display: 'flex',
           flexDirection: 'column',
@@ -747,11 +751,14 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
 
               {/* Mid: stylised iPhone mock preview — fills the available vertical
                   space of the column, then derives width from its own aspect
-                  ratio so it stays a phone shape on any row height. */}
+                  ratio so it stays a phone shape on any row height. maxWidth
+                  caps it at the column width so the Launch Demo CTA below
+                  never gets pushed out of the viewport. */}
               <div style={{
                 position: 'relative',
                 flex: '1 1 0',
                 minHeight: 0,
+                maxWidth: '100%',
                 aspectRatio: '9 / 19.5',
                 borderRadius: 18,
                 background: 'linear-gradient(180deg, #111827 0%, #1f2937 100%)',
