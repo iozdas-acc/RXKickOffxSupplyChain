@@ -154,9 +154,11 @@ export function BasketAnimation() {
     // Scale + position wrap — scale halves the basket so it reads as a
     // confident-but-not-dominant hero object. Position offset shifts the
     // composition left (closing the dead space between text and canvas)
-    // and up (so the tub's visual centre of mass sits on the same
-    // horizontal axis as the headline, not below it).
-    <group scale={0.72} position={[-0.45, 0.22, 0]}>
+    // and up just enough that the tub's visual centre of mass projects to
+    // the same horizontal axis as the headline, not below it.
+    // (+0.17 ≈ basket local tub-centre offset × scale, chosen so tub
+    // centre lands on world origin / screen centre.)
+    <group scale={0.95} position={[-0.45, 0.22, 0]}>
       {/* Lights — one warm directional key + soft ambient for the toon shader */}
       <ambientLight intensity={0.6} />
       <directionalLight position={[5, 5, 3]} intensity={2} />

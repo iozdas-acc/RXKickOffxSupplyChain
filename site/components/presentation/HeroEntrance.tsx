@@ -145,7 +145,17 @@ export function HeroEntrance({ onEnter }: Props) {
           }}
         >
           <span style={{ color: 'var(--color-text-primary)', textShadow: titleShadow }}>FOR </span>
-          <span style={{ color: 'var(--sainsburys-orange)' }}>REINVENTION</span>
+          <span
+            style={{
+              backgroundImage: 'var(--accent-ch5-gradient)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              color: 'transparent',
+            }}
+          >
+            REINVENTION
+          </span>
         </div>
       </div>
 

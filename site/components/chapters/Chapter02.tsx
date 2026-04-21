@@ -377,8 +377,10 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        padding: '92px max(8vw, 32px) 32px',
-        gap: 20,
+        // Tighter gutter so there's more horizontal room for 4 columns on
+        // typical laptop viewports; scales gracefully on small screens.
+        padding: 'clamp(82px, 10vh, 100px) clamp(20px, 3.5vw, 64px) clamp(20px, 3vh, 36px)',
+        gap: 'clamp(12px, 1.6vh, 20px)',
         overflow: 'hidden', // slide must fit 100vh — nothing escapes
         opacity: 0, pointerEvents: isActive ? 'auto' : 'none',
       }}
@@ -387,9 +389,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
       <div style={{ flex: '0 0 auto' }}>
         <div style={{
           fontFamily: 'var(--font-space-mono)',
-          fontSize: 11, fontWeight: 700,
+          fontSize: 10, fontWeight: 700,
           textTransform: 'uppercase', letterSpacing: '0.3em',
-          color: 'color-mix(in srgb, var(--accent-ch2) 78%, black)', marginBottom: 14,
+          color: 'color-mix(in srgb, var(--accent-ch2) 78%, black)', marginBottom: 10,
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
           <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch2)', display: 'inline-block', borderRadius: 2 }} />
@@ -398,13 +400,13 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
 
         <h2 style={{
           fontFamily: 'var(--font-space-grotesk)',
-          fontSize: 'clamp(30px, 4vw, 46px)',
+          fontSize: 'clamp(26px, 3.4vw, 40px)',
           fontWeight: 700,
           textTransform: 'uppercase',
           lineHeight: 1,
           letterSpacing: '-0.03em',
           color: 'var(--color-text-primary)',
-          marginBottom: 14,
+          marginBottom: 10,
         }}>
           <span
             className="gradient-text-ch2"
@@ -431,24 +433,24 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
       {/* Three-column horizontal layout (stacks under 900px).
           flex: 1 1 0 + minHeight: 0 lets the row absorb the remaining viewport
           height after the header; children are measured against that. */}
-      <div className="chapter-row" style={{ flex: '1 1 0', gap: 28, minHeight: 0, alignItems: 'stretch' }}>
+      <div className="chapter-row" style={{ flex: '1 1 0', gap: 'clamp(14px, 1.6vw, 22px)', minHeight: 0, alignItems: 'stretch' }}>
 
         {/* Left column: Project toggle buttons (vertical) */}
-        <div style={{ flex: '0 0 200px', display: 'flex', flexDirection: 'column', gap: 10, alignSelf: 'flex-start' }}>
+        <div style={{ flex: '0 0 clamp(150px, 14vw, 186px)', display: 'flex', flexDirection: 'column', gap: 8, alignSelf: 'flex-start' }}>
           {PROJECTS.map((p, idx) => (
             <button
               key={p.id}
               onClick={() => setActiveProject(idx)}
               style={{
-                padding: '14px 16px',
-                background: activeProject === idx 
-                  ? 'color-mix(in srgb, var(--accent-ch2) 10%, transparent)' 
+                padding: '12px 14px',
+                background: activeProject === idx
+                  ? 'color-mix(in srgb, var(--accent-ch2) 10%, transparent)'
                   : 'var(--color-surface-card)',
-                border: activeProject === idx 
-                  ? '1px solid var(--accent-ch2)' 
+                border: activeProject === idx
+                  ? '1px solid var(--accent-ch2)'
                   : '1px solid color-mix(in srgb, var(--accent-ch2) 15%, transparent)',
-                borderLeft: activeProject === idx 
-                  ? '3px solid var(--accent-ch2)' 
+                borderLeft: activeProject === idx
+                  ? '3px solid var(--accent-ch2)'
                   : '3px solid color-mix(in srgb, var(--accent-ch2) 25%, transparent)',
                 borderRadius: 8,
                 cursor: 'pointer',
@@ -459,9 +461,10 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
             >
               <div style={{
                 fontFamily: 'var(--font-space-grotesk)',
-                fontSize: 13, fontWeight: 600,
+                fontSize: 12, fontWeight: 600,
                 color: activeProject === idx ? 'var(--accent-ch2)' : 'var(--color-text-primary)',
-                marginBottom: 4,
+                marginBottom: 3,
+                lineHeight: 1.2,
               }}>
                 {p.title}
               </div>
@@ -480,13 +483,13 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
 
         {/* Middle column: Project content */}
         <div style={{
-          flex: '0 0 300px',
+          flex: '0 0 clamp(240px, 22vw, 300px)',
           alignSelf: 'stretch',
           minHeight: 0,
           background: 'var(--color-surface-card)',
           border: '1px solid color-mix(in srgb, var(--accent-ch2) 20%, transparent)',
           borderRadius: 12,
-          padding: '20px',
+          padding: '16px 18px',
           boxShadow: 'var(--shadow-sm)',
           display: 'flex',
           flexDirection: 'column',
@@ -503,8 +506,8 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
 
           <div style={{
             fontFamily: 'var(--font-space-grotesk)',
-            fontSize: 20, fontWeight: 700,
-            color: 'var(--color-text-primary)', marginBottom: 8,
+            fontSize: 17, fontWeight: 700,
+            color: 'var(--color-text-primary)', marginBottom: 6,
             letterSpacing: '-0.01em',
             lineHeight: 1.15,
           }}>
@@ -513,39 +516,39 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
 
           <div style={{
             fontFamily: 'var(--font-dm-sans)',
-            fontSize: 12, color: 'var(--color-text-secondary)',
-            marginBottom: 16,
-            paddingBottom: 14,
+            fontSize: 11, color: 'var(--color-text-secondary)',
+            marginBottom: 10,
+            paddingBottom: 10,
             borderBottom: '1px solid color-mix(in srgb, var(--accent-ch2) 12%, transparent)',
           }}>
             {project.timeframe}
           </div>
 
           {/* Deliverables */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 10 }}>
             {project.deliverables.map((item, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
                   <circle cx="8" cy="8" r="7" stroke="var(--accent-ch2)" strokeWidth="1.5" fill="color-mix(in srgb, var(--accent-ch2) 10%, transparent)" />
                   <path d="M5 8L7 10L11 6" stroke="var(--accent-ch2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: 12, color: 'var(--color-text-primary)', lineHeight: 1.4 }}>
+                <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: 11.5, color: 'var(--color-text-primary)', lineHeight: 1.35 }}>
                   {item}
                 </span>
               </div>
             ))}
           </div>
 
-          <div style={{ height: 1, background: 'color-mix(in srgb, var(--accent-ch2) 12%, transparent)', marginBottom: 14 }} />
+          <div style={{ height: 1, background: 'color-mix(in srgb, var(--accent-ch2) 12%, transparent)', marginBottom: 10 }} />
 
           {/* Outcomes */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1 }}>
             {project.outcomes.map((item, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, marginTop: 3 }}>
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                <svg width="11" height="11" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, marginTop: 3 }}>
                   <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="var(--accent-ch2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: 12, color: 'var(--color-text-secondary)', lineHeight: 1.4 }}>
+                <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: 11.5, color: 'var(--color-text-secondary)', lineHeight: 1.35 }}>
                   {item}
                 </span>
               </div>
@@ -556,9 +559,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
         {/* Right column: Outputs - conditional layout based on whether mobile exists */}
         {project.outputs.find(o => o.type === 'mobile') ? (
           /* Layout for projects WITH mobile output: 2 stacked on left, 1 tall portrait on right */
-          <div style={{ flex: 1, display: 'flex', gap: 20, minHeight: 0, minWidth: 0 }}>
+          <div style={{ flex: 1, display: 'flex', gap: 'clamp(12px, 1.4vw, 18px)', minHeight: 0, minWidth: 0 }}>
             {/* Left side: 2 stacked 16:9 boxes */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, flex: 1, minHeight: 0, minWidth: 0, justifyContent: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flex: 1, minHeight: 0, minWidth: 0, justifyContent: 'center' }}>
               {project.outputs.filter(o => o.type !== 'mobile').map((output, i) => (
                 output.password && output.href ? (
                   <FlipOutputCard
@@ -682,12 +685,12 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                 }
               }}
               style={{
-                // Height-driven: fill the row, derive width from aspect ratio.
-                // Guarantees the phone never extends past the viewport.
-                height: '100%',
-                maxHeight: '100%',
-                aspectRatio: '9 / 19.5',
-                alignSelf: 'center',
+                // Fixed-width phone column so it stops expanding to fill the
+                // row height × aspect ratio on tall viewports. Internal iPhone
+                // mockup owns its own proportions (see below).
+                flex: '0 0 clamp(150px, 13vw, 186px)',
+                alignSelf: 'stretch',
+                minHeight: 0,
                 background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 6%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 14%, var(--color-surface-card)))',
                 border: '1px solid color-mix(in srgb, var(--accent-ch2) 35%, transparent)',
                 borderRadius: 10,
@@ -695,7 +698,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '16px 10px',
+                padding: '14px 10px',
                 gap: 10,
                 cursor: 'pointer',
                 transition: 'all 0.25s ease',
@@ -742,10 +745,13 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                 Interactive demo
               </div>
 
-              {/* Mid: stylised iPhone mock preview — tiny scaled phone frame */}
+              {/* Mid: stylised iPhone mock preview — fills the available vertical
+                  space of the column, then derives width from its own aspect
+                  ratio so it stays a phone shape on any row height. */}
               <div style={{
                 position: 'relative',
-                width: '62%',
+                flex: '1 1 0',
+                minHeight: 0,
                 aspectRatio: '9 / 19.5',
                 borderRadius: 18,
                 background: 'linear-gradient(180deg, #111827 0%, #1f2937 100%)',
@@ -841,9 +847,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           </div>
         ) : (
           /* Layout for projects WITHOUT mobile output: 2 on top, 1 below left (2+1 grid) */
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16, minHeight: 0, minWidth: 0, justifyContent: 'center' }}>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, minWidth: 0, justifyContent: 'center' }}>
             {/* Top row: 2 boxes side by side */}
-            <div style={{ display: 'flex', gap: 20, flex: '0 0 auto' }}>
+            <div style={{ display: 'flex', gap: 16, flex: '0 0 auto' }}>
               {project.outputs.slice(0, 2).map((output, i) => (
                 output.thumbnail && output.href ? (
                   <a
@@ -1092,13 +1098,13 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
             </div>
 
             {/* Bottom row: 1 box on the left */}
-            <div style={{ display: 'flex', gap: 20, flex: '0 0 auto' }}>
+            <div style={{ display: 'flex', gap: 16, flex: '0 0 auto' }}>
               {project.outputs.slice(2, 3).map((output, i) => (
                 output.thumbnail ? (
                   <div
                     key={i}
                     style={{
-                      flex: '0 0 calc((100% - 20px) / 2)',
+                      flex: '0 0 calc((100% - 16px) / 2)',
                       maxHeight: 200,
                       aspectRatio: '16 / 9',
                       borderRadius: 10,

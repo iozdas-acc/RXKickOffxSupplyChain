@@ -23,9 +23,9 @@ const LEARNINGS = [
       after: ', experience does.',
     },
     howMightWe: {
-      before: '...let clients ',
-      highlight: 'experience AI-native futures',
-      after: ', not just read about them?',
+      before: '...',
+      highlight: 'enable our teams to deliver explorable outputs',
+      after: '?',
     },
   },
   {

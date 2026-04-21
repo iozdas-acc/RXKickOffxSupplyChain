@@ -102,14 +102,21 @@ export default function PresentationPage() {
           position: 'absolute', inset: 0, zIndex: 0,
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
+          // Single row that fills the full viewport height — without this,
+          // grid-auto-rows defaults to `auto` and each cell shrinks to its
+          // content, leaving huge dead space below and breaking the flex
+          // centering inside HeroEntrance.
+          gridTemplateRows: '100%',
+          height: '100%',
+          alignItems: 'stretch',
         }}>
           {/* Left 50% — text */}
-          <div style={{ position: 'relative', minWidth: 0, overflow: 'hidden' }}>
+          <div style={{ position: 'relative', minWidth: 0, height: '100%', overflow: 'hidden' }}>
             <HeroEntrance onEnter={() => setEntered(true)} />
           </div>
 
           {/* Right 50% — basket canvas */}
-          <div style={{ position: 'relative', minWidth: 0, pointerEvents: 'none' }}>
+          <div style={{ position: 'relative', minWidth: 0, height: '100%', pointerEvents: 'none' }}>
             <Suspense fallback={null}>
               <Canvas
                 camera={{ position: [0, 3, 5], fov: 50, near: 0.1, far: 60 }}
