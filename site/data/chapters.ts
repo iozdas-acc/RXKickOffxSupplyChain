@@ -63,8 +63,8 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 3,
     slug: 'the-model',
-    label: '04 · THE HYBRID MODEL',
-    title: 'The Hybrid Approach',
+    label: '04 · THE HORIZONS MODEL',
+    title: 'The Horizons Model',
     titleLines: ['H3 VISION +', 'H1 EXECUTION', '= THE MODEL.'],
     subtitle: 'RX acceleration in the first half. Consulting agent tail in the second.',
     emotion: 'resolve',
@@ -79,8 +79,8 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 4,
     slug: 'the-template',
-    label: '05 · THE FUTURE',
-    title: 'The Future of Agentic Transformation',
+    label: '05 · THE HYBRID APPROACH',
+    title: 'The Hybrid Approach',
     titleLines: ['EVERY', 'ENGAGEMENT.', 'THIS WAY.'],
     subtitle: 'The Sainsbury\'s model is now the template for all future agentic transformation.',
     emotion: 'momentum',
