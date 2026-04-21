@@ -113,34 +113,6 @@ export function PasswordGate({ children }: Props) {
           textAlign: 'left',
         }}
       >
-        {/* Co-brand lockup — Sainsbury's × Accenture */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 18,
-            marginBottom: 28,
-          }}
-        >
-          <img
-            src="/images/sainsburys-logo.png"
-            alt="Sainsbury's"
-            style={{ height: 22, width: 'auto', objectFit: 'contain' }}
-          />
-          <span
-            style={{
-              width: 1,
-              height: 22,
-              background: 'var(--color-border-primary)',
-            }}
-          />
-          <img
-            src="/Acc_Logo_Black_Purple_RGB.png"
-            alt="Accenture"
-            style={{ height: 20, width: 'auto', objectFit: 'contain' }}
-          />
-        </div>
-
         {/* Tag */}
         <div
           style={{
