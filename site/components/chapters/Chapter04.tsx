@@ -12,23 +12,25 @@ const CURVE_HORIZONS = [
     sub: 'Copilot, local apps, workflow automation',
     color: 'var(--horizon-1)',
     // position on the 800×300 svg viewBox (after caption width clamp)
-    x: 70,  y: 238,
+    x: 70,  y: 256,
     align: 'right' as const, // caption sits right of badge
   },
   {
     id: 'H-ii',
+    // H-ii hugs H-i along the flat part of the curve — the big leap is II→III.
     title: 'Ecosystem & Infrastructure',
     sub: 'AI COE, integrated platforms, governance',
     color: 'var(--horizon-2)',
-    x: 400, y: 130,
+    x: 295, y: 238,
     align: 'right' as const,
   },
   {
     id: 'H-iii',
+    // Nudged inward from x=730 so the caption has ≥20px right-edge clearance.
     title: 'Bold Bets & Vision',
     sub: 'Autonomous operations, self-improving systems',
     color: 'var(--horizon-3)',
-    x: 730, y: 48,
+    x: 685, y: 60,
     align: 'left' as const,  // caption sits left of badge
   },
 ]
@@ -179,7 +181,7 @@ export function Chapter04({ isActive }: Props) {
 
       {/* ─── RIGHT: horizon pathway panel ───────────────────── */}
       <div style={{
-        flex: 1, maxWidth: 880,
+        flex: 1, maxWidth: 1240,
         position: 'relative',
         background: 'var(--color-surface-card)',
         border: '1px solid var(--color-border-primary)',
@@ -233,14 +235,15 @@ export function Chapter04({ isActive }: Props) {
             {/* Horizontal baseline */}
             <line x1="0" y1="265" x2="800" y2="265" stroke="var(--color-border-primary)" strokeWidth="1" />
 
-            {/* Exponential curve — area fill */}
+            {/* Exponential curve — area fill. Stays almost flat along the H-i → H-ii
+                span, then ramps steeply into H-iii so the visual gap matches the copy. */}
             <path
-              d="M 40 265 C 260 264, 430 240, 560 180 S 700 70, 760 40 L 760 265 L 40 265 Z"
+              d="M 40 262 C 160 260, 260 256, 340 244 C 460 228, 540 200, 590 150 C 640 95, 690 55, 760 28 L 760 265 L 40 265 Z"
               fill="url(#ch4-curve-fill)"
             />
             {/* Exponential curve — stroke */}
             <path
-              d="M 40 265 C 260 264, 430 240, 560 180 S 700 70, 760 40"
+              d="M 40 262 C 160 260, 260 256, 340 244 C 460 228, 540 200, 590 150 C 640 95, 690 55, 760 28"
               fill="none"
               stroke="url(#ch4-curve)"
               strokeWidth="2.5"
@@ -476,37 +479,34 @@ export function Chapter04({ isActive }: Props) {
 
 function ArrowCell({ direction }: { direction: 'left' | 'right' }) {
   const isRight = direction === 'right'
+  // Solid stroke at consistent opacity — the gradient version faded the body
+  // near-transparent so only the head was visible, which read as "broken".
+  const stroke = 'var(--color-text-secondary)'
   return (
     <div style={{
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      height: 20,
+      height: 22,
       position: 'relative',
     }}>
-      <svg width="100%" height="20" viewBox="0 0 200 20" preserveAspectRatio="none"
-           style={{ maxWidth: 220 }}>
-        <defs>
-          <linearGradient id={`arr-${direction}`} x1={isRight ? 0 : 1} y1="0" x2={isRight ? 1 : 0} y2="0">
-            <stop offset="0%"  stopColor="var(--color-text-muted)" stopOpacity="0.1" />
-            <stop offset="100%" stopColor="var(--color-text-secondary)" stopOpacity="0.9" />
-          </linearGradient>
-        </defs>
+      <svg width="100%" height="22" viewBox="0 0 200 22" preserveAspectRatio="none"
+           style={{ maxWidth: 220, opacity: 0.7 }}>
         {isRight ? (
           <>
-            <line x1="4" y1="10" x2="186" y2="10"
-                  stroke={`url(#arr-${direction})`} strokeWidth="1.5" strokeLinecap="round" />
-            <polyline points="178,5 188,10 178,15"
-                      fill="none" stroke="var(--color-text-secondary)" strokeWidth="1.5"
-                      strokeLinecap="round" strokeLinejoin="round" opacity="0.9" />
+            <line x1="6" y1="11" x2="182" y2="11"
+                  stroke={stroke} strokeWidth="1.6" strokeLinecap="round" />
+            <polyline points="176,5 190,11 176,17"
+                      fill="none" stroke={stroke} strokeWidth="1.6"
+                      strokeLinecap="round" strokeLinejoin="round" />
           </>
         ) : (
           <>
-            <line x1="196" y1="10" x2="14" y2="10"
-                  stroke={`url(#arr-${direction})`} strokeWidth="1.5" strokeLinecap="round" />
-            <polyline points="22,5 12,10 22,15"
-                      fill="none" stroke="var(--color-text-secondary)" strokeWidth="1.5"
-                      strokeLinecap="round" strokeLinejoin="round" opacity="0.9" />
+            <line x1="194" y1="11" x2="18" y2="11"
+                  stroke={stroke} strokeWidth="1.6" strokeLinecap="round" />
+            <polyline points="24,5 10,11 24,17"
+                      fill="none" stroke={stroke} strokeWidth="1.6"
+                      strokeLinecap="round" strokeLinejoin="round" />
           </>
         )}
       </svg>

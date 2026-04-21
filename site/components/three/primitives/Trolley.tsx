@@ -26,9 +26,10 @@ const WHEEL_THICKNESS = 0.09
 const HANDLE_HEIGHT = 0.9
 const HANDLE_TUBE = 0.04
 
-// Trolley body default — cool steel grey, not a chapter accent.
-const TROLLEY_BODY = '#BFC4CC'
-const WHEEL_COLOR = '#2A2A2A'
+// Trolley body default — warm charcoal, echoes the storefront fascia so it
+// sits in the same palette family as the orange accents (not a cool grey).
+const TROLLEY_BODY = '#2B2620'
+const WHEEL_COLOR = '#151311'
 
 export function Trolley({
   position,

@@ -134,6 +134,9 @@ function FlipOutputCard({ label, url, href, thumbnail, password }: FlipCardProps
       onKeyDown={onKeyDown}
       style={{
         width: '100%',
+        flex: '1 1 0',
+        minHeight: 0,
+        maxHeight: 200,
         aspectRatio: '16 / 9',
         perspective: 1200,
         cursor: 'pointer',
@@ -160,16 +163,27 @@ function FlipOutputCard({ label, url, href, thumbnail, password }: FlipCardProps
           border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
           backgroundColor: 'var(--color-surface-card)',
           backgroundImage: thumbnail
-            ? `linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%), url(${thumbnail})`
+            ? `linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.55) 100%), url(${thumbnail})`
             : 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 8%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 20%, var(--color-surface-card)))',
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          // Anchor to top so the clipped thumbnail reads as "there's more below"
+          backgroundPosition: 'top center',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: 10,
           boxShadow: 'var(--shadow-sm)',
         }}>
+          {/* Fade gradient at the bottom — signals clipped content */}
+          {thumbnail && (
+            <div aria-hidden style={{
+              position: 'absolute',
+              left: 0, right: 0, bottom: 0,
+              height: 70,
+              pointerEvents: 'none',
+              background: 'linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--color-surface-card) 85%, transparent) 100%)',
+            }} />
+          )}
           {/* Top-right pill: reveal hint */}
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <div style={{
@@ -362,14 +376,15 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
         position: 'absolute', inset: 0,
         display: 'flex',
         flexDirection: 'column',
-        padding: 'clamp(20px, 2.5vw, 40px)',
-        paddingTop: 80,
+        justifyContent: 'flex-start',
+        padding: '92px max(8vw, 32px) 32px',
         gap: 20,
+        overflow: 'hidden', // slide must fit 100vh — nothing escapes
         opacity: 0, pointerEvents: isActive ? 'auto' : 'none',
       }}
     >
       {/* Header - title with subtitle underneath */}
-      <div style={{ paddingBottom: 24 }}>
+      <div style={{ flex: '0 0 auto' }}>
         <div style={{
           fontFamily: 'var(--font-space-mono)',
           fontSize: 11, fontWeight: 700,
@@ -383,15 +398,15 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
 
         <h2 style={{
           fontFamily: 'var(--font-space-grotesk)',
-          fontSize: 'clamp(36px, 5vw, 56px)',
+          fontSize: 'clamp(30px, 4vw, 46px)',
           fontWeight: 700,
           textTransform: 'uppercase',
           lineHeight: 1,
           letterSpacing: '-0.03em',
           color: 'var(--color-text-primary)',
-          marginBottom: 18,
+          marginBottom: 14,
         }}>
-          <span 
+          <span
             className="gradient-text-ch2"
             style={{
               backgroundImage: 'linear-gradient(135deg, #134e4a 0%, #14b8a6 50%, #0f766e 100%)',
@@ -405,16 +420,19 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
 
         <p style={{
           fontFamily: 'var(--font-dm-sans)',
-          fontSize: 14, color: 'var(--color-text-secondary)',
-          lineHeight: 1.65,
+          fontSize: 13, color: 'var(--color-text-secondary)',
+          lineHeight: 1.55,
+          maxWidth: 900,
         }}>
           Fresh thinking and AI embedded into traditional discovery projects and bid responses - sharpening our approach, delivering client value and strengthening our right to win.
         </p>
       </div>
 
-      {/* Three-column horizontal layout (stacks under 900px) */}
-      <div className="chapter-row" style={{ flex: 1, gap: 20, minHeight: 0, marginTop: 8 }}>
-        
+      {/* Three-column horizontal layout (stacks under 900px).
+          flex: 1 1 0 + minHeight: 0 lets the row absorb the remaining viewport
+          height after the header; children are measured against that. */}
+      <div className="chapter-row" style={{ flex: '1 1 0', gap: 28, minHeight: 0, alignItems: 'stretch' }}>
+
         {/* Left column: Project toggle buttons (vertical) */}
         <div style={{ flex: '0 0 200px', display: 'flex', flexDirection: 'column', gap: 10, alignSelf: 'flex-start' }}>
           {PROJECTS.map((p, idx) => (
@@ -461,10 +479,10 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
         </div>
 
         {/* Middle column: Project content */}
-        <div style={{ 
-          flex: '0 0 320px',
-          alignSelf: 'flex-start',
-          height: 'calc(((380px * 9 / 16) * 2) + 12px)',
+        <div style={{
+          flex: '0 0 300px',
+          alignSelf: 'stretch',
+          minHeight: 0,
           background: 'var(--color-surface-card)',
           border: '1px solid color-mix(in srgb, var(--accent-ch2) 20%, transparent)',
           borderRadius: 12,
@@ -538,9 +556,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
         {/* Right column: Outputs - conditional layout based on whether mobile exists */}
         {project.outputs.find(o => o.type === 'mobile') ? (
           /* Layout for projects WITH mobile output: 2 stacked on left, 1 tall portrait on right */
-          <div style={{ flex: 1, display: 'flex', gap: 12, alignSelf: 'flex-start', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+          <div style={{ flex: 1, display: 'flex', gap: 20, minHeight: 0, minWidth: 0 }}>
             {/* Left side: 2 stacked 16:9 boxes */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, flex: 1, maxWidth: 380 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, flex: 1, minHeight: 0, minWidth: 0, justifyContent: 'center' }}>
               {project.outputs.filter(o => o.type !== 'mobile').map((output, i) => (
                 output.password && output.href ? (
                   <FlipOutputCard
@@ -556,6 +574,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                   key={i}
                   style={{
                     width: '100%',
+                    flex: '1 1 0',
+                    minHeight: 0,
+                    maxHeight: 200,
                     aspectRatio: '16 / 9',
                     background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 4%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 10%, var(--color-surface-card)))',
                     border: '1px dashed color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
@@ -661,8 +682,12 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                 }
               }}
               style={{
-                height: 'calc(((380px * 9 / 16) * 2) + 12px)',
+                // Height-driven: fill the row, derive width from aspect ratio.
+                // Guarantees the phone never extends past the viewport.
+                height: '100%',
+                maxHeight: '100%',
                 aspectRatio: '9 / 19.5',
+                alignSelf: 'center',
                 background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 6%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 14%, var(--color-surface-card)))',
                 border: '1px solid color-mix(in srgb, var(--accent-ch2) 35%, transparent)',
                 borderRadius: 10,
@@ -670,7 +695,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '22px 12px',
+                padding: '16px 10px',
                 gap: 10,
                 cursor: 'pointer',
                 transition: 'all 0.25s ease',
@@ -816,10 +841,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           </div>
         ) : (
           /* Layout for projects WITHOUT mobile output: 2 on top, 1 below left (2+1 grid) */
-          /* Height matches the content box height */
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12, alignSelf: 'flex-start', height: 'calc(((380px * 9 / 16) * 2) + 12px)' }}>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16, minHeight: 0, minWidth: 0, justifyContent: 'center' }}>
             {/* Top row: 2 boxes side by side */}
-            <div style={{ display: 'flex', gap: 12, flex: 1 }}>
+            <div style={{ display: 'flex', gap: 20, flex: '0 0 auto' }}>
               {project.outputs.slice(0, 2).map((output, i) => (
                 output.thumbnail && output.href ? (
                   <a
@@ -830,14 +854,15 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
                     style={{
-                      height: '100%',
+                      flex: 1,
+                      maxHeight: 200,
                       aspectRatio: '16 / 9',
                       borderRadius: 10,
                       border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
                       backgroundColor: 'var(--color-surface-card)',
-                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.58) 100%), url(${output.thumbnail})`,
+                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.58) 100%), url(${output.thumbnail})`,
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center',
+                      backgroundPosition: 'top center',
                       boxShadow: 'var(--shadow-sm)',
                       display: 'flex',
                       flexDirection: 'column',
@@ -858,6 +883,14 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                       e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
                     }}
                   >
+                    {/* Fade gradient at the bottom — signals clipped content */}
+                    <div aria-hidden style={{
+                      position: 'absolute',
+                      left: 0, right: 0, bottom: 0,
+                      height: 70,
+                      pointerEvents: 'none',
+                      background: 'linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--color-surface-card) 85%, transparent) 100%)',
+                    }} />
                     {/* Top-right "Open site" pill */}
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                       <div style={{
@@ -914,14 +947,15 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                   <div
                     key={i}
                     style={{
-                      height: '100%',
+                      flex: 1,
+                      maxHeight: 200,
                       aspectRatio: '16 / 9',
                       borderRadius: 10,
                       border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
                       backgroundColor: 'var(--color-surface-card)',
-                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.58) 100%), url(${output.thumbnail})`,
+                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.58) 100%), url(${output.thumbnail})`,
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center',
+                      backgroundPosition: 'top center',
                       boxShadow: 'var(--shadow-sm)',
                       display: 'flex',
                       flexDirection: 'column',
@@ -931,6 +965,14 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                       overflow: 'hidden',
                     }}
                   >
+                    {/* Fade gradient at the bottom — signals clipped content */}
+                    <div aria-hidden style={{
+                      position: 'absolute',
+                      left: 0, right: 0, bottom: 0,
+                      height: 70,
+                      pointerEvents: 'none',
+                      background: 'linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--color-surface-card) 85%, transparent) 100%)',
+                    }} />
                     {/* Bottom label */}
                     <div style={{
                       padding: '8px 10px',
@@ -956,7 +998,8 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                 <div
                   key={i}
                   style={{
-                    height: '100%',
+                    flex: 1,
+                    maxHeight: 200,
                     aspectRatio: '16 / 9',
                     background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 4%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 10%, var(--color-surface-card)))',
                     border: '1px dashed color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
@@ -1049,20 +1092,21 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
             </div>
 
             {/* Bottom row: 1 box on the left */}
-            <div style={{ display: 'flex', gap: 12, flex: 1 }}>
+            <div style={{ display: 'flex', gap: 20, flex: '0 0 auto' }}>
               {project.outputs.slice(2, 3).map((output, i) => (
                 output.thumbnail ? (
                   <div
                     key={i}
                     style={{
-                      height: '100%',
+                      flex: '0 0 calc((100% - 20px) / 2)',
+                      maxHeight: 200,
                       aspectRatio: '16 / 9',
                       borderRadius: 10,
                       border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
                       backgroundColor: 'var(--color-surface-card)',
-                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.58) 100%), url(${output.thumbnail})`,
+                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.58) 100%), url(${output.thumbnail})`,
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center',
+                      backgroundPosition: 'top center',
                       boxShadow: 'var(--shadow-sm)',
                       display: 'flex',
                       flexDirection: 'column',
@@ -1072,6 +1116,14 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                       overflow: 'hidden',
                     }}
                   >
+                    {/* Fade gradient at the bottom — signals clipped content */}
+                    <div aria-hidden style={{
+                      position: 'absolute',
+                      left: 0, right: 0, bottom: 0,
+                      height: 70,
+                      pointerEvents: 'none',
+                      background: 'linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--color-surface-card) 85%, transparent) 100%)',
+                    }} />
                     {/* Bottom label */}
                     <div style={{
                       padding: '8px 10px',
@@ -1097,7 +1149,8 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                 <div
                   key={i}
                   style={{
-                    height: '100%',
+                    flex: '0 0 calc((100% - 20px) / 2)',
+                    maxHeight: 200,
                     aspectRatio: '16 / 9',
                     background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 4%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 10%, var(--color-surface-card)))',
                     border: '1px dashed color-mix(in srgb, var(--accent-ch2) 30%, transparent)',

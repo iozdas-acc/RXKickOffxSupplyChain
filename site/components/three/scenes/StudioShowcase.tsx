@@ -2,7 +2,13 @@
 
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-import type { Group } from 'three'
+import { BackSide, type Group } from 'three'
+
+// Brand orange for the bottle + a darker ink tone used for the inverted-hull
+// outline pass. Keeps the silhouette legible on the warm #FAFAFA canvas.
+const BOTTLE_ORANGE = '#E8590C'
+const OUTLINE_INK = '#1A1A1A'
+const OUTLINE_SCALE = 1.045
 
 // Landing-only studio product showcase. Three objects floating in a loose
 // triangle — static camera, transparent canvas, no shadows. Used in the
@@ -55,23 +61,45 @@ export function StudioShowcase() {
         </mesh>
       </group>
 
-      {/* Bottle — narrow neck on a wider base, deep charcoal with slight gloss */}
+      {/* Bottle — narrow neck on a wider base. Full brand orange with a dark
+          inverted-hull outline so the silhouette reads clearly against the
+          warm, near-white canvas (no more "black blob" on the landing). */}
       <group ref={bottleRef} position={[1.3, BOTTLE_BASE_Y, -0.55]}>
+        {/* Body */}
+        <mesh position={[0, -0.15, 0]} scale={OUTLINE_SCALE}>
+          <cylinderGeometry args={[0.36, 0.38, 0.95, 24]} />
+          <meshBasicMaterial color={OUTLINE_INK} side={BackSide} />
+        </mesh>
         <mesh position={[0, -0.15, 0]}>
           <cylinderGeometry args={[0.36, 0.38, 0.95, 24]} />
-          <meshStandardMaterial color="#1A1A2E" metalness={0.3} roughness={0.4} />
+          <meshStandardMaterial color={BOTTLE_ORANGE} metalness={0.15} roughness={0.45} />
+        </mesh>
+        {/* Shoulder */}
+        <mesh position={[0, 0.45, 0]} scale={OUTLINE_SCALE}>
+          <cylinderGeometry args={[0.15, 0.36, 0.24, 24]} />
+          <meshBasicMaterial color={OUTLINE_INK} side={BackSide} />
         </mesh>
         <mesh position={[0, 0.45, 0]}>
           <cylinderGeometry args={[0.15, 0.36, 0.24, 24]} />
-          <meshStandardMaterial color="#1A1A2E" metalness={0.3} roughness={0.4} />
+          <meshStandardMaterial color={BOTTLE_ORANGE} metalness={0.15} roughness={0.45} />
+        </mesh>
+        {/* Neck */}
+        <mesh position={[0, 0.66, 0]} scale={OUTLINE_SCALE}>
+          <cylinderGeometry args={[0.14, 0.14, 0.2, 24]} />
+          <meshBasicMaterial color={OUTLINE_INK} side={BackSide} />
         </mesh>
         <mesh position={[0, 0.66, 0]}>
           <cylinderGeometry args={[0.14, 0.14, 0.2, 24]} />
-          <meshStandardMaterial color="#1A1A2E" metalness={0.3} roughness={0.4} />
+          <meshStandardMaterial color={BOTTLE_ORANGE} metalness={0.15} roughness={0.45} />
+        </mesh>
+        {/* Cap */}
+        <mesh position={[0, 0.82, 0]} scale={OUTLINE_SCALE}>
+          <cylinderGeometry args={[0.17, 0.17, 0.12, 24]} />
+          <meshBasicMaterial color={OUTLINE_INK} side={BackSide} />
         </mesh>
         <mesh position={[0, 0.82, 0]}>
           <cylinderGeometry args={[0.17, 0.17, 0.12, 24]} />
-          <meshStandardMaterial color="#1A1A2E" metalness={0.4} roughness={0.35} />
+          <meshStandardMaterial color={BOTTLE_ORANGE} metalness={0.2} roughness={0.4} />
         </mesh>
       </group>
 

@@ -93,8 +93,14 @@ export function Chapter03({ isActive, onNext: _onNext, onPrev: _onPrev }: Props)
       className="chapter-row scrollbar-hide"
       style={{
         position: 'absolute', inset: 0,
-        padding: 'clamp(48px, 6vw, 100px)',
+        // Vertically centre the content block within the viewport — no dead
+        // space at the bottom. 8vw side padding matches the copy-centric
+        // register of this editorial slide (no 3D backdrop to frame it).
+        paddingLeft: '8vw',
+        paddingRight: '8vw',
         paddingTop: 120,
+        paddingBottom: 48,
+        alignItems: 'center',
         opacity: 0, pointerEvents: isActive ? 'auto' : 'none',
         overflowY: 'auto',
       }}
@@ -125,7 +131,7 @@ export function Chapter03({ isActive, onNext: _onNext, onPrev: _onPrev }: Props)
           fontFamily: 'var(--font-space-mono)',
           fontSize: 10, fontWeight: 700,
           textTransform: 'uppercase', letterSpacing: '0.3em',
-          color: INK, marginBottom: 28,
+          color: INK, marginBottom: 44,
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
           <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch3)', display: 'inline-block', borderRadius: 2 }} />
@@ -134,13 +140,13 @@ export function Chapter03({ isActive, onNext: _onNext, onPrev: _onPrev }: Props)
 
         <h2 style={{
           fontFamily: 'var(--font-space-grotesk)',
-          fontSize: 'clamp(36px, 4.5vw, 56px)',
+          fontSize: 'clamp(42px, 5.2vw, 64px)',
           fontWeight: 700,
           textTransform: 'uppercase',
           lineHeight: 0.95,
           letterSpacing: '-0.02em',
           color: 'var(--color-text-primary)',
-          marginBottom: 24,
+          marginBottom: 40,
         }}>
           AI-LED<br />
           REINVENTION<br />
@@ -156,7 +162,7 @@ export function Chapter03({ isActive, onNext: _onNext, onPrev: _onPrev }: Props)
         <p style={{
           fontFamily: 'var(--font-dm-sans)',
           fontSize: 15, color: 'var(--color-text-secondary)',
-          lineHeight: 1.75, marginBottom: 36, maxWidth: 360,
+          lineHeight: 1.75, marginBottom: 52, maxWidth: 360,
         }}>
           Traditional discovery holds back reinvention, pace, and organisational belief — a new template is needed to scale.
         </p>
@@ -188,7 +194,8 @@ export function Chapter03({ isActive, onNext: _onNext, onPrev: _onPrev }: Props)
           display: 'grid',
           gridTemplateColumns: '28px 1fr 32px 1.2fr',
           gap: 16,
-          marginBottom: 16,
+          marginTop: 12,
+          marginBottom: 28,
           paddingLeft: 14,
         }}>
           <div />
@@ -213,7 +220,7 @@ export function Chapter03({ isActive, onNext: _onNext, onPrev: _onPrev }: Props)
           </p>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, flex: 1 }}>
           {LEARNINGS.map((item, i) => (
             <div
               key={i}
@@ -222,7 +229,7 @@ export function Chapter03({ isActive, onNext: _onNext, onPrev: _onPrev }: Props)
                 gridTemplateColumns: '28px 1fr 32px 1.2fr',
                 alignItems: 'center',
                 gap: 16,
-                padding: '16px 20px 16px 14px',
+                padding: '26px 22px 26px 16px',
                 background: `linear-gradient(135deg, var(--color-surface-card), color-mix(in srgb, var(--accent-ch3) 2%, var(--color-surface-card)))`,
                 border: '1px solid var(--color-border-primary)',
                 borderLeft: `3px solid color-mix(in srgb, var(--accent-ch3) ${25 + i * 5}%, transparent)`,

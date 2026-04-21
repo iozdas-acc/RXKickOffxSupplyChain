@@ -6,7 +6,7 @@ import { EffectComposer, Bloom, Vignette, SMAA, Noise, ChromaticAberration } fro
 import { BlendFunction, KernelSize } from 'postprocessing'
 import * as THREE from 'three'
 import { SupermarketScene } from '@/components/three/SupermarketScene'
-import { StudioShowcase } from '@/components/three/scenes/StudioShowcase'
+import { BasketAnimation } from '@/components/three/scenes/BasketAnimation'
 import { NavBar } from '@/components/presentation/NavBar'
 import { HeroEntrance } from '@/components/presentation/HeroEntrance'
 import { Chapter01 } from '@/components/chapters/Chapter01'
@@ -27,17 +27,6 @@ export default function PresentationPage() {
   // heroMoment = false → content is readable, 3D drops to a faint ambient texture
   const [heroMoment, setHeroMoment] = useState(true)
   const lastNavTime = useRef(0)
-
-  // Landing split uses a right-half canvas on wide viewports, bottom-half on
-  // narrow. Matches the breakpoint logic in HeroEntrance so text + scene stay
-  // out of each other's way.
-  const [isWide, setIsWide] = useState(false)
-  useEffect(() => {
-    const fn = () => setIsWide(window.innerWidth >= 900)
-    fn()
-    window.addEventListener('resize', fn)
-    return () => window.removeEventListener('resize', fn)
-  }, [])
 
   // Trigger a hero moment whenever chapter or entered flips.
   useEffect(() => {
@@ -103,42 +92,47 @@ export default function PresentationPage() {
       }}
       onClick={handleBgClick}
     >
-      {/* ── 3D CANVAS ──
-          Landing (!entered): studio product showcase pinned to the right half
-          on wide viewports (bottom half on narrow). Transparent, no shadows,
-          no post-processing so text on the left half never fights the scene.
-          Entered: full-screen chapter scenes with the cinematic FX stack. Its
-          opacity swings with `heroMoment` — dominant during the between-chapter
-          beat, faint ambient texture while content is being read. */}
+      {/* ── LANDING HERO ──
+          Strict 50/50 CSS grid. Left cell = text (HeroEntrance). Right cell =
+          basket canvas. The two cells are sibling grid children — they can
+          never overlap. After entering, the full-screen chapter canvas + FX
+          stack takes over below. */}
       {!entered ? (
         <div style={{
-          position: 'absolute',
-          top: isWide ? 0 : '50%',
-          right: 0,
-          bottom: 0,
-          left: isWide ? '50%' : 0,
-          zIndex: 0,
-          pointerEvents: 'none',
+          position: 'absolute', inset: 0, zIndex: 0,
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
         }}>
-          <Suspense fallback={null}>
-            <Canvas
-              camera={{ position: [0, 0, 5], fov: 45, near: 0.1, far: 60 }}
-              gl={{
-                antialias: true,
-                alpha: true,
-                powerPreference: 'high-performance',
-              }}
-              dpr={[1, 2]}
-              style={{ background: 'transparent' }}
-            >
-              <StudioShowcase />
-            </Canvas>
-          </Suspense>
+          {/* Left 50% — text */}
+          <div style={{ position: 'relative', minWidth: 0, overflow: 'hidden' }}>
+            <HeroEntrance onEnter={() => setEntered(true)} />
+          </div>
+
+          {/* Right 50% — basket canvas */}
+          <div style={{ position: 'relative', minWidth: 0, pointerEvents: 'none' }}>
+            <Suspense fallback={null}>
+              <Canvas
+                camera={{ position: [0, 3, 5], fov: 50, near: 0.1, far: 60 }}
+                gl={{
+                  antialias: true,
+                  alpha: true,
+                  powerPreference: 'high-performance',
+                }}
+                dpr={[1, 2]}
+                style={{ background: 'transparent' }}
+              >
+                <BasketAnimation />
+              </Canvas>
+            </Suspense>
+          </div>
         </div>
       ) : (
         <div style={{
           position: 'absolute', inset: 0, zIndex: 0,
-          opacity: heroMoment ? 1 : 0.18,
+          // Chapter 3 (the-learning) is a pure editorial slide — no 3D backdrop,
+          // no ghost storefront, no chromatic-aberration horizon fringe. Keep
+          // the canvas mounted (scenes still preload for Ch.4/5) but hide it.
+          opacity: chapter === 2 ? 0 : (heroMoment ? 1 : 0.18),
           transition: 'opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
           pointerEvents: 'none',
         }}>
@@ -167,9 +161,9 @@ export default function PresentationPage() {
                   mipmapBlur
                 />
                 <ChromaticAberration
-                  offset={[0.0008, 0.0012]}
+                  offset={[0.0003, 0.0004]}
                   radialModulation={true}
-                  modulationOffset={0.35}
+                  modulationOffset={0.55}
                   blendFunction={BlendFunction.NORMAL}
                 />
                 <Vignette
@@ -199,11 +193,6 @@ export default function PresentationPage() {
           prev={prev}
         />
       </div>
-
-      {/* ── HERO ENTRANCE (before entering) ── */}
-      {!entered && (
-        <HeroEntrance onEnter={() => setEntered(true)} />
-      )}
 
       {/* ── CHAPTER CONTENT (after entering) ──
           Container fades in once the hero moment ends — chapter's internal
