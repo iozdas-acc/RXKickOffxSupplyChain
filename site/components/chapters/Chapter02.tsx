@@ -580,7 +580,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           /* Layout for projects WITH mobile output: 2 stacked on left, 1 tall portrait on right */
           <div style={{ flex: 1, display: 'flex', gap: 6, minHeight: 0, minWidth: 0 }}>
             {/* Left side: 2 stacked 16:9 boxes */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flex: 1, minHeight: 0, minWidth: 0, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flex: '1 1 auto', maxWidth: 560, minHeight: 0, minWidth: 0, justifyContent: 'flex-start', alignItems: 'stretch' }}>
               {project.outputs.filter(o => o.type !== 'mobile').map((output, i) => (
                 output.password && output.href ? (
                   <FlipOutputCard
