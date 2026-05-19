@@ -135,10 +135,9 @@ function FlipOutputCard({ label, url, href, thumbnail, password }: FlipCardProps
       style={{
         width: '100%',
         maxWidth: 560,
-        alignSelf: 'center',
-        flex: '0 1 auto',
+        alignSelf: 'flex-start',
+        flex: '1 1 0',
         minHeight: 0,
-        aspectRatio: '3 / 2',
         perspective: 1200,
         cursor: 'pointer',
         position: 'relative',
@@ -581,7 +580,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           /* Layout for projects WITH mobile output: 2 stacked on left, 1 tall portrait on right */
           <div style={{ flex: 1, display: 'flex', gap: 'clamp(12px, 1.4vw, 18px)', minHeight: 0, minWidth: 0 }}>
             {/* Left side: 2 stacked 16:9 boxes */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flex: 1, minHeight: 0, minWidth: 0, justifyContent: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flex: 1, minHeight: 0, minWidth: 0, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
               {project.outputs.filter(o => o.type !== 'mobile').map((output, i) => (
                 output.password && output.href ? (
                   <FlipOutputCard
@@ -598,10 +597,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                   style={{
                     width: '100%',
                     maxWidth: 560,
-                    alignSelf: 'center',
-                    flex: '0 1 auto',
+                    alignSelf: 'flex-start',
+                    flex: '1 1 0',
                     minHeight: 0,
-                    aspectRatio: '3 / 2',
                     background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 4%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 10%, var(--color-surface-card)))',
                     border: '1px dashed color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
                     borderRadius: 10,
@@ -706,13 +704,10 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                 }
               }}
               style={{
-                // Fixed-width phone column. alignSelf: flex-start anchors it
-                // to the top of the row alongside the sidebar and main panel;
-                // maxHeight caps it so the mock never dominates the layout.
+                // Phone column stretches to match the full height of the
+                // 2-card stack on its left so the row reads as a single block.
                 flex: '0 0 clamp(150px, 13vw, 186px)',
-                alignSelf: 'flex-start',
-                maxHeight: 'clamp(300px, 40vh, 380px)',
-                height: 'clamp(300px, 40vh, 380px)',
+                alignSelf: 'stretch',
                 minHeight: 0,
                 background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 6%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 14%, var(--color-surface-card)))',
                 border: '1px solid color-mix(in srgb, var(--accent-ch2) 35%, transparent)',
