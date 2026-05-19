@@ -578,7 +578,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
         {/* Right column: Outputs - conditional layout based on whether mobile exists */}
         {project.outputs.find(o => o.type === 'mobile') ? (
           /* Layout for projects WITH mobile output: 2 stacked on left, 1 tall portrait on right */
-          <div style={{ flex: 1, display: 'flex', gap: 'clamp(12px, 1.4vw, 18px)', minHeight: 0, minWidth: 0 }}>
+          <div style={{ flex: 1, display: 'flex', gap: 6, minHeight: 0, minWidth: 0 }}>
             {/* Left side: 2 stacked 16:9 boxes */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flex: 1, minHeight: 0, minWidth: 0, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
               {project.outputs.filter(o => o.type !== 'mobile').map((output, i) => (
