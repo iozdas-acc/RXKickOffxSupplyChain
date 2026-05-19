@@ -134,9 +134,10 @@ function FlipOutputCard({ label, url, href, thumbnail, password }: FlipCardProps
       onKeyDown={onKeyDown}
       style={{
         width: '100%',
-        flex: '1 1 0',
+        maxWidth: 560,
+        alignSelf: 'center',
+        flex: '0 1 auto',
         minHeight: 0,
-        maxHeight: 300,
         aspectRatio: '3 / 2',
         perspective: 1200,
         cursor: 'pointer',
@@ -354,16 +355,20 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
   const rootRef = useRef<HTMLDivElement>(null)
   const [activeProject, setActiveProject] = useState(0)
   const [demoOpen, setDemoOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(isActive)
 
   useEffect(() => {
     if (!rootRef.current) return
     if (isActive) {
+      setIsVisible(true)
       gsap.fromTo(rootRef.current,
         { opacity: 0, y: 28, filter: 'blur(10px)' },
         { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out', delay: 0.05 }
       )
     } else {
       gsap.to(rootRef.current, { opacity: 0, y: -28, filter: 'blur(6px)', duration: 0.5, ease: 'power3.in' })
+      const t = setTimeout(() => setIsVisible(false), 600)
+      return () => clearTimeout(t)
     }
   }, [isActive])
 
@@ -382,7 +387,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
         padding: 'clamp(82px, 10vh, 100px) clamp(20px, 3.5vw, 64px) clamp(20px, 3vh, 36px)',
         gap: 'clamp(12px, 1.6vh, 20px)',
         overflow: 'hidden', // slide must fit 100vh — nothing escapes
-        opacity: 0, pointerEvents: isActive ? 'auto' : 'none',
+        opacity: 0,
+        visibility: isVisible ? 'visible' : 'hidden',
+        pointerEvents: isActive ? 'auto' : 'none',
       }}
     >
       {/* Header - title with subtitle underneath */}
@@ -434,7 +441,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           Row absorbs the remaining viewport height; children choose their own
           vertical footprint via alignSelf so the sidebar stays menu-compact
           while the right column can take the height its cards need. */}
-      <div className="chapter-row" style={{ flex: '1 1 0', gap: 'clamp(14px, 1.6vw, 22px)', minHeight: 0, alignItems: 'flex-start' }}>
+      <div className="chapter-row" style={{ flex: '1 1 0', gap: 'clamp(14px, 1.6vw, 22px)', minHeight: 0, alignItems: 'stretch' }}>
 
         {/* Left column: Project toggle buttons — compact vertical menu.
             alignSelf: flex-start keeps the column at natural (content) height;
@@ -590,9 +597,10 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
                   key={i}
                   style={{
                     width: '100%',
-                    flex: '1 1 0',
+                    maxWidth: 560,
+                    alignSelf: 'center',
+                    flex: '0 1 auto',
                     minHeight: 0,
-                    maxHeight: 300,
                     aspectRatio: '3 / 2',
                     background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 4%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 10%, var(--color-surface-card)))',
                     border: '1px dashed color-mix(in srgb, var(--accent-ch2) 30%, transparent)',

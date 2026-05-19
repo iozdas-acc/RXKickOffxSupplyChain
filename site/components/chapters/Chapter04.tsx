@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 
 /* ───────────── data ───────────── */
@@ -97,16 +97,20 @@ interface Props { isActive: boolean; onNext: () => void; onPrev: () => void }
 
 export function Chapter04({ isActive }: Props) {
   const rootRef = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(isActive)
 
   useEffect(() => {
     if (!rootRef.current) return
     if (isActive) {
+      setIsVisible(true)
       gsap.fromTo(rootRef.current,
         { opacity: 0, y: 28, filter: 'blur(10px)' },
         { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out', delay: 0.05 }
       )
     } else {
       gsap.to(rootRef.current, { opacity: 0, y: -28, filter: 'blur(6px)', duration: 0.5, ease: 'power3.in' })
+      const t = setTimeout(() => setIsVisible(false), 600)
+      return () => clearTimeout(t)
     }
   }, [isActive])
 
@@ -119,7 +123,10 @@ export function Chapter04({ isActive }: Props) {
         gap: 48,
         padding: 'clamp(40px, 5vw, 90px)',
         paddingTop: 110,
-        opacity: 0, pointerEvents: isActive ? 'auto' : 'none',
+        alignItems: 'center',
+        opacity: 0,
+        visibility: isVisible ? 'visible' : 'hidden',
+        pointerEvents: isActive ? 'auto' : 'none',
         overflowY: 'auto',
       }}
     >

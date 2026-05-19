@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 
 const TEMPLATE_PILLARS = [
@@ -28,16 +28,20 @@ interface Props { isActive: boolean; onPrev: () => void }
 
 export function Chapter05({ isActive, onPrev }: Props) {
   const rootRef = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(isActive)
 
   useEffect(() => {
     if (!rootRef.current) return
     if (isActive) {
+      setIsVisible(true)
       gsap.fromTo(rootRef.current,
         { opacity: 0, y: 28, filter: 'blur(10px)' },
         { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out', delay: 0.05 }
       )
     } else {
       gsap.to(rootRef.current, { opacity: 0, y: -28, filter: 'blur(6px)', duration: 0.5, ease: 'power3.in' })
+      const t = setTimeout(() => setIsVisible(false), 600)
+      return () => clearTimeout(t)
     }
   }, [isActive])
 
@@ -50,7 +54,9 @@ export function Chapter05({ isActive, onPrev }: Props) {
         alignItems: 'center', justifyContent: 'center', textAlign: 'center',
         padding: 'clamp(48px, 6vw, 100px)',
         paddingTop: 80,
-        opacity: 0, pointerEvents: isActive ? 'auto' : 'none',
+        opacity: 0,
+        visibility: isVisible ? 'visible' : 'hidden',
+        pointerEvents: isActive ? 'auto' : 'none',
       }}
     >
       {/* Overline */}
