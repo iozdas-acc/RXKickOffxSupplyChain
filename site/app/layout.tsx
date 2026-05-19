@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk, DM_Sans, Space_Mono } from 'next/font/google'
 import './globals.css'
-import { PasswordGate } from '@/components/presentation/PasswordGate'
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -41,9 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${spaceGrotesk.variable} ${dmSans.variable} ${spaceMono.variable}`}
     >
-      <body>
-        <PasswordGate>{children}</PasswordGate>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
