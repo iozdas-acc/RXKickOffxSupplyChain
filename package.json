@@ -4,6 +4,9 @@
   "description": "",
   "main": "onboard.js",
   "scripts": {
+    "dev": "cd site && next dev",
+    "build": "cd site && next build",
+    "start": "cd site && next start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
