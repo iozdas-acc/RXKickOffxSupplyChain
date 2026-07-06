@@ -7,19 +7,19 @@ const TEMPLATE_PILLARS = [
   {
     tag: 'Framework',
     title: 'Horizons Pathway',
-    desc: 'More than theory — it\'s how we deliver. Every project shapes tomorrow\'s reinvention and delivers today\'s value at the same time, with a clear bridge between the two.',
+    desc: 'The framework that structures every engagement — starting with tomorrow\'s ambition and today\'s value in parallel, with H2 as the deliberate bridge between the two.',
     icon: '⬡',
   },
   {
     tag: 'Tools',
     title: 'Discovery Engine',
-    desc: 'The layer that speeds things up — bringing interview, survey and document data together into live insights, clear roadmaps and interactive, explorable experiences.',
+    desc: 'Our AI-enabled accelerator, grounded in Accenture methodologies — going broader and deeper than traditional analysis to surface hypotheses and opportunities at speed, with SME expertise applied where it matters most.',
     icon: '⬡',
   },
   {
-    tag: 'Approach',
-    title: 'Hybrid Model',
-    desc: 'We work in parallel tracks — our people focus on the high-value thinking, while AI accelerates the lower-value, manual and time-consuming tasks. AI is an accelerant that speeds delivery, not an overhaul of how your teams work.',
+    tag: 'Outputs',
+    title: 'Tangible Outputs',
+    desc: 'We build during discovery, not just at the end. Prototypes, interactive experiences and POCs that make the future state real — so stakeholders can experience what\'s possible rather than read about it.',
     icon: '⬡',
   },
 ]
@@ -103,8 +103,7 @@ export function Chapter05({ isActive, onPrev }: Props) {
         lineHeight: 1.75, maxWidth: 620,
         marginBottom: 48,
       }}>
-        A repeatable template for AI-led reinvention — proving value early,
-        delivering real commercial impact, and helping Sainsbury&apos;s change at a pace it can absorb.
+        The framework, tools and outputs we bring to every engagement to accelerate reinvention and make the future tangible.
       </p>
 
       {/* Three pillars */}
