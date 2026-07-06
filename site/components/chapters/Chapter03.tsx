@@ -7,12 +7,12 @@ const LEARNINGS = [
   {
     learning: {
       before: '',
-      highlight: 'Anchoring on today',
-      after: ' limits reinvention.',
+      highlight: 'SME time gets consumed by manual analysis',
+      after: '.',
     },
     howMightWe: {
       before: '...',
-      highlight: 'anchor transformation in the future, not just today',
+      highlight: 'free up time to focus on insight and judgement',
       after: '?',
     },
   },
@@ -24,7 +24,19 @@ const LEARNINGS = [
     },
     howMightWe: {
       before: '...',
-      highlight: 'help our teams deliver hands-on, interactive experiences',
+      highlight: 'prototype and build during discovery, not just describe',
+      after: '?',
+    },
+  },
+  {
+    learning: {
+      before: '',
+      highlight: 'Anchoring on today',
+      after: ' limits reinvention.',
+    },
+    howMightWe: {
+      before: '...',
+      highlight: 'anchor transformation in the future, not just today',
       after: '?',
     },
   },
@@ -43,24 +55,24 @@ const LEARNINGS = [
   {
     learning: {
       before: '',
-      highlight: "AI moves faster than teams can adopt it",
+      highlight: 'Traditional discovery forces narrow scope',
       after: '.',
     },
     howMightWe: {
       before: '...',
-      highlight: 'balance AI speed with getting everyone on board',
+      highlight: 'go broader and deeper in the same timeframe',
       after: '?',
     },
   },
   {
     learning: {
       before: '',
-      highlight: 'Teams are limited by what they already know',
+      highlight: 'AI moves faster than organisations can absorb it',
       after: '.',
     },
     howMightWe: {
       before: '...',
-      highlight: 'bring in Accenture and specialist expertise on every project',
+      highlight: 'balance speed with bringing people on the journey',
       after: '?',
     },
   },
