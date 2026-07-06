@@ -362,7 +362,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
           <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch2)', display: 'inline-block', borderRadius: 2 }} />
-          Embedding AI in Discovery
+          Proof In Discovery
         </div>
 
         <h2 style={{

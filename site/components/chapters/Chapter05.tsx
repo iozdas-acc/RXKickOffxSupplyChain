@@ -91,7 +91,7 @@ export function Chapter05({ isActive, onPrev }: Props) {
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
         }}>
-          PROJECT
+          ENGAGEMENT
         </span>
         <br />
         THIS WAY
