@@ -422,15 +422,6 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           overflow: 'hidden',
         }}>
           <div style={{
-            fontFamily: 'var(--font-space-mono)',
-            fontSize: 9, fontWeight: 700,
-            textTransform: 'uppercase', letterSpacing: '0.18em',
-            color: 'var(--accent-ch2)', marginBottom: 8,
-          }}>
-            {project.header}
-          </div>
-
-          <div style={{
             fontFamily: 'var(--font-space-grotesk)',
             fontSize: 17, fontWeight: 700,
             color: 'var(--color-text-primary)', marginBottom: 6,
@@ -484,7 +475,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
 
         {/* Right column: Outputs — 2 on top, 1 below left (2+1 grid) */}
         {(
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, minWidth: 0, justifyContent: 'center' }}>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, minWidth: 0, justifyContent: 'flex-start' }}>
             {/* Top row: 2 boxes side by side */}
             <div style={{ display: 'flex', gap: 16, flex: '0 0 auto' }}>
               {project.outputs.slice(0, 2).map((output, i) => (
