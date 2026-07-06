@@ -25,18 +25,18 @@ interface Project {
 const PROJECTS: Project[] = [
   {
     id: 'procurement',
-    header: 'Value proven in discovery',
+    header: 'Proof In Discovery',
     title: 'Ancona Procurement Reinvention',
-    timeframe: '12 weeks. Live engagement. Joint Accenture & Sainsbury\'s supply chain team.',
+    timeframe: '12 weeks. Live engagement. Blended RX & SME team.',
     deliverables: [
-      'AI-generated vision website, personas & AI assistant',
-      'Interactive pain-point & opportunity navigator',
-      'Live Copilot demos & a rapidly built supplier dashboard',
+      'Vision website, personas & AI assistant',
+      'Pain-point & opportunity navigator',
+      'Supplier dashboard & Copilot demos',
     ],
     outcomes: [
-      'Proved the power of AI in live delivery.',
-      'Turned decks & spreadsheets into interactive experiences.',
-      'Showed the expertise to lead reinvention.',
+      'Shifted the conversation from optimising today to reimagining what\'s possible',
+      'Turned static decks and spreadsheets into interactive, explorable experiences',
+      'Demonstrated what AI-enabled reinvention looks like in live delivery — not in theory',
     ],
     outputs: [
       {
@@ -384,7 +384,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
               WebkitTextFillColor: 'transparent',
               color: 'transparent',
             }}
-          >EMBEDDING AI</span>{' '}IN LIVE DISCOVERY
+          >WHAT THIS LOOKS LIKE</span>{' '}IN PRACTICE
         </h2>
 
         <p style={{
