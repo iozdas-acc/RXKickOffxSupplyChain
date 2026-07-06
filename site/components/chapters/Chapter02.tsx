@@ -34,9 +34,9 @@ const PROJECTS: Project[] = [
       'Supplier dashboard & Copilot demos',
     ],
     outcomes: [
-      'Shifted the conversation from optimising today to reimagining what\'s possible',
-      'Turned static decks and spreadsheets into interactive, explorable experiences',
-      'Demonstrated what AI-enabled reinvention looks like in live delivery — not in theory',
+      'Shifted the conversation from today\'s process to tomorrow\'s ambition',
+      'Turned static decks and spreadsheets into interactive experiences',
+      'Prototyped and demoed solutions during discovery',
     ],
     outputs: [
       {
