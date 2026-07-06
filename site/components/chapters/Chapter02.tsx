@@ -46,7 +46,7 @@ const PROJECTS: Project[] = [
         href: 'https://v0-ai-disruption-page.vercel.app/meet-sarah',
         thumbnail: '/images/sarah-narrative.png',
       },
-      { label: 'Pain Point & Opportunity Navigator', type: 'navigator', thumbnail: '/images/pain-point-navigator.png' },
+      { label: 'Pain Point & Opportunity Navigator', type: 'navigator', href: '/pain-point-navigator.html', thumbnail: '/images/pain-point-navigator.png' },
       { label: 'Supplier Dashboard Prototype', type: 'dashboard', thumbnail: '/images/supplier-dashboard.png' },
     ],
   },
