@@ -393,7 +393,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           lineHeight: 1.55,
           maxWidth: 900,
         }}>
-          Bringing AI into live discovery work to sharpen our thinking and deliver real value for Sainsbury&apos;s — shown through our procurement reinvention with the Ancona team.
+          How we embedded our model into a live Sainsbury&apos;s engagement — and what it produced.
         </p>
       </div>
 
