@@ -15,8 +15,8 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 0,
     slug: 'the-learning',
-    label: '01 · WHAT WE LEARNED',
-    title: 'What We Learned',
+    label: '01 · WHY WE WORK DIFFERENTLY',
+    title: 'Why We Work Differently',
     titleLines: ['REINVENTION', 'NEEDS A', 'NEW MODEL.'],
     subtitle: 'Move faster. Experience more. Build belief earlier.',
     emotion: 'clarity',

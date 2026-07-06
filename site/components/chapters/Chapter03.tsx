@@ -141,7 +141,7 @@ export function Chapter03({ isActive, onNext: _onNext, onPrev: _onPrev }: Props)
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
           <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch3)', display: 'inline-block', borderRadius: 2 }} />
-          What We Learned
+          Why We Work Differently
         </div>
 
         <h2 style={{
