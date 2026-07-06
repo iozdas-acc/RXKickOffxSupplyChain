@@ -36,7 +36,7 @@ const PROJECTS: Project[] = [
     outcomes: [
       'Shifted the conversation from today\'s process to tomorrow\'s ambition',
       'Turned static decks and spreadsheets into interactive experiences',
-      'Prototyped and demoed solutions during discovery',
+      'Prototyped and demoed concepts during discovery',
     ],
     outputs: [
       {
