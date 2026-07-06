@@ -108,7 +108,7 @@ export function HeroEntrance({ onEnter }: Props) {
         color: 'var(--sainsburys-orange-ink)',
         opacity: 0,
       }}>
-        RX STORY · SAINSBURY&apos;S ENTERPRISE REINVENTION
+        RX · SAINSBURY&apos;S ANCONA REINVENTION
       </div>
 
       {/* Headline — exactly 2 lines, orange-only accent */}
@@ -172,7 +172,7 @@ export function HeroEntrance({ onEnter }: Props) {
           lineHeight: 1.7,
           textAlign: 'left',
         }}>
-          Delivering real value for Sainsbury&apos;s and shaping a new model for reinvention — then turning it into a repeatable template we can use right across the business.
+          Shaping a new, repeatable model for AI-enabled reinvention to deliver value at speed for Sainsbury&apos;s.
         </p>
       </div>
 
@@ -217,7 +217,7 @@ export function HeroEntrance({ onEnter }: Props) {
             color: ctaHovered ? 'var(--color-text-inverse)' : 'var(--color-text-primary)',
             transition: 'color 0.3s ease',
           }}>
-            Explore our story
+            Explore
           </span>
           <span style={{
             fontSize: 16,
