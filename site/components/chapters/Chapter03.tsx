@@ -6,73 +6,73 @@ import { gsap } from 'gsap'
 const LEARNINGS = [
   {
     learning: {
-      before: '',
-      highlight: 'SME time gets consumed by manual analysis',
+      before: 'SME time gets consumed by ',
+      highlight: 'manual analysis',
+      after: '.',
+    },
+    howMightWe: {
+      before: '...free up time to focus on ',
+      highlight: 'insight and judgement',
+      after: '?',
+    },
+  },
+  {
+    learning: {
+      before: "Concepts don't build belief, ",
+      highlight: 'experience does',
       after: '.',
     },
     howMightWe: {
       before: '...',
-      highlight: 'free up time to focus on insight and judgement',
-      after: '?',
+      highlight: 'prototype and build',
+      after: ' during discovery, not just describe?',
     },
   },
   {
     learning: {
-      before: '',
-      highlight: "Concepts don't build belief",
-      after: ', experience does.',
+      before: 'Anchoring on today limits ',
+      highlight: 'reinvention',
+      after: '.',
     },
     howMightWe: {
-      before: '...',
-      highlight: 'prototype and build during discovery, not just describe',
-      after: '?',
+      before: '...anchor transformation in ',
+      highlight: 'the future',
+      after: ', not just today?',
     },
   },
   {
     learning: {
-      before: '',
-      highlight: 'Anchoring on today',
-      after: ' limits reinvention.',
-    },
-    howMightWe: {
-      before: '...',
-      highlight: 'anchor transformation in the future, not just today',
-      after: '?',
-    },
-  },
-  {
-    learning: {
-      before: '',
-      highlight: "Long, fixed-length projects don't scale",
+      before: 'Long, fixed-length projects ',
+      highlight: "don't scale",
       after: '.',
     },
     howMightWe: {
       before: '...use AI to ',
-      highlight: 'speed up discovery and work more efficiently at scale',
-      after: '?',
+      highlight: 'speed up discovery',
+      after: ' and work more efficiently at scale?',
     },
   },
   {
     learning: {
-      before: '',
-      highlight: 'Traditional discovery forces narrow scope',
+      before: 'Traditional discovery forces ',
+      highlight: 'narrow scope',
       after: '.',
     },
     howMightWe: {
-      before: '...',
-      highlight: 'go broader and deeper in the same timeframe',
-      after: '?',
+      before: '...go ',
+      highlight: 'broader and deeper',
+      after: ' in the same timeframe?',
     },
   },
   {
     learning: {
-      before: '',
-      highlight: 'AI moves faster than organisations can absorb it',
-      after: '.',
+      before: 'AI moves ',
+      highlight: 'faster',
+      after: ' than organisations can absorb it.',
     },
     howMightWe: {
-      before: '...',
-      highlight: 'balance speed with bringing people on the journey',
+      before: '...balance speed with ',
+      highlight: 'bringing people on the journey',
       after: '?',
     },
   },
@@ -288,11 +288,8 @@ export function Chapter03({ isActive, onNext: _onNext, onPrev: _onPrev }: Props)
               }}>
                 {item.learning.before}
                 <span style={{
-                  color: 'var(--color-text-primary)',
+                  color: 'var(--accent-ch3)',
                   fontWeight: 600,
-                  background: 'color-mix(in srgb, var(--accent-ch3) 8%, transparent)',
-                  padding: '2px 6px',
-                  borderRadius: 4,
                 }}>
                   {item.learning.highlight}
                 </span>
