@@ -6,7 +6,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const nextConfig: NextConfig = {
   // Multiple lockfiles exist (root + site). Pin the Turbopack workspace root to
-  // this directory so Next can resolve the local `next` package from site/app.
+  // this directory so Next resolves the correct `next` package for site/app and
+  // doesn't warn about / guess the wrong workspace root.
   turbopack: {
     root: __dirname,
   },
