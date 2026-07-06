@@ -68,11 +68,11 @@ export function Chapter05({ isActive, onPrev }: Props) {
         display: 'flex', alignItems: 'center', gap: 12,
       }}>
         <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch5)', display: 'inline-block', borderRadius: 2 }} />
-        The Engagement Model
+        How We Work
         <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch5)', display: 'inline-block', borderRadius: 2 }} />
       </div>
 
-      {/* Headline — gradient finale moment on the ENGAGEMENT line */}
+      {/* Headline — gradient finale moment on the PROJECT line */}
       <h2 style={{
         fontFamily: 'var(--font-space-grotesk)',
         fontSize: 'clamp(36px, 5vw, 72px)',
@@ -91,7 +91,7 @@ export function Chapter05({ isActive, onPrev }: Props) {
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
         }}>
-          ENGAGEMENT
+          PROJECT
         </span>
         <br />
         THIS WAY
