@@ -6,6 +6,18 @@ import { gsap } from 'gsap'
 const LEARNINGS = [
   {
     learning: {
+      before: 'Anchoring on today limits ',
+      highlight: 'reinvention',
+      after: '.',
+    },
+    howMightWe: {
+      before: '...anchor transformation in ',
+      highlight: 'the future',
+      after: ', not just today?',
+    },
+  },
+  {
+    learning: {
       before: 'SME time gets consumed by ',
       highlight: 'manual analysis',
       after: '.',
@@ -26,18 +38,6 @@ const LEARNINGS = [
       before: '...',
       highlight: 'prototype and build',
       after: ' during discovery, not just describe?',
-    },
-  },
-  {
-    learning: {
-      before: 'Anchoring on today limits ',
-      highlight: 'reinvention',
-      after: '.',
-    },
-    howMightWe: {
-      before: '...anchor transformation in ',
-      highlight: 'the future',
-      after: ', not just today?',
     },
   },
   {
