@@ -24,43 +24,43 @@ const LEARNINGS = [
     },
     howMightWe: {
       before: '...',
-      highlight: 'enable our teams to deliver explorable outputs',
+      highlight: 'help our teams deliver hands-on, interactive experiences',
       after: '?',
     },
   },
   {
     learning: {
       before: '',
-      highlight: "12-week engagements don't scale",
+      highlight: "Long, fixed-length projects don't scale",
       after: '.',
     },
     howMightWe: {
       before: '...use AI to ',
-      highlight: 'accelerate discovery and raise efficiency at enterprise scale',
+      highlight: 'speed up discovery and work more efficiently at scale',
       after: '?',
     },
   },
   {
     learning: {
       before: '',
-      highlight: "AI's pace outruns client adoption",
+      highlight: "AI moves faster than teams can adopt it",
       after: '.',
     },
     howMightWe: {
       before: '...',
-      highlight: 'balance AI speed with organisational buy-in',
+      highlight: 'balance AI speed with getting everyone on board',
       after: '?',
     },
   },
   {
     learning: {
       before: '',
-      highlight: 'Teams are capped by what they know',
+      highlight: 'Teams are limited by what they already know',
       after: '.',
     },
     howMightWe: {
       before: '...',
-      highlight: 'inject Accenture and external expertise into each engagement',
+      highlight: 'bring in Accenture and specialist expertise on every project',
       after: '?',
     },
   },

@@ -9,7 +9,6 @@ import { SupermarketScene } from '@/components/three/SupermarketScene'
 import { BasketAnimation } from '@/components/three/scenes/BasketAnimation'
 import { NavBar } from '@/components/presentation/NavBar'
 import { HeroEntrance } from '@/components/presentation/HeroEntrance'
-import { Chapter01 } from '@/components/chapters/Chapter01'
 import { Chapter02 } from '@/components/chapters/Chapter02'
 import { Chapter03 } from '@/components/chapters/Chapter03'
 import { Chapter04 } from '@/components/chapters/Chapter04'
@@ -136,10 +135,11 @@ export default function PresentationPage() {
       ) : (
         <div style={{
           position: 'absolute', inset: 0, zIndex: 0,
-          // Chapter 3 (the-learning) is a pure editorial slide — no 3D backdrop,
-          // no ghost storefront, no chromatic-aberration horizon fringe. Keep
-          // the canvas mounted (scenes still preload for Ch.4/5) but hide it.
-          opacity: chapter === 2 ? 0 : (heroMoment ? 1 : 0.18),
+          // "What We Learned" (now the first chapter, index 0) is a pure
+          // editorial slide — no 3D backdrop, no ghost storefront, no
+          // chromatic-aberration horizon fringe. Keep the canvas mounted
+          // (scenes still preload for later chapters) but hide it.
+          opacity: chapter === 0 ? 0 : (heroMoment ? 1 : 0.18),
           transition: 'opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
           pointerEvents: 'none',
         }}>
@@ -212,28 +212,27 @@ export default function PresentationPage() {
           transition: 'opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.2s',
           pointerEvents: heroMoment ? 'none' : 'auto',
         }}>
-          <Chapter01
+          {/* Order: What We Learned → Horizons Model → Hybrid Approach →
+              Embedding AI in Discovery (procurement). "The Story So Far" has
+              been removed and the procurement page moved to the end. */}
+          <Chapter03
             isActive={chapter === 0 && !isTransitioning}
             onNext={() => goTo(1)}
+            onPrev={() => goTo(0)}
           />
-          <Chapter02
+          <Chapter04
             isActive={chapter === 1 && !isTransitioning}
             onNext={() => goTo(2)}
             onPrev={() => goTo(0)}
           />
-          <Chapter03
+          <Chapter05
             isActive={chapter === 2 && !isTransitioning}
-            onNext={() => goTo(3)}
             onPrev={() => goTo(1)}
           />
-          <Chapter04
+          <Chapter02
             isActive={chapter === 3 && !isTransitioning}
-            onNext={() => goTo(4)}
+            onNext={() => goTo(3)}
             onPrev={() => goTo(2)}
-          />
-          <Chapter05
-            isActive={chapter === 4 && !isTransitioning}
-            onPrev={() => goTo(3)}
           />
         </div>
       )}

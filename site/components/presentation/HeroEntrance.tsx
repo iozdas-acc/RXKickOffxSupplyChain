@@ -172,7 +172,7 @@ export function HeroEntrance({ onEnter }: Props) {
           lineHeight: 1.7,
           textAlign: 'left',
         }}>
-          Delivering client value, driving origination and defining a new reinvention model at Sainsbury&apos;s — and how we&apos;re making it the template.
+          Delivering real value for Sainsbury&apos;s and shaping a new model for reinvention — then turning it into a repeatable template we can use right across the business.
         </p>
       </div>
 

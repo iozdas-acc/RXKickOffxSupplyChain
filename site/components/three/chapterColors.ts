@@ -3,11 +3,10 @@
 // Single source of truth for any 3D scene that needs a per-chapter accent.
 
 export const CHAPTER_COLORS = [
-  '#F06C00', // Ch.1 intro    — Sainsbury's orange
-  '#0891B2', // Ch.2 project  — horizon-1 cyan
-  '#F06C00', // Ch.3 learning — Sainsbury's orange (shared with Ch.1 intentionally)
-  '#7C3AED', // Ch.4 model    — horizon-3 purple
-  '#A100FF', // Ch.5 template — Accenture deep purple
+  '#F06C00', // Ch.1 learning — Sainsbury's orange
+  '#7C3AED', // Ch.2 model    — horizon-3 purple
+  '#A100FF', // Ch.3 template — Accenture deep purple
+  '#0891B2', // Ch.4 project  — horizon-1 cyan
 ] as const
 
 export function chapterColor(chapter: number): string {

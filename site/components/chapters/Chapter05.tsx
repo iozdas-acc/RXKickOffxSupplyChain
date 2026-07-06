@@ -7,19 +7,19 @@ const TEMPLATE_PILLARS = [
   {
     tag: 'Framework',
     title: 'Horizons Pathway',
-    desc: 'The horizons pathway is not just theory. It\'s the delivery framework – every engagement starts with tomorrow\'s reinvention and today\'s value in parallel, with H2 as the bridge.',
+    desc: 'More than theory — it\'s how we deliver. Every project shapes tomorrow\'s reinvention and delivers today\'s value at the same time, with a clear bridge between the two.',
     icon: '⬡',
   },
   {
     tag: 'Tools',
     title: 'Discovery Engine',
-    desc: 'The acceleration layer — automates end-to-end discovery, turning interview, survey and document data into real-time insights, roadmaps and explorable outputs in real-time.',
+    desc: 'The layer that speeds things up — bringing interview, survey and document data together into live insights, clear roadmaps and interactive, explorable experiences.',
     icon: '⬡',
   },
   {
     tag: 'Approach',
     title: 'Hybrid Model',
-    desc: 'We work in two tracks: RX manages value creation up front, while a light-touch extended engagement – supported by a consulting agent – builds client adoption and buy-in over time.',
+    desc: 'We work in parallel tracks — our people focus on the high-value thinking, while AI accelerates the lower-value, manual and time-consuming tasks. AI is an accelerant that speeds delivery, not an overhaul of how your teams work.',
     icon: '⬡',
   },
 ]
@@ -103,8 +103,8 @@ export function Chapter05({ isActive, onPrev }: Props) {
         lineHeight: 1.75, maxWidth: 620,
         marginBottom: 48,
       }}>
-        A repeatable template for agentic reinvention to prove impact early,
-        drive commercial value, and help clients change at a pace they can absorb.
+        A repeatable template for AI-led reinvention — proving value early,
+        delivering real commercial impact, and helping Sainsbury&apos;s change at a pace it can absorb.
       </p>
 
       {/* Three pillars */}

@@ -26,58 +26,23 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
-    id: 'nectar',
-    header: 'Stronger origination moments',
-    title: 'Nectar360 Pollen Vision',
-    timeframe: '5 days. Blended RX & Song team.',
-    deliverables: [
-      'AI-Generated Web Experience',
-      '3-Horizons Reinvention Story',
-      'Hi-fidelity Agentic Prototype',
-    ],
-    outcomes: [
-      'Demonstrated AI and retail media expertise.',
-      'Made the future of Pollen tangible and investable.',
-      'Turned the vision into a concrete SDLC build opportunity.',
-    ],
-    outputs: [
-      {
-        label: 'Pollen Vision Website',
-        type: 'website',
-        url: 'icy-rock-0cdfdc903.6.azurestaticapps.net',
-        href: 'https://icy-rock-0cdfdc903.6.azurestaticapps.net',
-        thumbnail: '/images/pollen-vision.png',
-        password: 'P0LLEN!360#AISession2026',
-      },
-      { label: 'Agentic Commerce Bid For My Basket', type: 'mobile' },
-      {
-        label: 'Agentic Campaign Workflow',
-        type: 'prototype',
-        url: 'relume-grasp-07968301.figma.site',
-        href: 'https://relume-grasp-07968301.figma.site',
-        thumbnail: '/images/agentic-campaign-workflow.png',
-        password: 'Pollen360',
-      },
-    ],
-  },
-  {
     id: 'procurement',
-    header: 'Proof in discovery',
+    header: 'Value proven in discovery',
     title: 'Ancona Procurement Reinvention',
-    timeframe: '12 weeks. In-flight engagement. Blended RX & Supply Chain team.',
+    timeframe: '12 weeks. Live engagement. Joint Accenture & Sainsbury\'s supply chain team.',
     deliverables: [
-      'AI-Generated Vision Website, Personas & LLM',
-      'HTML Pain-Point & Opportunity Navigator',
-      'Live Copilot Demos & Vibe-Coded Supplier Dashboard',
+      'AI-generated vision website, personas & AI assistant',
+      'Interactive pain-point & opportunity navigator',
+      'Live Copilot demos & a rapidly built supplier dashboard',
     ],
     outcomes: [
       'Proved the power of AI in live delivery.',
       'Turned decks & spreadsheets into interactive experiences.',
-      'Demonstrated expertise to lead reinvention.',
+      'Showed the expertise to lead reinvention.',
     ],
     outputs: [
       {
-        label: 'Sarah H3 Narrative Website',
+        label: 'Meet Sarah — Narrative Website',
         type: 'website',
         url: 'v0-ai-disruption-page.vercel.app/meet-sarah',
         href: 'https://v0-ai-disruption-page.vercel.app/meet-sarah',
@@ -352,7 +317,6 @@ interface Props { isActive: boolean; onNext: () => void; onPrev: () => void }
 
 export function Chapter02({ isActive, onNext, onPrev }: Props) {
   const rootRef = useRef<HTMLDivElement>(null)
-  const [activeProject, setActiveProject] = useState(0)
   const [demoOpen, setDemoOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(isActive)
 
@@ -371,7 +335,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
     }
   }, [isActive])
 
-  const project = PROJECTS[activeProject]
+  const project = PROJECTS[0]
 
   return (
     <div
@@ -401,7 +365,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
           <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch2)', display: 'inline-block', borderRadius: 2 }} />
-          In-Flight Projects
+          Embedding AI in Discovery
         </div>
 
         <h2 style={{
@@ -423,7 +387,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
               WebkitTextFillColor: 'transparent',
               color: 'transparent',
             }}
-          >EMBEDDING AI</span>{' '}IN ORIGINATION AND DISCOVERY
+          >EMBEDDING AI</span>{' '}IN LIVE DISCOVERY
         </h2>
 
         <p style={{
@@ -432,7 +396,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           lineHeight: 1.55,
           maxWidth: 900,
         }}>
-          Fresh thinking and AI embedded into traditional discovery projects and bid responses - sharpening our approach, delivering client value and strengthening our right to win.
+          Bringing AI into live discovery work to sharpen our thinking and deliver real value for Sainsbury&apos;s — shown through our procurement reinvention with the Ancona team.
         </p>
       </div>
 
@@ -441,60 +405,6 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           vertical footprint via alignSelf so the sidebar stays menu-compact
           while the right column can take the height its cards need. */}
       <div className="chapter-row" style={{ flex: '1 1 0', gap: 'clamp(14px, 1.6vw, 22px)', minHeight: 0, alignItems: 'stretch' }}>
-
-        {/* Left column: Project toggle buttons — compact vertical menu.
-            alignSelf: flex-start keeps the column at natural (content) height;
-            minHeight on each button guarantees the shorter one-line title and
-            the longer two-line title render as identical rectangles. */}
-        <div style={{ flex: '0 0 clamp(150px, 14vw, 186px)', display: 'flex', flexDirection: 'column', gap: 10, alignSelf: 'flex-start' }}>
-          {PROJECTS.map((p, idx) => (
-            <button
-              key={p.id}
-              onClick={() => setActiveProject(idx)}
-              style={{
-                minHeight: 76,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'flex-start',
-                padding: '12px 14px',
-                background: activeProject === idx
-                  ? 'color-mix(in srgb, var(--accent-ch2) 10%, transparent)'
-                  : 'var(--color-surface-card)',
-                border: activeProject === idx
-                  ? '1px solid var(--accent-ch2)'
-                  : '1px solid color-mix(in srgb, var(--accent-ch2) 15%, transparent)',
-                borderLeft: activeProject === idx
-                  ? '3px solid var(--accent-ch2)'
-                  : '3px solid color-mix(in srgb, var(--accent-ch2) 25%, transparent)',
-                borderRadius: 8,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                textAlign: 'left',
-                boxShadow: 'var(--shadow-sm)',
-              }}
-            >
-              <div style={{
-                fontFamily: 'var(--font-space-grotesk)',
-                fontSize: 12, fontWeight: 600,
-                color: activeProject === idx ? 'var(--accent-ch2)' : 'var(--color-text-primary)',
-                marginBottom: 3,
-                lineHeight: 1.2,
-              }}>
-                {p.title}
-              </div>
-              <div style={{
-                fontFamily: 'var(--font-space-mono)',
-                fontSize: 9,
-                textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                color: 'var(--color-text-tertiary)',
-              }}>
-                Project {idx + 1}/2
-              </div>
-            </button>
-          ))}
-        </div>
 
         {/* Middle column: Project content.
             alignSelf: flex-start keeps the panel at its natural content height
