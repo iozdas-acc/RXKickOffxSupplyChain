@@ -18,7 +18,7 @@ import { CHAPTER_COLORS } from '../chapterColors'
 const GRADIENT_MID = '#D23B82'
 
 const ORANGE = CHAPTER_COLORS[0]
-const PURPLE = CHAPTER_COLORS[4]
+const PURPLE = CHAPTER_COLORS[1]
 
 // Basket placement + scale. Basket base sits at world y = BASKET_Y;
 // its inner floor top is basket scale * WALL/2 ≈ 0.033 above that, so
