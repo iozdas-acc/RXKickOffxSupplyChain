@@ -25,7 +25,16 @@ export default function PresentationPage() {
   // heroMoment = true → 3D canvas is dominant, content is hidden (the "between-chapter" beat)
   // heroMoment = false → content is readable, 3D drops to a faint ambient texture
   const [heroMoment, setHeroMoment] = useState(true)
+  // R3F's <Canvas> renders a different DOM structure on the server than on the
+  // client, which triggers a hydration mismatch (React #418) in production.
+  // Gate all 3D canvases behind a client-only mount flag so they never take
+  // part in SSR/hydration — server + first client render both emit nothing.
+  const [mounted, setMounted] = useState(false)
   const lastNavTime = useRef(0)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Trigger a hero moment whenever chapter or entered flips.
   useEffect(() => {
@@ -116,20 +125,22 @@ export default function PresentationPage() {
 
           {/* Right 50% — basket canvas */}
           <div style={{ position: 'relative', minWidth: 0, height: '100%', pointerEvents: 'none' }}>
-            <Suspense fallback={null}>
-              <Canvas
-                camera={{ position: [0, 3, 5], fov: 50, near: 0.1, far: 60 }}
-                gl={{
-                  antialias: true,
-                  alpha: true,
-                  powerPreference: 'high-performance',
-                }}
-                dpr={[1, 2]}
-                style={{ background: 'transparent' }}
-              >
-                <BasketAnimation />
-              </Canvas>
-            </Suspense>
+            {mounted && (
+              <Suspense fallback={null}>
+                <Canvas
+                  camera={{ position: [0, 3, 5], fov: 50, near: 0.1, far: 60 }}
+                  gl={{
+                    antialias: true,
+                    alpha: true,
+                    powerPreference: 'high-performance',
+                  }}
+                  dpr={[1, 2]}
+                  style={{ background: 'transparent' }}
+                >
+                  <BasketAnimation />
+                </Canvas>
+              </Suspense>
+            )}
           </div>
         </div>
       ) : (
@@ -143,6 +154,7 @@ export default function PresentationPage() {
           transition: 'opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
           pointerEvents: 'none',
         }}>
+          {mounted && (
           <Suspense fallback={null}>
             <Canvas
               shadows="soft"
@@ -186,6 +198,7 @@ export default function PresentationPage() {
               </EffectComposer>
             </Canvas>
           </Suspense>
+          )}
         </div>
       )}
 
