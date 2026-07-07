@@ -54,18 +54,6 @@ const LEARNINGS = [
   },
   {
     learning: {
-      before: 'Traditional discovery forces ',
-      highlight: 'narrow scope',
-      after: '.',
-    },
-    howMightWe: {
-      before: '...go ',
-      highlight: 'broader and deeper',
-      after: ' in the same timeframe?',
-    },
-  },
-  {
-    learning: {
       before: 'AI moves ',
       highlight: 'faster',
       after: ' than organisations can absorb it.',
