@@ -19,7 +19,7 @@ const TEMPLATE_PILLARS = [
   {
     tag: 'Outputs',
     title: 'Tangible Outputs',
-    desc: 'We build during discovery, not just at the end. Interactive experiences and POCs that make the future state real — so stakeholders can experience what\'s possible rather than read about it.',
+    desc: 'We deliver during discovery, not after. Interactive outputs that replace static decks and spreadsheets. POCs and prototypes that prove immediate value and build momentum from day one, where possible.',
     icon: '⬡',
   },
 ]
