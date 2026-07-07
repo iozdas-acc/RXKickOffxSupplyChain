@@ -43,7 +43,7 @@ const STEPS = [
     label: 'STEP 1',
     title: 'Create Your Horizon III Vision',
     body:
-      'Use the iceberg framework to envision your business in Horizon III — autonomous systems, agent-driven operations, transformed value creation.',
+      'Define what your business looks like in Horizon III — autonomous systems, agent-driven operations, transformed value creation.',
     arrow: 'right' as const,
   },
   {
@@ -63,7 +63,7 @@ const STEPS = [
     label: 'STEP 3',
     title: 'Analyse the Horizon II Gap',
     body:
-      'Work out the Horizon II investments required for your Horizon III vision — no-regrets moves and large bets that bridge the exponential gap.',
+      'Work out the Horizon II investments needed to reach your Horizon III vision — the safe first steps and bigger bets that bridge the gap.',
     arrow: 'left' as const,
   },
 ]

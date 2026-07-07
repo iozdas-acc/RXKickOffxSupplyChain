@@ -7,19 +7,19 @@ const TEMPLATE_PILLARS = [
   {
     tag: 'Framework',
     title: 'Horizons Pathway',
-    desc: 'The horizons pathway is not just theory. It\'s the delivery framework – every engagement starts with tomorrow\'s reinvention and today\'s value in parallel, with H2 as the bridge.',
+    desc: 'The framework that structures every engagement — starting with tomorrow\'s ambition and today\'s value in parallel, with H2 as the deliberate bridge between the two.',
     icon: '⬡',
   },
   {
-    tag: 'Tools',
+    tag: 'AI Accelerators',
     title: 'Discovery Engine',
-    desc: 'The acceleration layer — automates end-to-end discovery, turning interview, survey and document data into real-time insights, roadmaps and explorable outputs in real-time.',
+    desc: 'Our AI-powered accelerator, grounded in Accenture methodologies. Analyses internal & external data, generates hypotheses and identifies opportunities at a greater speed and depth than traditional discovery. Blended with SME expertise and judgement at every step.',
     icon: '⬡',
   },
   {
-    tag: 'Approach',
-    title: 'Hybrid Model',
-    desc: 'We work in two tracks: RX manages value creation up front, while a light-touch extended engagement – supported by a consulting agent – builds client adoption and buy-in over time.',
+    tag: 'Outputs',
+    title: 'Tangible Outputs',
+    desc: 'We deliver during discovery, not after. Interactive outputs that replace static decks and spreadsheets. POCs and prototypes that prove immediate value and build momentum from day one, where possible.',
     icon: '⬡',
   },
 ]
@@ -68,11 +68,11 @@ export function Chapter05({ isActive, onPrev }: Props) {
         display: 'flex', alignItems: 'center', gap: 12,
       }}>
         <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch5)', display: 'inline-block', borderRadius: 2 }} />
-        The Engagement Model
+        How We Work
         <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch5)', display: 'inline-block', borderRadius: 2 }} />
       </div>
 
-      {/* Headline — gradient finale moment on the ENGAGEMENT line */}
+      {/* Headline — gradient finale moment on the PROJECT line */}
       <h2 style={{
         fontFamily: 'var(--font-space-grotesk)',
         fontSize: 'clamp(36px, 5vw, 72px)',
@@ -103,8 +103,7 @@ export function Chapter05({ isActive, onPrev }: Props) {
         lineHeight: 1.75, maxWidth: 620,
         marginBottom: 48,
       }}>
-        A repeatable template for agentic reinvention to prove impact early,
-        drive commercial value, and help clients change at a pace they can absorb.
+        The framework, tools and outputs we bring to every engagement to accelerate reinvention and make the future tangible.
       </p>
 
       {/* Three pillars */}

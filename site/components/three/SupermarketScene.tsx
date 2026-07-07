@@ -20,13 +20,11 @@ interface Props {
 }
 
 // Chapter index → scene component. Ordering matches CHAPTERS in data/chapters.ts.
-// Phase 3.1–3.5 fleshes each scene out; today they are static tableaux.
 const SCENE_BY_CHAPTER = [
-  HeroScene,     // Ch.1 intro        — products settling on a shelf
-  ConveyorScene, // Ch.2 the-project  — items travelling a belt
-  PaceScene,     // Ch.3 the-learning — slow trolley vs fast scanner
-  AislesScene,   // Ch.4 the-model    — three receding aisles
-  BasketScene,   // Ch.5 the-template — lit basket of three items
+  PaceScene,     // Ch.1 the-learning — slow trolley vs fast scanner
+  AislesScene,   // Ch.2 the-model    — three receding aisles
+  BasketScene,   // Ch.3 the-template — lit basket of three items
+  ConveyorScene, // Ch.4 the-project  — items travelling a belt
 ] as const
 
 export function SupermarketScene({ chapter, entered }: Props) {

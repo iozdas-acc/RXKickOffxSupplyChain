@@ -1,6 +1,16 @@
 import type { NextConfig } from 'next'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const nextConfig: NextConfig = {
+  // Multiple lockfiles exist (root + site). Pin the Turbopack workspace root to
+  // this directory so Next resolves the correct `next` package for site/app and
+  // doesn't warn about / guess the wrong workspace root.
+  turbopack: {
+    root: __dirname,
+  },
   // Static export: every route already prerenders to HTML (see build output —
   // all pages marked "Static"). Exporting bypasses Azure SWA's hybrid-runtime
   // size limit and ships pure HTML/CSS/JS.

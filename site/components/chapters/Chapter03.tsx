@@ -6,61 +6,61 @@ import { gsap } from 'gsap'
 const LEARNINGS = [
   {
     learning: {
-      before: '',
-      highlight: 'Anchoring on today',
-      after: ' limits reinvention.',
+      before: 'Anchoring on today limits ',
+      highlight: 'reinvention',
+      after: '.',
     },
     howMightWe: {
-      before: '...',
-      highlight: 'anchor transformation in the future, not just today',
+      before: '...anchor transformation in ',
+      highlight: 'the future',
+      after: ', not just today?',
+    },
+  },
+  {
+    learning: {
+      before: 'SME time gets consumed by ',
+      highlight: 'manual analysis',
+      after: '.',
+    },
+    howMightWe: {
+      before: '...free up time to focus on ',
+      highlight: 'insight and judgement',
       after: '?',
     },
   },
   {
     learning: {
-      before: '',
-      highlight: "Concepts don't build belief",
-      after: ', experience does.',
+      before: "Concepts don't build belief, ",
+      highlight: 'experience does',
+      after: '.',
     },
     howMightWe: {
       before: '...',
-      highlight: 'enable our teams to deliver explorable outputs',
-      after: '?',
+      highlight: 'prototype and build',
+      after: ' during discovery, not just describe?',
     },
   },
   {
     learning: {
-      before: '',
-      highlight: "12-week engagements don't scale",
+      before: 'Long, fixed-length projects ',
+      highlight: "don't scale",
       after: '.',
     },
     howMightWe: {
       before: '...use AI to ',
-      highlight: 'accelerate discovery and raise efficiency at enterprise scale',
-      after: '?',
+      highlight: 'speed up discovery',
+      after: ' and work more efficiently at scale?',
     },
   },
   {
     learning: {
-      before: '',
-      highlight: "AI's pace outruns client adoption",
-      after: '.',
+      before: 'AI moves ',
+      highlight: 'faster',
+      after: ' than organisations can absorb it.',
     },
     howMightWe: {
-      before: '...',
-      highlight: 'balance AI speed with organisational buy-in',
-      after: '?',
-    },
-  },
-  {
-    learning: {
-      before: '',
-      highlight: 'Teams are capped by what they know',
-      after: '.',
-    },
-    howMightWe: {
-      before: '...',
-      highlight: 'inject Accenture and external expertise into each engagement',
+      before: '...balance speed with ',
+      highlight: 'bringing people on the journey',
       after: '?',
     },
   },
@@ -141,7 +141,7 @@ export function Chapter03({ isActive, onNext: _onNext, onPrev: _onPrev }: Props)
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
           <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch3)', display: 'inline-block', borderRadius: 2 }} />
-          What We Learned
+          Why We Work Differently
         </div>
 
         <h2 style={{
@@ -276,11 +276,8 @@ export function Chapter03({ isActive, onNext: _onNext, onPrev: _onPrev }: Props)
               }}>
                 {item.learning.before}
                 <span style={{
-                  color: 'var(--color-text-primary)',
+                  color: 'var(--accent-ch3)',
                   fontWeight: 600,
-                  background: 'color-mix(in srgb, var(--accent-ch3) 8%, transparent)',
-                  padding: '2px 6px',
-                  borderRadius: 4,
                 }}>
                   {item.learning.highlight}
                 </span>

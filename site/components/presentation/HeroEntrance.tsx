@@ -108,17 +108,16 @@ export function HeroEntrance({ onEnter }: Props) {
         color: 'var(--sainsburys-orange-ink)',
         opacity: 0,
       }}>
-        RX STORY · SAINSBURY&apos;S ENTERPRISE REINVENTION
+        RX · SAINSBURY&apos;S ANCONA REINVENTION
       </div>
 
       {/* Headline — exactly 2 lines, orange-only accent */}
       <div
         style={{
           fontFamily: 'var(--font-space-grotesk)',
-          // Scaled up slightly so the headline fills more of the left column
-          // and closes the dead space between text and basket canvas.
-          // Still has to fit "FOR REINVENTION" inside 50vw with side padding.
-          fontSize: 'clamp(34px, 5.1vw, 76px)',
+          // Sized so the longest line ("TO DELIVER REINVENTION") fits on one
+          // line inside the 50vw left column with side padding, without clipping.
+          fontSize: 'clamp(26px, 3.7vw, 56px)',
           fontWeight: 700,
           textTransform: 'uppercase',
           lineHeight: 1.02,
@@ -135,7 +134,7 @@ export function HeroEntrance({ onEnter }: Props) {
             opacity: 0,
           }}
         >
-          A NEW MODEL
+          A DIFFERENT WAY
         </div>
         <div
           ref={line2Ref}
@@ -144,7 +143,7 @@ export function HeroEntrance({ onEnter }: Props) {
             opacity: 0,
           }}
         >
-          <span style={{ color: 'var(--color-text-primary)', textShadow: titleShadow }}>FOR </span>
+          <span style={{ color: 'var(--color-text-primary)', textShadow: titleShadow }}>TO DELIVER </span>
           <span
             style={{
               backgroundImage: 'var(--accent-ch5-gradient)',
@@ -172,7 +171,7 @@ export function HeroEntrance({ onEnter }: Props) {
           lineHeight: 1.7,
           textAlign: 'left',
         }}>
-          Delivering client value, driving origination and defining a new reinvention model at Sainsbury&apos;s — and how we&apos;re making it the template.
+          How RX is accelerating AI-led reinvention across the Ancona programme.
         </p>
       </div>
 
@@ -217,7 +216,7 @@ export function HeroEntrance({ onEnter }: Props) {
             color: ctaHovered ? 'var(--color-text-inverse)' : 'var(--color-text-primary)',
             transition: 'color 0.3s ease',
           }}>
-            Explore our story
+            Explore
           </span>
           <span style={{
             fontSize: 16,

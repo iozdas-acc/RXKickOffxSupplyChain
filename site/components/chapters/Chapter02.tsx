@@ -2,8 +2,6 @@
 
 import { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
-import { DemoOverlay } from '@/components/ui/DemoOverlay'
-import ConversationalRetailUI from '@/components/ui/ConversationalRetailUI'
 
 interface ProjectOutput {
   label: string
@@ -26,58 +24,23 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
-    id: 'nectar',
-    header: 'Stronger origination moments',
-    title: 'Nectar360 Pollen Vision',
-    timeframe: '5 days. Blended RX & Song team.',
-    deliverables: [
-      'AI-Generated Web Experience',
-      '3-Horizons Reinvention Story',
-      'Hi-fidelity Agentic Prototype',
-    ],
-    outcomes: [
-      'Demonstrated AI and retail media expertise.',
-      'Made the future of Pollen tangible and investable.',
-      'Turned the vision into a concrete SDLC build opportunity.',
-    ],
-    outputs: [
-      {
-        label: 'Pollen Vision Website',
-        type: 'website',
-        url: 'icy-rock-0cdfdc903.6.azurestaticapps.net',
-        href: 'https://icy-rock-0cdfdc903.6.azurestaticapps.net',
-        thumbnail: '/images/pollen-vision.png',
-        password: 'P0LLEN!360#AISession2026',
-      },
-      { label: 'Agentic Commerce Bid For My Basket', type: 'mobile' },
-      {
-        label: 'Agentic Campaign Workflow',
-        type: 'prototype',
-        url: 'relume-grasp-07968301.figma.site',
-        href: 'https://relume-grasp-07968301.figma.site',
-        thumbnail: '/images/agentic-campaign-workflow.png',
-        password: 'Pollen360',
-      },
-    ],
-  },
-  {
     id: 'procurement',
-    header: 'Proof in discovery',
+    header: 'Proof In Discovery',
     title: 'Ancona Procurement Reinvention',
-    timeframe: '12 weeks. In-flight engagement. Blended RX & Supply Chain team.',
+    timeframe: '12 weeks. Live engagement. Blended RX & SME team.',
     deliverables: [
-      'AI-Generated Vision Website, Personas & LLM',
-      'HTML Pain-Point & Opportunity Navigator',
-      'Live Copilot Demos & Vibe-Coded Supplier Dashboard',
+      'Vision website, personas & AI assistant',
+      'Pain-point & opportunity navigator',
+      'Supplier dashboard & Copilot demos',
     ],
     outcomes: [
-      'Proved the power of AI in live delivery.',
-      'Turned decks & spreadsheets into interactive experiences.',
-      'Demonstrated expertise to lead reinvention.',
+      'Shifted the conversation from today\'s process to tomorrow\'s ambition',
+      'Turned static decks and spreadsheets into interactive experiences',
+      'Prototyped and demoed concepts during discovery',
     ],
     outputs: [
       {
-        label: 'Sarah H3 Narrative Website',
+        label: 'Meet Sarah — Narrative Website',
         type: 'website',
         url: 'v0-ai-disruption-page.vercel.app/meet-sarah',
         href: 'https://v0-ai-disruption-page.vercel.app/meet-sarah',
@@ -352,8 +315,6 @@ interface Props { isActive: boolean; onNext: () => void; onPrev: () => void }
 
 export function Chapter02({ isActive, onNext, onPrev }: Props) {
   const rootRef = useRef<HTMLDivElement>(null)
-  const [activeProject, setActiveProject] = useState(0)
-  const [demoOpen, setDemoOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(isActive)
 
   useEffect(() => {
@@ -371,7 +332,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
     }
   }, [isActive])
 
-  const project = PROJECTS[activeProject]
+  const project = PROJECTS[0]
 
   return (
     <div
@@ -401,7 +362,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
           <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch2)', display: 'inline-block', borderRadius: 2 }} />
-          In-Flight Projects
+          Proof In Discovery
         </div>
 
         <h2 style={{
@@ -423,7 +384,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
               WebkitTextFillColor: 'transparent',
               color: 'transparent',
             }}
-          >EMBEDDING AI</span>{' '}IN ORIGINATION AND DISCOVERY
+          >WHAT THIS LOOKS LIKE</span>{' '}IN PRACTICE
         </h2>
 
         <p style={{
@@ -432,7 +393,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           lineHeight: 1.55,
           maxWidth: 900,
         }}>
-          Fresh thinking and AI embedded into traditional discovery projects and bid responses - sharpening our approach, delivering client value and strengthening our right to win.
+          How we embedded our model into a live Sainsbury&apos;s engagement — and what it produced.
         </p>
       </div>
 
@@ -441,60 +402,6 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           vertical footprint via alignSelf so the sidebar stays menu-compact
           while the right column can take the height its cards need. */}
       <div className="chapter-row" style={{ flex: '1 1 0', gap: 'clamp(14px, 1.6vw, 22px)', minHeight: 0, alignItems: 'stretch' }}>
-
-        {/* Left column: Project toggle buttons — compact vertical menu.
-            alignSelf: flex-start keeps the column at natural (content) height;
-            minHeight on each button guarantees the shorter one-line title and
-            the longer two-line title render as identical rectangles. */}
-        <div style={{ flex: '0 0 clamp(150px, 14vw, 186px)', display: 'flex', flexDirection: 'column', gap: 10, alignSelf: 'flex-start' }}>
-          {PROJECTS.map((p, idx) => (
-            <button
-              key={p.id}
-              onClick={() => setActiveProject(idx)}
-              style={{
-                minHeight: 76,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'flex-start',
-                padding: '12px 14px',
-                background: activeProject === idx
-                  ? 'color-mix(in srgb, var(--accent-ch2) 10%, transparent)'
-                  : 'var(--color-surface-card)',
-                border: activeProject === idx
-                  ? '1px solid var(--accent-ch2)'
-                  : '1px solid color-mix(in srgb, var(--accent-ch2) 15%, transparent)',
-                borderLeft: activeProject === idx
-                  ? '3px solid var(--accent-ch2)'
-                  : '3px solid color-mix(in srgb, var(--accent-ch2) 25%, transparent)',
-                borderRadius: 8,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                textAlign: 'left',
-                boxShadow: 'var(--shadow-sm)',
-              }}
-            >
-              <div style={{
-                fontFamily: 'var(--font-space-grotesk)',
-                fontSize: 12, fontWeight: 600,
-                color: activeProject === idx ? 'var(--accent-ch2)' : 'var(--color-text-primary)',
-                marginBottom: 3,
-                lineHeight: 1.2,
-              }}>
-                {p.title}
-              </div>
-              <div style={{
-                fontFamily: 'var(--font-space-mono)',
-                fontSize: 9,
-                textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                color: 'var(--color-text-tertiary)',
-              }}>
-                Project {idx + 1}/2
-              </div>
-            </button>
-          ))}
-        </div>
 
         {/* Middle column: Project content.
             alignSelf: flex-start keeps the panel at its natural content height
@@ -514,15 +421,6 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           flexDirection: 'column',
           overflow: 'hidden',
         }}>
-          <div style={{
-            fontFamily: 'var(--font-space-mono)',
-            fontSize: 9, fontWeight: 700,
-            textTransform: 'uppercase', letterSpacing: '0.18em',
-            color: 'var(--accent-ch2)', marginBottom: 8,
-          }}>
-            {project.header}
-          </div>
-
           <div style={{
             fontFamily: 'var(--font-space-grotesk)',
             fontSize: 17, fontWeight: 700,
@@ -575,300 +473,9 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           </div>
         </div>
 
-        {/* Right column: Outputs - conditional layout based on whether mobile exists */}
-        {project.outputs.find(o => o.type === 'mobile') ? (
-          /* Layout for projects WITH mobile output: 2 stacked on left, 1 tall portrait on right */
-          <div style={{ flex: 1, display: 'flex', gap: 6, minHeight: 0, minWidth: 0 }}>
-            {/* Left side: 2 stacked 16:9 boxes */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flex: '1 1 auto', maxWidth: 560, minHeight: 0, minWidth: 0, justifyContent: 'flex-start', alignItems: 'stretch' }}>
-              {project.outputs.filter(o => o.type !== 'mobile').map((output, i) => (
-                output.password && output.href ? (
-                  <FlipOutputCard
-                    key={i}
-                    label={output.label}
-                    url={output.url}
-                    href={output.href}
-                    thumbnail={output.thumbnail}
-                    password={output.password}
-                  />
-                ) : (
-                <div
-                  key={i}
-                  style={{
-                    width: '100%',
-                    maxWidth: 560,
-                    alignSelf: 'flex-start',
-                    flex: '1 1 0',
-                    minHeight: 0,
-                    background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 4%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 10%, var(--color-surface-card)))',
-                    border: '1px dashed color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
-                    borderRadius: 10,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 12,
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    position: 'relative',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {/* Background grid pattern */}
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    opacity: 0.04,
-                    backgroundImage: 'linear-gradient(90deg, var(--accent-ch2) 1px, transparent 1px), linear-gradient(var(--accent-ch2) 1px, transparent 1px)',
-                    backgroundSize: '24px 24px',
-                  }} />
-
-                  {/* Icon */}
-                  <div style={{
-                    width: 36, height: 36,
-                    borderRadius: 8,
-                    background: 'color-mix(in srgb, var(--accent-ch2) 12%, transparent)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    position: 'relative',
-                    flexShrink: 0,
-                  }}>
-                    {output.type === 'website' ? (
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="2" y1="12" x2="22" y2="12" />
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                      </svg>
-                    ) : output.type === 'navigator' ? (
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M3 9h18M9 3v18" />
-                      </svg>
-                    ) : output.type === 'dashboard' ? (
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                        <rect x="2" y="3" width="20" height="14" rx="2" />
-                        <path d="M8 21h8M12 17v4" />
-                      </svg>
-                    ) : (
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                        <polygon points="5 3 19 12 5 21 5 3" />
-                      </svg>
-                    )}
-                  </div>
-
-                  {/* Label */}
-                  <div style={{ position: 'relative', minWidth: 0 }}>
-                    <div style={{ 
-                      fontFamily: 'var(--font-space-grotesk)', 
-                      fontSize: 13, 
-                      fontWeight: 600,
-                      color: 'var(--color-text-primary)',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}>
-                      {output.label}
-                    </div>
-                    {output.url && (
-                      <div style={{ 
-                        fontFamily: 'var(--font-dm-sans)', 
-                        fontSize: 10, 
-                        color: 'var(--color-text-secondary)',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}>
-                        {output.url}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* External link indicator */}
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="2" style={{ position: 'relative', opacity: 0.5, flexShrink: 0 }}>
-                    <path d="M7 17L17 7M17 7H7M17 7V17" />
-                  </svg>
-                </div>
-                )
-              ))}
-            </div>
-
-            {/* Right side: 1 tall portrait mobile box — launches the bid-for-basket demo */}
-            <div
-              data-no-advance
-              role="button"
-              tabIndex={0}
-              aria-label="Launch Agentic Commerce demo"
-              onClick={(e) => { e.stopPropagation(); setDemoOpen(true) }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault()
-                  setDemoOpen(true)
-                }
-              }}
-              style={{
-                // Phone column stretches to match the full height of the
-                // 2-card stack on its left so the row reads as a single block.
-                flex: '0 0 clamp(150px, 13vw, 186px)',
-                alignSelf: 'stretch',
-                minHeight: 0,
-                background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 6%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 14%, var(--color-surface-card)))',
-                border: '1px solid color-mix(in srgb, var(--accent-ch2) 35%, transparent)',
-                borderRadius: 10,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '14px 10px',
-                gap: 10,
-                cursor: 'pointer',
-                transition: 'all 0.25s ease',
-                position: 'relative',
-                overflow: 'hidden',
-                flexShrink: 0,
-                outline: 'none',
-                boxShadow: 'var(--shadow-sm)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)'
-                e.currentTarget.style.borderColor = 'var(--accent-ch2)'
-                e.currentTarget.style.boxShadow = 'var(--shadow-md)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--accent-ch2) 35%, transparent)'
-                e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
-              }}
-            >
-              {/* Background grid pattern */}
-              <div style={{
-                position: 'absolute',
-                inset: 0,
-                opacity: 0.05,
-                backgroundImage: 'linear-gradient(90deg, var(--accent-ch2) 1px, transparent 1px), linear-gradient(var(--accent-ch2) 1px, transparent 1px)',
-                backgroundSize: '24px 24px',
-              }} />
-
-              {/* Top: "Interactive demo" pill */}
-              <div style={{
-                fontFamily: 'var(--font-space-mono)',
-                fontSize: 9,
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.2em',
-                color: 'var(--accent-ch2)',
-                padding: '4px 10px',
-                borderRadius: 999,
-                background: 'color-mix(in srgb, var(--color-surface-card) 88%, transparent)',
-                border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
-                position: 'relative',
-              }}>
-                Interactive demo
-              </div>
-
-              {/* Mid: stylised iPhone mock preview — fills the available vertical
-                  space of the column, then derives width from its own aspect
-                  ratio so it stays a phone shape on any row height. maxWidth
-                  caps it at the column width so the Launch Demo CTA below
-                  never gets pushed out of the viewport. */}
-              <div style={{
-                position: 'relative',
-                flex: '1 1 0',
-                minHeight: 0,
-                maxWidth: '100%',
-                aspectRatio: '9 / 19.5',
-                borderRadius: 18,
-                background: 'linear-gradient(180deg, #111827 0%, #1f2937 100%)',
-                padding: 4,
-                boxShadow: '0 10px 26px rgba(15,23,42,0.22), 0 0 0 1px rgba(0,0,0,0.15)',
-              }}>
-                <div style={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: 14,
-                  background: 'linear-gradient(160deg, #ffffff 0%, #F3F6FB 100%)',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 6,
-                }}>
-                  {/* Dynamic island stub */}
-                  <div style={{
-                    position: 'absolute',
-                    top: 4,
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: 30,
-                    height: 8,
-                    borderRadius: 999,
-                    background: '#000',
-                  }} />
-                  {/* Logos hinting at the demo content */}
-                  <div style={{ display: 'flex', gap: 4, flexDirection: 'column', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', gap: 4 }}>
-                      <div style={{ width: 24, height: 10, background: '#00539F', borderRadius: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ fontSize: 5, color: '#fff', fontWeight: 700, fontFamily: 'Arial, sans-serif' }}>TESCO</span>
-                      </div>
-                      <div style={{ width: 24, height: 10, background: 'var(--sainsburys-orange)', borderRadius: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ fontSize: 4, color: '#fff', fontWeight: 700, fontFamily: 'Arial, sans-serif' }}>Sainsbury&apos;s</span>
-                      </div>
-                    </div>
-                    <div style={{ width: 24, height: 10, background: '#1a4d2e', borderRadius: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <span style={{ fontSize: 4, color: '#fff', fontWeight: 700, fontFamily: 'Arial, sans-serif' }}>Waitrose</span>
-                    </div>
-                  </div>
-                  <div style={{
-                    fontFamily: 'var(--font-space-mono)',
-                    fontSize: 7,
-                    fontWeight: 700,
-                    color: 'var(--accent-ch2)',
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                  }}>
-                    Bidding…
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom: label + CTA */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, position: 'relative' }}>
-                <div style={{
-                  fontFamily: 'var(--font-space-grotesk)',
-                  fontSize: 11,
-                  fontWeight: 600,
-                  color: 'var(--color-text-primary)',
-                  textAlign: 'center',
-                  padding: '0 10px',
-                  lineHeight: 1.3,
-                }}>
-                  {project.outputs.find(o => o.type === 'mobile')?.label}
-                </div>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  padding: '6px 12px',
-                  borderRadius: 999,
-                  background: 'var(--accent-ch2)',
-                  color: '#fff',
-                  fontFamily: 'var(--font-space-grotesk)',
-                  fontSize: 10,
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.18em',
-                  boxShadow: '0 4px 12px color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
-                }}>
-                  Launch demo
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          /* Layout for projects WITHOUT mobile output: 2 on top, 1 below left (2+1 grid) */
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, minWidth: 0, justifyContent: 'center' }}>
+        {/* Right column: Outputs — 2 on top, 1 below left (2+1 grid) */}
+        {(
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, minWidth: 0, justifyContent: 'flex-start' }}>
             {/* Top row: 2 boxes side by side */}
             <div style={{ display: 'flex', gap: 16, flex: '0 0 auto' }}>
               {project.outputs.slice(0, 2).map((output, i) => (
@@ -1271,19 +878,6 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           </div>
         )}
       </div>
-
-      {/* Agentic Commerce demo — renders only when the Nectar tile triggers it.
-          DemoOverlay is portalled visually; onClick on the backdrop closes. */}
-      <DemoOverlay
-        open={demoOpen}
-        onClose={() => setDemoOpen(false)}
-        label="Interactive · Agentic Commerce"
-        title="Bid For My Basket"
-        subtitle="Upload a meal plan. Watch Tesco, Sainsbury's and Waitrose negotiate in real time."
-        accentColor="var(--sainsburys-orange)"
-      >
-        <ConversationalRetailUI />
-      </DemoOverlay>
     </div>
   )
 }
