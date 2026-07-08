@@ -115,9 +115,9 @@ export function HeroEntrance({ onEnter }: Props) {
       <div
         style={{
           fontFamily: 'var(--font-space-grotesk)',
-          // Sized so the longest line ("TO DELIVER REINVENTION") fits on one
-          // line inside the 50vw left column with side padding, without clipping.
-          fontSize: 'clamp(26px, 3.7vw, 56px)',
+          // Sized so the longest line ("FOR REINVENTION") fits on one line
+          // inside the 50vw left column with side padding, without clipping.
+          fontSize: 'clamp(34px, 4.9vw, 76px)',
           fontWeight: 800,
           textTransform: 'uppercase',
           lineHeight: 1.02,
