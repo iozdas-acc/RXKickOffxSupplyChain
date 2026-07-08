@@ -18,6 +18,8 @@ interface HorizonItem {
   /* Full-size asset: the image for `image`, the video file for `video`.
      ↓↓↓ SWAP THESE PATHS WITH THE REAL ASSETS ↓↓↓ */
   src: string
+  /* Device frame shape: 'landscape' = 16:9 (desktop), 'portrait' = 9:16 (phone) */
+  frame: 'landscape' | 'portrait'
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -33,6 +35,7 @@ const HORIZONS: HorizonItem[] = [
     thumbnail: '/images/horizon-1-navigator.png',
     media: 'image',
     src: '/images/horizon-1-navigator.png',
+    frame: 'landscape',
   },
   {
     id: 'openai',
@@ -41,6 +44,7 @@ const HORIZONS: HorizonItem[] = [
     thumbnail: '/images/horizon-2-openai-thumb.png',
     media: 'video',
     src: '/videos/horizon-2-openai.mp4',
+    frame: 'portrait',
   },
   {
     id: 'basket',
@@ -49,6 +53,7 @@ const HORIZONS: HorizonItem[] = [
     thumbnail: '/images/horizon-3-basket-thumb.png',
     media: 'video',
     src: '/videos/horizon-3-basket.mp4',
+    frame: 'portrait',
   },
 ]
 
@@ -59,10 +64,13 @@ function HorizonBox({ item, onOpen }: { item: HorizonItem; onOpen: (item: Horizo
   return (
     <div
       style={{
-        flex: '1 1 0',
+        /* Grow proportional to frame width so all frames share the same
+           height: landscape 16:9 → 256, portrait 9:16 → 81. */
+        flex: `${item.frame === 'landscape' ? 256 : 81} 1 0`,
         minWidth: 0,
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
         gap: 10,
         minHeight: 0,
       }}
@@ -102,6 +110,8 @@ function HorizonBox({ item, onOpen }: { item: HorizonItem; onOpen: (item: Horizo
         style={{
           flex: '1 1 0',
           minHeight: 0,
+          maxWidth: '100%',
+          aspectRatio: item.frame === 'landscape' ? '16 / 9' : '9 / 16',
           borderRadius: 10,
           border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
           backgroundColor: 'var(--color-surface-card)',
@@ -402,6 +412,7 @@ export function Chapter02({ isActive }: Props) {
           gap: 'clamp(14px, 1.6vw, 22px)',
           minHeight: 0,
           alignItems: 'stretch',
+          justifyContent: 'center',
         }}
       >
         {HORIZONS.map((item) => (
