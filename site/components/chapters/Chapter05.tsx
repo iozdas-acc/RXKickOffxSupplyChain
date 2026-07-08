@@ -64,7 +64,7 @@ export function Chapter05({ isActive, onPrev }: Props) {
         fontFamily: 'var(--font-space-mono)',
         fontSize: 10, fontWeight: 700,
         textTransform: 'uppercase', letterSpacing: '0.3em',
-        color: 'var(--accent-ch5)', marginBottom: 28,
+        color: 'var(--accent-ch5)', marginBottom: 20,
         display: 'flex', alignItems: 'center', gap: 12,
       }}>
         <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch5)', display: 'inline-block', borderRadius: 2 }} />
@@ -80,7 +80,7 @@ export function Chapter05({ isActive, onPrev }: Props) {
         textTransform: 'uppercase',
         lineHeight: 0.95,
         letterSpacing: '-0.02em',
-        marginBottom: 20,
+        marginBottom: 16,
         maxWidth: 800,
         color: 'var(--color-text-primary)',
       }}>
@@ -101,7 +101,7 @@ export function Chapter05({ isActive, onPrev }: Props) {
         fontFamily: 'var(--font-dm-sans)',
         fontSize: 15, color: 'var(--color-text-secondary)',
         lineHeight: 1.75, maxWidth: 620,
-        marginBottom: 48,
+        marginBottom: 36,
       }}>
         The framework, tools and outputs we bring to every engagement to accelerate reinvention and make the future tangible.
       </p>
