@@ -43,7 +43,7 @@ const STEPS = [
     label: 'STEP 1',
     title: 'Create Your Horizon III Vision',
     body:
-      'Define what your business looks like in Horizon III — autonomous systems, agent-driven operations, transformed value creation.',
+      'Define what Argos\u2019 Forecasting Tower looks like in Horizon III — autonomous operations, agent-driven planning, transformed value creation.',
     arrow: 'right' as const,
   },
   {
