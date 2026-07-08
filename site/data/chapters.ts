@@ -73,7 +73,7 @@ export const CHAPTERS: Chapter[] = [
     keyMessages: [
       'AI embedded into live discovery — not bolted on at the end',
       'Decks and spreadsheets turned into interactive, explorable experiences',
-      'Value proven in flight on the Ancona procurement reinvention',
+      'Value proven in flight on a procurement reinvention',
     ],
   },
 ]

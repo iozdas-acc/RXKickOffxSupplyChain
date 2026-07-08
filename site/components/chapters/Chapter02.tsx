@@ -26,7 +26,7 @@ const PROJECTS: Project[] = [
   {
     id: 'procurement',
     header: 'Proof In Discovery',
-    title: 'Ancona Procurement Reinvention',
+    title: 'Procurement Reinvention',
     timeframe: '12 weeks. Live engagement. Blended RX & SME team.',
     deliverables: [
       'Vision website, personas & AI assistant',
