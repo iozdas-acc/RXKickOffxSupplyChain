@@ -36,7 +36,7 @@ const PROJECTS: Project[] = [
     outcomes: [
       'Shifted the conversation from today\'s process to tomorrow\'s ambition',
       'Turned static decks and spreadsheets into interactive experiences',
-      'Prototyped and demoed concepts during discovery',
+      'Prototyped and demoed concepts during discovery — not at the end',
     ],
     outputs: [
       {
@@ -362,7 +362,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
           <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch2)', display: 'inline-block', borderRadius: 2 }} />
-          Proof In Discovery
+          Case Study
         </div>
 
         <h2 style={{
@@ -393,7 +393,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           lineHeight: 1.55,
           maxWidth: 900,
         }}>
-          How we embedded our model into a live Sainsbury&apos;s engagement — and what it produced.
+          How we&apos;ve already put this into practice on the Sainsbury&apos;s account.
         </p>
       </div>
 
