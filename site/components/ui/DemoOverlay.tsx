@@ -66,7 +66,7 @@ export function DemoOverlay({
             justifyContent: 'center',
             padding: 'clamp(24px, 4vw, 56px)',
             background:
-              'radial-gradient(ellipse at 50% 50%, rgba(240,108,0,0.08) 0%, transparent 55%), rgba(8,8,14,0.88)',
+              'radial-gradient(ellipse at 50% 50%, rgba(61, 177, 154,0.08) 0%, transparent 55%), rgba(8,8,14,0.88)',
             backdropFilter: 'blur(18px)',
             WebkitBackdropFilter: 'blur(18px)',
             cursor: 'pointer',

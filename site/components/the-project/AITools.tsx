@@ -57,16 +57,16 @@ export default function AITools() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, ease: EASE_OUT, delay: 0 }}
         >
-          <div className="w-10 h-px bg-[#F06C00]" />
-          <span className="text-xs font-medium uppercase tracking-widest text-[#F06C00]">
+          <div className="w-10 h-px bg-[#3DB19A]" />
+          <span className="text-xs font-medium uppercase tracking-widest text-[#3DB19A]">
             AI EMBEDDED
           </span>
-          <div className="w-10 h-px bg-[#F06C00]" />
+          <div className="w-10 h-px bg-[#3DB19A]" />
         </motion.div>
 
         {/* H2 */}
         <motion.h2
-          className="font-display text-3xl md:text-4xl font-bold text-[#1A1A1A] mt-3 text-center"
+          className="font-display text-3xl md:text-4xl font-bold text-[#1C1C2E] mt-3 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, ease: EASE_OUT, delay: 0.1 }}
@@ -79,7 +79,7 @@ export default function AITools() {
           {tools.map((tool, i) => (
             <motion.div
               key={tool.title}
-              className="bg-white rounded-xl border border-[#E5E5E5] p-6 hover:shadow-md hover:border-[#F06C00]/30 transition-all duration-300"
+              className="bg-white rounded-xl border border-[#E5E5E5] p-6 hover:shadow-md hover:border-[#3DB19A]/30 transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, ease: EASE_OUT, delay: 0.2 + i * 0.1 }}
@@ -95,7 +95,7 @@ export default function AITools() {
                   </div>
                 )}
               </div>
-              <h3 className="text-[#1A1A1A] font-semibold text-lg mb-2">{tool.title}</h3>
+              <h3 className="text-[#1C1C2E] font-semibold text-lg mb-2">{tool.title}</h3>
               <p className="text-[#666666] text-sm leading-relaxed">{tool.purpose}</p>
             </motion.div>
           ))}

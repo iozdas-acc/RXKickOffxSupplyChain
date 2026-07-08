@@ -5,19 +5,19 @@ import { EASE_OUT } from '@/lib/motion'
 
 const cards = [
   {
-    accent: '#F06C00',
+    accent: '#3DB19A',
     label: 'No slowdown',
     heading: 'RX keeps moving at speed',
     body: 'Phase 1 is unadulterated RX delivery. The consulting agent doesn\'t dilute the pace — it runs alongside it. RX does what it does best, without waiting for the client to catch up.',
   },
   {
-    accent: '#7C3AED',
+    accent: '#0F1D3C',
     label: 'No abandonment',
     heading: 'The client isn\'t left to absorb alone',
     body: 'Phase 2 keeps a consulting agent present through adoption. They translate RX outputs into internal action, helping the team digest, implement, and build capability to continue independently.',
   },
   {
-    accent: '#F06C00',
+    accent: '#3DB19A',
     label: 'No trade-off',
     heading: 'CCI stays high throughout',
     body: 'Traditionally, value creation and client change run sequentially. The hybrid model runs them in parallel — the client changes at their pace while RX continues creating value at ours.',
@@ -28,7 +28,7 @@ export default function WhyItWorks() {
   return (
     <section
       className="py-24 relative overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #1A1A1A 0%, #222222 50%, #1A1A1A 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #1C1C2E 0%, #222222 50%, #1C1C2E 100%)' }}
     >
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
@@ -41,7 +41,7 @@ export default function WhyItWorks() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at 20% 50%, rgba(240,108,0,0.05) 0%, transparent 55%), radial-gradient(ellipse at 80% 50%, rgba(124,58,237,0.06) 0%, transparent 55%)',
+          background: 'radial-gradient(ellipse at 20% 50%, rgba(61, 177, 154,0.05) 0%, transparent 55%), radial-gradient(ellipse at 80% 50%, rgba(28, 28, 46,0.06) 0%, transparent 55%)',
         }}
       />
 
@@ -54,9 +54,9 @@ export default function WhyItWorks() {
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-3 mb-3">
-            <div className="w-10 h-px bg-[#F06C00]" />
-            <span className="text-xs font-medium text-[#F06C00] uppercase tracking-widest">Why It Works</span>
-            <div className="w-10 h-px bg-[#F06C00]" />
+            <div className="w-10 h-px bg-[#3DB19A]" />
+            <span className="text-xs font-medium text-[#3DB19A] uppercase tracking-widest">Why It Works</span>
+            <div className="w-10 h-px bg-[#3DB19A]" />
           </div>
           <h2 className="font-display text-3xl md:text-4xl font-bold italic text-white">
             Three structural reasons.

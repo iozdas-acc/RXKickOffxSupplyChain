@@ -112,7 +112,7 @@ export default function LearningHero() {
     <section
       ref={sectionRef}
       className="min-h-dvh relative overflow-hidden flex flex-col"
-      style={{ backgroundColor: '#1A1A1A' }}
+      style={{ backgroundColor: '#1C1C2E' }}
     >
       {/* Dot grid */}
       <div
@@ -132,7 +132,7 @@ export default function LearningHero() {
           transform: 'translate(-50%, -50%)',
           width: '800px',
           height: '600px',
-          background: 'radial-gradient(ellipse at center, rgba(240,108,0,0.07) 0%, rgba(240,108,0,0.03) 35%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center, rgba(61, 177, 154,0.07) 0%, rgba(61, 177, 154,0.03) 35%, transparent 70%)',
           borderRadius: '50%',
         }}
       />
@@ -142,7 +142,7 @@ export default function LearningHero() {
         <p
           ref={overlineRef}
           className="text-xs font-medium uppercase tracking-widest"
-          style={{ color: '#F06C00' }}
+          style={{ color: '#3DB19A' }}
         >
           What We Learned
         </p>
@@ -182,12 +182,12 @@ export default function LearningHero() {
           <div
             ref={lineRef}
             className="absolute inset-0"
-            style={{ backgroundColor: '#F06C00' }}
+            style={{ backgroundColor: '#3DB19A' }}
           />
           <div
             ref={glowRef}
             className="absolute inset-0"
-            style={{ backgroundColor: '#F06C00', filter: 'blur(8px)', opacity: 0 }}
+            style={{ backgroundColor: '#3DB19A', filter: 'blur(8px)', opacity: 0 }}
           />
         </div>
 

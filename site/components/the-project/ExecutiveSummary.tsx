@@ -33,7 +33,7 @@ export default function ExecutiveSummary() {
   const inView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
-    <section ref={ref} className="py-24 md:py-32 relative overflow-hidden bg-gradient-to-br from-[#1A1A1A] via-[#2A2A2A] to-[#1A1A1A]">
+    <section ref={ref} className="py-24 md:py-32 relative overflow-hidden bg-gradient-to-br from-[#1C1C2E] via-[#2A2A2A] to-[#1C1C2E]">
       {/* Dot texture overlay */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -44,10 +44,10 @@ export default function ExecutiveSummary() {
       />
 
       {/* Orange glow */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#F06C00]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#3DB19A]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
 
       {/* Purple glow */}
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#A100FF]/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#0F1D3C]/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Overline */}
@@ -57,8 +57,8 @@ export default function ExecutiveSummary() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, ease: EASE_OUT, delay: 0 }}
         >
-          <div className="w-10 h-px bg-[#F06C00]" />
-          <span className="text-xs font-medium uppercase tracking-widest text-[#F06C00]">
+          <div className="w-10 h-px bg-[#3DB19A]" />
+          <span className="text-xs font-medium uppercase tracking-widest text-[#3DB19A]">
             EXECUTIVE SUMMARY
           </span>
         </motion.div>
@@ -95,13 +95,13 @@ export default function ExecutiveSummary() {
             return (
               <motion.div
                 key={card.title}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 hover:border-[#F06C00]/30 transition-all duration-300"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 hover:border-[#3DB19A]/30 transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, ease: EASE_OUT, delay: 0.3 + i * 0.1 }}
               >
-                <div className="w-12 h-12 rounded-lg bg-[#F06C00]/20 flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-[#F06C00]" />
+                <div className="w-12 h-12 rounded-lg bg-[#3DB19A]/20 flex items-center justify-center mb-4">
+                  <Icon className="w-6 h-6 text-[#3DB19A]" />
                 </div>
                 <h3 className="text-white font-semibold text-lg mb-2">{card.title}</h3>
                 <p className="text-white/60 leading-relaxed text-sm">{card.body}</p>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from 'react'
 
-const SITE_PASSWORD = 'SainsAccenture2026!'
+const SITE_PASSWORD = 'RXRetail2026!'
 const STORAGE_KEY = 'rx-kickoff-unlocked'
 
 export default function PasswordGate({ children }: { children: React.ReactNode }) {

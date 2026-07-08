@@ -9,7 +9,6 @@ import { SupermarketScene } from '@/components/three/SupermarketScene'
 import { BasketAnimation } from '@/components/three/scenes/BasketAnimation'
 import { NavBar } from '@/components/presentation/NavBar'
 import { HeroEntrance } from '@/components/presentation/HeroEntrance'
-import { Chapter02 } from '@/components/chapters/Chapter02'
 import { Chapter03 } from '@/components/chapters/Chapter03'
 import { Chapter04 } from '@/components/chapters/Chapter04'
 import { Chapter05 } from '@/components/chapters/Chapter05'
@@ -225,9 +224,9 @@ export default function PresentationPage() {
           transition: 'opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.2s',
           pointerEvents: heroMoment ? 'none' : 'auto',
         }}>
-          {/* Order: What We Learned → Horizons Model → Hybrid Approach →
-              Embedding AI in Discovery (procurement). "The Story So Far" has
-              been removed and the procurement page moved to the end. */}
+          {/* Order: What We Learned → Horizons Model → Hybrid Approach.
+              The case-study / "What This Looks Like In Practice" screen has
+              been removed for the generic retail version. */}
           <Chapter03
             isActive={chapter === 0 && !isTransitioning}
             onNext={() => goTo(1)}
@@ -241,11 +240,6 @@ export default function PresentationPage() {
           <Chapter05
             isActive={chapter === 2 && !isTransitioning}
             onPrev={() => goTo(1)}
-          />
-          <Chapter02
-            isActive={chapter === 3 && !isTransitioning}
-            onNext={() => goTo(3)}
-            onPrev={() => goTo(2)}
           />
         </div>
       )}

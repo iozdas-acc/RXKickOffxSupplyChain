@@ -378,7 +378,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           <span
             className="gradient-text-ch2"
             style={{
-              backgroundImage: 'linear-gradient(135deg, #134e4a 0%, #14b8a6 50%, #0f766e 100%)',
+              backgroundImage: 'linear-gradient(135deg, #134e4a 0%, #3DB19A 50%, #0f766e 100%)',
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
               WebkitTextFillColor: 'transparent',

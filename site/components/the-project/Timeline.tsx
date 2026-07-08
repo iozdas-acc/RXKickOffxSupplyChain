@@ -29,7 +29,7 @@ const timelineData: PhaseData[] = [
     title: 'Preparation & Setup',
     horizonActivities: [{
       horizon: 'All Horizons',
-      horizonColor: '#F06C00',
+      horizonColor: '#3DB19A',
       activities: [
         'Collect existing process maps',
         'Map & mobilise stakeholders',
@@ -46,7 +46,7 @@ const timelineData: PhaseData[] = [
     horizonActivities: [
       {
         horizon: 'H3: Define Ambition',
-        horizonColor: '#7C3AED',
+        horizonColor: '#0F1D3C',
         gradient: 'from-purple-500 to-pink-500',
         activities: [
           'Conduct leadership interviews',
@@ -75,7 +75,7 @@ const timelineData: PhaseData[] = [
     horizonActivities: [
       {
         horizon: 'H3: Define Ambition',
-        horizonColor: '#7C3AED',
+        horizonColor: '#0F1D3C',
         gradient: 'from-purple-500 to-pink-500',
         activities: ['Validate & refine H3 ambition'],
       },
@@ -97,7 +97,7 @@ const timelineData: PhaseData[] = [
       },
     ],
     outputs: [
-      { text: 'H3 Narrative, Persona Journey & Demos', horizon: 'H3', color: '#7C3AED' },
+      { text: 'H3 Narrative, Persona Journey & Demos', horizon: 'H3', color: '#0F1D3C' },
       { text: 'H1 Insights, Pain Point Explorer & Persona Journey', horizon: 'H1', color: '#0891B2' },
     ],
     milestone: 'V1 of all outputs',
@@ -124,7 +124,7 @@ const timelineData: PhaseData[] = [
     title: 'Final Playback & Handover',
     horizonActivities: [{
       horizon: 'All Horizons',
-      horizonColor: '#F06C00',
+      horizonColor: '#3DB19A',
       activities: [
         'Final playback presentation',
         'Handover documentation',
@@ -159,7 +159,7 @@ function TimelineCard({
       transition={{ duration: 0.4, ease: EASE_OUT, delay: index * 0.08 }}
       className="relative"
     >
-      <div className="absolute left-0 top-6 w-4 h-4 rounded-full border-4 border-white z-10 bg-[#F06C00]" />
+      <div className="absolute left-0 top-6 w-4 h-4 rounded-full border-4 border-white z-10 bg-[#3DB19A]" />
 
       <div className="ml-8 bg-white rounded-xl border border-[#E5E5E5] overflow-hidden hover:shadow-md transition-shadow">
         <button
@@ -167,11 +167,11 @@ function TimelineCard({
           className="w-full p-5 flex items-center justify-between text-left cursor-pointer"
         >
           <div className="flex items-center gap-4">
-            <div className="px-3 py-1 rounded-full text-xs font-semibold text-white bg-[#F06C00] whitespace-nowrap">
+            <div className="px-3 py-1 rounded-full text-xs font-semibold text-white bg-[#3DB19A] whitespace-nowrap">
               {data.weeks}
             </div>
             <div>
-              <h4 className="font-semibold text-[#1A1A1A]">{data.title}</h4>
+              <h4 className="font-semibold text-[#1C1C2E]">{data.title}</h4>
               <div className="flex flex-wrap items-center gap-1.5 mt-1">
                 {data.horizonActivities.map((ha, i) => (
                   ha.horizon === 'All Horizons' ? (
@@ -246,7 +246,7 @@ function TimelineCard({
                   )}
                   <ul className="space-y-2">
                     {ha.activities.map((activity, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm text-[#1A1A1A]">
+                      <li key={j} className="flex items-start gap-2 text-sm text-[#1C1C2E]">
                         <Sparkles className="w-3.5 h-3.5 text-slate-400 mt-0.5 flex-shrink-0" />
                         {activity}
                       </li>
@@ -257,12 +257,12 @@ function TimelineCard({
             </div>
 
             {data.workshops && data.workshops.length > 0 && (
-              <div className="mb-4 p-3 bg-[#F06C00]/5 border border-[#F06C00]/20 rounded-lg">
-                <p className="text-xs font-medium text-[#F06C00] uppercase tracking-wider mb-2">Workshops</p>
+              <div className="mb-4 p-3 bg-[#3DB19A]/5 border border-[#3DB19A]/20 rounded-lg">
+                <p className="text-xs font-medium text-[#3DB19A] uppercase tracking-wider mb-2">Workshops</p>
                 <div className="flex flex-wrap gap-2">
                   {data.workshops.map((w, i) => (
-                    <span key={i} className="inline-flex items-center gap-1.5 px-2 py-1 bg-white rounded text-xs font-medium text-[#1A1A1A] border border-[#F06C00]/20">
-                      <div className="w-2 h-2 rotate-45 bg-[#F06C00]" />
+                    <span key={i} className="inline-flex items-center gap-1.5 px-2 py-1 bg-white rounded text-xs font-medium text-[#1C1C2E] border border-[#3DB19A]/20">
+                      <div className="w-2 h-2 rotate-45 bg-[#3DB19A]" />
                       {w}
                     </span>
                   ))}
@@ -309,11 +309,11 @@ export default function Timeline() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-10 h-px bg-[#F06C00]" />
-            <span className="text-xs font-medium text-[#F06C00] uppercase tracking-widest">Project Plan &amp; Outputs</span>
-            <div className="w-10 h-px bg-[#F06C00]" />
+            <div className="w-10 h-px bg-[#3DB19A]" />
+            <span className="text-xs font-medium text-[#3DB19A] uppercase tracking-widest">Project Plan &amp; Outputs</span>
+            <div className="w-10 h-px bg-[#3DB19A]" />
           </div>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-[#1C1C2E] mb-4">
             8-Week Plan on a Page
           </h2>
           <p className="text-lg text-[#666666] max-w-2xl mx-auto">
@@ -322,7 +322,7 @@ export default function Timeline() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-2 top-6 bottom-6 w-0.5 bg-[#F06C00]" />
+          <div className="absolute left-2 top-6 bottom-6 w-0.5 bg-[#3DB19A]" />
           <div className="space-y-4">
             {timelineData.map((data, index) => (
               <TimelineCard

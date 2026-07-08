@@ -24,7 +24,7 @@ import {
 // the one place in this scene allowed to introduce hex.
 const H1_COLOR = '#0891B2'
 const H2_COLOR = '#059669'
-const H3_COLOR = '#7C3AED'
+const H3_COLOR = '#0F1D3C'
 
 const AISLE_X = [-5, 0, 5] as const
 const AISLE_COLORS = [H1_COLOR, H2_COLOR, H3_COLOR] as const

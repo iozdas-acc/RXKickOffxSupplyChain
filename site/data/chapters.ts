@@ -60,20 +60,4 @@ export const CHAPTERS: Chapter[] = [
       'This is how we approach every AI-led reinvention from here',
     ],
   },
-  {
-    id: 3,
-    slug: 'the-project',
-    label: '04 · EMBEDDING AI IN DISCOVERY',
-    title: 'Embedding AI in Discovery',
-    titleLines: ['AI, EMBEDDED', 'IN LIVE', 'DISCOVERY.'],
-    subtitle: 'Bringing AI into live discovery to prove value as we go.',
-    emotion: 'urgency',
-    accentColor: 'var(--accent-ch2)',
-    sceneMode: 'shelves',
-    keyMessages: [
-      'AI embedded into live discovery — not bolted on at the end',
-      'Decks and spreadsheets turned into interactive, explorable experiences',
-      'Value proven in flight on the Ancona procurement reinvention',
-    ],
-  },
 ]

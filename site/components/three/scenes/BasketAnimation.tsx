@@ -11,8 +11,8 @@ import type { Group } from 'three'
 // MeshToonMaterial only. Ref shape: wider-than-tall plastic tub base,
 // thin dark wire cage above it, single curved handle arching over the top.
 
-const ORANGE = '#F06C00'
-const ORANGE_INK = '#C94B0A'
+const ORANGE = '#3DB19A'
+const ORANGE_INK = '#1F7A66'
 const CHARCOAL = '#2A2A2A'
 const OFFWHITE = '#F4F1EA'
 

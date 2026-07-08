@@ -105,7 +105,7 @@ export default function ModelHero() {
     <section
       ref={sectionRef}
       className="min-h-dvh relative overflow-hidden flex flex-col"
-      style={{ backgroundColor: '#1A1A1A' }}
+      style={{ backgroundColor: '#1C1C2E' }}
     >
       {/* Dot grid */}
       <div
@@ -125,7 +125,7 @@ export default function ModelHero() {
           transform: 'translate(-50%, -50%)',
           width: '900px',
           height: '600px',
-          background: 'radial-gradient(ellipse at 40% 50%, rgba(240,108,0,0.06) 0%, transparent 50%), radial-gradient(ellipse at 60% 50%, rgba(124,58,237,0.06) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at 40% 50%, rgba(61, 177, 154,0.06) 0%, transparent 50%), radial-gradient(ellipse at 60% 50%, rgba(28, 28, 46,0.06) 0%, transparent 50%)',
           borderRadius: '50%',
         }}
       />
@@ -135,7 +135,7 @@ export default function ModelHero() {
         <p
           ref={overlineRef}
           className="text-xs font-medium uppercase tracking-widest"
-          style={{ color: '#F06C00' }}
+          style={{ color: '#3DB19A' }}
         >
           The Hybrid Approach
         </p>
@@ -159,12 +159,12 @@ export default function ModelHero() {
           {/* Ghost numeral */}
           <span
             className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:block pointer-events-none select-none font-display font-bold italic"
-            style={{ fontSize: '280px', color: 'rgba(240,108,0,0.04)', lineHeight: 1, right: '16px' }}
+            style={{ fontSize: '280px', color: 'rgba(61, 177, 154,0.04)', lineHeight: 1, right: '16px' }}
             aria-hidden
           >01</span>
           <p
             className="text-xs font-medium uppercase tracking-widest mb-3 relative"
-            style={{ color: '#F06C00' }}
+            style={{ color: '#3DB19A' }}
           >
             Phase 1
           </p>
@@ -182,7 +182,7 @@ export default function ModelHero() {
           </p>
           <div className="mt-5 flex flex-wrap gap-2 justify-end hidden md:flex">
             {['Compressed timelines', 'AI diagnostics', 'Executive narratives'].map(tag => (
-              <span key={tag} className="text-[10px] px-2.5 py-1 rounded-full bg-[#F06C00]/10 text-[#F06C00] border border-[#F06C00]/20">
+              <span key={tag} className="text-[10px] px-2.5 py-1 rounded-full bg-[#3DB19A]/10 text-[#3DB19A] border border-[#3DB19A]/20">
                 {tag}
               </span>
             ))}
@@ -195,14 +195,14 @@ export default function ModelHero() {
             ref={lineRef}
             className="absolute inset-0"
             style={{
-              background: 'linear-gradient(to bottom, #F06C00 0%, #7C3AED 100%)',
+              background: 'linear-gradient(to bottom, #3DB19A 0%, #0F1D3C 100%)',
             }}
           />
           <div
             ref={glowRef}
             className="absolute inset-0"
             style={{
-              background: 'linear-gradient(to bottom, #F06C00 0%, #7C3AED 100%)',
+              background: 'linear-gradient(to bottom, #3DB19A 0%, #0F1D3C 100%)',
               filter: 'blur(10px)',
               opacity: 0,
             }}
@@ -217,12 +217,12 @@ export default function ModelHero() {
           {/* Ghost numeral */}
           <span
             className="absolute left-0 top-1/2 -translate-y-1/2 hidden md:block pointer-events-none select-none font-display font-bold italic"
-            style={{ fontSize: '280px', color: 'rgba(124,58,237,0.04)', lineHeight: 1, left: '16px' }}
+            style={{ fontSize: '280px', color: 'rgba(28, 28, 46,0.04)', lineHeight: 1, left: '16px' }}
             aria-hidden
           >02</span>
           <p
             className="text-xs font-medium uppercase tracking-widest mb-3 relative"
-            style={{ color: '#7C3AED' }}
+            style={{ color: '#0F1D3C' }}
           >
             Phase 2
           </p>
@@ -240,7 +240,7 @@ export default function ModelHero() {
           </p>
           <div className="mt-5 flex flex-wrap gap-2 hidden md:flex">
             {['Embedded agent', 'Capability build', 'Client-paced'].map(tag => (
-              <span key={tag} className="text-[10px] px-2.5 py-1 rounded-full bg-[#7C3AED]/10 text-[#7C3AED] border border-[#7C3AED]/20">
+              <span key={tag} className="text-[10px] px-2.5 py-1 rounded-full bg-[#0F1D3C]/10 text-[#0F1D3C] border border-[#0F1D3C]/20">
                 {tag}
               </span>
             ))}
@@ -254,7 +254,7 @@ export default function ModelHero() {
           className="font-display font-bold italic"
           style={{
             fontSize: 'clamp(20px, 2.8vw, 36px)',
-            background: 'linear-gradient(90deg, #F06C00 0%, rgba(255,255,255,0.95) 50%, #7C3AED 100%)',
+            background: 'linear-gradient(90deg, #3DB19A 0%, rgba(255,255,255,0.95) 50%, #0F1D3C 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',

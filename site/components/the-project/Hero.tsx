@@ -18,15 +18,15 @@ export default function Hero() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, ease: EASE_OUT, delay: 0 }}
         >
-          <div className="w-10 h-px bg-[#F06C00]" />
-          <span className="text-xs font-medium uppercase tracking-widest text-[#F06C00]">
+          <div className="w-10 h-px bg-[#3DB19A]" />
+          <span className="text-xs font-medium uppercase tracking-widest text-[#3DB19A]">
             THE PROCUREMENT TRANSFORMATION
           </span>
         </motion.div>
 
         {/* Headline */}
         <motion.h1
-          className="font-display font-bold italic text-[#1A1A1A] leading-tight"
+          className="font-display font-bold italic text-[#1C1C2E] leading-tight"
           style={{ fontSize: 'clamp(44px, 5.5vw, 72px)' }}
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

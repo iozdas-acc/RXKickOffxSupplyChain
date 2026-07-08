@@ -86,10 +86,10 @@ export default function KeyOutputs() {
           className="mb-10"
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-px bg-[#F06C00]" />
-            <span className="text-xs font-medium text-[#F06C00] uppercase tracking-widest">Deliverables</span>
+            <div className="w-8 h-px bg-[#3DB19A]" />
+            <span className="text-xs font-medium text-[#3DB19A] uppercase tracking-widest">Deliverables</span>
           </div>
-          <h2 className="font-display text-2xl font-bold text-[#1A1A1A]">Key Outputs</h2>
+          <h2 className="font-display text-2xl font-bold text-[#1C1C2E]">Key Outputs</h2>
           <p className="text-[#666666] mt-2">
             Hosted on AI-generated interactive microsites, shared with the Sainsbury&apos;s team.
           </p>
@@ -107,7 +107,7 @@ export default function KeyOutputs() {
               <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 bg-gradient-to-br ${output.gradient}`}>
                 <output.icon className="w-5 h-5 text-white" />
               </div>
-              <h4 className="font-semibold text-[#1A1A1A] mb-2 text-sm">{output.title}</h4>
+              <h4 className="font-semibold text-[#1C1C2E] mb-2 text-sm">{output.title}</h4>
               <p className="text-xs text-[#666666] leading-relaxed">{output.description}</p>
             </motion.div>
           ))}
@@ -131,7 +131,7 @@ export default function KeyOutputs() {
                 </div>
                 {ex.badge}
               </div>
-              <h4 className="font-semibold text-[#1A1A1A] mb-1">{ex.title}</h4>
+              <h4 className="font-semibold text-[#1C1C2E] mb-1">{ex.title}</h4>
               <p className="text-xs text-[#666666] leading-relaxed mb-3">{ex.description}</p>
               <span className={`text-xs font-medium ${ex.linkColor} transition-colors`}>
                 {ex.linkLabel}

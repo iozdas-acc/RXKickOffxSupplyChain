@@ -108,7 +108,7 @@ export function HeroEntrance({ onEnter }: Props) {
         color: 'var(--sainsburys-orange-ink)',
         opacity: 0,
       }}>
-        ANCONA REINVENTION · ARGOS SUPPLY CHAIN FORECASTING
+        RX · ACCENTURE
       </div>
 
       {/* Headline — exactly 2 lines, orange-only accent */}
@@ -171,7 +171,7 @@ export function HeroEntrance({ onEnter }: Props) {
           lineHeight: 1.7,
           textAlign: 'left',
         }}>
-          Embedding AI-native ways of working to accelerate discovery across Sainsbury&apos;s, and how we&apos;re making it the template for reinvention at scale.
+          Embedding AI-native ways of working to accelerate discovery — and how we&apos;re making it the template for reinvention at scale.
         </p>
       </div>
 
