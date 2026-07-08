@@ -383,7 +383,7 @@ export function Chapter02({ isActive }: Props) {
 
         <h2 style={{
           fontFamily: 'var(--font-space-grotesk)',
-          fontSize: 'clamp(26px, 3.4vw, 40px)',
+          fontSize: 'clamp(36px, 4.8vw, 60px)',
           fontWeight: 800,
           textTransform: 'uppercase',
           lineHeight: 1,
