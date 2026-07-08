@@ -108,7 +108,7 @@ export function HeroEntrance({ onEnter }: Props) {
         color: 'var(--sainsburys-orange-ink)',
         opacity: 0,
       }}>
-        RX · SAINSBURY&apos;S ANCONA REINVENTION
+        ANCONA APPROACH · ARGOS SUPPLY CHAIN FORECASTING
       </div>
 
       {/* Headline — exactly 2 lines, orange-only accent */}
@@ -134,7 +134,7 @@ export function HeroEntrance({ onEnter }: Props) {
             opacity: 0,
           }}
         >
-          A DIFFERENT WAY
+          A NEW WAY
         </div>
         <div
           ref={line2Ref}
@@ -171,7 +171,7 @@ export function HeroEntrance({ onEnter }: Props) {
           lineHeight: 1.7,
           textAlign: 'left',
         }}>
-          How RX is accelerating AI-led reinvention across the Ancona programme.
+          How we&apos;re embedding AI-native ways of working across Sainsbury&apos;s. Bringing together functional expertise, account context and RX methodologies and tooling to deliver reinvention differently at scale.
         </p>
       </div>
 
