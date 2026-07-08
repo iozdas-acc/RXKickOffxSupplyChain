@@ -64,9 +64,11 @@ function HorizonBox({ item, onOpen }: { item: HorizonItem; onOpen: (item: Horizo
   return (
     <div
       style={{
-        /* Grow proportional to frame width so all frames share the same
-           height: landscape 16:9 → 256, portrait 9:16 → 81. */
-        flex: `${item.frame === 'landscape' ? 256 : 81} 1 0`,
+        /* All frames share the same top edge (row is stretched to full
+           height). Grow proportional to each frame's natural width so the
+           short landscape and tall portraits sit balanced with no overlap:
+           landscape ≈ 158, portrait ≈ 100. */
+        flex: `${item.frame === 'landscape' ? 158 : 100} 1 0`,
         minWidth: 0,
         display: 'flex',
         flexDirection: 'column',
@@ -108,8 +110,12 @@ function HorizonBox({ item, onOpen }: { item: HorizonItem; onOpen: (item: Horizo
           }
         }}
         style={{
-          flex: '1 1 0',
-          minHeight: 0,
+          /* Portraits fill the row height (tall); the landscape frame is
+             short — its bottom stops ~halfway down the portraits. All top
+             edges align because each box sits directly under its label. */
+          ...(item.frame === 'landscape'
+            ? { flex: '0 0 auto', height: '50%' }
+            : { flex: '1 1 0', minHeight: 0 }),
           maxWidth: '100%',
           aspectRatio: item.frame === 'landscape' ? '16 / 9' : '9 / 16',
           borderRadius: 10,
