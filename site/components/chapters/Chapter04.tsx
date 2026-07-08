@@ -193,9 +193,9 @@ export function Chapter04({ isActive }: Props) {
         background: 'var(--color-surface-card)',
         border: '1px solid var(--color-border-primary)',
         borderRadius: 20,
-        padding: '22px 24px 20px',
+        padding: '18px 24px 16px',
         boxShadow: 'var(--shadow-md)',
-        display: 'flex', flexDirection: 'column', gap: 14,
+        display: 'flex', flexDirection: 'column', gap: 12,
         overflow: 'hidden',
       }}>
 
@@ -203,7 +203,7 @@ export function Chapter04({ isActive }: Props) {
         <div style={{
           position: 'relative',
           width: '100%',
-          aspectRatio: '800 / 300',
+          aspectRatio: '800 / 250',
           background: `linear-gradient(180deg, color-mix(in srgb, var(--horizon-3) 3%, var(--color-background-tertiary)), var(--color-surface-card))`,
           borderRadius: 14,
           border: '1px solid var(--color-border-tertiary)',
@@ -373,9 +373,9 @@ export function Chapter04({ isActive }: Props) {
               border: `1px solid color-mix(in srgb, ${s.color} 18%, transparent)`,
               borderLeft: `3px solid ${s.color}`,
               borderRadius: 10,
-              padding: '14px 16px',
-              display: 'flex', flexDirection: 'column', gap: 8,
-              minHeight: 160,
+              padding: '12px 16px',
+              display: 'flex', flexDirection: 'column', gap: 7,
+              minHeight: 140,
               transition: 'transform 0.25s, box-shadow 0.25s, border-color 0.25s',
               boxShadow: 'var(--shadow-xs)',
             }}
