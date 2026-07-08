@@ -417,6 +417,11 @@ export function Chapter02({ isActive }: Props) {
           display: 'flex',
           gap: 'clamp(14px, 1.6vw, 22px)',
           minHeight: 0,
+          /* Cap the row height so all frames scale down uniformly. Widths are
+             aspect-ratio driven, so shrinking the height shrinks every frame
+             proportionally while ratios, relative sizing, and the gap stay
+             unchanged. */
+          maxHeight: '65%',
           alignItems: 'stretch',
           justifyContent: 'center',
         }}
