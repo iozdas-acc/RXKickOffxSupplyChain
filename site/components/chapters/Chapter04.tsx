@@ -63,7 +63,7 @@ const STEPS = [
     label: 'STEP 3',
     title: 'Analyse the Horizon II Gap',
     body:
-      'Work out the Horizon II investments needed to reach your Horizon III vision — the safe first steps and bigger bets that bridge the gap — and sequence them into a transformation roadmap.',
+      'Work out the Horizon II investments needed to reach your Horizon III vision — the safe first steps and bigger bets that bridge the gap — and sequence them into a roadmap.',
     arrow: 'left' as const,
   },
 ]
