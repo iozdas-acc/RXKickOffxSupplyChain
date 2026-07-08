@@ -31,10 +31,10 @@ const HORIZONS: HorizonItem[] = [
   {
     id: 'navigator',
     horizon: 'HORIZON 1',
-    title: 'Pain Point & Opportunity Navigator',
-    thumbnail: '/images/horizon-1-navigator.png',
+    title: 'Supplier Dashboard',
+    thumbnail: '/images/horizon-1-supplier-dashboard.png',
     media: 'image',
-    src: '/images/horizon-1-navigator.png',
+    src: '/images/horizon-1-supplier-dashboard.png',
     frame: 'landscape',
   },
   {
@@ -43,7 +43,7 @@ const HORIZONS: HorizonItem[] = [
     title: 'Customer OpenAI Purchase Experience',
     thumbnail: '/images/horizon-2-openai-thumb.png',
     media: 'video',
-    src: '/videos/horizon-2-openai.mp4',
+    src: '/videos/horizon-2-openai.mov',
     frame: 'portrait',
   },
   {
@@ -60,6 +60,7 @@ const HORIZONS: HorizonItem[] = [
 /* ── Single box: label above, media preview, title overlay at bottom ── */
 function HorizonBox({ item, onOpen }: { item: HorizonItem; onOpen: (item: HorizonItem) => void }) {
   const isVideo = item.media === 'video'
+  const isLandscape = item.frame === 'landscape'
 
   return (
     <div
@@ -72,12 +73,14 @@ function HorizonBox({ item, onOpen }: { item: HorizonItem; onOpen: (item: Horizo
            exact, consistent spacing between all frames. Portraits fill the row
            height; the landscape frame is half-height and top-aligned. */
         flex: '0 0 auto',
-        /* Landscape height % is tuned so its absolute size (and width) stay
-           unchanged even though the row is taller now. */
-        height: item.frame === 'landscape' ? '41.6%' : '100%',
-        /* Portrait ratio matches the phone screenshot (802×1716 ≈ 9/19.3) so
-           the full screen shows without cropping the bottom. Combined with the
-           taller row below, the portrait WIDTH is preserved. */
+        /* Landscape frame: a bit taller (and, combined with the narrower 16:9
+           ratio below, a bit less wide) than the raw screenshot strip. */
+        height: item.frame === 'landscape' ? '54%' : '100%',
+        /* Landscape uses a 16:9 shape — narrower/taller than the raw dashboard
+           screenshot (1046×396). The image is drawn `contain`ed at the top with
+           a navy gradient filling the space behind the callout (see below), so
+           it reads as filling the frame. Portrait ratio matches the phone
+           screenshots (≈802×1716) so the full screen shows without cropping. */
         aspectRatio: item.frame === 'landscape' ? '16 / 9' : '802 / 1716',
         position: 'relative',
         display: 'flex',
@@ -129,10 +132,17 @@ function HorizonBox({ item, onOpen }: { item: HorizonItem; onOpen: (item: Horizo
           height: '100%',
           borderRadius: 10,
           border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
-          backgroundColor: 'var(--color-surface-card)',
-          backgroundImage: `linear-gradient(180deg, rgba(15,29,60,0) 40%, rgba(15,29,60,0.62) 100%), url(${item.thumbnail})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'top center',
+          backgroundColor: isLandscape ? '#0F1D3C' : 'var(--color-surface-card)',
+          /* Landscape: dashboard image `contain`ed at top, a branded navy
+             gradient filling the frame, and a stronger fade at the bottom so
+             the "Supplier Dashboard" callout sits cleanly on the gradient.
+             Portrait: the phone screenshot simply `cover`s the frame. */
+          backgroundImage: isLandscape
+            ? `linear-gradient(180deg, rgba(15,29,60,0) 50%, rgba(15,29,60,0.55) 76%, rgba(15,29,60,0.94) 100%), url(${item.thumbnail}), radial-gradient(130% 115% at 50% 0%, #23263f 0%, #0F1D3C 66%)`
+            : `linear-gradient(180deg, rgba(15,29,60,0) 40%, rgba(15,29,60,0.62) 100%), url(${item.thumbnail})`,
+          backgroundSize: isLandscape ? 'cover, contain, cover' : 'cover',
+          backgroundPosition: isLandscape ? 'center, top center, center' : 'top center',
+          backgroundRepeat: 'no-repeat',
           boxShadow: 'var(--shadow-sm)',
           display: 'flex',
           flexDirection: 'column',
@@ -430,7 +440,7 @@ export function Chapter02({ isActive }: Props) {
              aspect-ratio driven, so shrinking the height shrinks every frame
              proportionally while ratios, relative sizing, and the gap stay
              unchanged. */
-          maxHeight: '78.2%',
+          maxHeight: '66%',
           /* Top-align frames so the short landscape and tall portraits share
              the same top edge. */
           alignItems: 'flex-start',
