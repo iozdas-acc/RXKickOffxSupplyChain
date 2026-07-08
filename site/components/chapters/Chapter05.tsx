@@ -103,7 +103,7 @@ export function Chapter05({ isActive, onPrev }: Props) {
         lineHeight: 1.75, maxWidth: 620,
         marginBottom: 36,
       }}>
-        The frameworks, tools and approach we bring to every engagement to accelerate discovery, make the future tangible, and deliver value early.
+        What we bring to every engagement to accelerate discovery, make the future tangible, and deliver value early.
       </p>
 
       {/* Three pillars */}
