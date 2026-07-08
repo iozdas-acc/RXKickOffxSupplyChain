@@ -53,7 +53,7 @@ const STEPS = [
     label: 'STEP 2',
     title: 'Deliver Horizon I Quick Wins',
     body:
-      'Review immediate short-term gains you can deliver now — prove value, build momentum, and create funding for larger bets.',
+      'Identify, test and prioritise hypotheses for quick wins you can deliver now — prove value, build momentum, and create funding for larger bets.',
     arrow: null,
   },
   {
