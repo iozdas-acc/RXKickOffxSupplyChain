@@ -1,155 +1,170 @@
 'use client'
 
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, useCallback } from 'react'
 import { gsap } from 'gsap'
 
-interface ProjectOutput {
-  label: string
-  type: string
-  url?: string
-  href?: string
-  thumbnail?: string
-  password?: string
-}
+type MediaType = 'image' | 'video'
 
-interface Project {
+interface HorizonItem {
   id: string
-  header: string
+  /* Small label rendered above the box, e.g. "HORIZON 1" */
+  horizon: string
+  /* Title rendered in the overlay at the bottom of the box */
   title: string
-  timeframe: string
-  deliverables: string[]
-  outcomes: string[]
-  outputs: ProjectOutput[]
+  /* Preview shown inside the box (poster for videos, the image itself for images) */
+  thumbnail: string
+  /* What opens in the lightbox */
+  media: MediaType
+  /* Full-size asset: the image for `image`, the video file for `video`.
+     ↓↓↓ SWAP THESE PATHS WITH THE REAL ASSETS ↓↓↓ */
+  src: string
 }
 
-const PROJECTS: Project[] = [
+/* ──────────────────────────────────────────────────────────────
+   PLACEHOLDER ASSET SLOTS — swap `thumbnail` / `src` with real files.
+   • Images live in /public/images
+   • Videos live in /public/videos  (drop .mp4 files there and update src)
+   ────────────────────────────────────────────────────────────── */
+const HORIZONS: HorizonItem[] = [
   {
-    id: 'procurement',
-    header: 'Proof In Discovery',
-    title: 'Ancona Procurement Reinvention',
-    timeframe: '12 weeks. Live engagement. Blended RX & SME team.',
-    deliverables: [
-      'Vision website, personas & AI assistant',
-      'Pain-point & opportunity navigator',
-      'Supplier dashboard & Copilot demos',
-    ],
-    outcomes: [
-      'Shifted the conversation from today\'s process to tomorrow\'s ambition',
-      'Turned static decks and spreadsheets into interactive experiences',
-      'Prototyped and demoed concepts during discovery — not at the end',
-    ],
-    outputs: [
-      {
-        label: 'Meet Sarah — Narrative Website',
-        type: 'website',
-        url: 'v0-ai-disruption-page.vercel.app/meet-sarah',
-        href: 'https://v0-ai-disruption-page.vercel.app/meet-sarah',
-        thumbnail: '/images/sarah-narrative.png',
-      },
-      { label: 'Pain Point & Opportunity Navigator', type: 'navigator', thumbnail: '/images/pain-point-navigator.png' },
-      { label: 'Supplier Dashboard Prototype', type: 'dashboard', thumbnail: '/images/supplier-dashboard.png' },
-    ],
+    id: 'navigator',
+    horizon: 'HORIZON 1',
+    title: 'Pain Point & Opportunity Navigator',
+    thumbnail: '/images/horizon-1-navigator.png',
+    media: 'image',
+    src: '/images/horizon-1-navigator.png',
+  },
+  {
+    id: 'openai',
+    horizon: 'HORIZON 2',
+    title: 'Customer OpenAI Purchase Experience',
+    thumbnail: '/images/horizon-2-openai-thumb.png',
+    media: 'video',
+    src: '/videos/horizon-2-openai.mp4',
+  },
+  {
+    id: 'basket',
+    horizon: 'HORIZON 3',
+    title: 'Bid for My Basket',
+    thumbnail: '/images/horizon-3-basket-thumb.png',
+    media: 'video',
+    src: '/videos/horizon-3-basket.mp4',
   },
 ]
 
-interface FlipCardProps {
-  label: string
-  url?: string
-  href: string
-  thumbnail?: string
-  password: string
-}
-
-function FlipOutputCard({ label, url, href, thumbnail, password }: FlipCardProps) {
-  const [flipped, setFlipped] = useState(false)
-  const [copied, setCopied] = useState(false)
-
-  const copyPassword = async (e: React.MouseEvent) => {
-    e.stopPropagation()
-    try {
-      await navigator.clipboard.writeText(password)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1500)
-    } catch {
-      // clipboard blocked — silent
-    }
-  }
-
-  const toggleFlip = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setFlipped(f => !f)
-  }
-
-  const onKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      setFlipped(f => !f)
-    }
-  }
+/* ── Single box: label above, media preview, title overlay at bottom ── */
+function HorizonBox({ item, onOpen }: { item: HorizonItem; onOpen: (item: HorizonItem) => void }) {
+  const isVideo = item.media === 'video'
 
   return (
     <div
-      data-no-advance
-      role="button"
-      tabIndex={0}
-      aria-label={flipped ? `${label} — showing access details` : `${label} — click to reveal access`}
-      onClick={toggleFlip}
-      onKeyDown={onKeyDown}
       style={{
-        width: '100%',
-        maxWidth: 560,
-        alignSelf: 'flex-start',
         flex: '1 1 0',
+        minWidth: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 10,
         minHeight: 0,
-        perspective: 1200,
-        cursor: 'pointer',
-        position: 'relative',
-        outline: 'none',
       }}
     >
-      <div style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        transformStyle: 'preserve-3d',
-        transition: 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
-        transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-      }}>
-        {/* FRONT */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          backfaceVisibility: 'hidden',
-          WebkitBackfaceVisibility: 'hidden',
+      {/* Small label above the box */}
+      <div
+        style={{
+          fontFamily: 'var(--font-space-mono)',
+          fontSize: 10,
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          letterSpacing: '0.22em',
+          color: 'color-mix(in srgb, var(--accent-ch2) 82%, black)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          flexShrink: 0,
+        }}
+      >
+        <span style={{ width: 18, height: 1.5, background: 'var(--accent-ch2)', display: 'inline-block', borderRadius: 2 }} />
+        {item.horizon}
+      </div>
+
+      {/* Clickable media box */}
+      <div
+        data-no-advance
+        role="button"
+        tabIndex={0}
+        aria-label={`${item.title} — ${isVideo ? 'play video' : 'view image'}`}
+        onClick={() => onOpen(item)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            onOpen(item)
+          }
+        }}
+        style={{
+          flex: '1 1 0',
+          minHeight: 0,
           borderRadius: 10,
-          overflow: 'hidden',
           border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
           backgroundColor: 'var(--color-surface-card)',
-          backgroundImage: thumbnail
-            ? `linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.55) 100%), url(${thumbnail})`
-            : 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 8%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 20%, var(--color-surface-card)))',
+          backgroundImage: `linear-gradient(180deg, rgba(15,29,60,0) 40%, rgba(15,29,60,0.62) 100%), url(${item.thumbnail})`,
           backgroundSize: 'cover',
-          // Anchor to top so the clipped thumbnail reads as "there's more below"
           backgroundPosition: 'top center',
+          boxShadow: 'var(--shadow-sm)',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
-          padding: 10,
-          boxShadow: 'var(--shadow-sm)',
-        }}>
-          {/* Fade gradient at the bottom — signals clipped content */}
-          {thumbnail && (
-            <div aria-hidden style={{
+          justifyContent: 'flex-end',
+          padding: 12,
+          position: 'relative',
+          overflow: 'hidden',
+          cursor: 'pointer',
+          outline: 'none',
+          transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateY(-3px)'
+          e.currentTarget.style.boxShadow = 'var(--shadow-md)'
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateY(0)'
+          e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
+        }}
+      >
+        {/* Center play button for video previews */}
+        {isVideo && (
+          <div
+            aria-hidden
+            style={{
               position: 'absolute',
-              left: 0, right: 0, bottom: 0,
-              height: 70,
+              inset: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
               pointerEvents: 'none',
-              background: 'linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--color-surface-card) 85%, transparent) 100%)',
-            }} />
-          )}
-          {/* Top-right pill: reveal hint */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <div style={{
+            }}
+          >
+            <div
+              style={{
+                width: 56,
+                height: 56,
+                borderRadius: 999,
+                background: 'color-mix(in srgb, var(--accent-ch2) 90%, transparent)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 8px 24px rgba(15,29,60,0.35)',
+                backdropFilter: 'blur(2px)',
+              }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--color-text-inverse)">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+        )}
+
+        {/* Top-right action pill */}
+        <div style={{ position: 'absolute', top: 12, right: 12 }}>
+          <div
+            style={{
               fontFamily: 'var(--font-space-mono)',
               fontSize: 9,
               fontWeight: 700,
@@ -161,161 +176,129 @@ function FlipOutputCard({ label, url, href, thumbnail, password }: FlipCardProps
               background: 'color-mix(in srgb, var(--color-surface-card) 88%, transparent)',
               backdropFilter: 'blur(4px)',
               border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
-            }}>
-              Access →
-            </div>
+            }}
+          >
+            {isVideo ? 'Play →' : 'View →'}
           </div>
+        </div>
 
-          {/* Bottom label block */}
-          <div style={{
-            padding: '8px 10px',
+        {/* Title overlay at the bottom */}
+        <div
+          style={{
+            position: 'relative',
+            padding: '10px 12px',
             borderRadius: 8,
             background: 'color-mix(in srgb, var(--color-surface-card) 92%, transparent)',
             backdropFilter: 'blur(6px)',
             border: '1px solid color-mix(in srgb, var(--accent-ch2) 18%, transparent)',
-          }}>
-            <div style={{
+          }}
+        >
+          <div
+            style={{
               fontFamily: 'var(--font-space-grotesk)',
               fontSize: 13,
-              fontWeight: 600,
-              color: 'var(--color-text-primary)',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}>
-              {label}
-            </div>
-            {url && (
-              <div style={{
-                fontFamily: 'var(--font-dm-sans)',
-                fontSize: 10,
-                color: 'var(--color-text-secondary)',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}>
-                {url}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* BACK */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          backfaceVisibility: 'hidden',
-          WebkitBackfaceVisibility: 'hidden',
-          transform: 'rotateY(180deg)',
-          borderRadius: 10,
-          overflow: 'hidden',
-          border: '1px solid var(--accent-ch2)',
-          background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 14%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 28%, var(--color-surface-card)))',
-          padding: 12,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          gap: 8,
-          boxShadow: 'var(--shadow-sm)',
-        }}>
-          <div style={{ minWidth: 0 }}>
-            <div style={{
-              fontFamily: 'var(--font-space-mono)',
-              fontSize: 9,
               fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.18em',
-              color: 'var(--accent-ch2)',
-              marginBottom: 6,
-            }}>
-              Access password
-            </div>
-            <button
-              type="button"
-              onClick={copyPassword}
-              aria-label={copied ? 'Password copied' : 'Copy password'}
-              style={{
-                width: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: 8,
-                padding: '7px 10px',
-                borderRadius: 6,
-                background: 'color-mix(in srgb, var(--color-surface-card) 70%, transparent)',
-                border: '1px solid color-mix(in srgb, var(--accent-ch2) 35%, transparent)',
-                cursor: 'pointer',
-                transition: 'all 0.18s ease',
-              }}
-            >
-              <span style={{
-                fontFamily: 'var(--font-space-mono)',
-                fontSize: 11,
-                fontWeight: 600,
-                color: 'var(--color-text-primary)',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-                textAlign: 'left',
-                flex: 1,
-                letterSpacing: '0.02em',
-              }}>
-                {password}
-              </span>
-              <span style={{
-                fontFamily: 'var(--font-space-mono)',
-                fontSize: 9,
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.12em',
-                color: copied ? 'var(--accent-ch2)' : 'var(--color-text-secondary)',
-                flexShrink: 0,
-              }}>
-                {copied ? 'Copied' : 'Copy'}
-              </span>
-            </button>
-          </div>
-
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-no-advance
-            onClick={e => e.stopPropagation()}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-              padding: '9px 12px',
-              borderRadius: 8,
-              background: 'var(--accent-ch2)',
-              color: '#fff',
-              textDecoration: 'none',
-              fontFamily: 'var(--font-space-grotesk)',
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: '0.02em',
-              boxShadow: 'var(--shadow-sm)',
-              transition: 'transform 0.15s ease, filter 0.15s ease',
+              color: 'var(--color-text-primary)',
+              lineHeight: 1.25,
             }}
           >
-            <span>Open site</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-              <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
+            {item.title}
+          </div>
         </div>
       </div>
     </div>
   )
 }
 
+/* ── Fullscreen lightbox for both image and video, closes on outside click ── */
+function Lightbox({ item, onClose }: { item: HorizonItem; onClose: () => void }) {
+  return (
+    <div
+      data-no-advance
+      role="dialog"
+      aria-modal="true"
+      aria-label={item.title}
+      onClick={onClose}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 1000,
+        background: 'rgba(15, 29, 60, 0.94)',
+        backdropFilter: 'blur(6px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 'clamp(20px, 5vw, 64px)',
+        animation: 'lightbox-fade 0.2s ease',
+      }}
+    >
+      {/* Close button */}
+      <button
+        type="button"
+        aria-label="Close"
+        onClick={onClose}
+        style={{
+          position: 'absolute',
+          top: 'clamp(16px, 3vh, 28px)',
+          right: 'clamp(16px, 3vw, 28px)',
+          width: 42,
+          height: 42,
+          borderRadius: 999,
+          border: '1px solid color-mix(in srgb, var(--accent-ch2) 50%, transparent)',
+          background: 'color-mix(in srgb, var(--color-surface-card) 14%, transparent)',
+          color: 'var(--color-text-inverse)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          backdropFilter: 'blur(4px)',
+        }}
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+
+      {item.media === 'image' ? (
+        <img
+          src={item.src || '/placeholder.svg'}
+          alt={item.title}
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            maxWidth: '92vw',
+            maxHeight: '86vh',
+            objectFit: 'contain',
+            borderRadius: 12,
+            boxShadow: '0 24px 80px rgba(0,0,0,0.5)',
+          }}
+        />
+      ) : (
+        <video
+          src={item.src}
+          poster={item.thumbnail}
+          controls
+          autoPlay
+          playsInline
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            maxWidth: '92vw',
+            maxHeight: '86vh',
+            borderRadius: 12,
+            boxShadow: '0 24px 80px rgba(0,0,0,0.5)',
+            background: '#000',
+          }}
+        />
+      )}
+    </div>
+  )
+}
+
 interface Props { isActive: boolean; onNext: () => void; onPrev: () => void }
 
-export function Chapter02({ isActive, onNext, onPrev }: Props) {
+export function Chapter02({ isActive }: Props) {
   const rootRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(isActive)
+  const [active, setActive] = useState<HorizonItem | null>(null)
 
   useEffect(() => {
     if (!rootRef.current) return
@@ -332,7 +315,22 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
     }
   }, [isActive])
 
-  const project = PROJECTS[0]
+  // Close the lightbox when the slide is deactivated.
+  useEffect(() => {
+    if (!isActive) setActive(null)
+  }, [isActive])
+
+  const closeLightbox = useCallback(() => setActive(null), [])
+
+  // Escape key closes the lightbox.
+  useEffect(() => {
+    if (!active) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [active, closeLightbox])
 
   return (
     <div
@@ -342,17 +340,15 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        // Tighter gutter so there's more horizontal room for 4 columns on
-        // typical laptop viewports; scales gracefully on small screens.
         padding: 'clamp(82px, 10vh, 100px) clamp(20px, 3.5vw, 64px) clamp(20px, 3vh, 36px)',
-        gap: 'clamp(12px, 1.6vh, 20px)',
-        overflow: 'hidden', // slide must fit 100vh — nothing escapes
+        gap: 'clamp(16px, 2.4vh, 28px)',
+        overflow: 'hidden',
         opacity: 0,
         visibility: isVisible ? 'visible' : 'hidden',
         pointerEvents: isActive ? 'auto' : 'none',
       }}
     >
-      {/* Header - title with subtitle underneath */}
+      {/* Header */}
       <div style={{ flex: '0 0 auto' }}>
         <div style={{
           fontFamily: 'var(--font-space-mono)',
@@ -368,7 +364,7 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
         <h2 style={{
           fontFamily: 'var(--font-space-grotesk)',
           fontSize: 'clamp(26px, 3.4vw, 40px)',
-          fontWeight: 700,
+          fontWeight: 800,
           textTransform: 'uppercase',
           lineHeight: 1,
           letterSpacing: '-0.03em',
@@ -393,491 +389,27 @@ export function Chapter02({ isActive, onNext, onPrev }: Props) {
           lineHeight: 1.55,
           maxWidth: 900,
         }}>
-          How we&apos;ve already put this into practice on the Sainsbury&apos;s account.
+          How we&apos;ve already put this into practice across the three horizons.
         </p>
       </div>
 
-      {/* Three-column horizontal layout (stacks under 900px).
-          Row absorbs the remaining viewport height; children choose their own
-          vertical footprint via alignSelf so the sidebar stays menu-compact
-          while the right column can take the height its cards need. */}
-      <div className="chapter-row" style={{ flex: '1 1 0', gap: 'clamp(14px, 1.6vw, 22px)', minHeight: 0, alignItems: 'stretch' }}>
-
-        {/* Middle column: Project content.
-            alignSelf: flex-start keeps the panel at its natural content height
-            (top-aligned with the sidebar menu) so it doesn't balloon to match
-            the taller screenshot column on the right. */}
-        <div style={{
-          flex: '0 0 clamp(240px, 22vw, 300px)',
-          alignSelf: 'flex-start',
-          minHeight: 0,
-          maxHeight: '100%',
-          background: 'var(--color-surface-card)',
-          border: '1px solid color-mix(in srgb, var(--accent-ch2) 20%, transparent)',
-          borderRadius: 12,
-          padding: '20px',
-          boxShadow: 'var(--shadow-sm)',
+      {/* Three equal boxes spanning the full width */}
+      <div
+        className="chapter-row"
+        style={{
+          flex: '1 1 0',
           display: 'flex',
-          flexDirection: 'column',
-          overflow: 'hidden',
-        }}>
-          <div style={{
-            fontFamily: 'var(--font-space-grotesk)',
-            fontSize: 17, fontWeight: 700,
-            color: 'var(--color-text-primary)', marginBottom: 6,
-            letterSpacing: '-0.01em',
-            lineHeight: 1.15,
-          }}>
-            {project.title}
-          </div>
-
-          <div style={{
-            fontFamily: 'var(--font-dm-sans)',
-            fontSize: 11, color: 'var(--color-text-secondary)',
-            marginBottom: 10,
-            paddingBottom: 10,
-            borderBottom: '1px solid color-mix(in srgb, var(--accent-ch2) 12%, transparent)',
-          }}>
-            {project.timeframe}
-          </div>
-
-          {/* Deliverables */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 10 }}>
-            {project.deliverables.map((item, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
-                  <circle cx="8" cy="8" r="7" stroke="var(--accent-ch2)" strokeWidth="1.5" fill="color-mix(in srgb, var(--accent-ch2) 10%, transparent)" />
-                  <path d="M5 8L7 10L11 6" stroke="var(--accent-ch2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: 11.5, color: 'var(--color-text-primary)', lineHeight: 1.35 }}>
-                  {item}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ height: 1, background: 'color-mix(in srgb, var(--accent-ch2) 12%, transparent)', marginBottom: 10 }} />
-
-          {/* Outcomes */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            {project.outcomes.map((item, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-                <svg width="11" height="11" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, marginTop: 3 }}>
-                  <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="var(--accent-ch2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: 11.5, color: 'var(--color-text-secondary)', lineHeight: 1.35 }}>
-                  {item}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right column: Outputs — 2 on top, 1 below left (2+1 grid) */}
-        {(
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, minWidth: 0, justifyContent: 'flex-start' }}>
-            {/* Top row: 2 boxes side by side */}
-            <div style={{ display: 'flex', gap: 16, flex: '0 0 auto' }}>
-              {project.outputs.slice(0, 2).map((output, i) => (
-                output.thumbnail && output.href ? (
-                  <a
-                    key={i}
-                    data-no-advance
-                    href={output.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    style={{
-                      flex: 1,
-                      maxHeight: 300,
-                      aspectRatio: '3 / 2',
-                      borderRadius: 10,
-                      border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
-                      backgroundColor: 'var(--color-surface-card)',
-                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.58) 100%), url(${output.thumbnail})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'top center',
-                      boxShadow: 'var(--shadow-sm)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      padding: 10,
-                      textDecoration: 'none',
-                      cursor: 'pointer',
-                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                      position: 'relative',
-                      overflow: 'hidden',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)'
-                      e.currentTarget.style.boxShadow = 'var(--shadow-md)'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)'
-                      e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
-                    }}
-                  >
-                    {/* Fade gradient at the bottom — signals clipped content */}
-                    <div aria-hidden style={{
-                      position: 'absolute',
-                      left: 0, right: 0, bottom: 0,
-                      height: 70,
-                      pointerEvents: 'none',
-                      background: 'linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--color-surface-card) 85%, transparent) 100%)',
-                    }} />
-                    {/* Top-right "Open site" pill */}
-                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <div style={{
-                        fontFamily: 'var(--font-space-mono)',
-                        fontSize: 9,
-                        fontWeight: 700,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.14em',
-                        color: 'var(--accent-ch2)',
-                        padding: '4px 8px',
-                        borderRadius: 999,
-                        background: 'color-mix(in srgb, var(--color-surface-card) 88%, transparent)',
-                        backdropFilter: 'blur(4px)',
-                        border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
-                      }}>
-                        Open site →
-                      </div>
-                    </div>
-
-                    {/* Bottom label */}
-                    <div style={{
-                      padding: '8px 10px',
-                      borderRadius: 8,
-                      background: 'color-mix(in srgb, var(--color-surface-card) 92%, transparent)',
-                      backdropFilter: 'blur(6px)',
-                      border: '1px solid color-mix(in srgb, var(--accent-ch2) 18%, transparent)',
-                    }}>
-                      <div style={{
-                        fontFamily: 'var(--font-space-grotesk)',
-                        fontSize: 12,
-                        fontWeight: 600,
-                        color: 'var(--color-text-primary)',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}>
-                        {output.label}
-                      </div>
-                      {output.url && (
-                        <div style={{
-                          fontFamily: 'var(--font-dm-sans)',
-                          fontSize: 10,
-                          color: 'var(--color-text-secondary)',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                        }}>
-                          {output.url}
-                        </div>
-                      )}
-                    </div>
-                  </a>
-                ) : output.thumbnail ? (
-                  <div
-                    key={i}
-                    style={{
-                      flex: 1,
-                      maxHeight: 300,
-                      aspectRatio: '3 / 2',
-                      borderRadius: 10,
-                      border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
-                      backgroundColor: 'var(--color-surface-card)',
-                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.58) 100%), url(${output.thumbnail})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'top center',
-                      boxShadow: 'var(--shadow-sm)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'flex-end',
-                      padding: 10,
-                      position: 'relative',
-                      overflow: 'hidden',
-                    }}
-                  >
-                    {/* Fade gradient at the bottom — signals clipped content */}
-                    <div aria-hidden style={{
-                      position: 'absolute',
-                      left: 0, right: 0, bottom: 0,
-                      height: 70,
-                      pointerEvents: 'none',
-                      background: 'linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--color-surface-card) 85%, transparent) 100%)',
-                    }} />
-                    {/* Bottom label */}
-                    <div style={{
-                      padding: '8px 10px',
-                      borderRadius: 8,
-                      background: 'color-mix(in srgb, var(--color-surface-card) 92%, transparent)',
-                      backdropFilter: 'blur(6px)',
-                      border: '1px solid color-mix(in srgb, var(--accent-ch2) 18%, transparent)',
-                    }}>
-                      <div style={{
-                        fontFamily: 'var(--font-space-grotesk)',
-                        fontSize: 12,
-                        fontWeight: 600,
-                        color: 'var(--color-text-primary)',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}>
-                        {output.label}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                <div
-                  key={i}
-                  style={{
-                    flex: 1,
-                    maxHeight: 300,
-                    aspectRatio: '3 / 2',
-                    background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 4%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 10%, var(--color-surface-card)))',
-                    border: '1px dashed color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
-                    borderRadius: 10,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 10,
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    position: 'relative',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {/* Background grid pattern */}
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    opacity: 0.04,
-                    backgroundImage: 'linear-gradient(90deg, var(--accent-ch2) 1px, transparent 1px), linear-gradient(var(--accent-ch2) 1px, transparent 1px)',
-                    backgroundSize: '20px 20px',
-                  }} />
-
-                  {/* Icon */}
-                  <div style={{
-                    width: 28, height: 28,
-                    borderRadius: 6,
-                    background: 'color-mix(in srgb, var(--accent-ch2) 12%, transparent)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    position: 'relative',
-                    flexShrink: 0,
-                  }}>
-                    {output.type === 'website' ? (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="2" y1="12" x2="22" y2="12" />
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                      </svg>
-                    ) : output.type === 'navigator' ? (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M3 9h18M9 3v18" />
-                      </svg>
-                    ) : output.type === 'dashboard' ? (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                        <rect x="2" y="3" width="20" height="14" rx="2" />
-                        <path d="M8 21h8M12 17v4" />
-                      </svg>
-                    ) : (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                        <polygon points="5 3 19 12 5 21 5 3" />
-                      </svg>
-                    )}
-                  </div>
-
-                  {/* Label */}
-                  <div style={{ position: 'relative', minWidth: 0 }}>
-                    <div style={{
-                      fontFamily: 'var(--font-space-grotesk)',
-                      fontSize: 11,
-                      fontWeight: 600,
-                      color: 'var(--color-text-primary)',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}>
-                      {output.label}
-                    </div>
-                    {output.url && (
-                      <div style={{
-                        fontFamily: 'var(--font-dm-sans)',
-                        fontSize: 9,
-                        color: 'var(--color-text-secondary)',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}>
-                        {output.url}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* External link indicator */}
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="2" style={{ position: 'relative', opacity: 0.5, flexShrink: 0 }}>
-                    <path d="M7 17L17 7M17 7H7M17 7V17" />
-                  </svg>
-                </div>
-                )
-              ))}
-            </div>
-
-            {/* Bottom row: 1 box on the left */}
-            <div style={{ display: 'flex', gap: 16, flex: '0 0 auto' }}>
-              {project.outputs.slice(2, 3).map((output, i) => (
-                output.thumbnail ? (
-                  <div
-                    key={i}
-                    style={{
-                      flex: '0 0 calc((100% - 16px) / 2)',
-                      maxHeight: 300,
-                      aspectRatio: '3 / 2',
-                      borderRadius: 10,
-                      border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
-                      backgroundColor: 'var(--color-surface-card)',
-                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.58) 100%), url(${output.thumbnail})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'top center',
-                      boxShadow: 'var(--shadow-sm)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'flex-end',
-                      padding: 10,
-                      position: 'relative',
-                      overflow: 'hidden',
-                    }}
-                  >
-                    {/* Fade gradient at the bottom — signals clipped content */}
-                    <div aria-hidden style={{
-                      position: 'absolute',
-                      left: 0, right: 0, bottom: 0,
-                      height: 70,
-                      pointerEvents: 'none',
-                      background: 'linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--color-surface-card) 85%, transparent) 100%)',
-                    }} />
-                    {/* Bottom label */}
-                    <div style={{
-                      padding: '8px 10px',
-                      borderRadius: 8,
-                      background: 'color-mix(in srgb, var(--color-surface-card) 92%, transparent)',
-                      backdropFilter: 'blur(6px)',
-                      border: '1px solid color-mix(in srgb, var(--accent-ch2) 18%, transparent)',
-                    }}>
-                      <div style={{
-                        fontFamily: 'var(--font-space-grotesk)',
-                        fontSize: 12,
-                        fontWeight: 600,
-                        color: 'var(--color-text-primary)',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}>
-                        {output.label}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                <div
-                  key={i}
-                  style={{
-                    flex: '0 0 calc((100% - 20px) / 2)',
-                    maxHeight: 300,
-                    aspectRatio: '3 / 2',
-                    background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-ch2) 4%, var(--color-surface-card)), color-mix(in srgb, var(--accent-ch2) 10%, var(--color-surface-card)))',
-                    border: '1px dashed color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
-                    borderRadius: 10,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 10,
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    position: 'relative',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {/* Background grid pattern */}
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    opacity: 0.04,
-                    backgroundImage: 'linear-gradient(90deg, var(--accent-ch2) 1px, transparent 1px), linear-gradient(var(--accent-ch2) 1px, transparent 1px)',
-                    backgroundSize: '20px 20px',
-                  }} />
-
-                  {/* Icon */}
-                  <div style={{
-                    width: 28, height: 28,
-                    borderRadius: 6,
-                    background: 'color-mix(in srgb, var(--accent-ch2) 12%, transparent)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    position: 'relative',
-                    flexShrink: 0,
-                  }}>
-                    {output.type === 'website' ? (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="2" y1="12" x2="22" y2="12" />
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                      </svg>
-                    ) : output.type === 'navigator' ? (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M3 9h18M9 3v18" />
-                      </svg>
-                    ) : output.type === 'dashboard' ? (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                        <rect x="2" y="3" width="20" height="14" rx="2" />
-                        <path d="M8 21h8M12 17v4" />
-                      </svg>
-                    ) : (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="1.5">
-                        <polygon points="5 3 19 12 5 21 5 3" />
-                      </svg>
-                    )}
-                  </div>
-
-                  {/* Label */}
-                  <div style={{ position: 'relative', minWidth: 0 }}>
-                    <div style={{
-                      fontFamily: 'var(--font-space-grotesk)',
-                      fontSize: 11,
-                      fontWeight: 600,
-                      color: 'var(--color-text-primary)',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}>
-                      {output.label}
-                    </div>
-                    {output.url && (
-                      <div style={{
-                        fontFamily: 'var(--font-dm-sans)',
-                        fontSize: 9,
-                        color: 'var(--color-text-secondary)',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}>
-                        {output.url}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* External link indicator */}
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ch2)" strokeWidth="2" style={{ position: 'relative', opacity: 0.5, flexShrink: 0 }}>
-                    <path d="M7 17L17 7M17 7H7M17 7V17" />
-                  </svg>
-                </div>
-                )
-              ))}
-            </div>
-          </div>
-        )}
+          gap: 'clamp(14px, 1.6vw, 22px)',
+          minHeight: 0,
+          alignItems: 'stretch',
+        }}
+      >
+        {HORIZONS.map((item) => (
+          <HorizonBox key={item.id} item={item} onOpen={setActive} />
+        ))}
       </div>
+
+      {active && <Lightbox item={active} onClose={closeLightbox} />}
     </div>
   )
 }

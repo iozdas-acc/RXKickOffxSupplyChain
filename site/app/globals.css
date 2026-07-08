@@ -241,6 +241,11 @@ button:focus-visible {
   100% { opacity: 0; transform: translateY(-32px) scale(1.02); filter: blur(8px); }
 }
 
+@keyframes lightbox-fade {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 /* ─── Utility Classes ─────────────────────────────────────────────────────── */
 
 .font-display { font-family: var(--font-display); }
