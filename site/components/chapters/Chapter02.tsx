@@ -64,22 +64,30 @@ function HorizonBox({ item, onOpen }: { item: HorizonItem; onOpen: (item: Horizo
   return (
     <div
       style={{
-        /* All frames share the same top edge (row is stretched to full
-           height). Grow proportional to each frame's natural width so the
-           short landscape and tall portraits sit balanced with no overlap:
-           landscape ≈ 158, portrait ≈ 100. */
-        flex: `${item.frame === 'landscape' ? 158 : 100} 1 0`,
-        minWidth: 0,
+        /* Deterministic column sizing: carry the frame's height + aspect
+           ratio on the column itself (heights are definite from the row), so
+           each column's WIDTH is computed reliably and hugs its frame. This
+           lets the first frame sit flush with the container's left padding —
+           aligning it with the page title — while the row's `gap` becomes the
+           exact, consistent spacing between all frames. Portraits fill the row
+           height; the landscape frame is half-height and top-aligned. */
+        flex: '0 0 auto',
+        height: item.frame === 'landscape' ? '50%' : '100%',
+        aspectRatio: item.frame === 'landscape' ? '16 / 9' : '9 / 16',
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        gap: 10,
         minHeight: 0,
       }}
     >
-      {/* Small label above the box */}
+      {/* Small label floated above the box — kept out of the flow so it does
+          not affect the frame's aspect ratio. */}
       <div
         style={{
+          position: 'absolute',
+          bottom: '100%',
+          left: 0,
+          marginBottom: 10,
           fontFamily: 'var(--font-space-mono)',
           fontSize: 10,
           fontWeight: 700,
@@ -89,7 +97,7 @@ function HorizonBox({ item, onOpen }: { item: HorizonItem; onOpen: (item: Horizo
           display: 'flex',
           alignItems: 'center',
           gap: 8,
-          flexShrink: 0,
+          whiteSpace: 'nowrap',
         }}
       >
         <span style={{ width: 18, height: 1.5, background: 'var(--accent-ch2)', display: 'inline-block', borderRadius: 2 }} />
@@ -110,14 +118,10 @@ function HorizonBox({ item, onOpen }: { item: HorizonItem; onOpen: (item: Horizo
           }
         }}
         style={{
-          /* Portraits fill the row height (tall); the landscape frame is
-             short — its bottom stops ~halfway down the portraits. All top
-             edges align because each box sits directly under its label. */
-          ...(item.frame === 'landscape'
-            ? { flex: '0 0 auto', height: '50%' }
-            : { flex: '1 1 0', minHeight: 0 }),
-          maxWidth: '100%',
-          aspectRatio: item.frame === 'landscape' ? '16 / 9' : '9 / 16',
+          /* The column wrapper owns the height + aspect ratio; the box simply
+             fills it, so its proportions are exact. */
+          width: '100%',
+          height: '100%',
           borderRadius: 10,
           border: '1px solid color-mix(in srgb, var(--accent-ch2) 30%, transparent)',
           backgroundColor: 'var(--color-surface-card)',
@@ -422,8 +426,15 @@ export function Chapter02({ isActive }: Props) {
              proportionally while ratios, relative sizing, and the gap stay
              unchanged. */
           maxHeight: '65%',
-          alignItems: 'stretch',
-          justifyContent: 'center',
+          /* Top-align frames so the short landscape and tall portraits share
+             the same top edge. */
+          alignItems: 'flex-start',
+          /* Left-align so the Pain Point (Horizon 1) box lines up with the
+             page title — both share the container's left padding edge. */
+          justifyContent: 'flex-start',
+          /* Drop the whole row down a little for better vertical rhythm and
+             breathing room under the header. Inter-frame gap is unchanged. */
+          marginTop: 'clamp(24px, 5vh, 56px)',
         }}
       >
         {HORIZONS.map((item) => (
