@@ -11,9 +11,9 @@ const TEMPLATE_PILLARS = [
     icon: '⬡',
   },
   {
-    tag: 'AI Accelerators',
+    tag: 'Accelerators',
     title: 'Discovery Engine',
-    desc: 'Our AI-powered accelerator, grounded in Accenture methodologies. Analyses internal & external data, generates hypotheses and identifies opportunities at a greater speed and depth than traditional discovery. Blended with SME expertise and judgement at every step.',
+    desc: 'Our AI-powered accelerator, grounded in Accenture methodologies — generating and testing hypotheses, identifying opportunities, and compressing months of discovery into weeks. Blended with SME expertise and judgement at every step.',
     icon: '⬡',
   },
   {
