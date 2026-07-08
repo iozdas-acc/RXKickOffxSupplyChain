@@ -72,8 +72,13 @@ function HorizonBox({ item, onOpen }: { item: HorizonItem; onOpen: (item: Horizo
            exact, consistent spacing between all frames. Portraits fill the row
            height; the landscape frame is half-height and top-aligned. */
         flex: '0 0 auto',
-        height: item.frame === 'landscape' ? '50%' : '100%',
-        aspectRatio: item.frame === 'landscape' ? '16 / 9' : '9 / 16',
+        /* Landscape height % is tuned so its absolute size (and width) stay
+           unchanged even though the row is taller now. */
+        height: item.frame === 'landscape' ? '41.6%' : '100%',
+        /* Portrait ratio matches the phone screenshot (802×1716 ≈ 9/19.3) so
+           the full screen shows without cropping the bottom. Combined with the
+           taller row below, the portrait WIDTH is preserved. */
+        aspectRatio: item.frame === 'landscape' ? '16 / 9' : '802 / 1716',
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -425,7 +430,7 @@ export function Chapter02({ isActive }: Props) {
              aspect-ratio driven, so shrinking the height shrinks every frame
              proportionally while ratios, relative sizing, and the gap stay
              unchanged. */
-          maxHeight: '65%',
+          maxHeight: '78.2%',
           /* Top-align frames so the short landscape and tall portraits share
              the same top edge. */
           alignItems: 'flex-start',
