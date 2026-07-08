@@ -38,10 +38,10 @@
 
   /* ─── Horizon (H1/H2/H3 — never repurposed as generic) ──── */
   --horizon-1:      #14b8a6;             /* teal - matches title gradient   */
-  --horizon-2:      #059669;             /* emerald / green                 */
+  --horizon-2:      #2563eb;             /* blue - distinct from H1 teal    */
   --horizon-3:      #7C3AED;             /* purple                          */
   --horizon-1-soft: #ccfbf1;
-  --horizon-2-soft: #E6FCF5;
+  --horizon-2-soft: #DBEAFE;
   --horizon-3-soft: #F3EDFF;
 
   /* ─── Per-Chapter Accent Zones (D-DS-003) ────────────────── */
