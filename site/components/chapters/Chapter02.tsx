@@ -52,7 +52,7 @@ const HORIZONS: HorizonItem[] = [
     title: 'Bid for My Basket',
     thumbnail: '/images/horizon-3-basket-thumb.png',
     media: 'video',
-    src: '/videos/horizon-3-basket.mp4',
+    src: '/videos/horizon-3-basket.mov',
     frame: 'portrait',
   },
 ]
