@@ -226,8 +226,8 @@ export default function PresentationPage() {
           pointerEvents: heroMoment ? 'none' : 'auto',
         }}>
           {/* Order: What We Learned → Horizons Model → Hybrid Approach →
-              Embedding AI in Discovery (procurement). "The Story So Far" has
-              been removed and the procurement page moved to the end. */}
+              Case Study ("What This Looks Like In Practice"). The case-study
+              screen is restored at the end for the generic retail version. */}
           <Chapter03
             isActive={chapter === 0 && !isTransitioning}
             onNext={() => goTo(1)}

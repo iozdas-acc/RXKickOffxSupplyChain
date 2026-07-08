@@ -27,7 +27,7 @@ export default function ResultsPulse() {
 
   return (
     <section
-      className="py-24 relative overflow-hidden bg-gradient-to-br from-[#1A1A1A] via-[#222222] to-[#1A1A1A]"
+      className="py-24 relative overflow-hidden bg-gradient-to-br from-[#1C1C2E] via-[#222222] to-[#1C1C2E]"
     >
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
@@ -47,11 +47,11 @@ export default function ResultsPulse() {
             className="text-center mb-8"
           >
             <div className="flex items-center justify-center gap-3 mb-3">
-              <div className="w-10 h-px bg-[#F06C00]" />
-              <span className="text-xs font-medium text-[#F06C00] uppercase tracking-widest">
+              <div className="w-10 h-px bg-[#3DB19A]" />
+              <span className="text-xs font-medium text-[#3DB19A] uppercase tracking-widest">
                 What Clients Experienced
               </span>
-              <div className="w-10 h-px bg-[#F06C00]" />
+              <div className="w-10 h-px bg-[#3DB19A]" />
             </div>
             <h2 className="font-display text-2xl md:text-3xl font-bold italic text-white mt-3">
               Move faster. Experience more. Build belief earlier.
@@ -81,7 +81,7 @@ export default function ResultsPulse() {
             initial={{ opacity: 0 }}
             animate={bottomInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.35, delay: 0.05 }}
-            className="text-xs text-[#F06C00] uppercase tracking-widest mb-3"
+            className="text-xs text-[#3DB19A] uppercase tracking-widest mb-3"
           >
             But —
           </motion.p>
@@ -113,7 +113,7 @@ export default function ResultsPulse() {
                 transition={{ duration: 0.35, ease: EASE_OUT, delay: 0.25 + i * 0.08 }}
                 className="flex items-start gap-3"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F06C00] mt-2 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3DB19A] mt-2 flex-shrink-0" />
                 <p className="text-white/80 text-sm leading-relaxed">{item}</p>
               </motion.li>
             ))}

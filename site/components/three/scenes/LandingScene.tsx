@@ -20,7 +20,7 @@ import { CHAPTER_COLORS } from '../chapterColors'
 // chapter changes.
 
 const BRAND_ORANGE = CHAPTER_COLORS[0]
-const BRAND_ORANGE_DARK = '#C94B0A'
+const BRAND_ORANGE_DARK = '#1F7A66'
 
 // Storefront framed at a 3/4 angle with its entrance cantilevered toward
 // camera. z is pulled forward from -1.2 → 0.2 so it sits fully inside the

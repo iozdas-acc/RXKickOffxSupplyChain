@@ -36,7 +36,7 @@ const COUNTS: Record<Kind, number> = { tin: 8, packet: 8, bottle: 8 }
 const TOTAL = COUNTS.tin + COUNTS.packet + COUNTS.bottle
 
 const FLOOR_Y = -3
-const SAINSBURYS_ORANGE = CHAPTER_COLORS[0] // #F06C00
+const SAINSBURYS_ORANGE = CHAPTER_COLORS[0] // #3DB19A
 
 // Stocking animation tuning — calibrated so the whole wave finishes inside the
 // hero-moment window before content fades in.

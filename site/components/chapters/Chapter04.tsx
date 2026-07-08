@@ -43,7 +43,7 @@ const STEPS = [
     label: 'STEP 1',
     title: 'Create Your Horizon III Vision',
     body:
-      'Define what your business looks like in Horizon III — autonomous systems, agent-driven operations, transformed value creation.',
+      'Define what Argos\u2019 Forecasting Tower looks like in Horizon III — autonomous operations, agent-driven planning, transformed value creation.',
     arrow: 'right' as const,
   },
   {
@@ -53,7 +53,7 @@ const STEPS = [
     label: 'STEP 2',
     title: 'Deliver Horizon I Quick Wins',
     body:
-      'Review immediate short-term gains you can deliver now — prove value, build momentum, and create funding for larger bets.',
+      'Identify, test and prioritise hypotheses for quick wins you can deliver now — prove value, build momentum, and create funding for larger bets.',
     arrow: null,
   },
   {
@@ -63,7 +63,7 @@ const STEPS = [
     label: 'STEP 3',
     title: 'Analyse the Horizon II Gap',
     body:
-      'Work out the Horizon II investments needed to reach your Horizon III vision — the safe first steps and bigger bets that bridge the gap.',
+      'Work out the Horizon II investments needed to reach your Horizon III vision — the safe first steps and bigger bets that bridge the gap — and sequence them into a roadmap.',
     arrow: 'left' as const,
   },
 ]
@@ -193,9 +193,9 @@ export function Chapter04({ isActive }: Props) {
         background: 'var(--color-surface-card)',
         border: '1px solid var(--color-border-primary)',
         borderRadius: 20,
-        padding: '22px 24px 20px',
+        padding: '18px 24px 16px',
         boxShadow: 'var(--shadow-md)',
-        display: 'flex', flexDirection: 'column', gap: 14,
+        display: 'flex', flexDirection: 'column', gap: 12,
         overflow: 'hidden',
       }}>
 
@@ -203,7 +203,7 @@ export function Chapter04({ isActive }: Props) {
         <div style={{
           position: 'relative',
           width: '100%',
-          aspectRatio: '800 / 300',
+          aspectRatio: '800 / 250',
           background: `linear-gradient(180deg, color-mix(in srgb, var(--horizon-3) 3%, var(--color-background-tertiary)), var(--color-surface-card))`,
           borderRadius: 14,
           border: '1px solid var(--color-border-tertiary)',
@@ -373,9 +373,9 @@ export function Chapter04({ isActive }: Props) {
               border: `1px solid color-mix(in srgb, ${s.color} 18%, transparent)`,
               borderLeft: `3px solid ${s.color}`,
               borderRadius: 10,
-              padding: '14px 16px',
-              display: 'flex', flexDirection: 'column', gap: 8,
-              minHeight: 160,
+              padding: '12px 16px',
+              display: 'flex', flexDirection: 'column', gap: 7,
+              minHeight: 140,
               transition: 'transform 0.25s, box-shadow 0.25s, border-color 0.25s',
               boxShadow: 'var(--shadow-xs)',
             }}

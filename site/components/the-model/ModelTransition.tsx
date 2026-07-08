@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react'
 
 export default function ModelTransition() {
   return (
-    <section className="py-24 relative overflow-hidden bg-gradient-to-br from-[#1A1A1A] via-[#2A2A2A] to-[#1A1A1A]">
+    <section className="py-24 relative overflow-hidden bg-gradient-to-br from-[#1C1C2E] via-[#2A2A2A] to-[#1C1C2E]">
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
@@ -13,10 +13,10 @@ export default function ModelTransition() {
           backgroundSize: '32px 32px',
         }}
       />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-[#7C3AED]/15 rounded-full blur-[60px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-[#0F1D3C]/15 rounded-full blur-[60px] pointer-events-none" />
 
       <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
-        <p className="text-xs font-medium text-[#7C3AED] uppercase tracking-widest mb-6">
+        <p className="text-xs font-medium text-[#0F1D3C] uppercase tracking-widest mb-6">
           And —
         </p>
 
@@ -35,7 +35,7 @@ export default function ModelTransition() {
         <div className="mt-12">
           <Link
             href="/the-template"
-            className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-[#7C3AED] transition-colors duration-150 group"
+            className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-[#0F1D3C] transition-colors duration-150 group"
           >
             See the template
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150" />

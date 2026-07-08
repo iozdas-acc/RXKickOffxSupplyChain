@@ -11,15 +11,15 @@ const TEMPLATE_PILLARS = [
     icon: '⬡',
   },
   {
-    tag: 'AI Accelerators',
+    tag: 'Accelerators',
     title: 'Discovery Engine',
-    desc: 'Our AI-powered accelerator, grounded in Accenture methodologies. Analyses internal & external data, generates hypotheses and identifies opportunities at a greater speed and depth than traditional discovery. Blended with SME expertise and judgement at every step.',
+    desc: 'Our AI-powered accelerator, grounded in Accenture methodologies — generating and testing hypotheses, identifying opportunities, and compressing months of discovery into weeks. Blended with SME expertise and judgement at every step.',
     icon: '⬡',
   },
   {
     tag: 'Outputs',
     title: 'Tangible Outputs',
-    desc: 'We deliver during discovery, not after. Interactive outputs that replace static decks and spreadsheets. POCs and prototypes that prove immediate value and build momentum from day one, where possible.',
+    desc: 'We go beyond static decks and spreadsheets — delivering interactive, explorable outputs throughout the engagement. And where possible, conceptual prototypes and POCs that prove immediate value and illustrate what the future state could look like.',
     icon: '⬡',
   },
 ]
@@ -64,7 +64,7 @@ export function Chapter05({ isActive, onPrev }: Props) {
         fontFamily: 'var(--font-space-mono)',
         fontSize: 10, fontWeight: 700,
         textTransform: 'uppercase', letterSpacing: '0.3em',
-        color: 'var(--accent-ch5)', marginBottom: 28,
+        color: 'var(--accent-ch5)', marginBottom: 20,
         display: 'flex', alignItems: 'center', gap: 12,
       }}>
         <span style={{ width: 32, height: 1.5, background: 'var(--accent-ch5)', display: 'inline-block', borderRadius: 2 }} />
@@ -80,7 +80,7 @@ export function Chapter05({ isActive, onPrev }: Props) {
         textTransform: 'uppercase',
         lineHeight: 0.95,
         letterSpacing: '-0.02em',
-        marginBottom: 20,
+        marginBottom: 16,
         maxWidth: 800,
         color: 'var(--color-text-primary)',
       }}>
@@ -101,9 +101,9 @@ export function Chapter05({ isActive, onPrev }: Props) {
         fontFamily: 'var(--font-dm-sans)',
         fontSize: 15, color: 'var(--color-text-secondary)',
         lineHeight: 1.75, maxWidth: 620,
-        marginBottom: 48,
+        marginBottom: 36,
       }}>
-        The framework, tools and outputs we bring to every engagement to accelerate reinvention and make the future tangible.
+        What we bring to every engagement to accelerate discovery, make the future tangible, and deliver value early.
       </p>
 
       {/* Three pillars */}
@@ -178,27 +178,6 @@ export function Chapter05({ isActive, onPrev }: Props) {
         ))}
       </div>
 
-      {/* Closing brand pill — gradient rule echoes the finale moment */}
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 10,
-        justifyContent: 'center',
-      }}>
-        <span style={{
-          fontFamily: 'var(--font-space-mono)',
-          fontSize: 10, fontWeight: 700,
-          color: 'var(--sainsburys-orange-ink)', letterSpacing: '0.12em',
-        }}>
-          SAINSBURY&apos;S
-        </span>
-        <span style={{ width: 20, height: 1.5, background: 'var(--accent-ch5-gradient)', borderRadius: 2 }} />
-        <span style={{
-          fontFamily: 'var(--font-space-mono)',
-          fontSize: 10, fontWeight: 700,
-          color: 'var(--accent-ch5)', letterSpacing: '0.12em',
-        }}>
-          ACCENTURE
-        </span>
-      </div>
     </div>
   )
 }

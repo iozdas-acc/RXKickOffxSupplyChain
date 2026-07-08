@@ -55,9 +55,9 @@ export function NavBar({ chapter, entered, goTo, goToLanding, next, prev }: Prop
           }}
         >
           <img
-            src="/images/sainsburys-logo.png"
-            alt="Sainsbury's"
-            style={{ height: 10, width: 'auto', display: 'block' }}
+            src="/images/rx-logo.svg"
+            alt="RX"
+            style={{ height: 20, width: 'auto', display: 'block' }}
           />
           <span style={{ width: 14, height: 1, background: 'var(--color-border-primary)' }} />
           <img

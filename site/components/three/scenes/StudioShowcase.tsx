@@ -7,7 +7,7 @@ import { BackSide, type Group } from 'three'
 // Brand orange for the bottle + a darker ink tone used for the inverted-hull
 // outline pass. Keeps the silhouette legible on the warm #FAFAFA canvas.
 const BOTTLE_ORANGE = '#E8590C'
-const OUTLINE_INK = '#1A1A1A'
+const OUTLINE_INK = '#1C1C2E'
 const OUTLINE_SCALE = 1.045
 
 // Landing-only studio product showcase. Three objects floating in a loose

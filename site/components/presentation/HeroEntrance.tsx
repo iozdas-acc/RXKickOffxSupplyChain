@@ -108,17 +108,17 @@ export function HeroEntrance({ onEnter }: Props) {
         color: 'var(--sainsburys-orange-ink)',
         opacity: 0,
       }}>
-        RX · SAINSBURY&apos;S ANCONA REINVENTION
+        RX · ACCENTURE
       </div>
 
       {/* Headline — exactly 2 lines, orange-only accent */}
       <div
         style={{
           fontFamily: 'var(--font-space-grotesk)',
-          // Sized so the longest line ("TO DELIVER REINVENTION") fits on one
-          // line inside the 50vw left column with side padding, without clipping.
-          fontSize: 'clamp(26px, 3.7vw, 56px)',
-          fontWeight: 700,
+          // Sized so the longest line ("FOR REINVENTION") fits on one line
+          // inside the 50vw left column with side padding, without clipping.
+          fontSize: 'clamp(34px, 4.9vw, 76px)',
+          fontWeight: 800,
           textTransform: 'uppercase',
           lineHeight: 1.02,
           letterSpacing: '-0.02em',
@@ -134,7 +134,7 @@ export function HeroEntrance({ onEnter }: Props) {
             opacity: 0,
           }}
         >
-          A DIFFERENT WAY
+          A NEW MODEL
         </div>
         <div
           ref={line2Ref}
@@ -143,7 +143,7 @@ export function HeroEntrance({ onEnter }: Props) {
             opacity: 0,
           }}
         >
-          <span style={{ color: 'var(--color-text-primary)', textShadow: titleShadow }}>TO DELIVER </span>
+          <span style={{ color: 'var(--color-text-primary)', textShadow: titleShadow }}>FOR </span>
           <span
             style={{
               backgroundImage: 'var(--accent-ch5-gradient)',
@@ -171,7 +171,7 @@ export function HeroEntrance({ onEnter }: Props) {
           lineHeight: 1.7,
           textAlign: 'left',
         }}>
-          How RX is accelerating AI-led reinvention across the Ancona programme.
+          Embedding AI-native ways of working to accelerate discovery — and how we&apos;re making it the template for reinvention at scale.
         </p>
       </div>
 

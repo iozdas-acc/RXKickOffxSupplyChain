@@ -40,7 +40,7 @@ const TescoLogo = () => (
 
 const SainsburysLogo = () => (
   <svg viewBox="0 0 100 30" className="w-full h-full">
-    <rect width="100" height="30" rx="2" fill="#F06C00" />
+    <rect width="100" height="30" rx="2" fill="#3DB19A" />
     <text x="50" y="20" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold" fontFamily="Arial, sans-serif">
       Sainsbury&apos;s
     </text>
@@ -247,16 +247,16 @@ const SupermarketCard = ({
   isSelected: boolean
 }) => (
   <motion.div
-    whileHover={{ y: -3, boxShadow: isSelected ? '0 12px 32px rgba(37,99,235,0.18)' : '0 8px 24px rgba(0,0,0,0.1)' }}
+    whileHover={{ y: -3, boxShadow: isSelected ? '0 12px 32px rgba(61, 177, 154,0.18)' : '0 8px 24px rgba(0,0,0,0.1)' }}
     onClick={onSelect}
     style={{
       padding: '20px',
       borderRadius: '20px',
-      border: isSelected ? '2px solid #2563eb' : '2px solid #f0f0f0',
+      border: isSelected ? '2px solid #3DB19A' : '2px solid #f0f0f0',
       background: isSelected ? 'linear-gradient(135deg, #EFF6FF 0%, #F0F9FF 100%)' : '#ffffff',
       cursor: 'pointer',
       transition: 'all 0.25s cubic-bezier(0.22,1,0.36,1)',
-      boxShadow: isSelected ? '0 8px 24px rgba(37,99,235,0.12)' : '0 2px 8px rgba(0,0,0,0.06)',
+      boxShadow: isSelected ? '0 8px 24px rgba(61, 177, 154,0.12)' : '0 2px 8px rgba(0,0,0,0.06)',
     }}
   >
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
@@ -332,12 +332,12 @@ const SupermarketCard = ({
         alignItems: 'center',
         gap: '8px',
         padding: '10px 12px',
-        background: isSelected ? 'rgba(37,99,235,0.08)' : '#F8F9FA',
+        background: isSelected ? 'rgba(61, 177, 154,0.08)' : '#F8F9FA',
         borderRadius: '10px',
-        border: isSelected ? '1px solid rgba(37,99,235,0.15)' : '1px dashed #e5e7eb',
+        border: isSelected ? '1px solid rgba(61, 177, 154,0.15)' : '1px dashed #e5e7eb',
       }}
     >
-      <Zap style={{ width: 12, height: 12, color: isSelected ? '#2563eb' : '#6b7280', flexShrink: 0 }} />
+      <Zap style={{ width: 12, height: 12, color: isSelected ? '#3DB19A' : '#6b7280', flexShrink: 0 }} />
       <span style={{ fontSize: '11px', fontWeight: 600, color: isSelected ? '#1d4ed8' : '#6b7280' }}>
         AI Negotiated: {offer.negotiatedPerk}
       </span>
@@ -606,7 +606,7 @@ export default function ConversationalRetailUI({ scale = 1 }: ConversationalReta
                     padding: 16,
                     borderRadius: 16,
                     borderTopLeftRadius: 0,
-                    border: '1px solid #DBEAFE',
+                    border: '1px solid #E3F3EF',
                   }}
                 >
                   <p style={{ fontSize: 14, color: '#1e3a5f', lineHeight: 1.6, margin: 0 }}>
@@ -653,7 +653,7 @@ export default function ConversationalRetailUI({ scale = 1 }: ConversationalReta
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: '#2563eb',
+                        color: '#3DB19A',
                       }}
                     >
                       <Camera style={{ width: 32, height: 32 }} />
@@ -733,7 +733,7 @@ export default function ConversationalRetailUI({ scale = 1 }: ConversationalReta
                       width: 32,
                       height: 32,
                       borderRadius: '50%',
-                      background: '#2563eb',
+                      background: '#3DB19A',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -895,12 +895,12 @@ export default function ConversationalRetailUI({ scale = 1 }: ConversationalReta
                           width: 64,
                           height: 64,
                           borderRadius: '50%',
-                          background: '#2563eb',
+                          background: '#3DB19A',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           position: 'relative',
-                          boxShadow: '0 8px 25px rgba(37,99,235,0.3)',
+                          boxShadow: '0 8px 25px rgba(61, 177, 154,0.3)',
                         }}
                       >
                         <motion.div
@@ -969,7 +969,7 @@ export default function ConversationalRetailUI({ scale = 1 }: ConversationalReta
                     background: 'linear-gradient(135deg, #EFF6FF, #ECFEFF)',
                     borderRadius: 16,
                     padding: 16,
-                    border: '1px solid #DBEAFE',
+                    border: '1px solid #E3F3EF',
                     boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
                   }}
                 >
@@ -1095,7 +1095,7 @@ export default function ConversationalRetailUI({ scale = 1 }: ConversationalReta
                       }}
                     >
                       <motion.div
-                        style={{ height: '100%', background: '#2563eb', borderRadius: 999 }}
+                        style={{ height: '100%', background: '#3DB19A', borderRadius: 999 }}
                         initial={{ width: '0%' }}
                         animate={{
                           width: `${((negotiationStep + 1) / NEGOTIATION_STEPS.length) * 100}%`,
@@ -1135,7 +1135,7 @@ export default function ConversationalRetailUI({ scale = 1 }: ConversationalReta
               >
                 <div
                   style={{
-                    background: '#2563eb',
+                    background: '#3DB19A',
                     padding: 16,
                     borderRadius: 16,
                     color: '#fff',
@@ -1260,7 +1260,7 @@ export default function ConversationalRetailUI({ scale = 1 }: ConversationalReta
                     setSelectedOffer(null)
                   }}
                   style={{
-                    color: '#2563eb',
+                    color: '#3DB19A',
                     fontWeight: 700,
                     fontSize: 14,
                     display: 'flex',
@@ -1292,7 +1292,7 @@ export default function ConversationalRetailUI({ scale = 1 }: ConversationalReta
                 onClick={handleConfirm}
                 style={{
                   flex: 1,
-                  background: '#2563eb',
+                  background: '#3DB19A',
                   color: '#fff',
                   padding: '16px 0',
                   borderRadius: 16,
@@ -1304,7 +1304,7 @@ export default function ConversationalRetailUI({ scale = 1 }: ConversationalReta
                   gap: 8,
                   border: 'none',
                   cursor: 'pointer',
-                  boxShadow: '0 8px 20px rgba(37,99,235,0.3)',
+                  boxShadow: '0 8px 20px rgba(61, 177, 154,0.3)',
                   transition: 'background 0.2s',
                 }}
               >
@@ -1344,9 +1344,9 @@ export default function ConversationalRetailUI({ scale = 1 }: ConversationalReta
                     borderRadius: 16,
                     border: 'none',
                     cursor: appState === 'IDLE' ? 'pointer' : 'default',
-                    background: appState === 'IDLE' ? '#2563eb' : '#f3f4f6',
+                    background: appState === 'IDLE' ? '#3DB19A' : '#f3f4f6',
                     color: appState === 'IDLE' ? '#fff' : '#9ca3af',
-                    boxShadow: appState === 'IDLE' ? '0 8px 20px rgba(37,99,235,0.3)' : 'none',
+                    boxShadow: appState === 'IDLE' ? '0 8px 20px rgba(61, 177, 154,0.3)' : 'none',
                     transition: 'all 0.2s',
                     display: 'flex',
                     alignItems: 'center',

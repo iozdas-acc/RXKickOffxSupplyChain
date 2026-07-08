@@ -11,7 +11,7 @@ export default function Transition() {
   const inView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section className="py-24 relative overflow-hidden bg-gradient-to-br from-[#1A1A1A] via-[#2A2A2A] to-[#1A1A1A]">
+    <section className="py-24 relative overflow-hidden bg-gradient-to-br from-[#1C1C2E] via-[#2A2A2A] to-[#1C1C2E]">
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
@@ -19,14 +19,14 @@ export default function Transition() {
           backgroundSize: '32px 32px',
         }}
       />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-[#F06C00]/15 rounded-full blur-[60px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-[#3DB19A]/15 rounded-full blur-[60px] pointer-events-none" />
 
       <div ref={ref} className="max-w-3xl mx-auto px-6 text-center relative z-10">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, ease: EASE_OUT }}
-          className="text-xs font-medium text-[#F06C00] uppercase tracking-widest mb-6"
+          className="text-xs font-medium text-[#3DB19A] uppercase tracking-widest mb-6"
         >
           So —
         </motion.p>
@@ -58,7 +58,7 @@ export default function Transition() {
         >
           <Link
             href="/the-model"
-            className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-[#F06C00] transition-colors duration-150 group"
+            className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-[#3DB19A] transition-colors duration-150 group"
           >
             How the model works
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150" />

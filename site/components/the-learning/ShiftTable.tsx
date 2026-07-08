@@ -46,11 +46,11 @@ export default function ShiftTable() {
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-3 mb-3">
-            <div className="w-10 h-px bg-[#F06C00]" />
-            <span className="text-xs font-medium text-[#F06C00] uppercase tracking-widest">What Changed</span>
-            <div className="w-10 h-px bg-[#F06C00]" />
+            <div className="w-10 h-px bg-[#3DB19A]" />
+            <span className="text-xs font-medium text-[#3DB19A] uppercase tracking-widest">What Changed</span>
+            <div className="w-10 h-px bg-[#3DB19A]" />
           </div>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-[#1A1A1A]">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-[#1C1C2E]">
             From traditional PVE. To AI-powered transformation.
           </h2>
           <p className="text-[#666666] mt-3 max-w-xl mx-auto">
@@ -73,7 +73,7 @@ export default function ShiftTable() {
                   <div className="text-[10px] font-semibold px-2 py-0.5 rounded bg-[#F5F5F5] text-[#666666] inline-block mb-2">
                     Traditional
                   </div>
-                  <p className="text-[#1A1A1A] text-sm">{row.from}</p>
+                  <p className="text-[#1C1C2E] text-sm">{row.from}</p>
                 </div>
 
                 <div className="hidden md:flex w-16 items-center justify-center bg-white border-y border-[#E5E5E5]">
@@ -81,19 +81,19 @@ export default function ShiftTable() {
                     animate={{ x: [0, 4, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.1 }}
                   >
-                    <ArrowRight className="w-5 h-5 text-[#F06C00]" />
+                    <ArrowRight className="w-5 h-5 text-[#3DB19A]" />
                   </motion.div>
                 </div>
 
                 <div className="flex md:hidden items-center justify-center py-2">
-                  <ArrowRight className="w-5 h-5 text-[#F06C00] rotate-90" />
+                  <ArrowRight className="w-5 h-5 text-[#3DB19A] rotate-90" />
                 </div>
 
-                <div className="flex-1 bg-[#F06C00]/5 border border-[#F06C00]/20 rounded-xl md:rounded-l-none md:border-l-0 p-5">
-                  <div className="text-[10px] font-semibold px-2 py-0.5 rounded bg-[#F06C00] text-white inline-block mb-2">
+                <div className="flex-1 bg-[#3DB19A]/5 border border-[#3DB19A]/20 rounded-xl md:rounded-l-none md:border-l-0 p-5">
+                  <div className="text-[10px] font-semibold px-2 py-0.5 rounded bg-[#3DB19A] text-white inline-block mb-2">
                     AI-Powered
                   </div>
-                  <p className="text-[#1A1A1A] font-medium text-sm">{row.to}</p>
+                  <p className="text-[#1C1C2E] font-medium text-sm">{row.to}</p>
                 </div>
               </div>
             </motion.div>
