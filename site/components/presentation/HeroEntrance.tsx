@@ -108,7 +108,7 @@ export function HeroEntrance({ onEnter }: Props) {
         color: 'var(--sainsburys-orange-ink)',
         opacity: 0,
       }}>
-        ANCONA REINVENTION · ARGOS SUPPLY CHAIN FORECASTING
+        ARGOS SUPPLY CHAIN FORECASTING
       </div>
 
       {/* Headline — exactly 2 lines, orange-only accent */}
