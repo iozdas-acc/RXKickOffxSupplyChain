@@ -118,7 +118,7 @@ export function HeroEntrance({ onEnter }: Props) {
           // Sized so the longest line ("TO DELIVER REINVENTION") fits on one
           // line inside the 50vw left column with side padding, without clipping.
           fontSize: 'clamp(26px, 3.7vw, 56px)',
-          fontWeight: 700,
+          fontWeight: 800,
           textTransform: 'uppercase',
           lineHeight: 1.02,
           letterSpacing: '-0.02em',
@@ -134,7 +134,7 @@ export function HeroEntrance({ onEnter }: Props) {
             opacity: 0,
           }}
         >
-          A NEW WAY
+          A NEW MODEL
         </div>
         <div
           ref={line2Ref}
@@ -143,7 +143,7 @@ export function HeroEntrance({ onEnter }: Props) {
             opacity: 0,
           }}
         >
-          <span style={{ color: 'var(--color-text-primary)', textShadow: titleShadow }}>TO DELIVER </span>
+          <span style={{ color: 'var(--color-text-primary)', textShadow: titleShadow }}>FOR </span>
           <span
             style={{
               backgroundImage: 'var(--accent-ch5-gradient)',
@@ -171,7 +171,7 @@ export function HeroEntrance({ onEnter }: Props) {
           lineHeight: 1.7,
           textAlign: 'left',
         }}>
-          How we&apos;re embedding AI-native ways of working across Sainsbury&apos;s. Bringing together functional expertise, account context and RX methodologies and tooling to deliver reinvention differently at scale.
+          Embedding AI-native ways of working to accelerate discovery across Sainsbury&apos;s, and how we&apos;re making it the template for reinvention at scale.
         </p>
       </div>
 
