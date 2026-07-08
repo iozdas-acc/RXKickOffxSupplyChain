@@ -67,20 +67,6 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
           boxShadow: '0 8px 40px rgba(0,0,0,0.06)',
         }}
       >
-        <div
-          style={{
-            fontFamily: 'var(--font-space-mono), monospace',
-            fontSize: 11,
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '0.18em',
-            color: 'var(--sainsburys-orange-ink)',
-            marginBottom: 14,
-          }}
-        >
-          RX KickOff
-        </div>
-
         <h1
           style={{
             fontFamily: 'var(--font-space-grotesk), sans-serif',
