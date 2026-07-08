@@ -30,13 +30,13 @@ const LEARNINGS = [
   },
   {
     learning: {
-      before: "Concepts don't build belief, ",
-      highlight: 'experience does',
+      before: "Describing the future doesn't build belief, ",
+      highlight: 'experiencing it does',
       after: '.',
     },
     howMightWe: {
-      before: '...',
-      highlight: 'prototype and build',
+      before: '\u2026',
+      highlight: 'conceptualise & prototype',
       after: ' during discovery, not just describe?',
     },
   },
