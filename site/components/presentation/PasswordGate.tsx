@@ -23,7 +23,8 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    if (value === SITE_PASSWORD) {
+    // Trim to tolerate stray whitespace from pasting / autofill on mobile.
+    if (value.trim() === SITE_PASSWORD) {
       try {
         sessionStorage.setItem(STORAGE_KEY, 'true')
       } catch {
