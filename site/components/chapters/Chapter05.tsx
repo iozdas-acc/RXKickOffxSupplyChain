@@ -19,7 +19,7 @@ const TEMPLATE_PILLARS = [
   {
     tag: 'Outputs',
     title: 'Tangible Outputs',
-    desc: 'We go beyond static decks and spreadsheets — delivering interactive, explorable outputs throughout the engagement. And where possible, conceptual prototypes and POCs that illustrate what the future state could look like.',
+    desc: 'We go beyond static decks and spreadsheets — delivering interactive, explorable outputs throughout the engagement. And where possible, conceptual prototypes and POCs that prove immediate value and illustrate what the future state could look like.',
     icon: '⬡',
   },
 ]
