@@ -240,7 +240,6 @@ export default function PresentationPage() {
           />
           <Chapter05
             isActive={chapter === 2 && !isTransitioning}
-            onNext={() => goTo(3)}
             onPrev={() => goTo(1)}
           />
           <Chapter02
