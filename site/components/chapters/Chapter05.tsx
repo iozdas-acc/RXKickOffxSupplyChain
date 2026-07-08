@@ -178,27 +178,6 @@ export function Chapter05({ isActive, onPrev }: Props) {
         ))}
       </div>
 
-      {/* Closing brand pill — gradient rule echoes the finale moment */}
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 10,
-        justifyContent: 'center',
-      }}>
-        <span style={{
-          fontFamily: 'var(--font-space-mono)',
-          fontSize: 10, fontWeight: 700,
-          color: 'var(--sainsburys-orange-ink)', letterSpacing: '0.12em',
-        }}>
-          SAINSBURY&apos;S
-        </span>
-        <span style={{ width: 20, height: 1.5, background: 'var(--accent-ch5-gradient)', borderRadius: 2 }} />
-        <span style={{
-          fontFamily: 'var(--font-space-mono)',
-          fontSize: 10, fontWeight: 700,
-          color: 'var(--accent-ch5)', letterSpacing: '0.12em',
-        }}>
-          ACCENTURE
-        </span>
-      </div>
     </div>
   )
 }
